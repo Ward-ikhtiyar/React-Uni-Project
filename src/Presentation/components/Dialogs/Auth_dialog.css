@@ -1,0 +1,55 @@
+.dialog-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.inputBox{
+   height: 30px;
+   width: 300px; 
+}
+.login-button{
+    align-self: center;
+    margin-top: 10px;
+    background-color: var(--app-blue);
+    color: white;
+    font-family: thicc;
+    font-size:20px;
+    width: 250px;
+    border: none;
+    box-shadow: 1px 2px 3px var(--app-blue);
+}
+.login-button:hover{
+    opacity: 0.7;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.Main-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: thicc;
+    font-size: larger;
+    
+}
+.create-text{
+    align-self: center;
+    
+}
+.create-text:hover{
+    color: var(--app-blue);
+    cursor: pointer;
+    transition: 0.5s;
+}
+.forgot-text{
+color: var(--app-blue);
+
+}
+.forgot-text:hover{
+    
+    width: fit-content;
+    cursor: pointer;
+    text-decoration: underline;
+    opacity: 0.7;
+
+}

@@ -1,0 +1,13 @@
+img{
+    border-radius: 10px;
+    width: 80%;
+    height: 20%;
+    box-shadow: 1px 1px 5px black;
+    object-fit: cover;
+}
+img:hover{
+    scale: 110%;
+    opacity: 0.9;
+    transition: 0.5s;
+    cursor: pointer;
+}

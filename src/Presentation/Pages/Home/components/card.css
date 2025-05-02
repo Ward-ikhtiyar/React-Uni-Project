@@ -1,0 +1,52 @@
+ /* .Card-pic{
+    width: 120px;
+    height: 120px;
+    background-image: url("../../../assets/agent.svg");
+    background-position: center;
+    background-size: cover;
+  }  */
+  .card{
+    overflow: hidden;
+    word-break: break-word;
+
+    text-overflow: clip;
+    box-shadow: 1px 1px 7px black;
+    background-color: white;
+    border-radius: 30px;
+    padding-left: 20px;
+    padding-right:20px ;
+    width:22vw;
+    height: 400px;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .details{
+    font-weight: 300;
+    font-size: large;
+    font-family: Thicc;
+    text-overflow: clip;
+    margin-top:0px;
+    margin-bottom: 30px;
+  }
+  .name{
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  button{
+    border: solid 1px blue;
+    color: blue;
+    border-radius: 12px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: transparent;
+    font-size: larger;
+    
+  }
+ 
+  

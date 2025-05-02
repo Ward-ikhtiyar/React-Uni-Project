@@ -1,0 +1,34 @@
+@font-face {
+  font-family: "Thicc";
+  src: url("./assets/Oswald-VariableFont_wght.ttf");
+}
+body {
+  font-family: Thicc;
+  overflow-y: scroll;
+  
+  min-width: 320px;
+  min-height: 100vh;
+}
+:root{
+  --app-blue:rgb(108, 99, 255);
+  --app-blue-opaque:rgba(108, 99, 255,0.3);
+  --app-background:rgb(247, 247, 247);
+  --app-grey:rgb(103, 104, 105);
+}
+.HomePage{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: green;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  overflow-x: hidden;
+  
+}
+--webkit::-webkit-scrollbar{
+  display: none;
+}

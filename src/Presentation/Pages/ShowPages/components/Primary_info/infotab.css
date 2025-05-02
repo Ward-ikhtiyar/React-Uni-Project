@@ -1,0 +1,12 @@
+.info-Tab{
+    width: 80%;
+    height: 45px;
+    background-color: rgba(156, 165, 172,0.2);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    gap:30% ;
+    align-items: center;
+    padding-left: 50px;
+    font-size: larger;
+}
