@@ -32,11 +32,11 @@
     transition: 0.5s;
     cursor: pointer;
 }
-h1{
-    color: white;
+.button-section h1{
+    color: black;
     font-size: 60px;
 }
-a{
+.alt-logo a{
     color: white;
     font-size: 60px;
     text-decoration: solid;
