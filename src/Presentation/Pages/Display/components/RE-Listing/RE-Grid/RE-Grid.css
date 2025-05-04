@@ -1,0 +1,11 @@
+.grid-section{
+    width: 50vw;
+    position: fixed;
+    right: 0;
+    overflow-y: scroll;
+    max-height: 95vh;
+}
+
+.grid-section Box{
+    padding-left: 10px;
+}

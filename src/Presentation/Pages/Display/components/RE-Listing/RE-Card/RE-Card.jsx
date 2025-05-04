@@ -1,6 +1,6 @@
 import React from 'react';
-import "../Pages/Display_Page.css"
-import Info from "./Display_Card_Info.json"
+import './RE-Card.css'
+import Info from "./RE-Card-Info.json"
 
 const DisplayCard = () => {
     return (
