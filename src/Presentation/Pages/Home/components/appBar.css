@@ -3,7 +3,7 @@
     height: 10vh;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     background-color: white;
     
@@ -17,35 +17,34 @@
 }
 .logo-side{
     font-weight: 500;
-    font-size: larger;
+    font-size: xx-large;
 }
 .sidePanel{
 display: flex;
 flex-direction: row;
 }
 .appBar-button{
+    font-family: thicc;
     color: black;
-    height: 10vh;
+    height: 100%;
     background-color: transparent;
     padding-left:20px ;
     padding-right: 20px;
     border: none;
-    font-size: medium;
+    font-size: larger;
     transition:   0.5s ease-out ;
-    font-weight: 500;
+    font-weight: 300;
     
 }
 .appBar-button:hover{
     color: var(--app-blue);
     cursor: pointer;
-    font-size: large;
+    font-size: x-large;
 }
 @media (max-width:1000px) {
  .appBar{
     display: none;
 
  }  
- .appBar-button{
-    
- }
+
 }

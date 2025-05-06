@@ -1,5 +1,5 @@
 import "./card.css"
-function Card({desc,name,image}){
+function Card({desc,name,image,button}){
     const photoStyle={
     width: "120px",
     height: "120px",
@@ -14,7 +14,7 @@ function Card({desc,name,image}){
             <div style={photoStyle}  className="Card-pic"></div>
             <p className="name">{name} </p>
             <p className="details">{desc}</p>
-            <button>check it out</button>
+            <button className="service-button">{button}</button>
             
         </div>
     );
