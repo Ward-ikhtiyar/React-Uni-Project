@@ -1,0 +1,10 @@
+body{
+    height: 100%;
+    overflow: hidden;
+}
+.leaflet-container {
+    height: 100vw;
+    width: 50vw;
+    z-index: 1;
+
+}

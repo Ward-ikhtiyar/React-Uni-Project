@@ -15,7 +15,10 @@
     "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
     "leaflet": "^1.9.4",
+    "leaflet": "^1.9.4",
     "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-leaflet": "^5.0.0-rc.2"
     "react-dom": "^19.0.0",
     "react-leaflet": "^5.0.0",
     "react-verification-input": "^4.2.2"
