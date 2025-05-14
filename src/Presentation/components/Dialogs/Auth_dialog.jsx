@@ -2,106 +2,24 @@ import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material
 import './Auth_dialog.css'
 import {  useState } from "react";
 import VerificationInput from "react-verification-input";
+import { Login } from "@mui/icons-material";
+import SignUpDialog from "./signup_dialog";
+import LoginDialog from "./login_dialog";
+import VerifyDialog from "./verify_dialog";
 function AuthDialog({open,onClose}){
     const [isLogin,setisLogin]=useState(false);
-    const[isAgent,setisAgent]=useState(false);
-    let checkBoxVal=false;
-    const handleClose=(event,reason)=>{
-        if(reason==='backdropClick') 
-            setisLogin(false);
-        onClose();  
-        setisAgent(false);
-    };
-    if(isAgent){
-        return(<Dialog id="dialog" open={open} onClose={handleClose}>
-            <DialogTitle>
-            <div className="Main-title" style={{justifySelf:"center"}}>
-                        Enter Verification Code
-                        </div>
-            </DialogTitle>
-            <DialogActions>
-                <div style={{animation:'none',width:'36vw'}} className="dialog-body">
-                    <VerificationInput classNames={{
-                        character:'character',
-                        container:'container',
-                        characterInactive:'character-inactive',
-                        characterFilled:'character-active',
-                        characterSelected:'character-selected'
-                        
-                }} validChars="0-9" length={6}></VerificationInput>
-                <button className="login-button" style={{marginTop:"3vh",marginBottom:'3vh'}}>Verify</button>
-                </div>
-                
-            </DialogActions>
-
-        </Dialog>);
+    
+    const[isVerify,setisVerify]=useState(false);
+    if(isVerify){
+        return(<VerifyDialog/>);
     }
     if(!isLogin){
         return(
-            <>
-            <Dialog id="dialog" open={open}onClose={handleClose}>
-                <DialogTitle>
-    
-                    <div className="Main-title">
-                        Welcome Back!
-                        </div>
-                </DialogTitle>
-                <DialogContent>
-                    <div className="dialog-body">
-                        <p>Phone Number</p>
-                        <input className="inputBox" type="text" />
-                        <p>Password</p>
-                        <input className="inputBox" type="text" />
-                        <p className="forgot-text">Forgot Password?</p>
-                        <button className="login-button">Log in</button>
-                        <p className="create-text" onClick={()=>{
-                            setisLogin(!isLogin);
-                        }}>Create account</p>
-                    </div>
-                </DialogContent>
-            </Dialog>
-            
-            </>
-            
+            <LoginDialog/>
         );
-    }else if(isLogin){
+    }else if(isLogin ){
     return(
-        <Dialog id="dialog" open={open}onClose={handleClose}>
-            <DialogTitle>
-
-                <div className="Main-title">
-                    Welcome to SpeedOrder
-                    </div>
-            </DialogTitle>
-            <DialogContent>
-                <div className="dialog-body">
-                <p>Username</p>
-                <input className="inputBox" type="text" />
-                    <p>Number</p>
-                    <input className="inputBox" type="text" />
-                    <p>Password</p>
-                    <input className="inputBox" type="text" />
-                    <ul style={{color:"grey",fontSize:"15px"}}>
-                       <li>Must be 8 charcaters</li>
-                       <li>Mix of letters and Numbers</li>
-                    </ul>
-                    <div className="agent">
-                    <input type="checkbox" onClick={
-                        ()=>{
-                          checkBoxVal=!checkBoxVal;    
-                    }}></input>
-                    <div>I am an agent</div>
-                    </div>
-                    
-                   
-                    <button onClick={()=>{
-                        checkBoxVal? setisAgent(true):setisAgent(false);
-                    }}
-                     style={{marginTop:"5px"}} className="login-button">Create </button>
-                    <p  className="create-text" onClick={()=>{setisLogin(!isLogin)}}>Log in</p>
-                </div>
-            </DialogContent>
-        </Dialog>
+        <SignUpDialog open={open}/>
     );}
     
 }

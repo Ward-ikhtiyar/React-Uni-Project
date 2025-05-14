@@ -1,0 +1,8 @@
+.Chip:hover{
+    cursor: pointer;
+    color: var(--app-blue);
+    transition: 0.1s;
+}
+.Chip{
+    transition: background-color 0.7s ease-out;
+}

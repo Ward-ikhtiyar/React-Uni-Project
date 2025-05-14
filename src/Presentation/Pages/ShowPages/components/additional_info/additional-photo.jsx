@@ -1,7 +1,7 @@
 import './additional-photo.css'
-function AdditionalPhoto({onClick}){
+function AdditionalPhoto({onClick,src}){
     return(
-        <img id='temporary' onClick={onClick} src='https://picsum.photos/200/300'></img>
+        <div id='temporary' onClick={onClick} style={{backgroundImage:`url(${src})`}}></div>
     );
 }
 export default AdditionalPhoto

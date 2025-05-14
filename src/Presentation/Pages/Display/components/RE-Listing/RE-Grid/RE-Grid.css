@@ -1,4 +1,5 @@
 .grid-section{
+    background-color: var(--app-background);
     width: 50vw;
     position: fixed;
     right: 0;

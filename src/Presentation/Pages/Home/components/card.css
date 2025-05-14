@@ -1,12 +1,12 @@
- /* .Card-pic{
+ .Card-pic{
     width: 120px;
     height: 120px;
     background-image: url("../../../assets/agent.svg");
     background-position: center;
     background-size: cover;
-  }  */
+  } 
  .card {
-   overflow: hidden;
+   overflow: ellipsis;
    word-break: break-word;
 
    text-overflow: clip;
@@ -29,19 +29,20 @@
    font-family: Thicc;
    text-overflow: clip;
    margin-top: 0px;
-   margin-bottom: 30px;
+   margin-bottom: 28px;
  }
 
  .name {
+  text-overflow: ellipsis;
    font-size: 30px;
    margin-top: 30px;
    margin-bottom: 20px;
    font-weight: bold;
  }
 
- .Card-pic button {
-   border: solid 1px blue;
-   color: blue;
+ .service-button  {
+   border: solid 1px var(--app-blue);
+   color:var(--app-blue);
    border-radius: 12px;
    padding: 10px;
    padding-left: 20px;
@@ -49,4 +50,11 @@
    background-color: transparent;
    font-size: larger;
 
+ }
+ .service-button:hover{
+  background-color: var(--app-blue-opaque);
+  opacity: 0.9;
+  scale: 105%;
+  transition: 0.2s;
+  cursor: pointer;
  }

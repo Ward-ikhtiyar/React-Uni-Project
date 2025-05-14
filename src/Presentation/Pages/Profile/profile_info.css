@@ -1,0 +1,75 @@
+.profile-info{
+    width: 85%;
+    height: 100vh;
+    background-color: var(--app-background);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+.profile-pic {
+  width: 180px;
+  height: 180px;
+  background-color: red;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+}
+.username-number{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 40%;
+    flex-direction: column;
+    
+}
+.username{
+    font-size: 30px;
+}
+.number{
+    font-size: 20px;
+    color: grey;
+}
+.edit-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-button-tile{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    font-family: thicc;
+    color: white;
+    background-color: var(--app-blue);
+    border: none;
+    border-radius: 5px;
+    font-size: x-large;
+    box-shadow: 2px 2px 5px grey;
+}
+.edit-button-tile:hover{
+    cursor: pointer;
+    scale: 105%;
+    transition: 0.2s;
+}
+.profilecard-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 80%;
+    height: 25%;
+    margin-top: 10px;
+    gap:20px;
+    animation: ProfileCards 1.5s;
+}
+@keyframes ProfileCards {
+    0%{
+    gap: 100px;
+    }
+    100%{
+    gap: 20px;
+    }
+}

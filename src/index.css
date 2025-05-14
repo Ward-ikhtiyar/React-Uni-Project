@@ -4,17 +4,17 @@
 }
 body {
   font-family: Thicc;
-  overflow-y: scroll;
-  
+
   min-width: 320px;
   min-height: 100vh;
 }
 :root{
-  --app-blue:rgb(108, 99, 255);
-  --app-blue-opaque:rgba(108, 99, 255,0.3);
+  --app-blue:rgb(33, 81, 219);
+  --app-blue-opaque:rgba(33, 81, 219,0.3);
   --app-background:rgb(247, 247, 247);
   --app-grey:rgb(103, 104, 105);
   --app-light-grey:rgba(128, 128, 128,0.2);
+  overflow-y: scroll;
 }
 .HomePage{
   position: absolute;
@@ -28,8 +28,42 @@ body {
   align-items: center;
   flex-direction: column;
   overflow-x: hidden;
-  
 }
 --webkit::-webkit-scrollbar{
   display: none;
+}
+
+.colored-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 300;
+  color: white;
+  font-size: 20px;
+  background-color: var(--app-blue);
+  font-family: thicc;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px grey;
+}
+.border-button{
+  
+  background-color: white;
+  color: var(--app-blue);
+  padding: 7px;
+  font-family: thicc;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid var(--app-blue);
+  font-weight: 300;
+}
+.colored-button:hover{
+  opacity: 0.8;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.border-button:hover{
+  transition: 0.5s;
+  background-color: var(--app-blue-opaque);
+  cursor: pointer;
 }

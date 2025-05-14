@@ -5,15 +5,22 @@
     flex-direction: column;
     justify-content: center;
     animation: AgentAnimation 0.3s  ;
+    
 }
 .inputBox{
    height: 5vh;
    width: 90%; 
    background-color: var(--app-light-grey);
-   border: none;
    border-radius: 14px;
+   padding-left: 20px;
+   font-family: thicc;
+   border: none;
+}
+.inputBox:focus{
+    outline: none;
 }
 .login-button{
+    
     border-radius: 15px;
     align-self: center;
     background-color: var(--app-blue);
@@ -42,7 +49,9 @@
 .create-text:hover{
     color: var(--app-blue);
     cursor: pointer;
+    text-decoration: underline;
     transition: 0.5s;
+    
 }
 .forgot-text{
 color: var(--app-blue);
@@ -54,7 +63,11 @@ color: var(--app-blue);
     opacity: 0.7;
 
 }
-
+.subtitle-verify{
+    font-family: 300;
+    align-self: center;
+    padding-bottom: 35px;
+}
 
 input[type="checkbox"]{
     accent-color: var(--app-blue);
@@ -76,6 +89,15 @@ input[type="checkbox"]{
     }
     100%{
         width:  24vw;
+    }
+}
+@keyframes ProfileAnimation {
+    0%{
+       overflow: hidden; 
+        scale: 25%;
+    }
+    100%{
+        scale:100% ;
     }
 }
 .container{
@@ -113,4 +135,48 @@ input[type="checkbox"]{
     border-radius: 25px;
     background-color: var(--app-light-grey);
     border: none;
+}
+.dropdown-signup{
+    border: solid 2px black;
+    width: 60%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-family: thicc;
+    font-size: 15px;
+}
+
+.editProfileTab{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid;
+    padding: 10px;
+}
+.editProfileTab-content{
+    display: flex;
+    gap: 20px;
+    font-size: 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+.user-info{
+    font-weight: 300;
+    color: grey;
+    font-size: 25px;
+}
+.edit-button-dialog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--app-blue);
+    border: none;
+    color: white;
+    box-shadow: 1px 1px 5px  grey;
+    border-radius: 5px;
+    padding: 5px;
+    width: 10%;
+    height: 30%;
 }
