@@ -5,8 +5,7 @@ import ProfileCard from './components/Profile_card/profile_card';
 import EditProfileDialog from '../../components/Dialogs/Profile_dialog';
 import { CircularProgress } from '@mui/material';
 import { useState } from 'react';
-import { TokenAxios } from '../../../API/axios'
-import EndPoints from '../../../API/endPoints';
+import { TokenAxios } from '../../../API/tokenAxios'
 function ProfileInfoPage(){
     const [isOpen,setIsOPen]=useState(false);
     const [isLoaded,setIsLoaded]=useState(false);

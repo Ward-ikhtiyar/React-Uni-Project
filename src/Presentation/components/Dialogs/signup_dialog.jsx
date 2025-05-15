@@ -26,11 +26,13 @@ function SignUpDialog({open,onClose}){
             pointsDto:{
                 lat:place.lat,
                 lon:place.lon,
+                
             }
         }
+    
     );
         const data=response.data
-        console.log(data);
+        console.log(`getting the ${data}`);
         if(data){
             console.log(`success ${data.userId}`);
             setId(data.userId);

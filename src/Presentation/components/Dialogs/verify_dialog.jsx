@@ -3,7 +3,6 @@ import { Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material
 import { useState } from "react";
 import VerificationInput from "react-verification-input";
 import Axios from "../../../API/axios";
-import EndPoints from "../../../API/endPoints";
 import { data, useNavigate } from "react-router-dom";
 function VerifyDialog ({open,onClose,Id}) {
     function changeText() {
