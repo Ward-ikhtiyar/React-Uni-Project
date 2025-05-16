@@ -35,14 +35,21 @@ function SignUpDialog({open,onClose}){
         console.log(`getting the ${data}`);
         if(data){
             console.log(`success ${data.userId}`);
+            localStorage.setItem('id',data.userId);
             setId(data.userId);
             setisVerify(true);
             onClose();
         }
+        
         }
         
     
 catch(error){
+    if(error.response&&error.response.status===409){
+        setId(localStorage.getItem('id'));
+         setisVerify(true);
+            onClose();
+    }
     console.log(error.response);
 };
         

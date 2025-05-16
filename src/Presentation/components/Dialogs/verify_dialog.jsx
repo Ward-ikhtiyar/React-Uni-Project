@@ -4,6 +4,7 @@ import { useState } from "react";
 import VerificationInput from "react-verification-input";
 import Axios from "../../../API/axios";
 import { data, useNavigate } from "react-router-dom";
+import EndPoints from '../../../API/endPoints';
 function VerifyDialog ({open,onClose,Id}) {
     function changeText() {
     console.log("Starting countdown...");
@@ -54,6 +55,7 @@ const [resendText,setResendText]=useState("Resend Code");
         let data=response.data;
         if(data){
             localStorage.setItem('token',data.accessToken);
+            localStorage.removeItem('id');
             navigate(0);
         }
         

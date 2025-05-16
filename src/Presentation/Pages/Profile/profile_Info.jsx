@@ -6,12 +6,24 @@ import EditProfileDialog from '../../components/Dialogs/Profile_dialog';
 import { CircularProgress } from '@mui/material';
 import { useState } from 'react';
 import { TokenAxios } from '../../../API/tokenAxios'
+import EndPoints from '../../../API/endPoints';
+
 function ProfileInfoPage(){
     const [isOpen,setIsOPen]=useState(false);
+
     const [isLoaded,setIsLoaded]=useState(false);
     const [phone, setPhone] = useState('');
 const [userName, setUserName] = useState('');
 const [location, setLocation] = useState('');
+const[image,setImage]=useState('');
+async function getProfileImg(Img) {
+    let response=await TokenAxios.get(`${EndPoints.User.getImg}${Img}`,{responseType:'blob'});
+    let data=response.data
+    if(data){
+        setImage(URL.createObjectURL(response.data));
+    }
+
+}
     async function getProfile() {
         let response=await TokenAxios.get(EndPoints.User.Me);
         let data=response.data;
@@ -23,6 +35,10 @@ const [location, setLocation] = useState('');
         setUserName(`${data.username}`);
         setLocation(`${data.location.country},${data.location.city}`);
             setIsLoaded(true);
+            if(data.profileImage){
+                getProfileImg(data.profileImage);
+            }
+
         }
     }
     if(isLoaded===false){
@@ -38,7 +54,7 @@ const [location, setLocation] = useState('');
                 
                     <div className='property-tile'>
                         <div style={{width:'120px'}}></div>
-                        <div className='profile-pic'>ward</div>
+                        <div style={{backgroundImage:`url(${image})`}} className='profile-pic'></div>
                         <div style={{width:'15px'}}></div>
                         <div className='username-number'>
                             <div style={{height:'60px'}}></div>
@@ -75,8 +91,7 @@ const [location, setLocation] = useState('');
                     </div>
                     
                    
-                   
-                   <EditProfileDialog phone={phone} name={userName} open={isOpen} onClose={()=>setIsOPen(false)}/>
+                   <EditProfileDialog image={image} phone={phone} name={userName} open={isOpen} onClose={()=>setIsOPen(false)}/>
                  </div> 
     );}
 }

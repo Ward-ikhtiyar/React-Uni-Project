@@ -1,12 +1,15 @@
 .appBar{
-    width: 100%;
+    width: 80%;
     height: 10vh;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     background-color: white;
-    
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 1px 1px 5px black;
+    /* animation: appBar 0.5s ease-in; */
 }
 .alt-appBar{
     width: 100%;
@@ -32,14 +35,42 @@ flex-direction: row;
     padding-right: 20px;
     border: none;
     font-size: larger;
-    transition:   0.5s ease-out ;
+    transition:   0.5s ease-in-out ;
     font-weight: 300;
-    
+    animation: button 0.8s ease-in;
 }
 .appBar-button:hover{
     color: var(--app-blue);
     cursor: pointer;
     font-size: x-large;
+}
+@keyframes appBar {
+    from {
+        transform: translateY(40px);
+        opacity: 0;}
+    to{
+     transform: translateY(0);
+
+        opacity: 1;
+    }
+}
+@keyframes appBarAlt {
+    from {
+        width: 50%;
+        }
+    to{
+     width: 100%;
+    }
+}
+@keyframes button {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+        }
+    to{
+        transform: translateY(0);
+     opacity:1 ;
+    }
 }
 @media (max-width:1000px) {
  .appBar{

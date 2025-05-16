@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     min-height: 100vh;
-    background-color: green;
+    background-color: var(--app-background);
     display: flex;
     justify-content: start;
     align-items: center;

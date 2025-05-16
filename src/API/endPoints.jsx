@@ -6,7 +6,10 @@ const EndPoints={
         Resend:'user/resend',
     },
     User:{
-        Me:'auth/me'
+        Me:'auth/me',
+        ChangeInfo:'user/',
+        UploadImg:'user/upload-image',
+        getImg:'user/images/'
     }
     
     

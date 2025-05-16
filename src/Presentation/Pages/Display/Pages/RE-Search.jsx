@@ -6,7 +6,7 @@ import AppBar from '../../Home/components/appBar.jsx';
 const RE_Search = () => {
     return (
         <div>
-            <AppBar/>
+            <AppBar isHome={false}/>
             <RE_Listing/>
             <RE_Map/>
         </div>
