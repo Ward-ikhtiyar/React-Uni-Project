@@ -1,15 +1,16 @@
 .grid-section{
-    width: 50vw;
-    position: fixed;
-    right: 0;
+    /* width: 50vw; */
+    /* position: relative;
+    right: 0; */
+    box-shadow: -5px 5px 5px grey;
     overflow-y: scroll;
     max-height: 100%;
-    box-shadow: -5px 5px 5px grey;
     z-index: 2;
+    /* display: flex; */
 }
 
+
 .grid-section-content{
-    padding: 1rem;   
 }
 
 .grid-section Box{

@@ -4,7 +4,7 @@
 }
 body {
   font-family: Thicc;
-  overflow-y: scroll;
+  overflow-y: auto;
   
   min-width: 320px;
   min-height: 100vh;

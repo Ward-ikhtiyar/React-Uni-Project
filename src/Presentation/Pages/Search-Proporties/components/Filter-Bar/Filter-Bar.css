@@ -1,0 +1,27 @@
+.filterbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.filter-buttons {
+    display: flex;
+    height: 55px;
+    align-items: center;
+    justify-content: center;
+    padding-left: 8px;
+}
+
+
+#basic-button {
+    margin-right: 8px;
+    border: 1px solid #333;
+    font-weight: 700;
+    color: #333;
+    text-transform: none;
+}
+
+#price-filter {
+    display: flex;
+}

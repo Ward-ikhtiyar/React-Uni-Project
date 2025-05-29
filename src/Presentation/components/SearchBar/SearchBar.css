@@ -1,0 +1,12 @@
+
+.agent-search-section {
+    display: flex;
+    background-color: white;
+    width: 30%;
+    /* padding: 0px; */
+    border-radius: 10px;
+}
+.searchBar{
+    height: 55px;
+    width: 100%;
+}
