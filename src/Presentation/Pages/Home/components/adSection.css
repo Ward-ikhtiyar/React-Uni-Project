@@ -3,9 +3,18 @@
     background-size: auto;
     background-repeat: no-repeat;
     width: 100%;
-    height: 70vh;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.grid{
+    width: 100%;
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+
 }
 .button-section {
     display: flex;
@@ -19,6 +28,7 @@
     background-color: white;
     box-shadow: 1px 1px 3px white;
     color: black;
+    font-family: thicc;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 80px;
@@ -28,14 +38,11 @@
 }
 .checkout-button:hover{
     font-size: large;
-    color: blue;
+    color: var(--app-blue);
     transition: 0.5s;
     cursor: pointer;
 }
-.button-section h1{
-    color: black;
-    font-size: 60px;
-}
+
 .alt-logo a{
     color: white;
     font-size: 60px;
@@ -50,4 +57,10 @@
         justify-content: center;
     align-items: center;
     }
+}
+.slogan{
+color:white;
+font-family: thicc;
+font-size: 70px;
+font-weight: 700;
 }

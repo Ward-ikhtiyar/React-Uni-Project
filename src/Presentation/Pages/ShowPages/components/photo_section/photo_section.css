@@ -18,6 +18,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    
 }
 .more-photos{
     display: flex;
@@ -30,6 +31,12 @@
     height: 20%;
     border-radius: 10px;
     box-shadow: 1px 1px 5px black;
+}
+.more-photos:hover{
+
+    scale: 105%;
+    transition: 0.5s;
+    cursor: pointer;
 }
 .overlaying-info{
     width: 100%;

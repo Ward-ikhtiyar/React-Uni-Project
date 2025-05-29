@@ -1,11 +1,13 @@
-#temporary img{
+ #temporary{
     border-radius: 10px;
     width: 80%;
     height: 20%;
     box-shadow: 1px 1px 5px black;
-    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-#temporary img:hover{
+#temporary:hover{
     scale: 110%;
     opacity: 0.9;
     transition: 0.5s;

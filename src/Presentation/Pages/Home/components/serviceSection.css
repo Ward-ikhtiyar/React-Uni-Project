@@ -4,6 +4,7 @@
     display: grid;
     grid-template-rows: 1fr 4fr;
     background-color: var(--app-background);
+    overflow: visible;
 }
 .title{
     display: flex;

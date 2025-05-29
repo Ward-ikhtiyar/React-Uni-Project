@@ -1,36 +1,62 @@
-import { createContext, useState } from "react";
+import {  useState } from "react";
 import "./appBar.css"
 import AuthDialog from '../../../components/Dialogs/Auth_dialog';
+import {  useNavigate } from "react-router-dom";
+import LoginDialog from "../../../components/Dialogs/login_dialog";
+import EasyRent from "../../../components/Lottie/EasyRent";
 
-export const openDialogcontext=createContext(); 
-function AppBar(){
+function AppBar({isHome}){
+    let token=localStorage.getItem('token');
+    console.log(token);
+    let navigate=useNavigate();
       const[openDialog,setOpenDialog]=useState(false);
-    return(
-    <div className="appBar">
+       return(
+    <div className="appBar" style={{width:isHome?'80%':'100%', borderRadius:isHome?'20px':'0px',marginTop:isHome?'20px':'0px', animation:isHome?'appBar 0.5s ease-in':'appBarAlt 0.5s ease-in'}} >
+         {/* <img src="public/assets/images/logo.png" style={{width:'10vw' ,height:'20vh',boxShadow:'none', paddingTop:'5px'}}/> */}
+         <EasyRent/>
         <div className="side-panel">
-        <button className="appBar-button">Buy</button>
-            <button className="appBar-button"> Sell</button>
+        <button className="appBar-button" onClick={()=>{
+            navigate('/Properties',);
+        }}>Buy</button>
+            <button className="appBar-button" onClick={()=>{localStorage.removeItem('token');}}> Sell</button>
             <button className="appBar-button"> Rent</button>
-            <button className="appBar-button">Home Loans</button>
+            <button className="appBar-button">Buy Ability</button>
             <button className="appBar-button">Find Agent</button>
-        </div>
-        <p className="logo-side">Speed Order</p>
 
-        <div className="side-panel">
-            <button className="appBar-button">Manage Rentals</button>
-            <button className="appBar-button"> Advertise</button>
-            <button className="appBar-button"> Help</button>
-            <openDialogcontext.Provider value={openDialog}>
+              {!token?
                 <button onClick={()=>{
-                    console.log(openDialog);
-                    setOpenDialog(!openDialog)} } className="appBar-button"> Sign In</button>
-                </openDialogcontext.Provider>
-            
-        </div>
-        <AuthDialog open={openDialog} onClose={()=>setOpenDialog(false)}/>
+                    console.log(`Dialog ${openDialog}`);
+                    setOpenDialog(!openDialog)} } className="appBar-button"> Sign In</button>:<button onClick={()=>{
+                    navigate('/Profile')
+                    setOpenDialog(!openDialog)} } className="appBar-button" > Profile</button>
+              }  
+       </div>
+
+        
+        <LoginDialog open={openDialog} onClose={()=>setOpenDialog(false)}/>
             
         
     </div>);
     
+    
+    
 }
 export default AppBar
+
+
+
+
+
+
+
+{/* <div className="side-panel">
+            <button className="appBar-button">Manage Rentals</button>
+            <button className="appBar-button"> Advertise</button>
+            <button className="appBar-button"> Help</button>
+            
+                <button onClick={()=>{
+                    console.log(openDialog);
+                    setOpenDialog(!openDialog)} } className="appBar-button"> Sign In</button>
+                
+            
+        </div> */}

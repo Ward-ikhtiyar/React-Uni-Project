@@ -7,8 +7,11 @@ import HomePage from './Presentation/Pages/Home/Pages/HomePage';
 import Login_page from './Presentation/Pages/Auth/Auth_page';
 import PaymentPlans from './Presentation/Pages/PaymentPlans/PaymentPlans';
 import ContactUs from './Presentation/Pages/ContactUs/ContactUs';
-function App() {
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import ProfilePage from './Presentation/Pages/Profile/profile_page';
 
+function App() {
+  
   return (
     <>
     {/* <ContactUs/> */}
@@ -17,8 +20,15 @@ function App() {
     {/* <RE_Search /> */}
       {/* <HomePage/> */}
       {/* <ShowHouse/> */}
+    <Router>
+      <Routes>
+        <Route path='/' element={<HomePage/>}> </Route>
+        <Route path='/Properties' element={<RE_Search/>}></Route>
+        <Route path='/Details' element={<ShowHouse/>}></Route>
+        <Route path='/Profile' element={<ProfilePage/>}></Route>        
+      </Routes>
+    </Router>
     </>
   )
 }
-
-export default App
+export default App;

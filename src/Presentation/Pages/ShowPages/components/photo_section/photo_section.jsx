@@ -6,23 +6,21 @@ import Chip from '../../../../components/ward/chips';
 import { useState } from 'react';
 function PhotoSection({name,location,photos,isFavorite,Housetype,commerce}){
     const[pickedImage,setPickedImage]=useState(0);
-    // {backgroundImage:`url(${location[pickedImage]})`}
-    // https://plus.unsplash.com/premium_photo-1723489682171-763c15cd79e3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
-    // https://picsum.photos/200/300
+    const[open,setisOpen]=useState(false);
     return(
         <div style={{backgroundImage:`url(${photos[pickedImage]})`}} className='photos-section'>
         <div className='additional-photos'>
-            <AdditionalPhoto onClick={()=>{
+            <AdditionalPhoto src={photos[0]} onClick={()=>{
                 setPickedImage(0);
-                console.log(pickedImage);
             }}/>
-            <AdditionalPhoto onClick={()=>{
+            <AdditionalPhoto src={photos[1]} onClick={()=>{
                 setPickedImage(1);
-                console.log(pickedImage);
             }}/>
-            <div className='more-photos'>
-              <CameraAltOutlined/>
-              <div>More</div>  
+            <div className='more-photos' onClick={()=>{
+                console.log('yessirskiiii');
+                setisOpen(true)}}>
+              <CameraAltOutlined />
+              <div >More</div>  
             </div>
         </div>
         <div className='overlaying-info'>

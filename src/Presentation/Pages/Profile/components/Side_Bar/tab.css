@@ -1,0 +1,15 @@
+.tab:hover{
+    color: var(--app-blue);
+    opacity: 0.9;
+    transition: 0.2s;
+    cursor: loading;
+    
+}
+.tab{
+    color: black;
+    width: 90%;
+    padding: 10px;
+    display: flex;
+    gap: 5%;
+    flex-direction: row;
+}
