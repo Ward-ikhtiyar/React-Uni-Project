@@ -1,6 +1,6 @@
 import React from 'react';
 import './Agent_property.css'
-import Info from "../../../Display/components/RE-Listing/RE-Card/RE-Card-Info.json"
+import Info from "../../../Search-Proporties/components/RE-Listing/RE-Card/RE-Card-Info.json"
 import { useNavigate } from 'react-router-dom';
 
 function AgentProperty () {

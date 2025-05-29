@@ -4,7 +4,8 @@ import { Edit,} from '@mui/icons-material';
 import Custom_Chip from './components/Chips/chip';
 import { useState } from 'react';
 import Card from '../Home/components/Card';
-import DisplayCard from '../Display/components/RE-Listing/RE-Card/RE-Card';
+import DisplayCard from '../Search-Proporties/components/RE-Listing/RE-Card/RE-Card';
+
 function SavedPropertiesPage(){
     const[chipVal,setChipVal]=useState(0);
 return(

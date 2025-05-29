@@ -13,7 +13,7 @@ import DisplayCard from '../RE-Listing/RE-Card/RE-Card';
 const REMap = () => {
     return (
         <div id='map'>
-            <MapContainer center={[33.5138, 36.2765]} zoom={13} >
+            <MapContainer center={[33.5138, 36.2765]} zoom={13} style={{height:"100%"}}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
