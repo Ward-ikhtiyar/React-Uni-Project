@@ -2,36 +2,29 @@
   font-family: "Thicc";
   src: url("./assets/Oswald-VariableFont_wght.ttf");
 }
+@font-face {
+  font-family: "Lexend";
+  src: url("./assets/Lexend-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "Tajawal";
+  src: url("./assets/Tajawal-Regular.ttf");
+}
 body {
-  font-family: Thicc;
+  font-family: Lexend;
 
   min-width: 320px;
   min-height: 100vh;
 }
 :root{
   --app-blue:rgb(33, 81, 219);
-  --app-blue-opaque:rgba(33, 81, 219,0.3);
+  --app-blue-opaque:rgb(207, 214, 255);
   --app-background:rgb(247, 247, 247);
   --app-grey:rgb(103, 104, 105);
   --app-light-grey:rgba(128, 128, 128,0.2);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
-.HomePage{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100vh;
-  background-color: green;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-  overflow-x: hidden;
-}
---webkit::-webkit-scrollbar{
-  display: none;
-}
+
 
 .colored-button{
   display: flex;
@@ -41,7 +34,7 @@ body {
   color: white;
   font-size: 20px;
   background-color: var(--app-blue);
-  font-family: thicc;
+  font-family: Lexend;
   border: none;
   border-radius: 5px;
   box-shadow: 1px 1px 5px grey;
@@ -51,7 +44,7 @@ body {
   background-color: white;
   color: var(--app-blue);
   padding: 7px;
-  font-family: thicc;
+  font-family: Lexend;
   font-size: 15px;
   border-radius: 5px;
   border: 1px solid var(--app-blue);

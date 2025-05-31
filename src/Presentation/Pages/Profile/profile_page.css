@@ -1,12 +1,12 @@
 .main-profile{
     width: 100%;
-    height: 100vh;
-    
+    min-height: 100vh;
     background-color: var(--app-background);
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    overflow-y: hidden;
 }
 .profile-tab{
     width: 15%;
@@ -29,7 +29,6 @@
     height: 35%;
     border-radius: 10px;
     background-color: white;
-    box-shadow: 1px 1px 5px grey;
     margin-top: 5%;
     margin-bottom: 10px;
 }

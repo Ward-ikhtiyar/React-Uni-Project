@@ -53,7 +53,7 @@ function EditProfileDialog({open,onClose,phone,name,image}){
                                 formData.append('user-image',e.target.files[0]);
                                 UploadImg(e.target.files[0]);
                              }}></input>
-                        <label htmlFor="profilePic"><Edit sx={{scale:'120%'}}/></label>
+                        <label className="edit-button-dialog" htmlFor="profilePic" style={{width:'30px', height:'30px'}}><Edit sx={{scale:'120%'}}/></label>
                         </div>
                        
                     <div className="editProfileTab">
@@ -92,7 +92,7 @@ function EditProfileDialog({open,onClose,phone,name,image}){
                             </button>
                     </div>
                     <div style={{height:'50px'}}></div>
-                    <button className="login-button" onClick={()=>setSnack(true)}> Ok</button>
+                    <button className="login-button" onClick={()=>onClose()}> Ok</button>
                 </div>
               
             </DialogContent>

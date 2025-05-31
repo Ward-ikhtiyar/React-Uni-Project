@@ -57,7 +57,7 @@ async function getProfileImg(Img) {
                         <div style={{backgroundImage:`url(${image})`}} className='profile-pic'></div>
                         <div style={{width:'15px'}}></div>
                         <div className='username-number'>
-                            <div style={{height:'60px'}}></div>
+                            <div style={{height:'80px'}}></div>
                             <div className='username'>
                                 <Person/>
                                 {userName}</div>

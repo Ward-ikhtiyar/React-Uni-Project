@@ -1,0 +1,32 @@
+.trending-main{
+    width: 100vw;
+    height: 80vh;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    background-color: var(--app-background);
+    overflow: visible;
+    margin-bottom: 50px;
+    
+}
+.trending-title{
+width: 92vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 40px;
+    padding-left: 40px;
+    
+}
+.trending-props{
+    height: 100%;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding-left: 40px;
+}
+#check-more{
+    width: 150px;
+    height: 40px;
+}

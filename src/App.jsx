@@ -6,7 +6,8 @@ import HomePage from './Presentation/Pages/Home/Pages/HomePage';
 import Login_page from './Presentation/Pages/Auth/Auth_page';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ProfilePage from './Presentation/Pages/Profile/profile_page';
-
+import AddPropertyPage from './Presentation/Pages/Profile/addProperty/addProperty';
+import TrendingCard from './Presentation/Pages/Home/components/trendingCard';
 function App() {
   
   return (
@@ -20,6 +21,7 @@ function App() {
       </Routes>
     </Router>
     </>
+    
   )
 }
 

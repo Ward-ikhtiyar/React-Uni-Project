@@ -8,7 +8,7 @@
     background-color: white;
     border-radius: 20px;
     margin-top: 20px;
-    box-shadow: 1px 1px 5px black;
+    box-shadow: 1px 1px 5px grey;
     /* animation: appBar 0.5s ease-in; */
 }
 .alt-appBar{
@@ -27,7 +27,7 @@ display: flex;
 flex-direction: row;
 }
 .appBar-button{
-    font-family: thicc;
+    font-family: Lexend;
     color: black;
     height: 100%;
     background-color: transparent;

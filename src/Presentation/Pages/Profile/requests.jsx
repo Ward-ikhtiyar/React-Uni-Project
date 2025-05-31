@@ -50,6 +50,46 @@ return(
                     <button className='border-button'>View Details</button>
                 </div>
             </div>
+            <div className='request-card'>
+                <div>Leaking Faucet in Kitchen</div>
+                <div className='request-card-second'>May 29 2025 , maintenance</div>
+                <div className='request-card-third'> Made By: me</div>
+                <div className='request-card-forth'>
+                    <HouseOutlined/>
+                    Qudsaya,Beer Factory 
+                </div>
+                <div className='request-card-third'>
+                    <div></div>
+                    <button className='border-button'>View Details</button>
+                </div>
+            </div>
+            <div className='request-card'>
+                <div>Leaking Faucet in Kitchen</div>
+                <div className='request-card-second'>May 29 2025 , maintenance</div>
+                <div className='request-card-third'> Made By: me</div>
+                <div className='request-card-forth'>
+                    <HouseOutlined/>
+                    Qudsaya,Beer Factory 
+                </div>
+                <div className='request-card-third'>
+                    <div></div>
+                    <button className='border-button'>View Details</button>
+                </div>
+            </div>
+            <div className='request-card'>
+                <div>Leaking Faucet in Kitchen</div>
+                <div className='request-card-second'>May 29 2025 , maintenance</div>
+                <div className='request-card-third'> Made By: me</div>
+                <div className='request-card-forth'>
+                    <HouseOutlined/>
+                    Qudsaya,Beer Factory 
+                </div>
+                <div className='request-card-third'>
+                    <div></div>
+                    <button className='border-button'>View Details</button>
+                </div>
+            </div>
+            
             
             </div>
             

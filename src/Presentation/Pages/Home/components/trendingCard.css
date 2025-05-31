@@ -1,0 +1,92 @@
+.trending-card {
+  width: 200px;
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;
+  font-family: Arial, sans-serif;
+  }
+
+.trending-pic{
+    width: 300px;
+    box-shadow: 1px 1px 5px grey;
+}
+
+.popular-tag {
+    scale: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  position: absolute;
+  top: 135px;
+  left: 15px;
+  background-color: var(--app-blue-opaque);
+  color: var(--app-blue);
+  font-family: Lexend;
+  padding: 4px 8px;
+  border-radius: 32px;
+  font-size: 10px;
+  font-weight: 700;
+  width: 70px;
+  height: 15px;
+  z-index: 1;
+}
+
+.property-info {
+    padding-left: 10px;
+  margin-top: 8px;
+  width: 250px;
+}
+
+.property-title {
+  width: 230px;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+    padding-left: 2px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Tajawal;
+  color: black
+}
+.favorite-circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+width: 30px;
+height: 30px;
+border: 1px solid grey;
+border-radius: 50%;
+}
+.property-favorite{
+    width:95%;
+    height: 40px;
+    display: flex;
+    align-items: end;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.price-section {
+    display: flex;
+    width: 230px;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: Lexend;
+    font-weight: 500;
+    color: var(--app-blue);
+}
+
+.price {
+  font-size: 16px;
+  
+}
+
+.period {
+  font-size: 14px;
+  color: #666;
+}
+.trendingCard-pic:hover{
+cursor: pointer;
+}
+
