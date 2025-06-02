@@ -1,7 +1,10 @@
 import './additional-photo.css'
-function AdditionalPhoto({onClick,src}){
+function AdditionalPhoto({onClick,src,style}){
+    
+    const url=`http://localhost:3000/property/images/${src}`
+    console.log(`picture linke is ${url}`);
     return(
-        <div id='temporary' onClick={onClick} style={{backgroundImage:`url(${src})`}}></div>
+        <img src={url} id='temporary' onClick={onClick} style={{objectFit:'cover', objectPosition:'center',}} crossOrigin='anonymous'/>
     );
 }
 export default AdditionalPhoto

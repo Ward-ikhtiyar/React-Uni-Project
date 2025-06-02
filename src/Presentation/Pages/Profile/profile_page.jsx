@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ProfileCard from './components/Profile_card/profile_card';
 import'./profile_page.css'
 import EditProfileDialog from '../../components/Dialogs/Profile_dialog';
-import { Person,House,PendingActions,Logout,Feedback,Add,Archive,EditDocument,Settings,Phone,LocationOn,Edit, HouseOutlined, Money, CurrencyLira, CurrencyPound, MonetizationOn, MonetizationOnOutlined, AttachMoneyOutlined, ArrowUpwardOutlined, TrendingUpOutlined } from '@mui/icons-material';
+import {PendingActionsOutlined,FeedbackOutlined,Person2Outlined,Person2,House,PendingActions,Logout,Feedback,Add,Archive,WorkspacePremium, WorkspacePremiumOutlined,HouseOutlined, Money, CurrencyLira, CurrencyPound, MonetizationOn, MonetizationOnOutlined, AttachMoneyOutlined, ArrowUpwardOutlined, TrendingUpOutlined, ArchiveOutlined } from '@mui/icons-material';
 import AgentProperty from './components/myProperty_card/Agent_property';
 import MyProperties from './requests';
 import ProfileTab from './components/Side_Bar/tab';
@@ -10,25 +10,31 @@ import RequestsPage from './requests';
 import ProfileInfoPage from './profile_Info';
 import PropertiesPage from './Properties_page';
 import SavedPropertiesPage from './Saved_properties';
+import AddPropertyPage from './addProperty/addProperty';
+import EasyRent from '../../components/Lottie/EasyRent';
+import PlansPage from './plans/plans';
 function ProfilePage(){
     const [isOpen,setIsOPen]=useState(false);
     const[tabIndex,setTabIndex]=useState(0);
-    const PagesList=[ProfileInfoPage,RequestsPage,PropertiesPage,SavedPropertiesPage];
+    const PagesList=[ProfileInfoPage,RequestsPage,PropertiesPage,SavedPropertiesPage,PlansPage];
     const SelectedPage=PagesList[tabIndex];
     return(
-        <div  className="HomePage">
+        <div id='Profile-homePage'  className="HomePage" style={{}}>
             <div className='main-profile'>
                 
                 <div className='profile-tab'>
                     
                     <div style={{height:"3%"}}></div>
-                   
-                    <ProfileTab title={"Profile"} Icon={Person} val={tabIndex} index={0} setIndex={setTabIndex}/>
-                    <ProfileTab title={"Requests"} Icon={PendingActions} val={tabIndex} index={1} setIndex={setTabIndex}/>
-                    <ProfileTab title={"Properties"} Icon={House} val={tabIndex} index={2} setIndex={setTabIndex}/>
-                    <ProfileTab title={"Saved properties"} Icon={Archive} val={tabIndex} index={3} setIndex={setTabIndex}/>
-                    <ProfileTab title={"Submit a complaint"} Icon={Feedback} val={tabIndex} index={4} setIndex={setTabIndex}/>
-                    <ProfileTab title={"Log out"} Icon={Logout} val={tabIndex} index={5} setIndex={setTabIndex}/>
+                    <EasyRent/>
+                    <ProfileTab title={"Profile"} Icon={Person2} UnselectedIcon={Person2Outlined} val={tabIndex} index={0} setIndex={setTabIndex}/>
+                    <ProfileTab title={"Requests"} Icon={PendingActions} UnselectedIcon={PendingActionsOutlined} val={tabIndex} index={1} setIndex={setTabIndex}/>
+                    <ProfileTab title={"Properties"} Icon={House} UnselectedIcon={HouseOutlined} val={tabIndex} index={2} setIndex={setTabIndex}/>
+                    <ProfileTab title={"Saved properties"} Icon={Archive} UnselectedIcon={ArchiveOutlined} val={tabIndex} index={3} setIndex={setTabIndex}/>
+                    <ProfileTab title={"Subscription"} Icon={WorkspacePremium} UnselectedIcon={WorkspacePremiumOutlined} val={tabIndex} index={4} setIndex={setTabIndex}/>
+                    <ProfileTab title={"Submit a complaint"} Icon={Feedback} UnselectedIcon={FeedbackOutlined} val={tabIndex} index={5} setIndex={setTabIndex}/>
+                    <ProfileTab title={"Log out"} Icon={Logout} UnselectedIcon={Logout} val={tabIndex} index={6} setIndex={setTabIndex}/>
+                    
+
                          {/* <div className='tab'>
                         <Add/>
                          Add a property</div>

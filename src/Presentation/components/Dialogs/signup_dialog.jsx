@@ -101,19 +101,4 @@ catch(error){
     );
 }
 export default SignUpDialog;
-  {/* <div className="agent">
-                <input type="checkbox" onClick={
-                    ()=>{
-                      checkBoxVal=!checkBoxVal;    
-                }}></input>
-                <div>I am an agent</div>
-                </div> 
-                
-                
-                    <option value={1}>Damascus</option>
-                    <option value={2}>Rif-Dimashq</option>
-                    <option value={3}>Homs</option>
-                    <option value={4}>Lattakia</option>
-                    <option value={5}>Tartous</option>
-                    <option value={6}>Aleppo</option>
-                */}
+  

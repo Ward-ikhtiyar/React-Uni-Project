@@ -1,0 +1,70 @@
+.Main{
+    width: 100%;
+    height: 80vh;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    background-color: var(--app-background);
+    overflow: visible;
+    margin-bottom: 50px;
+}
+.title{
+    padding-left: 40px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 40px;
+    
+}
+.card-holder{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.service-pic{
+    width: 463px;
+    height: 450px;
+    justify-self: center;
+    border-radius: 25px;
+    background-size: cover;
+    
+}
+.service-righ-section{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+.what-we-do{
+    font-family: Lexend;
+    font-size: 40px;
+    color: var(--app-blue);
+}
+.chip-row{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+.big-text{
+    font-size: 35px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.small-text{
+    font-size: 20px;
+    width: 484px;
+    text-align: start;
+    color:grey;
+    animation: textAnime 2.5s ease-in;
+}
+
+@keyframes textAnime {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}

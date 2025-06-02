@@ -53,6 +53,8 @@ function EditDialog({type,open,onClose}){
 
     }
      async function changePass(pass,newData) {
+        console.log("changing info like crazzyy");
+
         setLoading(true);
         try{
                     let response= await TokenAxios.patch(EndPoints.User.ChangeInfo,{
@@ -96,9 +98,10 @@ function EditDialog({type,open,onClose}){
                     <input style={{height:'7vh',fontSize:'25px'}} placeholder={type=="Password"?"Old Password":"Password" } className="inputBox" type="text" value={pass} onInput={(e)=>setPass(e.target.value)} />
 <div style={{height:'6vh'}}></div>
                     <button style={{width:'12vw'}} className="login-button" onClick={()=>{
-                        if(pass!==""){
+                        console.log()
+                        if(type=="Password"){
                         changePass(pass,name);}
-                        if(pass===""){
+                        if(type!=="Password"){
                             changeinfo(pass,name);
                         }
                         

@@ -1,15 +1,14 @@
-import React from 'react';
 import { Grid, Box, Pagination } from '@mui/material';
+import React,{useEffect, useState} from 'react';
 import RE_Card from '../RE-Card/RE-Card'
 import './Re-Grid.css';
+import { getAcceptedProperties } from '../../../../../../API/requests';
 
-const DisplayPage = () => {
-
-    const properties = [RE_Card, RE_Card, RE_Card, RE_Card, RE_Card, RE_Card, RE_Card,]
-    const proper = properties.map(() => {
+const DisplayPage = ({Listings}) => {
+    const proper = Listings.map((property,index) => {
         return (
-            <Grid size={1}>
-                <RE_Card />
+            <Grid key={index} size={1}>
+                <RE_Card property={property} />
             </Grid>
         )
     }

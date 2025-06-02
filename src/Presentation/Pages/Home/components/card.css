@@ -6,30 +6,43 @@
     background-size: cover;
   } 
  .card {
-   overflow: ellipsis;
-   word-break: break-word;
+  overflow: ellipsis;
+  word-break: break-word;
+  text-overflow: clip;
+  background: linear-gradient(
+    to bottom,
+    white 0%,
+    var(--app-blue-opaque) 50%,
+    var(--app-blue) 100%
+  );
+  border-radius: 14px;
+  
+  width: 20vw;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card:hover{
+scale: 105%;
+box-shadow: 1px 1px 10px var(--app-blue);
+transition: 0.5s;
+cursor: pointer;
+}
 
-   text-overflow: clip;
-   box-shadow: 1px 1px 7px black;
-   background-color: white;
-   border-radius: 30px;
-   padding-left: 20px;
-   padding-right: 20px;
-   width: 22vw;
-   height: 400px;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
- }
 
  .details {
+  text-align: center;
    font-weight: 300;
    font-size: large;
-   font-family: Thicc;
+   font-family: Lexend;
    text-overflow: clip;
    margin-top: 0px;
    margin-bottom: 28px;
+   padding-left: 20px;
+   padding-right: 20px;
+  color: white;
  }
 
  .name {
@@ -38,6 +51,7 @@
    margin-top: 30px;
    margin-bottom: 20px;
    font-weight: bold;
+   color: var(--app-blue);
  }
 
  .service-button  {

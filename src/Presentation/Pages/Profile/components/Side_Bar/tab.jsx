@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import './tab.css'
-function ProfileTab({title,Icon,setIndex,index,val}){
+function ProfileTab({title,Icon,UnselectedIcon,setIndex,index,val}){
     const[colorr,setcolor]=useState("black");
 const TabStyle = {
     Unselected:{
@@ -40,7 +40,7 @@ return(
     style={index==val?TabStyle.Selected:TabStyle.Unselected
 
 } className='tab' onClick={handleClick} >
-                        <Icon/>
+                        {index==val?<Icon/>:<UnselectedIcon/>}
                          {title}</div>
 );
 

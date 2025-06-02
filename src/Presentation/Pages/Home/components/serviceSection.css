@@ -8,9 +8,10 @@
 }
 .title{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content:start;
+    align-items: start;
     font-size: 40px;
+    
 }
 .card-holder{
     display: flex;

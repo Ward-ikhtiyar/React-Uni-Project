@@ -2,17 +2,32 @@
 import './requests.css'
 import { Add,} from '@mui/icons-material';
 import Custom_Chip from './components/Chips/chip';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '../Home/components/Card';
 import DisplayCard from '../Search-Proporties/components/RE-Listing/RE-Card/RE-Card';
 import AgentProperty from './components/myProperty_card/Agent_property';
+import CreatePropertyDialog from '../../components/Dialogs/CreateProperty_Dialog';
+import AddPropertyPage from './AddProperty/addProperty';
+import { getAcceptedProperties } from '../../../API/requests';
 function PropertiesPage(){
     const[chipVal,setChipVal]=useState(0);
+    const[open,setOpen]=useState(false);
+    const [loading,setIsLoadoing]=useState(false);
+    const [properties,setProperties]=useState([]);
+    async function handleGetProperties(){
+        setIsLoadoing(true);
+        const fetchedProperties=await getAcceptedProperties(true);
+        setProperties(fetchedProperties);
+        setIsLoadoing(false);
+    } 
+    useEffect(()=>{handleGetProperties();},[]);
+
+if(!open){
 return(
-    <div className="profile-info" >
+<div className="profile-info" >
         <div className="requests-title">
             Properties
-            <button className='colored-button'><Add /> Add a property</button>
+            <button className='colored-button' onClick={()=>setOpen(true)}><Add /> Add a property</button>
         </div>
 
         <div className='chips-row'>
@@ -22,12 +37,16 @@ return(
         </div>
 
         <div className='profile-body'>
-            <AgentProperty/>
-            <AgentProperty/>
-            <AgentProperty/>
-            </div>
-            
-    </div>
-);
+            {properties.map((element,index)=><AgentProperty key={index} property={element}/>)}
+        </div>
+              
+</div>  
+);}
+if(open){
+    return(
+        <AddPropertyPage open={open} setOpen={setOpen}/>
+    );
+}
+
 }
 export default PropertiesPage

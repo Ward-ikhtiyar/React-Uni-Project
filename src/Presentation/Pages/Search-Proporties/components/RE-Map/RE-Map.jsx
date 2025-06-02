@@ -2,30 +2,49 @@ import React from 'react';
 import "./RE-Map.css";
 import 'leaflet/dist/leaflet.css';
 
-import { CircleMarker, MapContainer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { TileLayer } from 'react-leaflet';
-import { red } from '@mui/material/colors';
-import Card from '../../../Home/components/Card';
 import DisplayCard from '../RE-Listing/RE-Card/RE-Card';
+import { useProperty } from '../../../../../consts/context';
 
-//^ RE == Real Estate
-//^ this is a search page
-const REMap = () => {
+function LocationMarker({ onClickMap }) {
+  useMapEvents({
+    click(e) {
+      const { lat, lng } = e.latlng;
+      console.log({ lat, lng });
+      onClickMap({ lat, lng }); 
+    }
+  });
+
+  return null; 
+}
+
+const REMap = ({ Listings, isAdd }) => {
+    const { location, setLocation } = useProperty();
+    
     return (
-        <div id='map'>
-            <MapContainer center={[33.5138, 36.2765]} zoom={13} style={{height:"100%"}}>
+        <div id='map' style={{height:isAdd?'100vh':'90vh'}}>
+            <MapContainer center={[33.5138, 36.2765]} zoom={13}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker position={[33.5138, 36.2765]}>
-                    <Popup className='popup'>
-                        <div style={{scale:'75%',justifySelf:'center'}}>
-                            <DisplayCard/>
-                        </div>
-                
-                    </Popup>
-                </Marker>
+                {isAdd ? (
+                    <>
+                        <LocationMarker onClickMap={setLocation}/>
+                        {location && <Marker position={[location.lat, location.lng]} />}
+                    </>
+                ) : (
+                    Listings && Listings.map((property, index) => (
+                        <Marker key={index} position={[property.location.lat, property.location.lon]}>
+                            <Popup className='popup'>
+                                <div style={{ scale: '75%', justifySelf: 'center' }}>
+                                    <DisplayCard property={property}/>
+                                </div>
+                            </Popup>
+                        </Marker>
+                    ))
+                )}
             </MapContainer>
         </div>
     );

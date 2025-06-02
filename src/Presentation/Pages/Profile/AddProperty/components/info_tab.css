@@ -1,0 +1,56 @@
+.addInfo-tab{
+     width: 100%;
+    justify-content: start;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+#addInfo-input{
+    border-radius: none;
+    width: 30vw;
+}
+.addInfo-title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+#addedPics{
+    border: 2px solid var(--app-blue);
+background-size: cover;
+border-radius: 5px;
+background-position: center;
+background-repeat: no-repeat;
+}
+.Info-select{
+    border-radius: 5px;
+    font-family: thicc;
+    font-size: large;
+    height: 35px;
+    width: 40%;
+    border: 2px solid var(--app-blue);
+}
+.Info-select:focus{
+    border-color: var(--app-blue);
+}
+.radio{
+    margin-left: 50px;   
+    font-size: larger;
+}
+
+.radio-icon{
+    background-color: var(--app-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 5px;
+    width: 3vw;
+    height: 6vh;
+    font-size: 50px;
+}
+input[type="radio"] {
+    accent-color: var(--app-blue);
+    scale: 150%;
+    margin-right: 20px;
+}
+

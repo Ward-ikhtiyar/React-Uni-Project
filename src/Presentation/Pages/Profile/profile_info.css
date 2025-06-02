@@ -6,6 +6,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    overflow-y: scroll;
 }
 .profile-pic {
     background-size: cover;
@@ -44,13 +45,13 @@ background-position:center;
     gap: 10px;
     justify-content: center;
     align-items: center;
-    font-family: thicc;
+    font-family: Lexend;
     color: white;
     background-color: var(--app-blue);
     border: none;
     border-radius: 5px;
     font-size: x-large;
-    box-shadow: 2px 2px 5px grey;
+    height: 50px;
 }
 .edit-button-tile:hover{
     cursor: pointer;

@@ -2,12 +2,22 @@
 import './requests.css'
 import { Edit,} from '@mui/icons-material';
 import Custom_Chip from './components/Chips/chip';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Card from '../Home/components/Card';
 import DisplayCard from '../Search-Proporties/components/RE-Listing/RE-Card/RE-Card';
 
+import { getFavorites } from '../../../API/requests';
 function SavedPropertiesPage(){
     const[chipVal,setChipVal]=useState(0);
+    const[Listings,setListings]=useState([]);
+        async function handleGetProperties(){
+            let fetchedProperties=await getFavorites();
+            setListings(fetchedProperties);
+        }
+        useEffect(()=>{
+            handleGetProperties();
+        },[]);
+    console.log(Listings);
 return(
     <div className="profile-info" >
         <div className="requests-title">
@@ -22,9 +32,7 @@ return(
         </div>
 
         <div className='profile-body'>
-            <DisplayCard/>
-            <DisplayCard/>
-            <DisplayCard/>
+          {Listings.map((element,index)=>(<DisplayCard key={index} property={element.property}/>))}
             
             </div>
             

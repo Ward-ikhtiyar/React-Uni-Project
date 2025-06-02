@@ -12,9 +12,12 @@ function Card({desc,name,image,button}){
         <div id="card" className="card">
 
             <div style={photoStyle}  className="Card-pic"></div>
-            <p className="name">{name} </p>
-            <p className="details">{desc}</p>
-            <button className="service-button">{button}</button>
+            <div className="text-info">
+                <div className="name">{name} </div>
+            <div className="details">{desc}</div>
+            </div>
+            
+            
             
         </div>
     );
