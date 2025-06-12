@@ -8,6 +8,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ProfilePage from './Presentation/Pages/Profile/profile_page';
 import AddPropertyPage from './Presentation/Pages/Profile/addProperty/addProperty';
 import TrendingCard from './Presentation/Pages/Home/components/trendingCard';
+import AdminLogin from './Presentation/Pages/Admin/login_page';
+import { Dashboard } from '@mui/icons-material';
+import AdminDashBoard from './Presentation/Pages/Admin/dashboard';
 function App() {
   
   return (
@@ -17,7 +20,9 @@ function App() {
         <Route path='/' element={<HomePage/>}> </Route>
         <Route path='/Properties' element={<RE_Search/>}></Route>
         <Route path='/Details' element={<ShowHouse/>}></Route>
-        <Route path='/Profile' element={<ProfilePage/>}></Route>        
+        <Route path='/Profile' element={<ProfilePage/>}></Route> 
+        <Route path='/Admin' element={<AdminLogin/>}></Route> 
+        <Route path='/Dashboard' element={<AdminDashBoard/>}></Route>        
       </Routes>
     </Router>
     </>

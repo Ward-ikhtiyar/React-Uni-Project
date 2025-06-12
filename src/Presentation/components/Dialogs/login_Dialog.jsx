@@ -5,16 +5,20 @@ import EndPoints from "../../../API/endpoints";
 import SignUpDialog from "./signup_dialog";
 
 import { replace, useNavigate } from "react-router-dom";
+import ErrorSnackbar from "../snackBar/erorr_snack";
 function LoginDialog({open,onClose}){
     let navigate=useNavigate();
     const handleClose=(event,reason)=>{
         console.log();
         if(reason==='backdropClick') 
         onClose();  }
+    const[snackOpen,isSnackOpen]=useState(false);
+    const [snackTitle,setSnackTitle]=useState('');
     const [number,setNumber]=useState('');
         const [password,setPassword]=useState('');
         const[signUp,setSignUp]=useState(false);
     async function login(Number,Password){
+        try{
         let response=await Axios.post(EndPoints.Auth.Login,
         {
            phone: Number,
@@ -23,12 +27,24 @@ function LoginDialog({open,onClose}){
         let data=response.data;
         
         console.log(data);
+        
         if(data.accessToken){
             console.log(`loginSuccess:${data.accessToken}`);
             localStorage.setItem("token",data.accessToken);
             navigate(0);
         }else{
+            
             console.log("error in token");
+        }}
+        catch(e){
+            if(e.response.status===401){
+                setSnackTitle("wrong Number/Password");
+                isSnackOpen(true);
+            }
+            if(e.response.status===404){
+                setSnackTitle("Account doesnt exist");
+                isSnackOpen(true);
+            }
         }
     }
     const handleLogin=async()=>{
@@ -65,6 +81,7 @@ function LoginDialog({open,onClose}){
                 </DialogContent>
             </Dialog>
             <SignUpDialog open={signUp} onClose={()=>setSignUp(false)}/>
+             <ErrorSnackbar open={snackOpen} title={snackTitle} handleClose={()=>isSnackOpen(false)}/>   
             </>
             );}
             export default LoginDialog;

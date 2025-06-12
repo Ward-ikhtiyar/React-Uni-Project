@@ -9,9 +9,12 @@ import AgentProperty from './components/myProperty_card/Agent_property';
 import CreatePropertyDialog from '../../components/Dialogs/CreateProperty_Dialog';
 import AddPropertyPage from './AddProperty/addProperty';
 import { getAcceptedProperties } from '../../../API/requests';
+import ManagePropertyDialog from '../../components/Dialogs/manage_property_dialog';
 function PropertiesPage(){
     const[chipVal,setChipVal]=useState(0);
     const[open,setOpen]=useState(false);
+    const [id,setId]=useState(0);
+        const[dialog,setDialog]=useState(false);
     const [loading,setIsLoadoing]=useState(false);
     const [properties,setProperties]=useState([]);
     async function handleGetProperties(){
@@ -37,9 +40,9 @@ return(
         </div>
 
         <div className='profile-body'>
-            {properties.map((element,index)=><AgentProperty key={index} property={element}/>)}
+            {properties.map((element,index)=><AgentProperty setId={setId} setOpen={setDialog} key={index} property={element}/>)}
         </div>
-              
+    <ManagePropertyDialog setOpen={setOpen} id={id} open={dialog} onClose={()=>setDialog(false)}/>              
 </div>  
 );}
 if(open){

@@ -18,7 +18,7 @@ body {
 }
 :root{
   --app-blue:rgb(33, 81, 219);
-  --app-blue-opaque:rgb(207, 214, 255);
+  --app-blue-opaque:rgba(33, 81, 219,0.3);
   --app-background:rgb(247, 247, 247);
   --app-grey:rgb(103, 104, 105);
   --app-light-grey:rgba(128, 128, 128,0.2);

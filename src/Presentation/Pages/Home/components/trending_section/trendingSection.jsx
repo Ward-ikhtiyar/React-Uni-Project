@@ -8,6 +8,7 @@ function TrendingSection(){
         const navigate=useNavigate();
         const[Listings,setListings]=useState([]);
         async function handleGetProperties(){
+            
             let fetchedProperties=await getAcceptedProperties(false);
             setListings(fetchedProperties);
         }

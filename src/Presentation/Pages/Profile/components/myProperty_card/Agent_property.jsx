@@ -4,14 +4,15 @@ import Info from "../../../Display/components/RE-Listing/RE-Card/RE-Card-Info.js
 import { useNavigate } from 'react-router-dom';
 import TokenAxios from '../../../../../API/tokenAxios';
 
-function AgentProperty ({property}) {
-    
+function AgentProperty ({property,setOpen,setId}) {
+    //   onClick={()=>{
+    //         navigate('/Details');
+    //     }}
     const navigate=useNavigate();
+    
     return (
-        <div className='Agent-property-card'  onClick={()=>{
-            navigate('/Details');
-        }}>
-                      <img className='Agent-property-pic' src={property.propertyImages?`http://localhost:3000/property/images/${property.propertyImages[0]}`:"assets/images/coverimg.png"} crossorigin="anonymous" />
+        <div className='Agent-property-card'>
+                      <img className='Agent-property-pic' src={property.propertyImages?`http://localhost:3000/property/images/${property.propertyImages[0]}`:"public/assets/images/propertyPlaceholder.png"} crossOrigin="anonymous" />
 
             <div className='location-status'>{`${property.location.quarter} ,${property.location.street}`}
                 <div className='property-status'>occupied</div>
@@ -19,7 +20,7 @@ function AgentProperty ({property}) {
             <div className='info'>
                 Tenat:Ward Ekhtiar
             </div>
-            <button className='manage-button'>Manage Property</button>
+            <button onClick={()=>{setOpen(true);setId(property.id)}} className='manage-button'>Manage Property</button>
         </div>);
 }
 

@@ -6,6 +6,7 @@ import { MapContainer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { TileLayer } from 'react-leaflet';
 import DisplayCard from '../RE-Listing/RE-Card/RE-Card';
 import { useProperty } from '../../../../../consts/context';
+import MySnackbar from '../../../../components/snackBar/success_snack';
 
 function LocationMarker({ onClickMap }) {
   useMapEvents({
@@ -23,7 +24,7 @@ const REMap = ({ Listings, isAdd }) => {
     const { location, setLocation } = useProperty();
     
     return (
-        <div id='map' style={{height:isAdd?'100vh':'90vh'}}>
+        <div id='map' style={{height:isAdd?'100vh':'90vh',}}>
             <MapContainer center={[33.5138, 36.2765]} zoom={13}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -46,6 +47,19 @@ const REMap = ({ Listings, isAdd }) => {
                     ))
                 )}
             </MapContainer>
+            {isAdd?
+                 <div style={{
+      position: 'absolute',
+      top: '0px',
+      left: '20%',
+      transform: 'translateX(-50%)',
+      zIndex: 10
+    }}>
+                <MySnackbar open={true} title={"ward"}/>
+
+                </div>
+            
+            :<div></div>}
         </div>
     );
 }

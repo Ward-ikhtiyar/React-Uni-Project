@@ -6,7 +6,7 @@ body{
     height: 100%;
     width: 50vw;
     z-index: 1;
-
+    position: relative;
 }
 
 .leaflet-popup.popup.leaflet-zoom-animated{
