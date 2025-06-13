@@ -1,5 +1,34 @@
 import EndPoints from "./endpoints";
 import TokenAxios from "./tokenAxios";
+import Axios from "./axios";
+export async function login(number,password){
+  console.log('in sign in ');
+  console.log(number);
+  console.log(password);
+        try{
+        let response=await Axios.post(EndPoints.Auth.Login,
+        {
+           phone: number,
+           password:password
+        });
+        let data=response.data;
+        
+        console.log(`printing ${data}`);
+        
+        if(data.accessToken){
+            console.log(`loginSuccess:${data.accessToken}`);
+            localStorage.setItem("token",data.accessToken);
+            return 200;
+        }else{
+            
+            console.log("error in token");
+        }}
+        catch(e){
+          console.log(e.response);
+          return e.response.status;
+           
+        }
+    }
 ////////////////// create property /////////////////
 export async function createProperty(property) {
     const propertData= {
@@ -39,14 +68,15 @@ export async function createProperty(property) {
 }
 /////////////////////////////////////////update Property/////////////////////////////////////
 export async function updateProperty(id,data){
+  console.log(`selected property is ${id}`)
   try{
-  let response=await TokenAxios.patch(`property/${id}`,data);
+  let response=await TokenAxios.patch(`${EndPoints.Properties.getMine}/${id}`,data);
   console.log(response.data);
-    return response.status;
+    return response.status
   }
   catch(e){
     console.log(e.response.data);
-    return e.response.status;
+    return e.response.status
   }
 }
 ////////////////////////////////// image Upload //////////////////////

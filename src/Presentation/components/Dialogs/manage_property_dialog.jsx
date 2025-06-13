@@ -12,26 +12,26 @@ import EditProfileDialog from "./Profile_dialog";
 import EditPropertyDialog from "./edit_property_dialog";
 import { PropertyProvider } from "../../../consts/context";
 
-function ManagePropertyDialog({ open, id, onClose,setOpen, }) {
-    const [property, setProperty] = useState({});
+function ManagePropertyDialog({ open, id, onClosee,setOpen,property }) {
     const [openConfirm,setOpenConfirm]=useState(false);
     const [openEdit,setOpenEdit]=useState(false);
   const[password,setPassword]=useState("");
   const [openSnackBar,setOpenSnackBar]=useState(false);
     const navigate=useNavigate();
-    useEffect(() => {
-        if (open && id) {
-            const fetchData = async () => {
-                try {
-                    const data = await getDetails(id);
-                    setProperty(data);
-                } catch (error) {
-                    console.error("Failed to fetch property details:", error);
-                }
-            };
-            fetchData();
-        }
-    }, [open, id]);
+
+    // useEffect(() => {
+    //     if (open && id) {
+    //         const fetchData = async () => {
+    //             try {
+    //                 const data = await getDetails(id);
+    //                 setProperty(data);
+    //             } catch (error) {
+    //                 console.error("Failed to fetch property details:", error);
+    //             }
+    //         };
+    //         fetchData();
+    //     }
+    // }, [open, id]);
     async function handleConfirm(){
         console.log(password);
         let response=await deleteProperty(id,password);
@@ -49,17 +49,17 @@ function ManagePropertyDialog({ open, id, onClose,setOpen, }) {
     }
     return (
         <>
-        <Dialog open={open} onClose={onClose} fullWidth maxWidth={"xs"}>
+        <Dialog open={open} onClose={onClosee} fullWidth maxWidth={"xs"}>
             <DialogTitle sx={{ display: "flex", justifyContent: "space-between", alignItems: "center",fontFamily:'Lexend', }}>
                <div> {`Property `} <span style={{color:'var(--app-blue)'}}>{`#${property.id}`}</span></div>
-                <IconButton onClick={onClose}>
+                <IconButton onClick={onClosee}>
                     <CloseIcon />
                 </IconButton>
             </DialogTitle>
             <DialogContent dividers>
-                <Typography sx={{fontFamily:'Lexend',color:'var(--app-blue)'}} variant="body1">Address: {property.address}</Typography>
-                <Typography sx={{fontFamily:'Lexend',color:'var(--app-blue)'}} variant="body1">Status: {property.status}</Typography>
-                <Typography sx={{fontFamily:'Lexend',color:'var(--app-blue)'}} variant="body1">Tenant: <span style={{color:'black'}}>{"ward"}</span></Typography>
+                <Typography sx={{fontFamily:'Lexend',color:'var(--app-blue)'}} variant="body1">Address: <span style={{color:"var(--app-font)",fontFamily:'Tajawal'}}>{`${property.location.city},${property.location.street}`}</span> </Typography>
+                <Typography sx={{fontFamily:'Lexend',color:'var(--app-blue)'}} variant="body1">Status: <span style={{color:'var(--app-font)'}}  >{property.status}</span> </Typography>
+                <Typography sx={{fontFamily:'Lexend',color:'var(--app-blue)'}} variant="body1">Tenant: <span style={{color:'var(--app-font)'}}>{"ward"}</span></Typography>
                 <div style={{height:'40px'}}></div>
                 <div className="button-row">
                         <button onClick={()=>{
@@ -68,7 +68,7 @@ function ManagePropertyDialog({ open, id, onClose,setOpen, }) {
                             }} style={{width:'7vw',height:'40px',backgroundColor:'#FF0000'}} className="colored-button">
                             <Delete/> Delete
                         </button>
-                        <button onClick={()=>{setOpenEdit(true);onClose();}} style={{width:'7vw',height:'40px'}} className="colored-button">
+                        <button onClick={()=>{setOpenEdit(true);}} style={{width:'7vw',height:'40px'}} className="colored-button">
                         <Edit/>Edit
                         </button>
                         </div>
@@ -78,7 +78,7 @@ function ManagePropertyDialog({ open, id, onClose,setOpen, }) {
         <ConfirmDialog setPassword={setPassword} onConfirm={handleConfirm} open={openConfirm} setOpen={setOpenConfirm}/>
         <ErrorSnackbar open={openSnackBar} handleClose={()=>setOpenSnackBar(false)} title={"Incorrect Password or Server Issue"} /> 
             <PropertyProvider>
-            <EditPropertyDialog id={id}   open={openEdit} onClose={()=>setOpenEdit(false)}/>                   
+            <EditPropertyDialog id={property.id}   open={openEdit} onClose={()=>setOpenEdit(false)}/>                   
             </PropertyProvider>
         </>
     );

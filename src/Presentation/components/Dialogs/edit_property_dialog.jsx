@@ -11,18 +11,20 @@ import { useState, useEffect } from "react";
 // import { updateProperty, getDetails } from "../../../API/requests";
 import '../../../index.css'
 import { updateProperty } from "../../../API/requests";
+import ErrorSnackbar from "../snackBar/erorr_snack";
+import MySnackbar from "../snackBar/success_snack";
 const editableFields = [
   { label: "Title", key: "title", type: "text" },
   { label: "Description", key: "description", type: "text" },
-  { label: "Type", key: "type", type: "select", options: ["House", "Apartment", "Villa", "Land"] },
+  { label: "Type", key: "propertyType", type: "select", options: ["House", "Apartment", "Villa", "Land"] },
   { label: "Commerce", key: "commerce", type: "select",options:["Sale","Rent"] },
   { label: "Price", key: "price", type: "number" },
   { label: "Location", key: "location", type: "text" },
-  { label: "Bedrooms", key: "bedrooms", type: "number" },
+  { label: "Bedrooms", key: "rooms", type: "number" },
   { label: "Bathrooms", key: "bathrooms", type: "number" },
   { label: "Area (sqm)", key: "area", type: "number" },
-  { label: "Flooring", key: "flooring", type: "select", options: ["Ceramic", "Wood", "Carpet", "Tile"] },
-  { label: "Heating", key: "heating", type: "select", options: ["Central", "Gas", "Electric", "Solar"] },
+  { label: "Flooring", key: "flooringType", type: "select", options: ["Ceramic", "Wood", "Carpet", "Tile"] },
+  { label: "Heating", key: "heatingType", type: "select", options: ["Central", "Gas", "Electric", "Solar"] },
   { label: "Floors", key: "floors", type: "number" },
   { label: "Garage", key: "garage", type: "select", options: ["Yes", "No"] },
   { label: "Garden", key: "garden", type: "select", options: ["Yes", "No"] },
@@ -33,7 +35,8 @@ function EditPropertyDialog({ open, onClose, id }) {
   const [selectedField, setSelectedField] = useState("");
   const [fieldValue, setFieldValue] = useState("");
   const [originalProperty, setOriginalProperty] = useState({});
-
+  const [snackBarStatus,setSnackBarStatus]=useState("");
+  const [snackMsg,setSnackMsg]=useState("");
   // useEffect(() => {
   //   if (open && id) {
   //     getDetails(id).then((data) => {
@@ -48,23 +51,39 @@ function EditPropertyDialog({ open, onClose, id }) {
   };
 
   const handleSave = async () => {
-    if (!selectedField) return;
-    let updated={}
-    if(fieldValue==="Yes"||fieldValue==="No"){
-    updated = {
-      [selectedField]: fieldValue==="Yes",
-    };  
-    }else{
-    updated = {
-      [selectedField]: fieldValue,
-    };}
-    await updateProperty(id, updated);
-    onClose();
-  };
+  if (!selectedField) return;
 
+  let updated = {};
+  const booleanFields = ["garage", "garden"];
+  const numberFields = ["area", "rooms", "bathrooms", "floors", "price"];
+
+  if (booleanFields.includes(selectedField)) {
+    updated[selectedField] = fieldValue === "Yes";
+  } else if (numberFields.includes(selectedField)) {
+    updated[selectedField] = Number(fieldValue);
+  } else {
+    updated[selectedField] = fieldValue;
+  }
+
+  console.log("Parsed value:", updated[selectedField], "Type:", typeof updated[selectedField]);
+  
+  let response=await updateProperty(id, updated);
+    if(response===200){
+    setSnackMsg(`${selectedField} Updated!`);
+    setSnackBarStatus("worked");
+    console.log(`${selectedField} Updated!`);
+    onClose();
+  }
+  else{
+    console.log('catched an error')
+  setSnackBarStatus("error");
+    setSnackMsg(`Network issues or Wrong input`);}
+  
+};
   const selectedFieldMeta = editableFields.find(f => f.key === selectedField);
 
   return (
+    <>
     <Dialog   open={open} onClose={onClose} fullWidth maxWidth="xs">
       <DialogTitle sx={{fontFamily:'Lexend'}} >Edit Property Attributes</DialogTitle>
       <DialogContent>
@@ -142,6 +161,11 @@ function EditPropertyDialog({ open, onClose, id }) {
         </Button>
       </DialogActions>
     </Dialog>
+      <ErrorSnackbar open={snackBarStatus==="error"} handleClose={()=>setSnackBarStatus("closed")} title={snackMsg}/>
+       <MySnackbar open={snackBarStatus==="worked"} handleClose={()=>setSnackBarStatus("closed")} title={snackMsg}/>
+
+    
+    </>
   );
 }
 

@@ -10,11 +10,13 @@ import CreatePropertyDialog from '../../components/Dialogs/CreateProperty_Dialog
 import AddPropertyPage from './AddProperty/addProperty';
 import { getAcceptedProperties } from '../../../API/requests';
 import ManagePropertyDialog from '../../components/Dialogs/manage_property_dialog';
+import { div } from 'framer-motion/client';
 function PropertiesPage(){
     const[chipVal,setChipVal]=useState(0);
     const[open,setOpen]=useState(false);
     const [id,setId]=useState(0);
         const[dialog,setDialog]=useState(false);
+    const [selectedProperty,setSelectedProperty]=useState({});
     const [loading,setIsLoadoing]=useState(false);
     const [properties,setProperties]=useState([]);
     async function handleGetProperties(){
@@ -40,9 +42,12 @@ return(
         </div>
 
         <div className='profile-body'>
-            {properties.map((element,index)=><AgentProperty setId={setId} setOpen={setDialog} key={index} property={element}/>)}
+            {properties.map((element,index)=><AgentProperty setProperty={setSelectedProperty} setId={setId} setOpen={setDialog} key={index} property={element}/>)}
         </div>
-    <ManagePropertyDialog setOpen={setOpen} id={id} open={dialog} onClose={()=>setDialog(false)}/>              
+        {
+           dialog? <ManagePropertyDialog property={selectedProperty} setOpen={setOpen} id={id} open={dialog} onClosee={()=>setDialog(false)}/>:<div></div>
+        }
+                  
 </div>  
 );}
 if(open){

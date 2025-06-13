@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Feed,FeedOutlined,Logout,AdminPanelSettingsOutlined,HouseOutlined,House,PendingActions,PendingActionsOutlined,Dashboard,DashboardOutlined } from '@mui/icons-material';
 import EasyRent from '../../components/Lottie/EasyRent';
 function AdminDashBoard(){
+  
         const[tabIndex,setTabIndex]=useState(0);
     return(
         <div className='admin-dashboard'>

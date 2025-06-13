@@ -3,10 +3,28 @@ import EasyRent from '../../components/Lottie/EasyRent';
 import './login_page.css'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../../../API/requests';
 function AdminLogin(){
     const navigate=useNavigate();
+    const[snackOpen,isSnackOpen]=useState(false);
+    const [snackTitle,setSnackTitle]=useState('');
     const [number,setNumber]=useState('');
-    const [Password,setPassword]=useState('');
+        const [password,setPassword]=useState('');
+        const handleLogin=async()=>{
+                console.log('logining');
+            const response= await login(number,password)
+            if(response===200){
+                navigate('/Dashboard');
+            }
+                 if(response===401){
+                        setSnackTitle("wrong Number/Password");
+                        isSnackOpen(true);
+                    }
+                    if(response===404){
+                        setSnackTitle("Account doesnt exist");
+                        isSnackOpen(true);
+                    }
+            }
     return(
         <div  className="admin-page" >
             <div style={{display:'flex'}}>
@@ -22,7 +40,7 @@ function AdminLogin(){
                         setPassword(e.target.value)
                     }} className="admin-inputBox" placeholder='Password'/>
 <div style={{height:'40px'}}></div>
-            <button onClick={()=>navigate('/Dashboard')} className='colored-button' style={{width:'10vw', height:'6vh',boxShadow:'none'}}> Login</button>        
+            <button onClick={handleLogin} className='colored-button' style={{width:'10vw', height:'6vh',boxShadow:'none'}}> Login</button>        
             </div> 
         </div>
     );

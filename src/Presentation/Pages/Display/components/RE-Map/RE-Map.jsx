@@ -6,7 +6,7 @@ import { MapContainer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { TileLayer } from 'react-leaflet';
 import DisplayCard from '../RE-Listing/RE-Card/RE-Card';
 import { useProperty } from '../../../../../consts/context';
-import MySnackbar from '../../../../components/snackBar/success_snack';
+import LocationSnackBar from '../../../../components/snackBar/location_snackBar';
 
 function LocationMarker({ onClickMap }) {
   useMapEvents({
@@ -55,7 +55,7 @@ const REMap = ({ Listings, isAdd }) => {
       transform: 'translateX(-50%)',
       zIndex: 10
     }}>
-                <MySnackbar open={true} title={"ward"}/>
+                <LocationSnackBar open={true} title={"ward"}/>
 
                 </div>
             

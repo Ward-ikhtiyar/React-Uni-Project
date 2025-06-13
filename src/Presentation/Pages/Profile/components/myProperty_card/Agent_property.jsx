@@ -4,7 +4,7 @@ import Info from "../../../Display/components/RE-Listing/RE-Card/RE-Card-Info.js
 import { useNavigate } from 'react-router-dom';
 import TokenAxios from '../../../../../API/tokenAxios';
 
-function AgentProperty ({property,setOpen,setId}) {
+function AgentProperty ({setProperty,property,setOpen,setId}) {
     //   onClick={()=>{
     //         navigate('/Details');
     //     }}
@@ -12,15 +12,18 @@ function AgentProperty ({property,setOpen,setId}) {
     
     return (
         <div className='Agent-property-card'>
-                      <img className='Agent-property-pic' src={property.propertyImages?`http://localhost:3000/property/images/${property.propertyImages[0]}`:"public/assets/images/propertyPlaceholder.png"} crossOrigin="anonymous" />
+                      <img   onError={(e) => {
+    e.target.onerror = null; 
+    e.target.src = "public/assets/images/propertyPlaceholder.png";
+  }}  className='Agent-property-pic' src={`http://localhost:3000/property/images/${property.firstImage}`} crossOrigin="anonymous" />
 
             <div className='location-status'>{`${property.location.quarter} ,${property.location.street}`}
-                <div className='property-status'>occupied</div>
+                <div style={{backgroundColor:property.status==="pending"?"var(--app-grey)":"var(--app-blue)"}} className='property-status'>{property.status}</div>
             </div>
             <div className='info'>
                 Tenat:Ward Ekhtiar
             </div>
-            <button onClick={()=>{setOpen(true);setId(property.id)}} className='manage-button'>Manage Property</button>
+            <button onClick={()=>{setOpen(true);setProperty(property)}} className='manage-button'>Manage Property</button>
         </div>);
 }
 
