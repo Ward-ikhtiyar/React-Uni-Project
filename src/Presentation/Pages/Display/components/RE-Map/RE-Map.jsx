@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import "./RE-Map.css";
 import 'leaflet/dist/leaflet.css';
-
-import { MapContainer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import L from 'leaflet';
+import { MapContainer, Marker, Popup, useMap, useMapEvents } from 'react-leaflet';
 import { TileLayer } from 'react-leaflet';
 import DisplayCard from '../RE-Listing/RE-Card/RE-Card';
 import { useProperty } from '../../../../../consts/context';
@@ -19,10 +19,46 @@ function LocationMarker({ onClickMap }) {
 
   return null; 
 }
+function UserLocationMarker({ setUserLocation, location }) {
+  const map = useMap();
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const newLoc = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        console.log(newLoc);
+        setUserLocation(newLoc);
+        map.flyTo([newLoc.lat, newLoc.lng], 13);
+      },
+      (error) => {
+        console.error('Geolocation error:', error);
+      }
+    );
+  }, [map, setUserLocation]);
+
+  if (!location.lat || !location.lng) return null;
+
+  const personIcon = new L.Icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40],
+  });
+
+  return (
+    <Marker position={[location.lat, location.lng]} icon={personIcon}>
+      <Popup>Your Location</Popup>
+    </Marker>
+  );
+}
 
 const REMap = ({ Listings, isAdd }) => {
     const { location, setLocation } = useProperty();
-    
+    const [userLocation,setUserLocation]=useState({lat:0,lng:0});
+   
     return (
         <div id='map' style={{height:isAdd?'100vh':'90vh',}}>
             <MapContainer center={[33.5138, 36.2765]} zoom={13}>
@@ -46,6 +82,7 @@ const REMap = ({ Listings, isAdd }) => {
                         </Marker>
                     ))
                 )}
+                <UserLocationMarker location={userLocation} setUserLocation={setUserLocation}/>
             </MapContainer>
             {isAdd?
                  <div style={{

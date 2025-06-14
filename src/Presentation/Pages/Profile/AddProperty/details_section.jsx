@@ -20,13 +20,12 @@ function DetailsSection(){
     return(
         <div id="addProperty-info"  >
             <AddPropertyPics/>
-        <div style={{  width:'100%', height:'20%', display:'flex', flexDirection:'row',justifyContent:'space-around' }}>
+        <div style={{  width:'100%', display:'flex', flexDirection:'row',justifyContent:'space-around' }}>
             <SmallTextField val={bedrooms} setVal={setBedrooms} isArea={false} Icon={BedOutlined}/>
             <SmallTextField val={bathrooms} setVal={setBathrooms} isArea={false} Icon={ShowerOutlined}/>
             <SmallTextField val={area} setVal={setArea} isArea={true} Icon={AreaChartOutlined}/>
         </div>
-        
-        <InfoTab val={floors} setVal={setFloors}  title={"Floors"}/>
+        <div style={{height:'50px'}}></div>
         <InfoSelect val={flooring} setVal={setFlooring} title={`Flooring` } options={FloorTypes}/>
         <InfoSelect val={heating} setVal={setHeating} title={`Heating `} gap={22} options={HeatingTypes}/>
         <InfoRadio val={garage} setVal={setGarage} option1={"Yes"} option2={"No"} title={"Garage"} Icon={YardOutlined}/>

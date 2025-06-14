@@ -10,14 +10,14 @@ import {
 import { useState, useEffect } from "react";
 // import { updateProperty, getDetails } from "../../../API/requests";
 import '../../../index.css'
-import { updateProperty } from "../../../API/requests";
+import { updateProperty,getDetails } from "../../../API/requests";
 import ErrorSnackbar from "../snackBar/erorr_snack";
 import MySnackbar from "../snackBar/success_snack";
 const editableFields = [
   { label: "Title", key: "title", type: "text" },
   { label: "Description", key: "description", type: "text" },
   { label: "Type", key: "propertyType", type: "select", options: ["House", "Apartment", "Villa", "Land"] },
-  { label: "Commerce", key: "commerce", type: "select",options:["Sale","Rent"] },
+  { label: "Commerce", key: "isForRent", type: "select",options:["Sale","Rent"] },
   { label: "Price", key: "price", type: "number" },
   { label: "Location", key: "location", type: "text" },
   { label: "Bedrooms", key: "rooms", type: "number" },
@@ -25,9 +25,9 @@ const editableFields = [
   { label: "Area (sqm)", key: "area", type: "number" },
   { label: "Flooring", key: "flooringType", type: "select", options: ["Ceramic", "Wood", "Carpet", "Tile"] },
   { label: "Heating", key: "heatingType", type: "select", options: ["Central", "Gas", "Electric", "Solar"] },
-  { label: "Floors", key: "floors", type: "number" },
-  { label: "Garage", key: "garage", type: "select", options: ["Yes", "No"] },
-  { label: "Garden", key: "garden", type: "select", options: ["Yes", "No"] },
+  { label: "Floors", key: "floorNumber", type: "number" },
+  { label: "Garage", key: "hasGarage", type: "select", options: ["Yes", "No"] },
+  { label: "Garden", key: "hasGarden", type: "select", options: ["Yes", "No"] },
   
 ];
 
@@ -37,33 +37,46 @@ function EditPropertyDialog({ open, onClose, id }) {
   const [originalProperty, setOriginalProperty] = useState({});
   const [snackBarStatus,setSnackBarStatus]=useState("");
   const [snackMsg,setSnackMsg]=useState("");
-  // useEffect(() => {
-  //   if (open && id) {
-  //     getDetails(id).then((data) => {
-  //       setOriginalProperty(data);
-  //     });
-  //   }
-  // }, [open, id]);
+    const booleanFields = ["hasGarage", "hasGarden"];
+  const numberFields = ["area", "rooms", "bathrooms", "floorNumber", "price"];
+  useEffect(() => {
+    if (open && id) {
+      getDetails(id).then((data) => {
+        setOriginalProperty(data);
+      });
+    }
+  }, [open]);
 
   const handleFieldChange = (fieldKey) => {
     setSelectedField(fieldKey);
+     if (booleanFields.includes(fieldKey)) {
+    setFieldValue(originalProperty[fieldKey] ?"Yes":"No");
+    
+  }else if(fieldKey==="isForRent"){
+    setFieldValue(originalProperty[fieldKey]?"Rent":"Sale" );
+  }
+    else {
     setFieldValue(originalProperty[fieldKey] ?? "");
+  } 
+    
   };
 
   const handleSave = async () => {
   if (!selectedField) return;
 
   let updated = {};
-  const booleanFields = ["garage", "garden"];
-  const numberFields = ["area", "rooms", "bathrooms", "floors", "price"];
+
 
   if (booleanFields.includes(selectedField)) {
     updated[selectedField] = fieldValue === "Yes";
   } else if (numberFields.includes(selectedField)) {
     updated[selectedField] = Number(fieldValue);
-  } else {
-    updated[selectedField] = fieldValue;
+  } else if(selectedField==="isForRent"){
+    updated[selectedField] =fieldValue==="Rent"
   }
+    else {
+    updated[selectedField] = fieldValue;
+  } 
 
   console.log("Parsed value:", updated[selectedField], "Type:", typeof updated[selectedField]);
   

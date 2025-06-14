@@ -22,7 +22,7 @@ body {
   --app-background:rgb(247, 247, 247);
   --app-grey:rgb(103, 104, 105);
   --app-light-grey:rgba(128, 128, 128,0.2);
-  --font-color:black
+  --app-font:rgb(0,0,0);
   overflow-y: auto;
 }
 

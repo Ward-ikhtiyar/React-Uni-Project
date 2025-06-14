@@ -34,7 +34,7 @@ function ManagePropertyDialog({ open, id, onClosee,setOpen,property }) {
     // }, [open, id]);
     async function handleConfirm(){
         console.log(password);
-        let response=await deleteProperty(id,password);
+        let response=await deleteProperty(property.id,password);
         console.log("response")
         console.log(response);
         if(response===200){
@@ -64,7 +64,6 @@ function ManagePropertyDialog({ open, id, onClosee,setOpen,property }) {
                 <div className="button-row">
                         <button onClick={()=>{
                             setOpenConfirm(true)
-                            onClose();
                             }} style={{width:'7vw',height:'40px',backgroundColor:'#FF0000'}} className="colored-button">
                             <Delete/> Delete
                         </button>

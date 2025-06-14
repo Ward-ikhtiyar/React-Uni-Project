@@ -18,12 +18,14 @@ const DisplayCard = ({property,isEditable}) => {
 
     }
     const navigate=useNavigate();
-        let isPlaceHolder=property.firstImage==="https://cdn-icons-png.flaticon.com/512/4757/4757668.png"
     return (
 
         <div className='property-card' onClick={()=>handleClick()}>
             <div className='property-pic-wrapper'>
-                <img src={!property.firstImage?"assets/images/propertyPlaceholder.png":`http://localhost:3000/property/images/${property.firstImage}`} className='property-pic' crossOrigin='anonymous'>
+                <img onError={(e)=>{
+                    e.target.onerror=null
+                    e.target.src="public/assets/images/propertyPlaceholder.png"
+                }} src={`http://localhost:3000/property/images/${property.firstImage}`} className='property-pic' crossOrigin='anonymous'>
             </img >
             {isEditable?<CloseIcon className='remove-icon' />:<div></div>}
             </div>
