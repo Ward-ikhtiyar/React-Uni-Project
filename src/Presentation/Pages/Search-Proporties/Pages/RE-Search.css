@@ -1,0 +1,26 @@
+#search-page-wrapper {
+    display: flex;
+    height: calc(100% - 10vh);
+    /* flex: 1; */
+    /* flex-direction: row-reverse; */
+    /* flex-wrap: nowrap; */
+    /* overflow: auto;  */
+}
+
+#full-search-page {
+    height: 100vh;
+
+}
+
+
+@media only screen and (max-width: 900px) {
+    #map {
+        display: none;
+    }
+}
+
+@media (max-width:1000px) {
+    #search-page-wrapper {
+        height: 100%;
+    }
+}

@@ -1,0 +1,33 @@
+.paymentplans-wrapper {
+    background-color: #f8f8f8;
+    height: 100%;
+}
+
+.pay-plans-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1140px;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pay-plan-card {
+    width: 33.333%;
+    background-color: #FFF;
+    margin: 1rem;
+    border-radius: 4px;
+    overflow: hidden;
+    /* margin: 15px; */
+}
+
+.pay-plan-card-header {
+    background-color: #727272;
+    width: 100%;
+}
+
+#paymentplans-page-center {
+    /* justify-content: center; */
+    /* align-items: center; */
+}

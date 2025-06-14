@@ -1,0 +1,148 @@
+/* .Info-card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 5px rgb(202, 202, 202);
+    border-radius: 10px;
+    width: 22vw;
+    height: 330px;
+    transition: box-shadow 0.1s;
+    background-color: white;
+}
+
+.Info-pic {
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.price-favorite {
+    width: 90%;
+    display: flex;
+    justify-content: start;
+    padding-left: 5%;
+    font-size: 130%;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+.Info {
+    font-family: Tajawal;
+    display: flex;
+    justify-content: start;
+    padding-left: 5%;
+    font-size: 100%;
+    margin-top: 5px;
+    color: grey;
+}
+
+.Info-card:hover {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.Info-card:active {
+    opacity: 0.7;
+    transition: 0.2s;
+} */
+
+
+
+
+
+.agent-card {
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background: #f0f8ff;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+    position: relative;
+    border: 1px solid #222;
+}
+
+.agent-card:hover {
+    transition-duration: 100ms;
+    box-shadow: 0 5px 20px #222;
+}
+
+.agent-header {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.agent-photo {
+    width: 160px;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.badge {
+    position: absolute;
+    left: 60px;
+    bottom: -10px;
+    background: white;
+    border-radius: 20px;
+    padding: 4px 8px;
+    font-size: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    color: #2a63f3;
+}
+
+.agent-info {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.team-label {
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.agent-name {
+    font-size: 20px;
+    margin: 8px 0 4px;
+}
+
+.agent-company {
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.price-range, .sales {
+    margin: 4px 0;
+    color: #333;
+}
+
+.price-range span, .sales span {
+    color: #777;
+    font-size: 13px;
+    margin-left: 4px;
+}
+
+.rating {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+.stars {
+    color: #1d4ed8;
+    margin-right: 4px;
+}
+
+.review-count {
+    color: #555;
+}
