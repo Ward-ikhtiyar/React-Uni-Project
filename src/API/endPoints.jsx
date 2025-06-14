@@ -27,6 +27,9 @@ const EndPoints={
     Plans:{
         getAll:'plans',
         createPlan:'webhook'
+    },
+    Admin:{
+       getAllProperties:'propertyA' 
     }
     
     

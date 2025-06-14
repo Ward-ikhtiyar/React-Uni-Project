@@ -7,7 +7,7 @@ import InfoRadio from "./components/info_radio";
 import { useProperty } from "../../../../consts/context";
 function InfoSection({clicked,open,setOpen}){
         const HouseTypes=["----choose option----","House","Apartment","Villa","Land"];
-        const{title,setTitle,commerce,setCommerce,type,setType,price,setPrice,setLocation,description,setDescription}=useProperty();
+        const{title,setTitle,commerce,setCommerce,type,setType,price,setPrice,setLocation,description,setDescription,floors,setFloors}=useProperty();
 
     return(
         <div className ={clicked?'swiped':''} id="addProperty-info" >
@@ -19,14 +19,15 @@ function InfoSection({clicked,open,setOpen}){
                     
                 </div>
                 <InfoTab val={title} setVal={setTitle} title={"title"}/>
-                <InfoTab   setVal={setLocation} title={"Location"}/>
                 <InfoTab val={price} setVal={setPrice}  title={"Price"}/>
+        <InfoTab val={floors} setVal={setFloors}  title={"Floors"}/>
                 <div className="addInfo-tab" >
         <p className='addInfo-title'> Description </p>                                        
   <textarea value={description} onChange={(e)=>setDescription(e.target.value)} id='addInfo-input' className="inputBox" style={{marginBottom:'10px', borderRadius:'8px', height:'120px',lineHeight:'2',fontWeight:'300',fontSize:'18px'}} />
                                         </div>
-                <InfoRadio setVal={setCommerce} val={commerce} option1={"Rent"} option2={"Sale"} title={"For"}/>
                 <InfoSelect val={type} setVal={setType}  title={"Type"} options={HouseTypes}/>
+
+                <InfoRadio setVal={setCommerce} val={commerce} option1={"Rent"} option2={"Sale"} title={"For"}/>
                  
     
                 </div> 

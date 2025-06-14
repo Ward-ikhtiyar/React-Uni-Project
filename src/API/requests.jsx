@@ -1,5 +1,34 @@
 import EndPoints from "./endpoints";
 import TokenAxios from "./tokenAxios";
+import Axios from "./axios";
+export async function login(number,password){
+  console.log('in sign in ');
+  console.log(number);
+  console.log(password);
+        try{
+        let response=await Axios.post(EndPoints.Auth.Login,
+        {
+           phone: number,
+           password:password
+        });
+        let data=response.data;
+        
+        console.log(`printing ${data}`);
+        
+        if(data.accessToken){
+            console.log(`loginSuccess:${data.accessToken}`);
+            localStorage.setItem("token",data.accessToken);
+            return 200;
+        }else{
+            
+            console.log("error in token");
+        }}
+        catch(e){
+          console.log(e.response);
+          return e.response.status;
+           
+        }
+    }
 ////////////////// create property /////////////////
 export async function createProperty(property) {
     const propertData= {
@@ -37,6 +66,19 @@ export async function createProperty(property) {
     throw error;
   }
 }
+/////////////////////////////////////////update Property/////////////////////////////////////
+export async function updateProperty(id,data){
+  console.log(`selected property is ${id}`)
+  try{
+  let response=await TokenAxios.patch(`${EndPoints.Properties.getMine}/${id}`,data);
+  console.log(response.data);
+    return response.status
+  }
+  catch(e){
+    console.log(e.response.data);
+    return e.response.status
+  }
+}
 ////////////////////////////////// image Upload //////////////////////
 export async function uploadPropertyImage(photos,id){
     const formdata=new FormData();
@@ -65,9 +107,11 @@ catch(e){
 ///////////////get All & my Properties //////////////
 export async function getAcceptedProperties(mine) {
     let endpoint=mine===true?EndPoints.Properties.getMine:EndPoints.Properties.getAll; 
+    console.log(endpoint)
     try{
     let response =await TokenAxios.get(endpoint);
    let data=response.data;
+   console.log(data);
    if(data){
     return data;
    }
@@ -90,6 +134,27 @@ export async function getDetails(id) {
     console.log(e.response.data);
   }
   
+}
+//////////////////////////////delete property///////////////////////////
+export async function deleteProperty(id,password){
+  try{
+    let response=await TokenAxios.delete(`/property/${id}`,{
+      data:{password:password}
+    });
+    console.log(response.data);
+    if(response.status===200){
+      return 200;
+    }
+  }
+  catch(e){
+    console.log(e.response.data);
+    if(e.response.status===401){
+      return 401;
+    }
+    if(e.response.status===500){
+      return 500;
+    }
+  }
 }
 //////////////////////////get Favorites////////////////////////
 export async function getFavorites() {
@@ -127,7 +192,8 @@ export async function setFavorite(id) {
   let response=await TokenAxios.post(`${EndPoints.Favoirtes.setFavorite}/${id}`,);
   let data= response.data 
   if(data){
-    // console.log(data);
+    await isFavorite(id);
+    console.log(response.status);
     return data;
   } 
 }

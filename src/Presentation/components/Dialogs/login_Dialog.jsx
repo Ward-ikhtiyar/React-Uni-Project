@@ -5,34 +5,35 @@ import EndPoints from "../../../API/endpoints";
 import SignUpDialog from "./signup_dialog";
 
 import { replace, useNavigate } from "react-router-dom";
+import ErrorSnackbar from "../snackBar/erorr_snack";
+import { login } from "../../../API/requests";
 function LoginDialog({open,onClose}){
     let navigate=useNavigate();
     const handleClose=(event,reason)=>{
         console.log();
+
         if(reason==='backdropClick') 
         onClose();  }
+    const[snackOpen,isSnackOpen]=useState(false);
+    const [snackTitle,setSnackTitle]=useState('');
     const [number,setNumber]=useState('');
         const [password,setPassword]=useState('');
         const[signUp,setSignUp]=useState(false);
-    async function login(Number,Password){
-        let response=await Axios.post(EndPoints.Auth.Login,
-        {
-           phone: Number,
-           password:Password
-        });
-        let data=response.data;
-        
-        console.log(data);
-        if(data.accessToken){
-            console.log(`loginSuccess:${data.accessToken}`);
-            localStorage.setItem("token",data.accessToken);
-            navigate(0);
-        }else{
-            console.log("error in token");
-        }
-    }
+    
     const handleLogin=async()=>{
-        await login(number,password);
+        console.log('logining');
+    const response= await login(number,password)
+    if(response===200){
+        navigate(0);
+    }
+         if(response===401){
+                setSnackTitle("wrong Number/Password");
+                isSnackOpen(true);
+            }
+            if(response===404){
+                setSnackTitle("Account doesnt exist");
+                isSnackOpen(true);
+            }
     }
     return(
         <>
@@ -65,6 +66,7 @@ function LoginDialog({open,onClose}){
                 </DialogContent>
             </Dialog>
             <SignUpDialog open={signUp} onClose={()=>setSignUp(false)}/>
+             <ErrorSnackbar open={snackOpen} title={snackTitle} handleClose={()=>isSnackOpen(false)}/>   
             </>
             );}
             export default LoginDialog;
