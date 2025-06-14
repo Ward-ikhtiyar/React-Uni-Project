@@ -1,36 +1,33 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
-import { Autocomplete, TextField } from '@mui/material';
 
-const SearchBar = () => {
-    const [searchTerm, setSearchTerm] = useState();
-    const handleChange = (event) => {
-        setSearchTerm(event.target.value)
-        console.log(searchTerm);
+function SearchBar({ placeholder }) {
+    const [location, setLocation] = useState("");
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        // alert(`Searching for location: ${location}`);
     };
+
     return (
-        <div className="agent-search-section">
-            <div className="searchBar">
-                <TextField
-                    aria-label='Search'
-                    variant='outlined'
-                    fullWidth
-                    sx={{ height: "38px" }}
-                    slotProps={{
-                        input: {
-                            inputProps: {
-                                // size: "small",
-                                style:{padding: "6px 8px"}
-                            }
-                        }
-                    }}
-                    value={searchTerm}
-                    onChange={handleChange}
-                    placeholder='City, neighborhood or code' >
-                </TextField>
+        <form onSubmit={handleSearch} className="search-wrapper">
+            <div className="search-container">
+                <div className="search-bar">
+                    <span className="search-icon"></span>
+                    <input
+                        type="text"
+                        placeholder={placeholder}
+                        aria-controls='agent-searchbar'
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        className="search-input"
+                    />
+                    {/* <label for="agent-searchbar">{placeholder}</label> */}
+                </div>
             </div>
-        </div>
+        </form>
     );
 }
+
 
 export default SearchBar;

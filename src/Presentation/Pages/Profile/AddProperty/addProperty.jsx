@@ -1,6 +1,6 @@
 
 import { Fab } from "@mui/material";
-import REMap from "../../Display/components/RE-Map/RE-Map";
+import REMap from "../../Search-Proporties/components/RE-Map/RE-Map";
 import InfoSection from "./info_section";
 import { useState } from "react";
 import './addProperty.css'

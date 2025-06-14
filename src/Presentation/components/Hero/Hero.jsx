@@ -6,6 +6,7 @@ function Hero() {
         <div className="home-hero-section">
             <div className='home-hero-innercomps' >
                 <h1 id="CTA">Get to know us better</h1>
+                <SearchBar/>
                 {/* <p>hello world</p> */}
                 {/* <SearchBar/> */}
             </div>

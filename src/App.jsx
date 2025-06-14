@@ -9,8 +9,10 @@ import PaymentPlans from './Presentation/Pages/PaymentPlans/PaymentPlans';
 import ContactUs from './Presentation/Pages/ContactUs/ContactUs';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ProfilePage from './Presentation/Pages/Profile/profile_page';
-import AddPropertyPage from './Presentation/Pages/Profile/addProperty/addProperty';
+// import AddPropertyPage from './Presentation/Pages/Profile/addProperty/addProperty';
 import TrendingCard from './Presentation/Pages/Home/components/trendingCard';
+import SearchPage from './Presentation/Pages/Search-Agent/Search-Page';
+import SearchAgent from './Presentation/Pages/Search-Agent/Search-Agent';
 function App() {
   
   return (
