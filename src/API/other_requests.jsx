@@ -2,6 +2,7 @@ import { data } from "react-router-dom";
 import EndPoints from "./endpoints";
 import TokenAxios from "./tokenAxios";
 
+
 export async function getPlans() {
  try{
     let response=await TokenAxios.get(EndPoints.Plans.getAll);

@@ -4,11 +4,12 @@ import RE_Card from '../RE-Card/RE-Card'
 import './Re-Grid.css';
 import { getAcceptedProperties } from '../../../../../../API/requests';
 
-const DisplayPage = ({ Listings }) => {
-    const proper = Listings.map((property, index) => {
+const DisplayPage = ({Listings}) => {
+    if(Listings!=null){
+    const proper = Listings.map((property,index) => {
         return (
             <Grid key={index} size={1}>
-                <RE_Card property={property} />
+                <RE_Card isEditable={false} property={property} />
             </Grid>
         )
     }
@@ -28,7 +29,7 @@ const DisplayPage = ({ Listings }) => {
             </div>
         </>
 
-    );
+    );}
 }
 
 export default DisplayPage;

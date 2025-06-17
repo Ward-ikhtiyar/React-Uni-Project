@@ -5,7 +5,7 @@ import { SnackbarContent } from "@mui/material";
 import { LocationCity, LocationOnOutlined } from "@mui/icons-material";
 import { div } from "framer-motion/client";
 
-const MySnackbar = ({open,handleClose,title}) => {
+const LocationSnackBar = ({open,handleClose,title,location}) => {
   return (  
       <Snackbar sx={{backgroundColor:'transparent'}}
       anchorOrigin={{vertical:'top', horizontal:'left'}}
@@ -17,10 +17,10 @@ const MySnackbar = ({open,handleClose,title}) => {
         <SnackbarContent 
         style={{backgroundColor:'var(--app-blue)', width:'30vw', borderRadius:'10px'}} 
         message={<div
-         style={{display:'flex',flexDirection:'row'}}>{title}</div> }/>
+         style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'10px',fontFamily:'Tajawal',fontSize:'20px'}}><LocationOnOutlined/>{title}</div> }/>
       </Snackbar>
     
   );
 };
 
-export default MySnackbar;
+export default LocationSnackBar;

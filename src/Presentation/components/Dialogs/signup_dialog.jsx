@@ -6,8 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Areas } from "../../../consts/lists";
 import VerifyDialog from "./verify_dialog";
+import { getToken, } from "firebase/messaging";
 import LoginDialog from "./login_dialog";
+import { requestNotificationPermissionAndToken } from "../../../utils/firebase";
+
 function SignUpDialog({open,onClose}){
+
     const[isVerify,setisVerify]=useState(false);
     const[isLogin,setisLogin]=useState(false);
     const [name,setName]=useState('');
@@ -15,8 +19,10 @@ function SignUpDialog({open,onClose}){
     const [password,setPassword]=useState('');
     const[place,setPlace]=useState(0);
     const [userId,setId]=useState(-1);
+    const [token,setToken]=useState('');
 
     async function register(name,number,password,place) {
+        let token=await requestNotificationPermissionAndToken();
         console.log(`${name}${number}${password}${place.lon} ${place.lat}`);
         try{
                 let response=await Axios.post(EndPoints.Auth.Register,{
@@ -27,7 +33,8 @@ function SignUpDialog({open,onClose}){
                 lat:place.lat,
                 lon:place.lon,
                 
-            }
+            },
+            token:token
         }
     
     );

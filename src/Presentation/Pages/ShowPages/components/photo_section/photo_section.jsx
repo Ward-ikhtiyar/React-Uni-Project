@@ -10,31 +10,42 @@ import { div } from 'framer-motion/client';
 import { setFavorite } from '../../../../../API/requests';
 function PhotoSection({name,location,photos,isFavorite,Housetype,commerce,setFavorite}){
     console.log(photos);
+    let morePhotos=[];
     const[pickedImage,setPickedImage]=useState(0);
     const[open,setisOpen]=useState(true);
-    
-    const morePhotos = [...photos] ;
+    if(photos!=null){
+        console.log("wardsdddddddddddddddd");
+         morePhotos = [...photos] ;
     morePhotos.shift();
     morePhotos.shift();
-  
+}
 
+    
+    
+  
+    
     return(
-        <div  style={{ backgroundImage:`url(http://localhost:3000/property/images/${photos[pickedImage]})`}} className='photos-section'>
-            <img src={`http://localhost:3000/property/images/${photos[pickedImage]}`} className='photos-section' crossOrigin='anonymous'/>
-        <div className='additional-photos'>
+        <div   className='photos-section'>
+           {
+            photos!=null?<img src={`http://localhost:3000/property/images/${photos[pickedImage]}`} className='photos-section' crossOrigin='anonymous'/>:<img src='public/assets/images/propertyPlaceholder.png' className='photos-section' />
+           } 
+        {photos!=null?<div className='additional-photos'>
+            
             <AdditionalPhoto src={photos[0]} onClick={()=>{
                 setPickedImage(0);
-            }}/>
-            <AdditionalPhoto src={photos[1]} onClick={()=>{
+            }}/>   
+            
+                <AdditionalPhoto src={photos[1]} onClick={()=>{
                 setPickedImage(1);
             }}/>
+             
             <div className='more-photos' onClick={()=>{
                 console.log('yessirskiiii');
                 setisOpen(!open)}}>
               {open?<CameraAltOutlined />:<CloseIcon sx={{scale:'150%', color:'var(--app-blue)'}}/>}
               <div >{open?"More":""}</div>  
             </div>
-        </div>
+        </div>:<div></div>}
 
         {open?<div className='overlaying-info'>
             <div className='overlaying-first' >
@@ -47,7 +58,7 @@ function PhotoSection({name,location,photos,isFavorite,Housetype,commerce,setFav
                 </div>
                 <div style={{display:"flex",gap:'10px',position:'absolute',zIndex:'3', right:'0',marginRight:'7vw' }}>
                     <button className='overlay-button' onClick={()=>{
-                        console
+                        
                         setFavorite()}}>
                         {isFavorite?<Favorite className='favorite-button' sx={{scale:'180%', color:'var(--app-blue)'}}/>:<FavoriteBorderOutlined className='favorite-button' sx={{scale:'180%', color:'white'}}/>}
                         </button>

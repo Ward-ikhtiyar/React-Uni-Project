@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './RE-Card.css'
 import Info from "./RE-Card-Info.json"
-import { LocationOnOutlined } from '@mui/icons-material';
+import { DeleteForeverOutlined, LocationOnOutlined, } from '@mui/icons-material';
+import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
+import { setFavorite } from '../../../../../../API/requests';
 
-const DisplayCard = ({property}) => {
+const DisplayCard = ({property,isEditable}) => {
+    const handleClick=()=>{
+        if(isEditable===true){
+            setFavorite(property.id);
+        }
+        if(isEditable===false){
+            navigate(`/Details?id=${property.id}`);
+
+        }
+
+    }
     const navigate=useNavigate();
-        let isPlaceHolder=property.firstImage==="https://cdn-icons-png.flaticon.com/512/4757/4757668.png"
     return (
 
-        <div className='property-card' onClick={()=>{
-            navigate(`/Details?id=${property.id}`);
-        }}>
-            <img src={!property.firstImage?"assets/images/propertyPlaceholder.png":`http://localhost:3000/property/images/${property.firstImage}`} className='property-pic' crossOrigin='anonymous'>
+        <div className='property-card' onClick={()=>handleClick()}>
+            <div className='property-pic-wrapper'>
+                <img onError={(e)=>{
+                    e.target.onerror=null
+                    e.target.src="public/assets/images/propertyPlaceholder.png"
+                }} src={`http://localhost:3000/property/images/${property.firstImage}`} className='property-pic' crossOrigin='anonymous'>
             </img >
+            {isEditable?<CloseIcon className='remove-icon' />:<div></div>}
+            </div>
+            
             <div className='price-favorite'>{property.price}$ 
             </div>
             <div className='info'>
@@ -22,7 +38,9 @@ const DisplayCard = ({property}) => {
                 {property.bathrooms} ba<hr></hr>
                 {property.area} sqft
             </div>
-            <div style={{color:'var(--app-blue)', fontWeight:'500',alignSelf:'start',marginLeft:'1.2vw'}}> House for sale</div>
+            <div style={{color:'var(--app-blue)', fontWeight:'500',alignSelf:'start',marginLeft:'1.2vw'}}>
+                 {`${property.propertyType} for ${property.isForRent===true?"Rent":"sale"}`}
+                 </div>
             <div className='info'>
                 <LocationOnOutlined sx={{color:'var(--app-blue)'}}/>
                 {`${property.location.city}|${property.location.street}`}

@@ -13,6 +13,9 @@ import ProfilePage from './Presentation/Pages/Profile/profile_page';
 import TrendingCard from './Presentation/Pages/Home/components/trendingCard';
 import SearchPage from './Presentation/Pages/Search-Agent/Search-Page';
 import SearchAgent from './Presentation/Pages/Search-Agent/Search-Agent';
+import AdminLogin from './Presentation/Pages/Admin/login_page';
+import { Dashboard } from '@mui/icons-material';
+import AdminDashBoard from './Presentation/Pages/Admin/dashboard';
 function App() {
   
   return (
@@ -28,7 +31,9 @@ function App() {
         <Route path='/' element={<SearchAgent/>}> </Route>
         <Route path='/Properties' element={<RE_Search/>}></Route>
         <Route path='/Details' element={<ShowHouse/>}></Route>
-        <Route path='/Profile' element={<ProfilePage/>}></Route>        
+        <Route path='/Profile' element={<ProfilePage/>}></Route> 
+        <Route path='/Admin' element={<AdminLogin/>}></Route> 
+        <Route path='/Dashboard' element={<AdminDashBoard/>}></Route>        
       </Routes>
     </Router>
     </>
