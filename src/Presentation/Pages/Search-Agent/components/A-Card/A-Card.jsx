@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Info from "./A-Card-Info.json"
 import "./A-Card.css"
 import { LocationOnOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import AgentDialog from '../../../Agent/Agent';
 
-const A_Card = ({ Agent }) => {
-    // const navigate = useNavigate();
-    // let isPlaceHolder = Info.firstImage === "https://cdn-icons-png.flaticon.com/512/4757/4757668.png"
-
+const A_Card = ({ agent }) => {
+    const [openDialog, setOpenDialog] = useState(false);
     return (
-        <div className="agent-card">
+        <div className="agent-card"
+            onClick={() => {
+                console.log(`dialog ${openDialog}`);
+                setOpenDialog(!openDialog)
+            }}
+        >
+            <AgentDialog open={openDialog} onClose={() =>  setOpenDialog(false) } id={agent}/>
             <div className="agent-header">
                 <img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNEHbnGMLTCHTU3N45L2O_XBu61biBkJoRAw&s"

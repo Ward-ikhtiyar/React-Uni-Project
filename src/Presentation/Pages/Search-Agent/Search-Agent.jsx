@@ -7,6 +7,7 @@ import { Button, Pagination } from '@mui/material';
 import { Search } from '@mui/icons-material';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import DD_Filter from './components/DD-Filter/DD-Filter';
+import AgentDialog from '../Agent/Agent';
 
 function SearchAgent() {
     const agentTypes = [
