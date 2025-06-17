@@ -5,7 +5,7 @@ import { LocationOnOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import AgentDialog from '../../../Agent/Agent';
 
-const A_Card = ({ Agent }) => {
+const A_Card = ({ agent }) => {
     const [openDialog, setOpenDialog] = useState(false);
     return (
         <div className="agent-card"
@@ -14,7 +14,7 @@ const A_Card = ({ Agent }) => {
                 setOpenDialog(!openDialog)
             }}
         >
-            <AgentDialog open={openDialog} onClose={() =>  setOpenDialog(false) } />
+            <AgentDialog open={openDialog} onClose={() =>  setOpenDialog(false) } id={agent}/>
             <div className="agent-header">
                 <img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNEHbnGMLTCHTU3N45L2O_XBu61biBkJoRAw&s"

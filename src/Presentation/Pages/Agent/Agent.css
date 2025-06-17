@@ -2,6 +2,8 @@
     flex-direction: column;
     justify-content: center;
     display: flex;
+    gap: 16px;
+    
 }
 
 #agent-dialog-header {
@@ -10,6 +12,8 @@
     justify-content: space-between;
     display: flex;
     gap: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
 }
 
 .carousel-container {
@@ -29,10 +33,7 @@
     width: 100%;
     max-width: 500px;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
     background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-item {

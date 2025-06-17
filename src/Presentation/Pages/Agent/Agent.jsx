@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import './Agent.css'
 import DisplayCard from '../Search-Proporties/components/RE-Listing/RE-Card/RE-Card';
-function AgentDialog({ open, onClose }) {
+function AgentDialog({ open, onClose}, paramAgent) {
     const [currentindex, setCurrentIndex] = useState(0);
+    const [agent, setAgent] = useState(null);
+//^ if parameter Agent has the propeties we can use it istead of making an api call
 
     const items = [
         // <DisplayCard/>,
@@ -19,7 +21,21 @@ function AgentDialog({ open, onClose }) {
             className="carsouel-item"
         />,
     ];
+    // useEffect(() => {
+    //     async function fetchProperty() {
+    //         try {
+    //             const agentData = await 
+    //             getDetails(propertyId);
+    //             setAgent(agentData);
+    //         } catch (error) {
+    //             console.error("Failed to fetch agent data:", error);
+    //         }
+    //     }
 
+    //     if (id) {
+    //         fetchProperty();
+    //     }
+    // }, id);
 
     const prevSlide = () => {
         setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
@@ -50,9 +66,15 @@ function AgentDialog({ open, onClose }) {
                                     className="agent-photo"
                                 />
                             </div>
-                            <div id="agent-dialog-info">
-                                info
-                            </div>
+                            {/* <div id="agent-dialog-info"> */}
+                                <div className="agent-info">
+                                    <h2 className="agent-name">Matt Laricy</h2>
+                                    <p className="agent-company">Americorp Real Estate</p>
+                                    <p className="price-range">$13K - $3.8M <span>team price range</span></p>
+                                    <p className="sales">497 <span>team sales last 12 months</span></p>
+                                    <p className="sales">5164 <span>team sales in Chicago</span></p>
+                                </div>
+                            {/* </div> */}
                         </div>
                         <div className="carousel-container">
                             <IconButton
