@@ -28,7 +28,7 @@ function App() {
       {/* <ShowHouse/> */}
     <Router>
       <Routes>
-        <Route path='/' element={<SearchAgent/>}> </Route>
+        <Route path='/' element={<HomePage/>}> </Route>
         <Route path='/Properties' element={<RE_Search/>}></Route>
         <Route path='/Details' element={<ShowHouse/>}></Route>
         <Route path='/Profile' element={<ProfilePage/>}></Route> 
