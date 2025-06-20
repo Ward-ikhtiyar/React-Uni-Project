@@ -21,11 +21,19 @@ function PropertiesPage(){
     const [properties,setProperties]=useState([]);
     async function handleGetProperties(){
         setIsLoadoing(true);
-        const fetchedProperties=await getAcceptedProperties(true);
+        let fetchedProperties=await getAcceptedProperties(true);
+        if (chipVal === 1) {
+      fetchedProperties = fetchedProperties.filter(el => el.status === "pending");
+    } else if (chipVal === 2) {
+      fetchedProperties = fetchedProperties.filter(el => el.status === "accepted");
+    }
         setProperties(fetchedProperties);
+        console.log(chipVal);
+        
+        console.log(fetchedProperties);
         setIsLoadoing(false);
     } 
-    useEffect(()=>{handleGetProperties();},[]);
+    useEffect(()=>{handleGetProperties();},[chipVal]);
 
 if(!open){
 return(
@@ -37,8 +45,8 @@ return(
 
         <div className='chips-row'>
             <Custom_Chip Click={setChipVal} title={"All"}  index={0} val={chipVal}/>
-            <Custom_Chip Click={setChipVal} title={"Vacant"}  index={1} val={chipVal}/>            
-            <Custom_Chip Click={setChipVal} title={"Occupied"}  index={2} val={chipVal}/>
+            <Custom_Chip Click={setChipVal} title={"Pending"}  index={1} val={chipVal}/>            
+            <Custom_Chip Click={setChipVal} title={"Accepted"}  index={2} val={chipVal}/>
         </div>
 
         <div className='profile-body'>

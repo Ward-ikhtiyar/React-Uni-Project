@@ -11,8 +11,7 @@
   src: url("./assets/Tajawal-Regular.ttf");
 }
 body {
-  font-family: Tajawal;
-  font-weight: 700;
+  font-family: Lexend;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -23,6 +22,8 @@ body {
   --app-grey:rgb(103, 104, 105);
   --app-light-grey:rgba(128, 128, 128,0.2);
   --app-font:rgb(0,0,0);
+  --app-green:#24A56C;
+  --app-red:#FF0000;
   overflow-y: auto;
 }
 

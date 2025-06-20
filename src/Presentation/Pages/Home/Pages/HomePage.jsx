@@ -10,7 +10,9 @@ import Footer from '../components/footer.jsx';
 import TrendingCard from '../components/trendingCard.jsx';
 import AltServiceSection from '../components/AltService/alt_serviceSection.jsx';
 import TrendingSection from '../components/trending_section/trendingSection.jsx';
+
 function HomePage() {
+      
     const ref =useRef(null);
      const  inView  = useInView(ref,{once:true,   });
     const openDialog = useContext(openDialogcontext);

@@ -58,12 +58,14 @@ export async function createProperty(property) {
     if(data){
         console.log("uploading pictures");
         console.log(data);
+        console.log(response.status);
         uploadPropertyImage(property.photos,data);
+
     }
-    return response.data;
+    return response.status;
   } catch (error) {
-    console.error("Error creating property:", error);
-    throw error;
+    console.log(error.response.data);
+    return error.response.status;
   }
 }
 /////////////////////////////////////////update Property/////////////////////////////////////

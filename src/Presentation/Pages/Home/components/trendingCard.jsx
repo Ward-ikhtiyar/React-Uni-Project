@@ -1,6 +1,6 @@
 import React from 'react';
 import './TrendingCard.css';
-import { FavoriteBorder, FavoriteBorderOutlined, LocalFireDepartment } from '@mui/icons-material';
+import { FavoriteBorder, FavoriteBorderOutlined, LocalFireDepartment,Favorite } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import TokenAxios from '../../../../API/tokenAxios';
 import EndPoints from '../../../../API/endpoints';
@@ -20,7 +20,10 @@ const navigate=useNavigate();
   return (
     <div className="trending-card" >
         <div onClick={()=>{navigate(`/Details?id=${property.id}`)}}>
-            <img className='trendingCard-pic' style={{borderRadius:"24px",width:'250px',height:'150px',objectFit:'cover',boxShadow:'1px 1px 3px grey'}} src={!property.firstImage?"assets/images/propertyPlaceholder.png":`http://localhost:3000/property/images/${property.firstImage}`} crossOrigin='anonymous' />
+            <img onError={(e)=>{
+               e.target.onerror = null; 
+    e.target.src = "public/assets/images/propertyPlaceholder.png";
+            }} className='trendingCard-pic' style={{borderRadius:"24px",width:'250px',height:'150px',objectFit:'cover',boxShadow:'1px 1px 3px grey'}} src={`http://192.168.1.105:3000/property/images/${property.firstImage}`} crossOrigin='anonymous' />
 
         </div>
         
@@ -31,8 +34,8 @@ const navigate=useNavigate();
       <div className="property-info">
         <div className="property-title">
           {`${property.location.quarter} | ${property.location.street}`}
-          <div className='favorite-circle' onClick={()=>{setFavorite(property.id);console.log("wardekr");}}>
-               { isAFavorite===true? <FavoriteBorderOutlined  sx={{color:'var(--app-blue)',scale:'80%'}}/>:<FavoriteBorder/>}
+          <div style={{backgroundColor:isAFavorite?'var(--app-blue-opaque)':'var(--app-background)',border:isAFavorite?'none':""}} className='favorite-circle' onClick={()=>{handleSetfavorite()}}>
+               { isAFavorite===true? <Favorite  sx={{color:'var(--app-blue)',scale:'80%'}}/>:<FavoriteBorder sx={{scale:'80%',}}/>}
             </div>
           </div>
         <div className="price-section">

@@ -1,21 +1,21 @@
 .Main-div {
     background-image: url("assets/images/coverimg.png"); 
-    background-size: auto;
+    background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
     height: 650px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
 }
-.grid{
+
+.grid {
     width: 100%;
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-
 }
+
 .button-section {
     display: flex;
     flex-direction: column;
@@ -23,7 +23,8 @@
     align-items: center;
     gap: 20px;
 }
-.checkout-button{
+
+.checkout-button {
     border: none;
     background-color: white;
     box-shadow: 1px 1px 3px grey;
@@ -36,31 +37,75 @@
     font-size: medium;
     border-radius: 8px;
 }
-.checkout-button:hover{
+
+.checkout-button:hover {
     font-size: large;
     color: var(--app-blue);
     transition: 0.5s;
     cursor: pointer;
 }
 
-.alt-logo a{
+.alt-logo a {
     color: white;
     font-size: 60px;
     text-decoration: solid;
 }
-.alt-logo{
-    display:none ;
+
+.alt-logo {
+    display: none;
 }
-@media (max-width:1000px){
-    .alt-logo{
+.slogan {
+    color: white;
+    font-family: thicc;
+    font-size: 70px; 
+    font-weight: 700;
+}
+
+@media (max-width: 1000px) {
+    .grid {
+        grid-template-columns: 1fr; 
+        height: auto; 
+    }
+
+    .checkout-button {
+        padding-left: 40px;
+        padding-right: 40px;
+        font-size: medium;
+    }
+
+    .slogan {
+        font-size: 3.5rem; 
+    }
+
+    .Main-div {
+        height: auto; 
+        padding: 1rem;
+    }
+
+    .alt-logo {
         display: flex;
         justify-content: center;
-    align-items: center;
+        align-items: center;
     }
 }
-.slogan{
-color:white;
-font-family: thicc;
-font-size: 70px;
-font-weight: 700;
+
+@media (max-width: 500px) {
+    .Main-div{
+        flex-direction: column;
+    }
+    .checkout-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40vw;
+        height: 50px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: large;
+        margin-bottom: 20px;
+    }
+
+    .slogan {
+        font-size: 2.5rem;
+    }
 }

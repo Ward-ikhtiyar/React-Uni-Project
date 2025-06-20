@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { getAcceptedProperties } from '../../../../API/requests.jsx';
 const RE_Search = () => {
     const[Listings,setListings]=useState([]);
+    async function handleGetFilteredProperties(){}
     async function handleGetProperties(){
         let fetchedProperties=await getAcceptedProperties(false);
         setListings(fetchedProperties);
@@ -17,6 +18,8 @@ const RE_Search = () => {
         
         <div style={{height:'100vh'}}>
             <AppBar isHome={false}/>
+            {/* <FilterBAr setFilters function={} /> */}
+            
             <RE_Listing Listings={Listings}/>
             <PropertyProvider>
             <RE_Map Listings={Listings} isAdd={false}/>

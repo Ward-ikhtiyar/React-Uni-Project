@@ -44,12 +44,18 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    max-lines: 2;
+    text-overflow: ellipsis;
     padding-left: 5%;
     font-size: 130%;
     margin-top: 5px;
     font-weight: 500;
 }
-
+@media (min-height:100px) {
+    .location-status{
+        font-size: large;
+    }
+}
 .info {
     width: 90%;
     display: flex;

@@ -1,3 +1,5 @@
+import { getDetails } from "./requests";
+
 const EndPoints={
     Auth:{
         Login:'auth/login',
@@ -29,7 +31,9 @@ const EndPoints={
         createPlan:'webhook'
     },
     Admin:{
-       getAllProperties:'propertyA' 
+       getAllProperties:'propertyA' ,
+       getAdmins:'admin/',
+       getLogs:'/audit',
     }
     
     

@@ -1,5 +1,5 @@
 import {  useState } from "react";
-import "./appBar.css"
+import "./small_appBar.css"
 import AuthDialog from '../../../components/Dialogs/Auth_dialog';
 import {  useNavigate } from "react-router-dom";
 import LoginDialog from "../../../components/Dialogs/login_dialog";
@@ -17,10 +17,10 @@ function AppBar({isHome}){
         <div className="side-panel">
         <button className="appBar-button" onClick={()=>{
             navigate('/Properties',);
-        }}>Listings</button>
+        }}>Buy</button>
             <button className="appBar-button" onClick={()=>{localStorage.removeItem('token');}}> Sell</button>
-            {/* <button className="appBar-button"> Rent</button>
-            <button className="appBar-button">Buy Ability</button> */}
+            <button className="appBar-button"> Rent</button>
+            <button className="appBar-button">Buy Ability</button>
             <button className="appBar-button">Find Agent</button>
 
               {!token?

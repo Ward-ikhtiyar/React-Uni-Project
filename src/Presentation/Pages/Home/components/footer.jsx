@@ -1,7 +1,9 @@
 import React from 'react';
 import './Footer.css';
-
+import LoginDialog from '../../../components/Dialogs/login_dialog';
+import { useState } from 'react';
 const Footer = () => {
+  const[openDialog,setOpenDialog]=useState(false);
   return (
     <footer className="footer-container">
       <div className="footer-content">
@@ -31,7 +33,7 @@ const Footer = () => {
             <li>About Us</li>
             <li>Resources</li>
             <li>FAQ</li>
-            <li>Login | Sign-Up</li>
+            <li onClick={()=>setOpenDialog(true)}>Login | Sign-Up</li>
           </ul>
         </div>
         
@@ -54,6 +56,8 @@ const Footer = () => {
           <span>Privacy Policy</span>
         </div>
       </div>
+        <LoginDialog open={openDialog} onClose={()=>setOpenDialog(false)}/>
+
     </footer>
   );
 };

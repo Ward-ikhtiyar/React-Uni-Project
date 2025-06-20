@@ -8,16 +8,35 @@ import DisplayCard from '../RE-Listing/RE-Card/RE-Card';
 import { useProperty } from '../../../../../consts/context';
 import LocationSnackBar from '../../../../components/snackBar/location_snackBar';
 
-function LocationMarker({ onClickMap }) {
-  useMapEvents({
+ function LocationMarker({ onClickMap,setStringLocation,setIsLoading }) {
+   useMapEvents({
     click(e) {
       const { lat, lng } = e.latlng;
       console.log({ lat, lng });
       onClickMap({ lat, lng }); 
+      LocationString(lat,lng,setStringLocation,setIsLoading);
     }
   });
 
   return null; 
+}
+async function LocationString(lat,lng,setStringLocation,setIsLoading){
+  const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};  try{
+    setIsLoading(true);
+     let data= await fetch(`http://192.168.1.102:3000/geolocation/reverse?lat=${lat}&lon=${lng}`,)
+     let response=await data.json();
+     console.log(`${response.city},${response.quarter},${response.street}`);
+     setStringLocation(`${response.city},${response.quarter},${response.street}`);
+    setIsLoading(false);
+    }
+     
+     catch(e){
+      setStringLocation('unable to recognize Location');
+     } 
+
 }
 function UserLocationMarker({ setUserLocation, location }) {
   const map = useMap();
@@ -56,11 +75,14 @@ function UserLocationMarker({ setUserLocation, location }) {
 }
 
 const REMap = ({ Listings, isAdd }) => {
+    
     const { location, setLocation } = useProperty();
+    const[stringLocation,setStringLocation]=useState('');
+    const[loading,isLoading]=useState(false);
     const [userLocation,setUserLocation]=useState({lat:0,lng:0});
    
     return (
-        <div id='map' style={{height:isAdd?'100vh':'90vh',}}>
+        <div className='re-map'  id='map' style={{height:isAdd?'100vh':'90vh'}}>
             <MapContainer center={[33.5138, 36.2765]} zoom={13}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -68,7 +90,7 @@ const REMap = ({ Listings, isAdd }) => {
                 />
                 {isAdd ? (
                     <>
-                        <LocationMarker onClickMap={setLocation}/>
+                        <LocationMarker setIsLoading={isLoading} setStringLocation={setStringLocation} onClickMap={setLocation}/>
                         {location && <Marker position={[location.lat, location.lng]} />}
                     </>
                 ) : (
@@ -92,7 +114,7 @@ const REMap = ({ Listings, isAdd }) => {
       transform: 'translateX(-50%)',
       zIndex: 10
     }}>
-                <LocationSnackBar open={true} title={"ward"}/>
+                <LocationSnackBar open={true} title={stringLocation} isLoading={loading}/>
 
                 </div>
             
