@@ -1,7 +1,6 @@
 import './App.css';
 
 import RE_Agent from './Presentation/Pages/Search-Agent/Search-Page';
-import RE_Search from './Presentation/Pages/Search-Proporties/Pages/RE-Search';
 import ShowHouse from './Presentation/Pages/ShowPages/Page/show_house';
 import HomePage from './Presentation/Pages/Home/Pages/HomePage';
 import Login_page from './Presentation/Pages/Auth/Auth_page';
@@ -16,6 +15,7 @@ import SearchAgent from './Presentation/Pages/Search-Agent/Search-Agent';
 import AdminLogin from './Presentation/Pages/Admin/login_page';
 import { Dashboard } from '@mui/icons-material';
 import AdminDashBoard from './Presentation/Pages/Admin/dashboard';
+import RE_Search from './Presentation/Pages/Display/Pages/RE-Search';
 function App() {
   
   return (
@@ -28,8 +28,9 @@ function App() {
       {/* <ShowHouse/> */}
     <Router>
       <Routes>
-        <Route path='/' element={<HomePage/>}> </Route>
+        <Route path='/' element={<RE_Search/>}> </Route>
         <Route path='/Properties' element={<RE_Search/>}></Route>
+        <Route path='/Agents' element={<SearchAgent/>}></Route>
         <Route path='/Details' element={<ShowHouse/>}></Route>
         <Route path='/Profile' element={<ProfilePage/>}></Route> 
         <Route path='/Admin' element={<AdminLogin/>}></Route> 
