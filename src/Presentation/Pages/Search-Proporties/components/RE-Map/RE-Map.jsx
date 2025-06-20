@@ -55,7 +55,7 @@ function UserLocationMarker({ setUserLocation, location }) {
   );
 }
 
-const REMap = ({ Listings, isAdd }) => {
+const RE_Map = ({ Listings, isAdd }) => {
     const { location, setLocation } = useProperty();
     const [userLocation,setUserLocation]=useState({lat:0,lng:0});
    
@@ -101,4 +101,4 @@ const REMap = ({ Listings, isAdd }) => {
     );
 }
 
-export default REMap;
+export default RE_Map;
