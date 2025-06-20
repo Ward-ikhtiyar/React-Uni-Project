@@ -120,6 +120,28 @@ export async function getAcceptedProperties(mine) {
     console.log(e.response.data);
  }   
 }
+///////////////get Filtered Porperties //////////////
+export async function getFilteredProperties(minPrice,maxPrice,propertyType) {
+    let endpoint=EndPoints.Properties.getAll;
+    console.log(endpoint)
+    try{
+    let response =await TokenAxios.get(endpoint,{
+      params:{
+        minPrice:minPrice,
+        maxPrice:maxPrice,
+        word:propertyType
+      }
+    });
+   let data=response.data;
+   console.log(data);
+   if(data){
+    return data;
+   }
+}
+ catch(e){
+    console.log(e.response.data);
+ }   
+}
 /////////////////////get property Details//////////////////
 export async function getDetails(id) {
   try{

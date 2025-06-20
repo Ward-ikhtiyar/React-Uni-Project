@@ -3,15 +3,16 @@ import FilterButton from './components/Filter-Buttons/Filter-Button';
 import './Filter-Bar.css'
 import SearchBar from '../../../../components/SearchBar/SearchBar';
 
-const FilterBar = () => {
-    const [activeFilter, setActiveFilter] = useState(null);
-    const [priceRange, setPriceRange] = useState([0, 1000000]);
-    const [propertyType, setPropertyType] = useState('All');
+const FilterBar = ({priceRange, setPriceRange, propertyType, setPropertyType, handleSubmit, activeFilter, setActiveFilter}) => {
+    // const [activeFilter, setActiveFilter] = useState(null);
+    // const [priceRange, setPriceRange] = useState([0, 1000000]);
+    // const [propertyType, setPropertyType] = useState('All');
 
     const handleFilterClick = (filterName) => {
         setActiveFilter(activeFilter === filterName ? null : filterName);
     };
 
+    
     const propertyTypes = ['All', 'House', 'Apartment', 'Villa'];
 
     const handleMinPriceChange = (value) => {
@@ -125,6 +126,13 @@ const FilterBar = () => {
                             </div>
                         </div>
                     )}
+                </div>
+
+                <div className="submit-button-item">
+                    <button className="submit-button" onClick={handleSubmit}>
+                        <span className="submit-icon">🔍</span>
+                        Search
+                    </button>
                 </div>
             </div>
         </div>
