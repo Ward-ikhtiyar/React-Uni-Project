@@ -1,18 +1,18 @@
 .search-page-wrapper {
     display: flex;
-    height: calc(100% - 10vh);
-    /* flex: 1; */
-    /* flex-direction: row-reverse; */
-    /* flex-wrap: nowrap; */
-    /* overflow: auto;  */
+    flex: 1;
+    height: calc(100vh - 10vh - 80px); /* Subtract AppBar height and FilterBar height */
     background-color: #f7f7f7;
+    min-height: 0;
+    overflow: hidden;
 }
 
-#full-search-page {
+.full-search-page {
     height: 100vh;
-
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
-
 
 @media only screen and (max-width: 900px) {
     #map {
@@ -21,7 +21,7 @@
 }
 
 @media (max-width:1000px) {
-    #search-page-wrapper {
-        height: 100%;
+    .search-page-wrapper {
+        height: calc(100vh - 10vh - 80px);
     }
 }
