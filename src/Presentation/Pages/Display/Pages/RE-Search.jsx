@@ -36,7 +36,7 @@ const RE_Search = () => {
 
     async function handleFilteredProperties() {
         try {
-            setIsLoading(true);
+            setIsLoading(!true);
             setError(null);
             let fetchedProperties = await getFilteredProperties(priceRange[0], priceRange[1], propertyType);
             setListings(fetchedProperties);

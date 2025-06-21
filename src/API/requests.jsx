@@ -1,6 +1,7 @@
 import EndPoints from "./endpoints";
 import TokenAxios from "./tokenAxios";
 import Axios from "./axios";
+
 export async function resetPassword(id,password) {
   console.log('in reset password');
   console.log(id);
@@ -28,6 +29,7 @@ export async function reset(phone){
     return e.response;
     }
 } 
+
 export async function login(number,password){
   console.log('in sign in ');
   console.log(number);
@@ -61,6 +63,7 @@ export async function login(number,password){
            
         }
     }
+
 ////////////////// create property /////////////////
 export async function createProperty(property) {
     const propertData= {
@@ -100,6 +103,7 @@ export async function createProperty(property) {
     return error.response.status;
   }
 }
+
 /////////////////////////////////////////update Property/////////////////////////////////////
 export async function updateProperty(id,data){
   console.log(`selected property is ${id}`)
@@ -113,6 +117,7 @@ export async function updateProperty(id,data){
     return e.response.status
   }
 }
+
 ////////////////////////////////// image Upload //////////////////////
 export async function uploadPropertyImage(photos,id){
     const formdata=new FormData();
@@ -138,44 +143,53 @@ catch(e){
     console.log(e.response.data);
 }
 }
+
 ///////////////get All & my Properties //////////////
+function extractArray(payload) {
+  if (!payload) return null;
+  if (Array.isArray(payload)) return payload;
+  if (Array.isArray(payload.data)) return payload.data;
+  if (Array.isArray(payload.properties)) return payload.properties;
+  return null;
+}
+
 export async function getAcceptedProperties(mine) {
-    let endpoint=mine===true?EndPoints.Properties.getMine:EndPoints.Properties.getAll; 
-    console.log(endpoint)
-    try{
-    let response =await TokenAxios.get(endpoint);
-   let data=response.data;
-   console.log(data);
-   if(data){
-    return data;
-   }
+    let endpoint = mine === true ? EndPoints.Properties.getMine : EndPoints.Properties.getAll;
+    try {
+        const response = await TokenAxios.get(endpoint);
+        const arr = extractArray(response.data);
+        if (arr) {
+            return arr;
+        }
+        return [];
+    } catch (e) {
+        console.log(e.response?.data || e.message);
+        return [];
+    }
 }
- catch(e){
-    console.log(e.response.data);
- }   
-}
+
 ///////////////get Filtered Porperties //////////////
-export async function getFilteredProperties(minPrice,maxPrice,propertyType) {
-    let endpoint=EndPoints.Properties.getAll;
-    console.log(endpoint)
-    try{
-    let response =await TokenAxios.get(endpoint,{
-      params:{
-        minPrice:minPrice,
-        maxPrice:maxPrice,
-        word:propertyType
-      }
-    });
-   let data=response.data;
-   console.log(data);
-   if(data){
-    return data;
-   }
+export async function getFilteredProperties(minPrice, maxPrice, propertyType) {
+    const endpoint = EndPoints.Properties.getAll;
+    try {
+        const response = await TokenAxios.get(endpoint, {
+            params: {
+                minPrice,
+                maxPrice,
+                word: propertyType
+            }
+        });
+        const arr = extractArray(response.data);
+        if (arr) {
+            return arr;
+        }
+        return [];
+    } catch (e) {
+        console.log(e.response?.data || e.message);
+        return [];
+    }
 }
- catch(e){
-    console.log(e.response.data);
- }   
-}
+
 /////////////////////get property Details//////////////////
 export async function getDetails(id) {
   try{
@@ -191,6 +205,7 @@ export async function getDetails(id) {
   }
   
 }
+
 //////////////////////////////delete property///////////////////////////
 export async function deleteProperty(id,password){
   try{
@@ -212,6 +227,7 @@ export async function deleteProperty(id,password){
     }
   }
 }
+
 //////////////////////////get Favorites////////////////////////
 export async function getFavorites() {
   try{
@@ -227,6 +243,7 @@ export async function getFavorites() {
   }
   
 }
+
 /////////////////////isFavorite///////////////////////////
 export async function isFavorite(id) {
   try{
@@ -242,6 +259,7 @@ export async function isFavorite(id) {
   }
   
 }
+
 ///////////////////////////////setFavorite//////////////////////////////
 export async function setFavorite(id) {
   try{

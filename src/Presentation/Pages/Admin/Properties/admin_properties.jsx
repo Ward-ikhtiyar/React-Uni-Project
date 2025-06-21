@@ -2,7 +2,7 @@ import { useState,useEffect } from 'react';
 import { getPendingProperties } from '../../../../API/admin_requests';
 import './admin_main.css'
 import Custom_Chip from '../../Profile/components/Chips/chip';
-import DisplayCard from '../../Display/components/RE-Listing/RE-Card/RE-Card';
+import DisplayCard from '../../Search-Proporties/components/RE-Listing/RE-Card/RE-Card';
 import { useNavigate } from 'react-router-dom';
 function AdminProperties(){
     console.log(localStorage.getItem('token'));

@@ -30,8 +30,36 @@
     top:-300px !important;
     right:-7vw !important;
     font-size: 30px !important;
-
+    
 }
+.re-map{
+    
+}
+
+.leaflet-routing-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #333;
+    max-width: 300px;
+    max-height: fit-content;
+  }
+  
+  
+  .leaflet-routing-geocoders input {
+    border-radius: 6px;
+    padding: 4px;
+    font-size: 13px;
+  }
+  
+  
+  
+  
+
+
 
 #map{
     display: flex;
