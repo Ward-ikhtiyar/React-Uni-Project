@@ -7,6 +7,7 @@ import { TileLayer } from 'react-leaflet';
 import DisplayCard from '../RE-Listing/RE-Card/RE-Card';
 import { useProperty } from '../../../../../consts/context';
 import LocationSnackBar from '../../../../components/snackBar/location_snackBar';
+import RoutingMachine from './Routing_machine';
 
  function LocationMarker({ onClickMap,setStringLocation,setIsLoading }) {
    useMapEvents({
@@ -26,7 +27,7 @@ async function LocationString(lat,lng,setStringLocation,setIsLoading){
   redirect: "follow"
 };  try{
     setIsLoading(true);
-     let data= await fetch(`http://192.168.1.102:3000/geolocation/reverse?lat=${lat}&lon=${lng}`,)
+     let data= await fetch(`http://localhost:3000/geolocation/reverse?lat=${lat}&lon=${lng}`,)
      let response=await data.json();
      console.log(`${response.city},${response.quarter},${response.street}`);
      setStringLocation(`${response.city},${response.quarter},${response.street}`);
@@ -38,7 +39,8 @@ async function LocationString(lat,lng,setStringLocation,setIsLoading){
      } 
 
 }
-function UserLocationMarker({ setUserLocation, location }) {
+function UserLocationMarker({ setUserLocation, location, }) {
+  
   const map = useMap();
 
   useEffect(() => {
@@ -71,7 +73,7 @@ function UserLocationMarker({ setUserLocation, location }) {
     <Marker position={[location.lat, location.lng]} icon={personIcon}>
       <Popup>Your Location</Popup>
     </Marker>
-  );
+  );  
 }
 
 const REMap = ({ Listings, isAdd }) => {
@@ -80,6 +82,7 @@ const REMap = ({ Listings, isAdd }) => {
     const[stringLocation,setStringLocation]=useState('');
     const[loading,isLoading]=useState(false);
     const [userLocation,setUserLocation]=useState({lat:0,lng:0});
+    const[userSelectedLocation,setUserSelectedLocation]=useState({lat:0,lng:0});
    
     return (
         <div className='re-map'  id='map' style={{height:isAdd?'100vh':'90vh'}}>
@@ -90,12 +93,24 @@ const REMap = ({ Listings, isAdd }) => {
                 />
                 {isAdd ? (
                     <>
-                        <LocationMarker setIsLoading={isLoading} setStringLocation={setStringLocation} onClickMap={setLocation}/>
+                       { <LocationMarker setIsLoading={isLoading} setStringLocation={setStringLocation} onClickMap={setLocation}/>}
                         {location && <Marker position={[location.lat, location.lng]} />}
                     </>
                 ) : (
                     Listings && Listings.map((property, index) => (
-                        <Marker key={index} position={[property.location.lat, property.location.lon]}>
+                        
+                        <Marker 
+                            key={index} 
+                            position={[property.location.lat, property.location.lon]}
+                            eventHandlers={{
+                                click: () => {
+                                    setUserSelectedLocation({
+                                        lat: property.location.lat,
+                                        lng: property.location.lon
+                                    });
+                                }
+                            }}
+                        >
                             <Popup className='popup'>
                                 <div style={{ scale: '75%', justifySelf: 'center' }}>
                                     <DisplayCard property={property}/>
@@ -104,7 +119,15 @@ const REMap = ({ Listings, isAdd }) => {
                         </Marker>
                     ))
                 )}
-                <UserLocationMarker location={userLocation} setUserLocation={setUserLocation}/>
+               {!isAdd&&<UserLocationMarker location={userLocation} setUserLocation={setUserLocation} />}
+               {userLocation && userSelectedLocation &&
+ userLocation.lat !== 0 && userSelectedLocation.lat !== 0 && (
+  <RoutingMachine
+    from={[userLocation.lat, userLocation.lng]}
+    to={[userSelectedLocation.lat, userSelectedLocation.lng]}
+  />
+)}
+
             </MapContainer>
             {isAdd?
                  <div style={{

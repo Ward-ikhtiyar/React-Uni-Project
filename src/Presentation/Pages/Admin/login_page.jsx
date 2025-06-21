@@ -14,7 +14,11 @@ function AdminLogin(){
                 console.log('logining');
             const response= await login(number,password)
             if(response===200){
-                navigate('/Dashboard');
+                if(localStorage.getItem('role')==='super_admin'||localStorage.getItem('role')==='admin'){
+                navigate('/Dashboard',{replace:true});}
+                else{
+                    navigate('/');
+                }
             }
                  if(response===401){
                         setSnackTitle("wrong Number/Password");

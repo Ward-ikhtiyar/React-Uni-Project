@@ -16,8 +16,7 @@ function AdminChart({ data, title, multiLine }) {
     const colors = {
         properties: 'var(--app-blue)',
         users: 'green',     
-        contracts: 'orange',  
-        feedback: 'var(--app-red)'    
+        complaints: 'var(--app-red)'    
     };
 
     return (
@@ -35,11 +34,10 @@ function AdminChart({ data, title, multiLine }) {
                 >
                     <CartesianGrid strokeDasharray="3 3" stroke="var(--app-grey)" />
                     <XAxis dataKey="name" />
-                    <YAxis   />
+                    <YAxis />
                     <Tooltip />
                     <Legend />
                     {multiLine ? (
-                    
                         Object.keys(colors).map(key => (
                             <Line
                                 key={key}
@@ -52,7 +50,6 @@ function AdminChart({ data, title, multiLine }) {
                             />
                         ))
                     ) : (
-                        
                         <Line
                             type="monotone"
                             dataKey="value"

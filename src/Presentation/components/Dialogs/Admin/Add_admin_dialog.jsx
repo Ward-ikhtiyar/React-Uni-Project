@@ -1,13 +1,47 @@
-import { Dialog, DialogTitle, DialogContent, TextField } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, TextField, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import "../Auth_dialog.css"
 import { Close } from "@mui/icons-material";
-function AddAdminDialog({open,onClose}){
+import { adminAddAdmin } from "../../../../API/admin_requests";
+import MySnackbar from "../../../components/snackBar/success_snack";
+import ErrorSnackbar from "../../snackBar/erorr_snack";
+
+function AddAdminDialog({open,onClose,getAdmins}){
     const [number,setNumber]=useState("");
     const [name,setName]=useState("");
     const [password,setPassword]=useState("");
-    const handleAddAdmin=()=>{
-        console.log(number,name);
+    const [age,setAge]=useState("");
+    const [loading, setLoading] = useState(false);
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarTitle,setSnackbarTitle]=useState("");
+    const[openErrorSnackbar,setOpenErrorSnackbar]=useState(false);
+    const onCloseSnackbar = () => {
+        setOpenSnackbar(false);
+    }   
+    const onCloseErrorSnackbar = () => {
+        setOpenErrorSnackbar(false);
+    }
+    const handleAddAdmin= async ()=>{
+        setLoading(true);
+        
+           let response= await adminAddAdmin(name,number,password,Number(age));
+           if(response===201){
+            setOpenSnackbar(true);
+            setTimeout(()=>{
+                setName("");
+                setNumber("");
+                setPassword("");
+                setAge("");
+                getAdmins();
+                onClose();  
+            },500);}
+            if(response===400||response===401){
+                setOpenErrorSnackbar(true);
+                setSnackbarTitle("Failed to add admin check the phone number and name");
+                
+            }
+        
+        setLoading(false);
     }
     return(
         <Dialog open={open} onClose={onClose}>
@@ -19,12 +53,12 @@ function AddAdminDialog({open,onClose}){
             </DialogTitle>
             <DialogContent className="dialog-body">
             <p>Name</p>
-                <input className="inputBox" type="text" placeholder=" " value={`${number}`} onInput={(e)=>{
+                <input className="inputBox" type="text" placeholder=" " value={`${name}`} onInput={(e)=>{
                             setName(e.target.value);
                             console.log(number)
                         }} />
                 <p>Phone Number</p>
-                <input className="inputBox" type="text" placeholder=" " value={`${number}`} onInput={(e)=>{
+                <input  maxLength={10} className="inputBox" type="text" placeholder=" " value={`${number}`} onInput={(e)=>{
                             setNumber(e.target.value);
                             console.log(number)
                         }} />
@@ -33,9 +67,38 @@ function AddAdminDialog({open,onClose}){
                             setPassword(e.target.value);
                             console.log(password);
                         }} />
+                        <div style={{display:"flex",flexDirection:"row",gap:"10px",marginTop:"10px",alignItems:"center"}}>
+                        <p>Age</p>
+                        <input style={{width:"100px"}} className="inputBox" type="number" placeholder=" " value={`${age}`} onInput={(e)=>{
+                            setAge(e.target.value);
+                            console.log(age);
+                        }} />
+                        </div>
                     <div style={{height:"40px"}}></div>
-                <button style={{width:"100%",height:"40px",borderRadius:"5px",backgroundColor:"var(--app-blue)",color:"white",fontSize:"20px",fontFamily:"Lexend",border:"none"}} className="login-button" onClick={handleAddAdmin}>Add Admin</button>
+                <button 
+                    disabled={loading}
+                    style={{
+                        width:"100%",
+                        height:"40px",
+                        borderRadius:"5px",
+                        backgroundColor:"var(--app-blue)",
+                        color:"white",
+                        fontSize:"20px",
+                        fontFamily:"Lexend",
+                        border:"none",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "10px"
+                    }} 
+                    className="login-button" 
+                    onClick={handleAddAdmin}
+                >
+                    {loading ? <CircularProgress size={24} style={{color: 'white'}} /> : "Add Admin"}
+                </button>
             </DialogContent>
+            <MySnackbar open={openSnackbar} handleClose={onCloseSnackbar} title="Admin added successfully" />
+                    <ErrorSnackbar open={openErrorSnackbar} handleClose={onCloseErrorSnackbar} title={snackbarTitle} />
         </Dialog>
     )
 }

@@ -1,42 +1,67 @@
 import { useState,useEffect } from "react";
-import { adminGetAdmins } from "../../../../../API/admin_requests";
+import { adminGetAdmins,adminGetLogs } from "../../../../../API/admin_requests";
 import Custom_Chip from "../../../../../Presentation/Pages/Profile/components/Chips/chip";
 import '../../Properties/admin_main.css'
 import { Add } from "@mui/icons-material";
 import AddAdminDialog from "../../../../../Presentation/components/Dialogs/Admin/Add_admin_dialog";
+import AdminsWidget from "./admins_widget";
+import AdminDetails from "../../../../../Presentation/components/Dialogs/Admin/admin_details";
+import { CircularProgress } from "@mui/material";
+import AdminsLogs from "./admins_logs";
 function AdminsPage(){
     const [chipVal,setChipVal]=useState(0);
     const [admins,setAdmins]=useState([]);
     const [logs,setLogs]=useState([]);
+    const [adminId,setAdminId]=useState(0);
     const [loading,setLoading]=useState(true);
     const [error,setError]=useState(null);
+    const [detailsOpen,setDetailsOpen]=useState(false);
+
     const [open,setOpen]=useState(false);
-    // async function handleGetAdmins(){
-    //     try{
-    //         const response=await adminGetAdmins();
-    //         setAdmins(response);
-    //     }catch(e){
-    //         setError(e);
-    //     }
-    // }
-    // async function handleGetLogs(){
-    //     try{
-    //         const response=await adminGetLogs();
-    //         setLogs(response);
-    //     }catch(e){
-    //         setError(e);
-    //     }
-    // }
-    // useEffect(()=>{
-    //     if(chipVal===0){
-    //         handleGetAdmins();
-    //     }else{
-    //         handleGetLogs();
-    //     }
-    // },[chipVal]);
+    async function handleGetAdmins(){
+        setLoading(true);
+        try{
+            const response=await adminGetAdmins();
+            setAdmins(response);
+        }catch(e){
+            setError(e);
+        }
+        setLoading(false);
+    }
+    useEffect(()=>{
+        handleGetAdmins();
+    },[]);
+    async function handleGetLogs(){
+        try{
+            const response=await adminGetLogs();
+            setLogs(response);
+        }catch(e){
+            setError(e);
+        }
+    }
+    useEffect(()=>{
+        if(chipVal===0){
+            handleGetAdmins();
+        }else{
+            handleGetLogs();
+        }
+    },[chipVal]);
     const handleClose=()=>{
         setOpen(false);
     }
+
+    const handleDetailsClose = () => {
+        setDetailsOpen(false);
+    }
+
+    if (loading) {
+        return (
+            <div className="admin-info" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <CircularProgress />
+            </div>
+        );
+    }
+
     return(
         <>
             <div className="admin-info">
@@ -48,11 +73,23 @@ function AdminsPage(){
                     </div>
                     <button onClick={()=>setOpen(true)} className="colored-button" style={{width:"150px",height:"40px",display:"flex"}}><Add/>Add Admin</button>
                     </div>
-                <div className="admin-body">
-                    
-                </div>
+              {chipVal===0 ?  <div  className="admin-body">
+                    {admins.map((admin,index)=>(
+                        <div key={index} onClick={()=>{setDetailsOpen(true);setAdminId(admin.id)}}>
+                        <AdminsWidget  admin={admin}/>
+                        </div>
+                    ))}
+                </div>:
+                 <div className="admin-body">
+                    {logs.map((log,index)=>(
+                        <div key={index} >
+                        <AdminsLogs log={log}/>
+                        </div>
+                    ))}
+                </div>}
             </div>
-            <AddAdminDialog open={open} onClose={handleClose}/>
+            <AddAdminDialog getAdmins={handleGetAdmins} open={open} onClose={handleClose}/>
+            <AdminDetails id={adminId} open={detailsOpen} onClose={handleDetailsClose} getAdmins={handleGetAdmins}/>
             </>
         
     )

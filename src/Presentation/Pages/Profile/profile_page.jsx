@@ -29,11 +29,11 @@ function ProfilePage(){
                     <div style={{height:"3%"}}></div>
                     <EasyRent/>
                     <ProfileTab title={"Profile"} Icon={Person2} UnselectedIcon={Person2Outlined} val={tabIndex} index={0} setIndex={setTabIndex}/>
-                    <ProfileTab title={"Requests"} Icon={PendingActions} UnselectedIcon={PendingActionsOutlined} val={tabIndex} index={1} setIndex={setTabIndex}/>
+                    {/* <ProfileTab title={"Contracts"} Icon={PendingActions} UnselectedIcon={PendingActionsOutlined} val={tabIndex} index={1} setIndex={setTabIndex}/> */}
                     <ProfileTab title={"Properties"} Icon={House} UnselectedIcon={HouseOutlined} val={tabIndex} index={2} setIndex={setTabIndex}/>
                     <ProfileTab title={"Saved properties"} Icon={Archive} UnselectedIcon={ArchiveOutlined} val={tabIndex} index={3} setIndex={setTabIndex}/>
                     <ProfileTab title={"Subscription"} Icon={WorkspacePremium} UnselectedIcon={WorkspacePremiumOutlined} val={tabIndex} index={4} setIndex={setTabIndex}/>
-                    <ProfileTab title={"Submit a complaint"} Icon={Feedback} UnselectedIcon={FeedbackOutlined} val={tabIndex} index={5} setIndex={setTabIndex}/>
+                    {/* <ProfileTab title={"Submit a complaint"} Icon={Feedback} UnselectedIcon={FeedbackOutlined} val={tabIndex} index={5} setIndex={setTabIndex}/> */}
         <div style={{width:"90%"}} onClick={()=>{
             localStorage.removeItem("token");
             navigate("/");

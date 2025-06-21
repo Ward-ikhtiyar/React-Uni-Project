@@ -1,14 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import './admin_property_details.css';
-import { adminGetPropertyDetails } from '../../../../API/admin_requests';
+import { adminGetPropertyDetails,adminAcceptProperty } from '../../../../API/admin_requests';
 import { ArrowBackIos } from '@mui/icons-material';
+import ErrorSnackbar from '../../../components/snackBar/erorr_snack';
+import AcceptPropertyDialog from '../../../components/Dialogs/Admin/accept_property_dialog';
+import RejectPropertyDialog from '../../../components/Dialogs/Admin/reject_property_dialog';
 
-const AdminPropertyDetails = () => {
+function AdminPropertyDetails() {
+  if(!localStorage.getItem('token') || !['admin', 'super_admin'].includes(localStorage.getItem('role'))) {
+    window.location.href = '/Admin';
+    return null;
+  }
+
   const [params] = useSearchParams();
   const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isAcceptLoading,setIsAcceptLoading]=useState(false);
+  const [openSnackbar,setOpenSnackbar]=useState(false);
+  const [snackBarTitle,setSnackBarTitle]=useState("");
+  const handleCloseSnackbar=()=>{
+    setOpenSnackbar(false);
+  }
+  const [openAcceptDialog,setOpenAcceptDialog]=useState(false);
+  const [openRejectDialog,setOpenRejectDialog]=useState(false);
+  
+  
   const propertyId = params.get("id");
   const navigate=useNavigate();
 
@@ -51,10 +69,11 @@ const AdminPropertyDetails = () => {
     user,
     propertyImages
   } = property;
+  
 
   return (
     <div className="admin-container" style={{ display: 'flex', gap: '20px' }}>
-      <div onClick={()=>{navigate(-1)}}>
+      <div onClick={()=>{navigate(-1,{replace:true})}}>
         <ArrowBackIos className='admin-arrow-back' />
       </div>
       
@@ -88,7 +107,7 @@ const AdminPropertyDetails = () => {
         </div>
       </div>
 
-      {/* Right column: Details Table + Accept/Reject buttons */}
+
       <div style={{ flex: 1 }}>
         <div className="admin-details">
           <h3>Property Details</h3>
@@ -115,14 +134,15 @@ const AdminPropertyDetails = () => {
           </table>
         </div>
 
-        {/* Buttons under the table */}
         <div style={{ marginTop: '20px', display: 'flex', gap: '15px',justifyContent:'end' }}>
-          <button className="admin-reject-button">Reject</button>
-          <button className="admin-accept-button">Accept</button>
+          <button onClick={()=>{setOpenRejectDialog(true)}} className="admin-reject-button">Reject</button>
+          <button onClick={()=>{setOpenAcceptDialog(true)}} className="admin-accept-button">Accept</button>
         </div>
       </div>
+      <AcceptPropertyDialog open={openAcceptDialog} onClose={()=>{setOpenAcceptDialog(false)}} id={propertyId} />
+      <RejectPropertyDialog open={openRejectDialog} onClose={()=>{setOpenRejectDialog(false)}} id={propertyId} />
     </div>
   );
-};
+}
 
 export default AdminPropertyDetails;

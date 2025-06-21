@@ -1,6 +1,33 @@
 import EndPoints from "./endpoints";
 import TokenAxios from "./tokenAxios";
 import Axios from "./axios";
+export async function resetPassword(id,password) {
+  console.log('in reset password');
+  console.log(id);
+  console.log(password);
+  try{
+  let response=await TokenAxios.post(`${EndPoints.Auth.reset}/${id}`,{password:password})
+  console.log(response.data);
+  return response.status;
+}
+  
+  catch(e){
+    console.log(e.response.data)
+  }
+}
+
+export async function reset(phone){
+  try{
+    let response=await Axios.post(EndPoints.Auth.reset,
+    {
+      phone:phone
+    });
+    return response;
+  }catch(e){
+    console.log(e.response.data);
+    return e.response;
+    }
+} 
 export async function login(number,password){
   console.log('in sign in ');
   console.log(number);
@@ -18,6 +45,11 @@ export async function login(number,password){
         if(data.accessToken){
             console.log(`loginSuccess:${data.accessToken}`);
             localStorage.setItem("token",data.accessToken);
+            localStorage.setItem("number",number);
+            localStorage.setItem("password",password);
+            localStorage.setItem("role",data.UserType);
+            console.log(data.UserType);
+            
             return 200;
         }else{
             

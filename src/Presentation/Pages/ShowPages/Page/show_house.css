@@ -70,6 +70,37 @@
   flex-wrap: wrap;
   box-sizing: border-box;
 }
+.owner-info{
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap: 20px;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 300;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-top: 70px;
+}
+.owner-info:hover{
+  cursor: pointer;
+  color: var(--app-blue);
+  transition: all 0.3s ease;
+  text-decoration: underline;
+}
+.owner-info-image{
+  width: 140px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: var(--app-blue);
+  background-image: url('../../../../assets/images/man.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 /* Reduce padding and font size on mobile */
 @media (max-width: 600px) {

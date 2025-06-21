@@ -23,7 +23,7 @@ const navigate=useNavigate();
             <img onError={(e)=>{
                e.target.onerror = null; 
     e.target.src = "public/assets/images/propertyPlaceholder.png";
-            }} className='trendingCard-pic' style={{borderRadius:"24px",width:'250px',height:'150px',objectFit:'cover',boxShadow:'1px 1px 3px grey'}} src={`http://192.168.1.105:3000/property/images/${property.firstImage}`} crossOrigin='anonymous' />
+            }} className='trendingCard-pic' style={{borderRadius:"24px",width:'250px',height:'150px',objectFit:'cover',boxShadow:'1px 1px 3px grey'}} src={`http://localhost:3000/property/images/${property.firstImage}`} crossOrigin='anonymous' />
 
         </div>
         

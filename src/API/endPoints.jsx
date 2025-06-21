@@ -6,12 +6,14 @@ const EndPoints={
         Register:'user/register',
         Verify:'user/verify',
         Resend:'user/resend',
+        reset:'auth/reset'
     },
     User:{
         Me:'auth/me',
         ChangeInfo:'user/',
         UploadImg:'user/upload-image',
-        getImg:'user/images/'
+        getImg:'user/images/',
+        getOwnerInfo:'user/pro'
     },
     Properties:{
      create:'property',
@@ -24,16 +26,24 @@ const EndPoints={
     Favoirtes:{
         getAll:'favorite',
         isFavorite:'favorite/isFavorite',
-        setFavorite:'favorite'
+        setFavorite:'favorite',
+        vote:'votes'
     },
     Plans:{
         getAll:'plans',
         createPlan:'webhook'
     },
     Admin:{
-       getAllProperties:'propertyA' ,
-       getAdmins:'admin/',
+        getAllPropertiesSuperAdmin:'propertyA',
+       getAllProperties:'propertyA/pending' ,
+       getAdmins:'userA/getAdmins',
        getLogs:'/audit',
+       getStatistics:'/analytics',
+       addAdmin:'auth/addAdmin',
+       getAdminDetails:'userA',
+       deleteAdmin:'userA',
+       acceptProperty:'/propertyA/acc',
+       rejectProperty:'/propertyA/rej',
     }
     
     

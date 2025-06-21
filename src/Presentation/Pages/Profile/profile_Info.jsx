@@ -10,7 +10,12 @@ import EndPoints from '../../../API/endPoints';
 
 function ProfileInfoPage(){
     const [isOpen,setIsOPen]=useState(false);
-
+    const[viewsCount,setViewsCount]=useState(0);
+    const[votesCount,setVotesCount]=useState(0);
+    const[contractsCount,setContractsCount]=useState(0);
+    const[propertiesCount,setPropertiesCount]=useState(0);
+    const[earningsCount,setEarningsCount]=useState(0);
+    const[monthlyRevenueCount,setMonthlyRevenueCount]=useState(0);
     const [isLoaded,setIsLoaded]=useState(false);
     const [phone, setPhone] = useState('');
 const [userName, setUserName] = useState('');
@@ -31,6 +36,8 @@ async function getProfileImg(Img) {
             console.log(data);
             console.log("succes my nigger brolly");
             console.log(data.phone);
+            setViewsCount(data.totalViewCount);
+            setVotesCount(data.totalVoteScore);
             setPhone(`${data.phone}`);
         setUserName(`${data.username}`);
         setLocation(`${data.location.country},${data.location.city}`);
@@ -81,13 +88,13 @@ async function getProfileImg(Img) {
                    <div className='profilecard-row'>
                    <ProfileCard Icon={HouseOutlined} title={"Properties"} value={'12'}/>
                    <ProfileCard Icon={AttachMoneyOutlined} title={"All-Time Earnings"} value={'25k'}/>
-                   <ProfileCard Icon={Visibility} title={"Views"} value={'25k'}/>
+                   <ProfileCard Icon={Visibility} title={"Views"} value={viewsCount}/>
                     
                    </div>
                    <div className='profilecard-row'>
                     <ProfileCard Icon={EditDocument} title={"Contracts"} value={"6"}/>
                     <ProfileCard Icon={TrendingUpOutlined } title={"Monthly Revenue"} value={'25k'}/> 
-                    <ProfileCard Icon={Favorite} title={"Likes"} value={'220k'}/>
+                    <ProfileCard Icon={Favorite} title={"Votes"} value={votesCount}/>
                     </div>
                     
                    

@@ -23,8 +23,11 @@
     flex-direction: row;
     padding-left: 40px;
     padding-right: 80px;
-    font-size: 50px;
+    font-size: clamp(20px, 4vw, 50px);
     height: 75%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .profile-card:hover{
      filter: drop-shadow(0 0 1em grey);

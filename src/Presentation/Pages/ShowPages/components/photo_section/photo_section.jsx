@@ -1,18 +1,20 @@
 import './photo_section.css'
 import { CameraAltOutlined, Delete, Favorite } from '@mui/icons-material';
-import {  FavoriteBorderOutlined, LocationOnOutlined, Share } from '@mui/icons-material';
+import {  FavoriteBorderOutlined, LocationOnOutlined, Share,ArrowUpward,ArrowDownward } from '@mui/icons-material';
 import CloseIcon from '@mui/icons-material/Close';
 
 import AdditionalPhoto from '../additional_info/additional-photo';
 import Chip from '../../../../components/ward/chips';
 import { useState } from 'react';
 import { div } from 'framer-motion/client';
-import { setFavorite } from '../../../../../API/requests';
-function PhotoSection({name,location,photos,isFavorite,Housetype,commerce,setFavorite}){
+import { setFavorite, } from '../../../../../API/requests';
+import { upVote,downVote } from '../../../../../API/other_requests';
+function PhotoSection({name,location,photos,isFavorite,Housetype,commerce,setFavorite,voteScore,id}){
     console.log(photos);
     let morePhotos=[];
     const[pickedImage,setPickedImage]=useState(0);
     const[open,setisOpen]=useState(true);
+    const[vote,setVote]=useState(voteScore);
     if(photos!=null){
         console.log("wardsdddddddddddddddd");
          morePhotos = [...photos] ;
@@ -58,11 +60,23 @@ function PhotoSection({name,location,photos,isFavorite,Housetype,commerce,setFav
                 </div>
                 <div style={{display:"flex",gap:'10px',position:'absolute',zIndex:'3', right:'0',marginRight:'7vw' }}>
                     <button className='overlay-button' onClick={()=>{
-                        
                         setFavorite()}}>
                         {isFavorite?<Favorite className='favorite-button' sx={{scale:'180%', color:'var(--app-blue)'}}/>:<FavoriteBorderOutlined className='favorite-button' sx={{scale:'180%', color:'white'}}/>}
                         </button>
-                    
+                        <div style={{width:'20px'}}></div>
+                        <button className='overlay-button' onClick={()=>{
+                            upVote(id).then((data)=>{
+                                setVote(data);
+                            })}}>
+                            <ArrowUpward className='favorite-button' sx={{scale:'180%', color:'white'}}/>
+                            </button>
+                            {vote}
+                            <button className='overlay-button' onClick={()=>{
+                                downVote(id).then((data)=>{
+                                    setVote(data);
+                                })}}>
+                                <ArrowDownward className='favorite-button-down' sx={{scale:'180%', color:'white'}}/>
+                            </button>
                 </div>
             </div>
              <div className='overlaying-third'>
