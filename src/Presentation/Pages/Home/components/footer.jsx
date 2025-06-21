@@ -1,7 +1,9 @@
 import React from 'react';
 import './Footer.css';
-
+import LoginDialog from '../../../components/Dialogs/login_dialog';
+import { useState } from 'react';
 const Footer = () => {
+  const[openDialog,setOpenDialog]=useState(false);
   return (
     <footer className="footer-container">
       <div className="footer-content">
@@ -55,11 +57,13 @@ const Footer = () => {
         <div className="footer-section">
           <h3 className="footer-heading">Property Types</h3>
           <ul className="footer-list">
+
             <li><a href="#" className="footer-link">Houses</a></li>
             <li><a href="#" className="footer-link">Apartments</a></li>
             <li><a href="#" className="footer-link">Condos</a></li>
             <li><a href="#" className="footer-link">Villas</a></li>
             <li><a href="#" className="footer-link">Commercial</a></li>
+
           </ul>
         </div>
         
@@ -133,6 +137,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
+        <LoginDialog open={openDialog} onClose={()=>setOpenDialog(false)}/>
+
     </footer>
   );
 };

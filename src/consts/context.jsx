@@ -4,6 +4,9 @@ const PropertyContext = createContext();
 
 export const PropertyProvider = ({ children }) => {
   const [clicked, setClicked] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [msg,setMsg ] = useState('');
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
   const [location, setLocation] = useState({ lat: 0, lng: 0 });
@@ -22,7 +25,10 @@ export const PropertyProvider = ({ children }) => {
   return (
     <PropertyContext.Provider
       value={{
+        isSuccess, setIsSuccess,
+        msg,setMsg,
         clicked, setClicked,
+        isError, setIsError,
         title, setTitle,
         price, setPrice,
         location, setLocation,

@@ -10,7 +10,23 @@ import Footer from '../components/footer.jsx';
 import TrendingCard from '../components/trendingCard.jsx';
 import AltServiceSection from '../components/AltService/alt_serviceSection.jsx';
 import TrendingSection from '../components/trending_section/trendingSection.jsx';
+import { login } from '../../../../API/requests';
 function HomePage() {
+    
+    // useEffect(()=>{
+    //     if(localStorage.getItem("number") && localStorage.getItem("password")){
+    //     login(localStorage.getItem("number"),localStorage.getItem("password")).then((data)=>{
+    //         if(data===401){
+    //             localStorage.removeItem("token");
+    //             localStorage.removeItem("number");
+    //             localStorage.removeItem("password");
+    //             localStorage.removeItem("role");
+    //             navigate("/");
+    //         }
+    //     });
+    //     }
+    // },[]);
+      
     const ref =useRef(null);
      const  inView  = useInView(ref,{once:true,   });
     const openDialog = useContext(openDialogcontext);

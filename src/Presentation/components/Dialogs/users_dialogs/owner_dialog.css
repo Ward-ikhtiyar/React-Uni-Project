@@ -1,0 +1,45 @@
+.user-info {
+    padding: 20px;
+    min-width: 300px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.info-label {
+    font-weight: 500;
+    color: var(--app-blue);
+}
+
+.info-value {
+    color: #333;
+}
+
+.error-message {
+    color: #666;
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+}
+.owner-information{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.owner-information-item{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.owner-properties-row{
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 10px;
+    height: 250px;
+}

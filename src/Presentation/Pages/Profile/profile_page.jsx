@@ -13,7 +13,9 @@ import SavedPropertiesPage from './Saved_properties';
 import AddPropertyPage from './addProperty/addProperty';
 import EasyRent from '../../components/Lottie/EasyRent';
 import PlansPage from './plans/plans';
+import { useNavigate } from 'react-router-dom';
 function ProfilePage(){
+    const navigate=useNavigate();   
     const [isOpen,setIsOPen]=useState(false);
     const[tabIndex,setTabIndex]=useState(0);
     const PagesList=[ProfileInfoPage,RequestsPage,PropertiesPage,SavedPropertiesPage,PlansPage];
@@ -27,12 +29,17 @@ function ProfilePage(){
                     <div style={{height:"3%"}}></div>
                     <EasyRent/>
                     <ProfileTab title={"Profile"} Icon={Person2} UnselectedIcon={Person2Outlined} val={tabIndex} index={0} setIndex={setTabIndex}/>
-                    <ProfileTab title={"Requests"} Icon={PendingActions} UnselectedIcon={PendingActionsOutlined} val={tabIndex} index={1} setIndex={setTabIndex}/>
+                    {/* <ProfileTab title={"Contracts"} Icon={PendingActions} UnselectedIcon={PendingActionsOutlined} val={tabIndex} index={1} setIndex={setTabIndex}/> */}
                     <ProfileTab title={"Properties"} Icon={House} UnselectedIcon={HouseOutlined} val={tabIndex} index={2} setIndex={setTabIndex}/>
                     <ProfileTab title={"Saved properties"} Icon={Archive} UnselectedIcon={ArchiveOutlined} val={tabIndex} index={3} setIndex={setTabIndex}/>
                     <ProfileTab title={"Subscription"} Icon={WorkspacePremium} UnselectedIcon={WorkspacePremiumOutlined} val={tabIndex} index={4} setIndex={setTabIndex}/>
-                    <ProfileTab title={"Submit a complaint"} Icon={Feedback} UnselectedIcon={FeedbackOutlined} val={tabIndex} index={5} setIndex={setTabIndex}/>
-                    <ProfileTab title={"Log out"} Icon={Logout} UnselectedIcon={Logout} val={tabIndex} index={6} setIndex={setTabIndex}/>
+                    {/* <ProfileTab title={"Submit a complaint"} Icon={Feedback} UnselectedIcon={FeedbackOutlined} val={tabIndex} index={5} setIndex={setTabIndex}/> */}
+        <div style={{width:"90%"}} onClick={()=>{
+            localStorage.removeItem("token");
+            navigate("/");
+        }}>
+        <ProfileTab title={"Log out"} Icon={Logout} UnselectedIcon={Logout} val={tabIndex} index={6} setIndex={setTabIndex}/>
+        </div>
                     
 
                          {/* <div className='tab'>

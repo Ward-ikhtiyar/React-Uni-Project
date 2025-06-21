@@ -1,0 +1,26 @@
+.accept-input{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    font-size: 70px;
+    color: var(--app-blue);
+    justify-content: center;
+}
+
+.accept-input input{
+    
+    width: 32%;
+    height: 120px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    font-family: Lexend;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 70px;
+    outline: none;
+    transition: all 0.3s ease;
+    
+}

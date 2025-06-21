@@ -1,0 +1,42 @@
+.admin-info{
+    width: 85%;
+    height: 100vh;
+    background-color: var(--app-background);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    overflow-y: scroll;
+    
+}
+.chips-row{
+    margin-top: 20px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.admin-title{
+    margin-top: 30px;
+    width: 90%;
+    font-size: xx-large;
+    display: flex;
+    justify-content: space-between;
+}
+.admin-body{
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 95%;
+    height: 100%;
+}
+.admin-chips-row{
+    margin-top: 20px;
+    width: 90%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: row;
+    gap: 10px;
+    height: 30px;
+}

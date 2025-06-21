@@ -6,10 +6,21 @@
     
 }
 .tab{
+    font-size: 0px;
+    justify-content: center;
     color: black;
     width: 90%;
     padding: 10px;
     display: flex;
     gap: 5%;
     flex-direction: row;
+    
+}
+@media (min-width:700px) {
+    .tab{
+        
+        
+        justify-content: start;
+        font-size: 15px;
+    }
 }
