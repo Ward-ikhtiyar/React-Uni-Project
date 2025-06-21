@@ -4,7 +4,7 @@ import { Add,} from '@mui/icons-material';
 import Custom_Chip from './components/Chips/chip';
 import { useEffect, useState } from 'react';
 import Card from '../Home/components/Card';
-import DisplayCard from '../Display/components/RE-Listing/RE-Card/RE-Card';
+import DisplayCard from '../Search-Proporties/components/RE-Listing/RE-Card/RE-Card';
 import AgentProperty from './components/myProperty_card/Agent_property';
 import CreatePropertyDialog from '../../components/Dialogs/CreateProperty_Dialog';
 import AddPropertyPage from './AddProperty/addProperty';

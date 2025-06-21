@@ -1,12 +1,12 @@
-import {  useState } from "react";
+import { useState } from "react";
 import "./appBar.css"
 import AuthDialog from '../../../components/Dialogs/Auth_dialog';
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LoginDialog from "../../../components/Dialogs/login_dialog";
 import EasyRent from "../../../components/Lottie/EasyRent";
 
-function AppBar({isHome}){
-    let token=localStorage.getItem('token');
+function AppBar({ isHome }) {
+    let token = localStorage.getItem('token');
     console.log(token);
     let navigate=useNavigate();
       const[openDialog,setOpenDialog]=useState(false);
@@ -23,23 +23,25 @@ function AppBar({isHome}){
             <button className="appBar-button">Buy Ability</button> */}
             <button className="appBar-button">Find Agent</button>
 
-              {!token?
-                <button onClick={()=>{
-                    console.log(`Dialog ${openDialog}`);
-                    setOpenDialog(!openDialog)} } className="appBar-button"> Sign In</button>:<button onClick={()=>{
-                    navigate('/Profile')
-                    setOpenDialog(!openDialog)} } className="appBar-button" > Profile</button>
-              }  
-       </div>
+                {!token ?
+                    <button onClick={() => {
+                        console.log(`Dialog ${openDialog}`);
+                        setOpenDialog(!openDialog)
+                    }} className="appBar-button"> Sign In</button> : <button onClick={() => {
+                        navigate('/Profile')
+                        setOpenDialog(!openDialog)
+                    }} className="appBar-button" > Profile</button>
+                }
+            </div>
 
-        
-        <LoginDialog open={openDialog} onClose={()=>setOpenDialog(false)}/>
-            
-        
-    </div>);
-    
-    
-    
+
+            <LoginDialog open={openDialog} onClose={() => setOpenDialog(false)} />
+
+
+        </div>);
+
+
+
 }
 export default AppBar
 

@@ -1,0 +1,81 @@
+#agent-dialog-body {
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    gap: 16px;
+    
+}
+
+#agent-dialog-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    gap: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 16px;
+    max-width: 100%;
+}
+
+.carousel-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.carousel-item {
+    text-align: center;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    padding: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-arrow:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.left-arrow {
+    left: 8px;
+}
+
+.right-arrow {
+    right: 8px;
+    
+}
+
+.user-info p {
+    margin: 4px 0;
+    font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .carousel-slide {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .user-info p {
+        font-size: 0.9rem;
+    }
+}

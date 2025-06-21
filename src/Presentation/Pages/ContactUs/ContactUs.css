@@ -1,0 +1,39 @@
+#contactus-wrapper {
+    display: flex;
+    max-Width: 1140px;
+    
+}
+
+#contactus-side-section {
+    text-align: left;
+    width: 50%;
+    justify-content: center;
+}
+
+.side-otc {
+    margin-bottom: 15px;
+    font-size: 25px;
+    line-height: 1em;
+    color: #222222;
+}
+
+.side-otc h1 {
+    font-weight: 400;
+}
+
+#contactus-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 10px;
+}
+
+.contacting-company-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#side-otc-description {
+    margin: 50px 0;
+}

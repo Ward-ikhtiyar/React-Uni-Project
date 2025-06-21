@@ -1,0 +1,43 @@
+/* body{
+    height: 100%;
+    overflow: hidden;
+} */
+.leaflet-container {
+    height: 100%;
+    width: 50vw;
+    z-index: 1;
+}
+
+.leaflet-popup.popup.leaflet-zoom-animated{
+    bottom: -13vh !important;
+}
+
+.leaflet-popup-tip {
+    background: transparent !important;
+    box-shadow: none !important;
+    /* Match background or set to transparent */
+}
+
+.leaflet-popup-content-wrapper {
+    background: transparent !important;
+    box-shadow: none !important;
+
+}
+
+.leaflet-container a.leaflet-popup-close-button{
+    color: var(--app-blue) !important;
+    position: relative !important;
+    top:-300px !important;
+    right:-7vw !important;
+    font-size: 30px !important;
+
+}
+
+#map{
+    display: flex;
+    flex: 1;
+    height: 100%;
+    width: 50%;
+    min-height: 0;
+    overflow: hidden;
+}
