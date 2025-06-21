@@ -58,11 +58,29 @@ const RE_Search = () => {
     }
 
     async function handleGetProperties() {
-        let fetchedProperties = await getAcceptedProperties(false);
-        setListings(fetchedProperties);
-        console.log(fetchedProperties);
+        try {
+            setIsLoading(true);
+            setError(null);
+            let fetchedProperties = await getAcceptedProperties(false);
+            setListings(fetchedProperties);
+            console.log('All properties:', fetchedProperties);
+        } catch (error) {
+            console.error('Error fetching properties:', error);
+            if (error.statusCode === 404 && error.message === "No estates found") {
+                // Handle 404 - no properties available
+                setListings([]);
+                setError("No properties are currently available.");
+            } else {
+                // Other errors
+                setError("Error loading properties. Please try again later.");
+                setListings([]);
+            }
+        } finally {
+            setIsLoading(false);
+        }
     }
     useEffect(() => {
+        // Load all properties by default on component mount
         handleGetProperties();
     }, []);
 
