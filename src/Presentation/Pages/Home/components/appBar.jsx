@@ -21,7 +21,10 @@ function AppBar({ isHome }) {
             <button className="appBar-button" onClick={()=>{localStorage.removeItem('token');}}> Sell</button>
             {/* <button className="appBar-button"> Rent</button>
             <button className="appBar-button">Buy Ability</button> */}
-            <button className="appBar-button">Find Agent</button>
+            <button className="appBar-button"  onClick={() => {
+                    navigate('/Agents',{replace:true})
+                }
+                }>Find Agent</button>
 
                 {!token ?
                     <button onClick={() => {
