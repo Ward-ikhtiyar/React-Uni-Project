@@ -18,7 +18,7 @@
 
 } */
 
-#CTA {
+.CTA {
     text-shadow: black 0 0 20px;
     color: #f4f4f4;
     text-transform: none;
@@ -28,7 +28,7 @@
 }
 
 @media (min-width: 769px) {
-    #CTA {
+    .CTA {
         font-weight: 700;
         font-size: 60px;
         line-height: 72px;
@@ -36,7 +36,7 @@
 }
 
 @media (min-width: 481px) {
-    #CTA {
+    .CTA {
         font-weight: 700;
         font-size: 48px;
         line-height: 64px;
