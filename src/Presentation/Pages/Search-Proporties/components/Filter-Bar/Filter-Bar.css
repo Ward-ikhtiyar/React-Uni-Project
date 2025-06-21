@@ -23,6 +23,43 @@
     min-width: 300px;
 }
 
+.submit-button-item {
+    flex-shrink: 0;
+}
+
+.submit-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #0071c2 0%, #005a9e 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,113,194,0.2);
+    min-width: 120px;
+    justify-content: center;
+}
+
+.submit-button:hover {
+    background: linear-gradient(135deg, #005a9e 0%, #004080 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,113,194,0.3);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,113,194,0.2);
+}
+
+.submit-icon {
+    font-size: 16px;
+}
+
 .filter-item {
     position: relative;
     flex: 1;
@@ -265,6 +302,15 @@
     .filter-item {
         width: 100%;
         min-width: auto;
+    }
+    
+    .submit-button-item {
+        width: 100%;
+    }
+    
+    .submit-button {
+        width: 100%;
+        justify-content: center;
     }
     
     .price-inputs {
