@@ -64,7 +64,7 @@ function AgentDialog({ open, onClose}, paramAgent) {
                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNEHbnGMLTCHTU3N45L2O_XBu61biBkJoRAw&s"
                                     alt="Agent"
                                     className="agent-photo"
-                                />
+                                /> 
                             </div>
                             {/* <div id="agent-dialog-info"> */}
                                 <div className="agent-info">
