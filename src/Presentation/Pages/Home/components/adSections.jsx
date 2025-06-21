@@ -7,7 +7,7 @@ function AdSection(){
             <AppBar isHome={true} />
             <div className='grid'>
                  <div className='button-section' >
-                <div className='slogan'>Homes.Lands<br></br>Apartments.</div>
+                <div className='CTA' style={{color: 'white'}}>Homes.Lands<br></br>Apartments.</div>
                 <button className='checkout-button'>Check out</button>
             </div>
             <div className='alt-logo'  ><a href='https://google.com'>SpeedOrder</a></div>
