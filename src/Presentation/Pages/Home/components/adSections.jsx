@@ -8,7 +8,7 @@ function AdSection(){
             <AppBar isHome={true} />
             <div className='grid'>
                  <div className='button-section' >
-                <div className='slogan'>Homes.Lands<br></br>Apartments.</div>
+                <div className='CTA'>Homes.Lands<br></br>Apartments.</div>
                 <button onClick={()=>{
                     navigate('/properties')
                 }} className='checkout-button'>Check out</button>

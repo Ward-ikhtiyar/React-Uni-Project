@@ -45,13 +45,13 @@ export async function login(number,password){
         console.log(`printing ${data}`);
         
         if(data.accessToken){
-            console.log(`loginSuccess:${data.accessToken}`);
-            localStorage.setItem("token",data.accessToken);
-            localStorage.setItem("number",number);
-            localStorage.setItem("password",password);
-            localStorage.setItem("role",data.UserType);
-            console.log(data.UserType);
-            
+            // console.log(`loginSuccess:${data.accessToken}`);
+            // localStorage.setItem("token",data.accessToken);
+            // localStorage.setItem("number",number);
+            // localStorage.setItem("password",password);
+            // localStorage.setItem("role",data.UserType);
+            // console.log(data.UserType);
+            document.cookie();
             return 200;
         }else{
             
@@ -151,6 +151,20 @@ function extractArray(payload) {
   if (Array.isArray(payload.data)) return payload.data;
   if (Array.isArray(payload.properties)) return payload.properties;
   return null;
+}
+export async function getTopVotedProperties(mine) {
+    let endpoint = mine === true ? EndPoints.Properties.getMine : EndPoints.Properties.getAll;
+    try {
+        const response = await TokenAxios.get('property/top/6');
+        const arr = extractArray(response.data);
+        if (arr) {
+            return arr;
+        }
+        return [];
+    } catch (e) {
+        console.log(e.response?.data || e.message);
+        return [];
+    }
 }
 
 export async function getAcceptedProperties(mine) {

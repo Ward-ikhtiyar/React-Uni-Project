@@ -1,9 +1,10 @@
 .trending-main {
-    width: 100%;
+    width: 90%;
     max-width: 100vw;
     height: 80vh;
     display: grid;
-    grid-template-rows: 1fr 4fr;
+    justify-content: center;
+    grid-template-rows: 1fr 1fr 1fr;
     background-color: var(--app-background);
     overflow: visible;
     margin-bottom: 50px;

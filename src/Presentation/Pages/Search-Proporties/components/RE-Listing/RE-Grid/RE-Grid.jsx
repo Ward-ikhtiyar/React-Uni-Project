@@ -6,7 +6,7 @@ import Footer from '../../../../Home/components/footer';
 
 const RE_Grid = ({ Listings, isLoading, error, isFiltered }) => {
     const renderContent = () => {
-        if (!isLoading) {
+        if (isLoading) {
             return (
                 <div className="loading-container">
                     <div className="loading-spinner"></div>
@@ -50,7 +50,7 @@ const RE_Grid = ({ Listings, isLoading, error, isFiltered }) => {
             );
         }
 
-        
+        // Render properties grid
         const proper = Listings.map((property, index) => {
             return (
                 <Grid key={index} size={1}>
@@ -65,7 +65,6 @@ const RE_Grid = ({ Listings, isLoading, error, isFiltered }) => {
             </Grid>
         );
     };
-
     return (
         <div className="grid-section">
             <div className="grid-header">

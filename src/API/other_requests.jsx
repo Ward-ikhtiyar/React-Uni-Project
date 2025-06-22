@@ -66,6 +66,7 @@ export async function upVote(id){
         console.log(e.response.data);
     }
 }
+
 export async function downVote(id){
     try{
         let response=await TokenAxios.post(`${EndPoints.Favoirtes.vote}/${id}/${-1}`,

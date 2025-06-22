@@ -38,7 +38,7 @@ function HomePage() {
             <AltServiceSection />
             {/* <TrendingCard property={property}/> */}
             </motion.div>
-            {/* <TrendingSection/> */}
+            <TrendingSection/>
             <Footer/>
         
         </div>
