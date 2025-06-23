@@ -1,15 +1,32 @@
- #temporary{
-    border-radius: 10px;
-    width: 7vw;
-    height: 15vh;
-    box-shadow: 1px 1px 5px black;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+#temporary {
+  border-radius: 10px;
+  width: 7vw;
+  height: 15vh;
+  box-shadow: 1px 1px 5px black;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
-#temporary:hover{
-    scale: 110%;
-    opacity: 0.9;
-    transition: 0.5s;
-    cursor: pointer;
+
+/* Fix hover: use transform scale, not just scale */
+#temporary:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  #temporary {
+    width: 15vw;
+    height: 20vh;
+  }
+}
+
+@media (max-width: 600px) {
+  #temporary {
+    width: 30vw;
+    height: 25vh;
+  }
 }

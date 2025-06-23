@@ -5,7 +5,9 @@ import VerificationInput from "react-verification-input";
 import Axios from "../../../API/axios";
 import { data, useNavigate } from "react-router-dom";
 import EndPoints from '../../../API/endPoints';
-function VerifyDialog ({open,onClose,Id}) {
+import EnterNewPassword from "./resetPassword/enter_new_password";
+function VerifyDialog ({open,onClose,Id,reset}) {
+    const[openNewPassword,setOpenNewPassword]=useState(false);
     function changeText() {
     console.log("Starting countdown...");
 
@@ -53,7 +55,11 @@ const [resendText,setResendText]=useState("Resend Code");
         });
         console.log(response.data)
         let data=response.data;
-        if(data){
+        if(data ){
+            if(reset){
+                setOpenNewPassword(true)
+                return;
+            }
             localStorage.setItem('token',data.accessToken);
             localStorage.removeItem('id');
             navigate(0);
@@ -95,9 +101,9 @@ const [resendText,setResendText]=useState("Resend Code");
                     await reSend(Id);
                 }}>{resendText}</p>
                 </div>
-                
+                {reset&&<EnterNewPassword open={openNewPassword} onClose={()=>setOpenNewPassword(false)} Id={Id}/>}
             </DialogActions>
-
+                
         </Dialog>);
 }
 export default VerifyDialog

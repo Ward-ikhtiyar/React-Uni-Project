@@ -1,0 +1,9 @@
+@keyframes ErrorAnimAtions {
+    from {
+        margin-top: 0px;
+        
+    }   
+    to{
+    margin-top: 40px;
+    }
+}

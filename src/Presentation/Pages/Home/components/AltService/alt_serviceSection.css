@@ -1,70 +1,104 @@
-.Main{
-    width: 100%;
-    height: 80vh;
-    display: grid;
-    grid-template-rows: 1fr 4fr;
-    background-color: var(--app-background);
-    overflow: visible;
-    margin-bottom: 50px;
-}
-.title{
-    padding-left: 40px;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    font-size: 40px;
-    
-}
-.card-holder{
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-.service-pic{
-    width: 463px;
-    height: 450px;
-    justify-self: center;
-    border-radius: 25px;
-    background-size: cover;
-    
-}
-.service-righ-section{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-}
-.what-we-do{
-    font-family: Lexend;
-    font-size: 40px;
-    color: var(--app-blue);
-}
-.chip-row{
-    margin-top: 25px;
-    display: flex;
-    flex-direction: row;
-    gap: 25px;
-}
-.big-text{
-    font-size: 35px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-.small-text{
-    font-size: 20px;
-    width: 484px;
-    text-align: start;
-    color:grey;
-    animation: textAnime 2.5s ease-in;
+.Main {
+  width: 100%;
+  min-height: 80vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background-color: var(--app-background);
+  overflow: visible;
+  margin-bottom: 50px;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
+.title {
+  padding-left: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 2rem;
+  flex-wrap: wrap;
+}
+
+.card-holder {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+.service-pic {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  aspect-ratio: 1 / 1; /* Keeps it square */
+  justify-self: center;
+  border-radius: 25px;
+  background-size: cover;
+  background-position: center;
+}
+
+.service-righ-section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.what-we-do {
+  font-family: Lexend, sans-serif;
+  font-size: 2.5rem;
+  color: var(--app-blue);
+}
+
+.chip-row {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.big-text {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.small-text {
+  font-size: 1.1rem;
+  width: 100%;
+  max-width: 600px;
+  text-align: start;
+  color: grey;
+  animation: textAnime 2.5s ease-in;
+}
+
+
 @keyframes textAnime {
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.5rem;
+    padding-left: 1rem;
+  }
+
+  .what-we-do {
+    font-size: 2rem;
+  }
+
+  .big-text {
+    font-size: 1.5rem;
+  }
+
+  .small-text {
+    font-size: 1rem;
+  }
 }

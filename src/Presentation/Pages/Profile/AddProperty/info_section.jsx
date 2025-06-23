@@ -18,8 +18,8 @@ function InfoSection({clicked,open,setOpen}){
                     </div>
                     
                 </div>
-                <InfoTab val={title} setVal={setTitle} title={"title"}/>
-                <InfoTab val={price} setVal={setPrice}  title={"Price"}/>
+                <InfoTab type={"text"} val={title} setVal={setTitle} title={"title"}/>
+                <InfoTab type={"number"} val={price} setVal={setPrice}  title={"Price"}/>
         <InfoTab val={floors} setVal={setFloors}  title={"Floors"}/>
                 <div className="addInfo-tab" >
         <p className='addInfo-title'> Description </p>                                        

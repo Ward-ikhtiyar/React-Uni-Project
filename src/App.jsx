@@ -13,8 +13,9 @@ import TrendingCard from './Presentation/Pages/Home/components/trendingCard';
 import SearchPage from './Presentation/Pages/Search-Agent/Search-Page';
 import SearchAgent from './Presentation/Pages/Search-Agent/Search-Agent';
 import AdminLogin from './Presentation/Pages/Admin/login_page';
-import { Dashboard } from '@mui/icons-material';
 import AdminDashBoard from './Presentation/Pages/Admin/dashboard';
+
+import AdminPropertyDetails from './Presentation/Pages/Admin/Properties/admin_property_details';
 import RE_Search from './Presentation/Pages/Display/Pages/RE-Search';
 function App() {
   
@@ -36,6 +37,7 @@ function App() {
         <Route path='/Admin' element={<AdminLogin/>}></Route> 
         <Route path='/ContactUs' element={<ContactUs/>}></Route> 
         <Route path='/Dashboard' element={<AdminDashBoard/>}></Route>        
+        <Route path='/Admin/property' element={<AdminPropertyDetails/>}/>    
       </Routes>
     </Router>
     </>

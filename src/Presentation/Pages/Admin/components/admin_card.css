@@ -1,0 +1,33 @@
+.admin-stat-card{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 90%;
+    background-color: white;
+    border-radius: 10px;
+    
+}
+.admin-stat-card-title{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.admin-stat-card-body{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 40px;
+    padding-right: 80px;
+    font-size: 50px;
+    height: 75%;
+}
+.admin-stat-card:hover{
+     filter: drop-shadow(0 0 1em grey);
+     scale: 105%;
+     transition: 0.3s;
+}

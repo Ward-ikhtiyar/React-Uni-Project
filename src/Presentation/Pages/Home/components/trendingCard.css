@@ -1,25 +1,30 @@
 .trending-card {
-  width: 200px;
+  width: 100%;
+  max-width: 300px;
   border-radius: 8px;
   padding: 12px;
   position: relative;
   font-family: Arial, sans-serif;
-  }
+  box-sizing: border-box;
+}
 
-.trending-pic{
-    width: 300px;
-    box-shadow: 1px 1px 5px grey;
+.trending-pic {
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 1px 1px 5px grey;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .popular-tag {
-    scale: 80%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  transform: scale(0.8);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  top: 135px;
-  left: 15px;
+  top: 10%;
+  left: 5%;
   background-color: var(--app-blue-opaque);
   color: var(--app-blue);
   font-family: Lexend;
@@ -30,63 +35,79 @@
   width: 70px;
   height: 15px;
   z-index: 1;
+  user-select: none;
 }
 
 .property-info {
-    padding-left: 10px;
+  padding-left: 10px;
   margin-top: 8px;
-  width: 250px;
+  width: 100%;
+  max-width: 250px;
+  box-sizing: border-box;
 }
 
 .property-title {
-  width: 230px;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-    padding-left: 2px;
+  width: 100%;
+  max-width: 230px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 2px;
   font-size: 14px;
   font-weight: bold;
   font-family: Tajawal;
-  color: black
+  color: black;
+  box-sizing: border-box;
 }
-.favorite-circle{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-width: 30px;
-height: 30px;
-border: 1px solid grey;
-border-radius: 50%;
+
+.favorite-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid grey;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
 }
-.property-favorite{
-    width:95%;
-    height: 40px;
-    display: flex;
-    align-items: end;
-    flex-direction: row;
-    justify-content: space-between;
+
+.favorite-circle:hover {
+  border-color: var(--app-blue);
+}
+
+.property-favorite {
+  width: 95%;
+  height: 40px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .price-section {
-    display: flex;
-    width: 230px;
-    flex-direction: row;
-    justify-content: space-between;
-    font-family: Lexend;
-    font-weight: 500;
-    color: var(--app-blue);
+  display: flex;
+  width: 100%;
+  max-width: 230px;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: Lexend;
+  font-weight: 500;
+  color: var(--app-blue);
+  box-sizing: border-box;
 }
 
 .price {
   font-size: 16px;
-  
 }
 
 .period {
   font-size: 14px;
   color: #666;
 }
-.trendingCard-pic:hover{
-cursor: pointer;
-}
 
+.trending-pic:hover {
+  cursor: pointer;
+  filter: brightness(0.95);
+  transition: filter 0.3s ease;
+}
