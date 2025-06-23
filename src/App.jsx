@@ -34,6 +34,7 @@ function App() {
         <Route path='/Details' element={<ShowHouse/>}></Route>
         <Route path='/Profile' element={<ProfilePage/>}></Route> 
         <Route path='/Admin' element={<AdminLogin/>}></Route> 
+        <Route path='/ContactUs' element={<ContactUs/>}></Route> 
         <Route path='/Dashboard' element={<AdminDashBoard/>}></Route>        
       </Routes>
     </Router>
