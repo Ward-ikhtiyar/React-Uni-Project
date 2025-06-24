@@ -45,13 +45,13 @@ export async function login(number,password){
         console.log(`printing ${data}`);
         
         if(data.accessToken){
-            // console.log(`loginSuccess:${data.accessToken}`);
-            // localStorage.setItem("token",data.accessToken);
-            // localStorage.setItem("number",number);
-            // localStorage.setItem("password",password);
-            // localStorage.setItem("role",data.UserType);
-            // console.log(data.UserType);
-            document.cookie();
+            console.log(`loginSuccess:${data.accessToken}`);
+            localStorage.setItem("token",data.accessToken);
+            localStorage.setItem("number",number);
+            localStorage.setItem("password",password);
+            localStorage.setItem("role",data.UserType);
+            console.log(data.UserType);
+            
             return 200;
         }else{
             
