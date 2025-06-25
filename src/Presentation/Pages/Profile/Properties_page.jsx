@@ -65,4 +65,4 @@ if(open){
 }
 
 }
-export default PropertiesPage
+export default PropertiesPage;

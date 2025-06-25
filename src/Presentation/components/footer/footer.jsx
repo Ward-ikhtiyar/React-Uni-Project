@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.css';
-import LoginDialog from '../../../components/Dialogs/login_dialog';
+import LoginDialog from '../Dialogs/login_dialog';
 import { useState } from 'react';
 const Footer = () => {
   const[openDialog,setOpenDialog]=useState(false);

@@ -2,7 +2,7 @@ import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import RE_Card from '../RE-Card/RE-Card'
 import './Re-Grid.css';
-import Footer from '../../../../Home/components/footer';
+import Footer from '../../../../../components/footer/footer';
 
 const RE_Grid = ({ Listings, isLoading, error, isFiltered }) => {
     const renderContent = () => {

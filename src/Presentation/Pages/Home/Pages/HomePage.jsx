@@ -6,7 +6,7 @@ import openDialogcontext from '../components/appBar.jsx'
 import { useContext, useEffect, useRef } from 'react';
 import {animate, motion} from "framer-motion";
 import { useInView } from 'framer-motion';
-import Footer from '../components/footer.jsx';
+import Footer from '../../../components/footer/footer.jsx';
 import TrendingCard from '../components/trendingCard.jsx';
 import AltServiceSection from '../components/AltService/alt_serviceSection.jsx';
 import TrendingSection from '../components/trending_section/trendingSection.jsx';

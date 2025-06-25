@@ -1,7 +1,7 @@
 import React from 'react';
 import './Search-Agent.css'
 import AppBar from '../Home/components/appBar'
-import Footer from '../Home/components/footer';
+import Footer from '../../components/footer/footer';
 import A_Grid from './components/A-Listing/A-Grid';
 import { Button, Pagination } from '@mui/material';
 import { Search } from '@mui/icons-material';

@@ -46,7 +46,7 @@ function AgentDialog({ open, onClose}, paramAgent) {
     };
 
     const handleClose = (event, reason) => {
-        console.log(`reason ${reason}`);
+        // console.log(`reason ${reason}`);
         if (reason && reason === 'backdropClick') {
             return; // ignore clicks inside or ESC key
         }

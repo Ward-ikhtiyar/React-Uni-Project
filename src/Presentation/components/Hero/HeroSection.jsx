@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import './adSection.css'
-import AppBar from './appBar';
-function AdSection() {
+import './HeroSection.css'
+function HeroSection() {
 
     let navigate = useNavigate();
 
@@ -25,4 +24,4 @@ function AdSection() {
 
     );
 }
-export default AdSection;
+export default HeroSection;

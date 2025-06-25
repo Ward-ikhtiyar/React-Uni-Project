@@ -20,7 +20,7 @@ const RE_Search = () => {
         // Close any open dropdowns
         setActiveFilter(null);
         
-        console.log('Applying filters:', { priceRange, propertyType });
+        // console.log('Applying filters:', { priceRange, propertyType });
         
         // Check if any filters are actually applied
         const hasFilters = priceRange[0] > 0 || priceRange[1] < 1000000 || propertyType !== 'All';
@@ -40,7 +40,7 @@ const RE_Search = () => {
             setError(null);
             let fetchedProperties = await getFilteredProperties(priceRange[0], priceRange[1], propertyType);
             setListings(fetchedProperties);
-            console.log('Filtered properties:', fetchedProperties);
+            // console.log('Filtered properties:', fetchedProperties);
         } catch (error) {
             console.error('Error fetching filtered properties:', error);
             if (error.statusCode === 404 && error.message === "No estates found") {
@@ -63,7 +63,7 @@ const RE_Search = () => {
             setError(null);
             let fetchedProperties = await getAcceptedProperties(false);
             setListings(fetchedProperties);
-            console.log('All properties:', fetchedProperties);
+            // console.log('All properties:', fetchedProperties);
         } catch (error) {
             console.error('Error fetching properties:', error);
             if (error.statusCode === 404 && error.message === "No estates found") {

@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 import { setFavorite } from '../../../../../../API/requests';
 
-const DisplayCard = ({property,isEditable}) => {
+const RE_Card = ({property,isEditable}) => {
     const handleClick=()=>{
         if(isEditable===true){
             setFavorite(property.id);
@@ -48,4 +48,4 @@ const DisplayCard = ({property,isEditable}) => {
         </div>);
 }
 
-export default DisplayCard;
+export default RE_Card;

@@ -1,15 +1,15 @@
 import React from 'react';
 import AppBar from '../Home/components/appBar'
-import Hero from '../../components/Hero/Hero'
-import Footer from '../Home/components/footer';
 import A_Card from './components/A-Card/A-Card';
 import A_Grid from './components/A-Listing/A-Grid';
+import HeroSection from '../../components/Hero/HeroSection';
+import Footer from '../../components/footer/footer';
 
 const SearchPage = () => {
     return (
         <div>
             <AppBar />
-            <Hero />
+            <HeroSection />
             <section>
                 <div>
                     <div>
