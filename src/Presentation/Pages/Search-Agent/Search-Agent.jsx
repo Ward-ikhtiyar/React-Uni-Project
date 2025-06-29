@@ -11,7 +11,7 @@ import AgentDialog from '../Agent/Agent';
 
 function SearchAgent() {
     const agentTypes = [
-        { label: "All Types", value: "" },
+        { label: "All", value: "" },
         { label: "Residential", value: "residential" },
         { label: "Commercial", value: "commercial" },
         { label: "Luxury", value: "luxury" },
@@ -56,7 +56,7 @@ function SearchAgent() {
                 <div className="agent-grid-wrapper">
                     <A_Grid />
                 </div>
-                
+
                 <div className="search-agent-pagination">
                     <Pagination count={10} style={{ display: "flex", justifyContent: "center" }} />
                 </div>
