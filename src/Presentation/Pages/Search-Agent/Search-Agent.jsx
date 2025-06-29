@@ -8,8 +8,33 @@ import { Search } from '@mui/icons-material';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import DD_Filter from './components/DD-Filter/DD-Filter';
 import AgentDialog from '../Agent/Agent';
+import { getAllAgencies } from '../../../API/requests';
 
+const [agents, setAgents] = useState([]);
 function SearchAgent() {
+    async function handleGetAgents() {
+        try {
+        let fetchedAgents = await getAllAgencies();
+        setAgents(fetchedAgents);
+        } catch (error) {
+            console.error('Error fetching agents:', error);
+            if (error.statusCode === 404 && error.message === "No agents found") {
+                // Handle 404 - no agents available
+                setAgents([]);
+                setError("No agents are currently available.");
+            } else {
+                // Other errors
+                setError("Error loading agents. Please try again later.");
+                setAgents([]);
+            }
+        } 
+        //     finally {
+        //         // setIsLoading(false);
+        // }
+    }
+    useEffect(() => {
+        handleGetAgents();
+    }, []);
     const agentTypes = [
         { label: "All", value: "" },
         { label: "Residential", value: "residential" },
@@ -54,12 +79,12 @@ function SearchAgent() {
                 </div>
 
                 <div className="agent-grid-wrapper">
-                    <A_Grid />
+                    <A_Grid agents={agents} />
                 </div>
 
-                <div className="search-agent-pagination">
+                {/* <div className="search-agent-pagination">
                     <Pagination count={10} style={{ display: "flex", justifyContent: "center" }} />
-                </div>
+                </div> */}
             </div>
             <Footer />
         </div>
