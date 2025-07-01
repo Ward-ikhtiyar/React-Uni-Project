@@ -16,17 +16,17 @@
 }
 
 .agent-profile-header {
+    width: calc(100% - 208px);
+    min-width: 1024px;
+    max-width: 1232px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 1rem;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-left: auto;
-    margin-right: auto;
-    width: calc(100% - 208px);
     display: flex;
     gap: 16px;
-    min-width: 1024px;
-    max-width: 1232px;
     background-color: #ffffff;
 }
 
