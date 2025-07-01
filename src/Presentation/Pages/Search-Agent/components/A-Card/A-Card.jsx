@@ -16,7 +16,7 @@ const A_Card = ({ agent }) => {
                 navigate(`/AgentDetails?id=${agent.id}`);
             }}
         >
-            <AgentDialog open={openDialog} onClose={() =>  setOpenDialog(false) } id={agent}/>
+            {/* <AgentDialog open={openDialog} onClose={() =>  setOpenDialog(false) } id={agent}/> */}
             <div className="agent-header">
                 <img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNEHbnGMLTCHTU3N45L2O_XBu61biBkJoRAw&s"
