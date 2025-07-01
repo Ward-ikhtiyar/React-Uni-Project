@@ -12,7 +12,9 @@ function AppBar({ isHome }) {
        return(
     <div className="appBar" style={{width:isHome?'80%':'100%', borderRadius:isHome?'20px':'0px',marginTop:isHome?'20px':'0px', animation:isHome?'appBar 0.5s ease-in':'appBarAlt 0.5s ease-in'}} >
          {/* <img src="public/assets/images/logo.png" style={{width:'10vw' ,height:'20vh',boxShadow:'none', paddingTop:'5px'}}/> */}
-         <EasyRent/>
+         <EasyRent onClick={()=>{
+            navigate('/',{replace:true})
+         }}/>
         <div className="side-panel">
         <button className="appBar-button" onClick={()=>{
             navigate('/Properties',);

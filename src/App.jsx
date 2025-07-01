@@ -29,7 +29,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<AgentDialog/>}> </Route>
-        {/* <Route path='/Properties' element={<RE_Search/>}></Route>
+        <Route path='/Properties' element={<RE_Search/>}></Route>
         <Route path='/Agents' element={<SearchAgent/>}></Route>
         <Route path='/Details' element={<ShowHouse/>}></Route>
         <Route path='/AgentDetails' element={<AgentDialog/>}></Route>
@@ -37,7 +37,7 @@ function App() {
         <Route path='/Admin' element={<AdminLogin/>}></Route> 
         <Route path='/ContactUs' element={<ContactUs/>}></Route> 
         <Route path='/Dashboard' element={<AdminDashBoard/>}></Route>        
-        <Route path='/Admin/property' element={<AdminPropertyDetails/>}/>     */}
+        <Route path='/Admin/property' element={<AdminPropertyDetails/>}/>    
       </Routes>
     </Router>
     </>
