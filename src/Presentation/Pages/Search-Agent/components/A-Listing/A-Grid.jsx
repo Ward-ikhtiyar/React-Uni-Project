@@ -2,15 +2,15 @@ import { Grid, Box, Pagination } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import A_Card from '../A-Card/A-Card';
 
-const A_Grid = ({ agents }) => {
-    const agents = agents.map((agent, index) => {
-        return (
-            <Grid key={index} size={1}>
-                <A_Card agent={agent} />
-            </Grid>
-        )
-    }
-    )
+const A_Grid = () => {
+    // const agentsGrid = agents.map((agent, index) => {
+    //     return (
+    //         <Grid key={index} size={1}>
+    //             <A_Card agent={agent} />
+    //         </Grid>
+    //     )
+    // }
+    // )
     return (
         <>
             <div className="grid-sectionz">

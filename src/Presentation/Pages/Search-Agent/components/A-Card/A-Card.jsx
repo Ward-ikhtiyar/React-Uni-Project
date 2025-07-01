@@ -7,11 +7,13 @@ import AgentDialog from '../../../Agent/Agent';
 
 const A_Card = ({ agent }) => {
     const [openDialog, setOpenDialog] = useState(false);
+    const navigate = useNavigate();
     return (
         <div className="agent-card"
             onClick={() => {
                 console.log(`dialog ${openDialog}`);
-                setOpenDialog(!openDialog)
+                // setOpenDialog(!openDialog)
+                navigate(`/AgentDetails?id=${agent.id}`);
             }}
         >
             <AgentDialog open={openDialog} onClose={() =>  setOpenDialog(false) } id={agent}/>

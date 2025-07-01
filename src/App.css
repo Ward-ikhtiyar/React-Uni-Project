@@ -14,3 +14,9 @@ html,body{
   
 }
 
+.F-col-c-c{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
