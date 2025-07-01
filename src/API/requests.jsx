@@ -140,6 +140,22 @@ export async function uploadPropertyImage(photos, id) {
     console.log(e.response.data);
   }
 }
+///////////////get All & my Agent Properties //////////////
+export async function getAgentAcceptedProperties() {
+  let endpoint = EndPoints.Agent.getMyAgentProperties;
+  console.log(endpoint)
+  try {
+    let response = await TokenAxios.get(endpoint);
+    let data = response.data;
+    console.log(data);
+    if (data) {
+      return data;
+    }
+  }
+  catch (e) {
+    console.log(e.response.data);
+  }
+}
 ///////////////get All & my Properties //////////////
 export async function getAcceptedProperties(mine) {
   let endpoint = mine === true ? EndPoints.Properties.getMine : EndPoints.Properties.getAll;
@@ -196,7 +212,7 @@ export async function getTopScoreProperties() {
 }
 ///////////////get All Agencies //////////////
 export async function getAllAgencies() {
-  let endpoint = EndPoints.Agency.getAgency;
+  let endpoint = EndPoints.Agent.getAgent;
   // console.log(endpoint)
   try {
     let response = await TokenAxios.get(endpoint);
@@ -210,9 +226,9 @@ export async function getAllAgencies() {
     console.log(e.response.data);
   }
 }
-///////////////get Agency By ID //////////////
-export async function getAgencyById(id) {
-  let endpoint = EndPoints.Agency.getAgency;
+///////////////get Agent By ID //////////////
+export async function getAgentById(id) {
+  let endpoint = EndPoints.Agent.getAgent;
   // console.log(endpoint)
   try {
     let response = await TokenAxios.get(endpoint, {

@@ -15,8 +15,12 @@ const EndPoints={
         getImg:'user/images/',
         getOwnerInfo:'user/pro',
     },
-    Agency:{
-        getAgency:'user/agency',
+    Agent:{
+        getAgent:'user/agency',
+        getMyAgentProperties:'propertyG/my',
+        acceptAgentProperty:'propertyG/acc',
+        rejectAgentProperty:'propertyG/rej',
+        getAgentPendingProperties:'propertyG/pending',
     },
     Properties:{
      create:'property',

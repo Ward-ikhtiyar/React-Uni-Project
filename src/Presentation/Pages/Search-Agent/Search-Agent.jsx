@@ -35,12 +35,12 @@ function SearchAgent() {
     // useEffect(() => {
     //     handleGetAgents();
     // }, []);
-    const agentTypes = [
-        { label: "All", value: "" },
-        { label: "Residential", value: "residential" },
-        { label: "Commercial", value: "commercial" },
-        { label: "Luxury", value: "luxury" },
-    ];
+    // const agentTypes = [
+    //     { label: "All", value: "" },
+    //     { label: "Residential", value: "residential" },
+    //     { label: "Commercial", value: "commercial" },
+    //     { label: "Luxury", value: "luxury" },
+    // ];
     return (
         <div id='search-agent-page'>
             <AppBar />
@@ -59,23 +59,7 @@ function SearchAgent() {
                             <Search id='search-icon' />Find agent</Button>
                         {/* </div> */}
                     </div >
-                    <div className="dropdown-filter-bar">
-                        <DD_Filter
-                            label="Agent Type"
-                            options={agentTypes}
-                        // {/* // onFilterChange={handleFilterChange} */}
-                        />
-                        <DD_Filter
-                            label="Agent Type"
-                            options={agentTypes}
-                        // {/* // onFilterChange={handleFilterChange} */}
-                        />
-                        <DD_Filter
-                            label="Agent Type"
-                            options={agentTypes}
-                        // {/* // onFilterChange={handleFilterChange} */}
-                        />
-                    </div>
+
                 </div>
 
                 <div className="agent-grid-wrapper">
