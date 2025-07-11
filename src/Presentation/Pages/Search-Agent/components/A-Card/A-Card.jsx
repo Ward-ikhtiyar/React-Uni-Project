@@ -11,9 +11,10 @@ const A_Card = ({ agent }) => {
     return (
         <div className="agent-card"
             onClick={() => {
-                console.log(`dialog ${openDialog}`);
-                // setOpenDialog(!openDialog)
-                navigate(`/AgentDetails?id=${agent.id}`);
+                // console.log(`dialog ${openDialog}`);
+                setOpenDialog("hello world");
+                // navigate(`/AgentDetails?id=${agent.id}`);
+                navigate('/AgentDetails');
             }}
         >
             {/* <AgentDialog open={openDialog} onClose={() =>  setOpenDialog(false) } id={agent}/> */}

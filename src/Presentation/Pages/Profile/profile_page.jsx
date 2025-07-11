@@ -27,7 +27,9 @@ function ProfilePage(){
                 <div className='profile-tab'>
                     
                     <div style={{height:"3%"}}></div>
-                    <EasyRent/>
+                    <EasyRent onClick={()=>{
+                        navigate('/');
+                    }}/>
                     <ProfileTab title={"Profile"} Icon={Person2} UnselectedIcon={Person2Outlined} val={tabIndex} index={0} setIndex={setTabIndex}/>
                     {/* <ProfileTab title={"Contracts"} Icon={PendingActions} UnselectedIcon={PendingActionsOutlined} val={tabIndex} index={1} setIndex={setTabIndex}/> */}
                     <ProfileTab title={"Properties"} Icon={House} UnselectedIcon={HouseOutlined} val={tabIndex} index={2} setIndex={setTabIndex}/>
