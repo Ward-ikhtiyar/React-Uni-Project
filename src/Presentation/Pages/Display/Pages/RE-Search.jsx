@@ -9,6 +9,9 @@ import RE_Grid from '../../Search-Proporties/components/RE-Listing/RE-Grid/RE-Gr
 import FilterBar from '../../Search-Proporties/components/Filter-Bar/Filter-Bar.jsx';
 const RE_Search = () => {
     const [priceRange, setPriceRange] = useState([0, 1000000]);
+    const [locationSource, setLocationSource] = useState('Near Me');
+    const [searchLocation, setSearchLocation] = useState({ lat: 0, lng: 0 });
+    const [searchRadius, setSearchRadius] = useState(10);
     const [propertyType, setPropertyType] = useState('All');
     const [activeFilter, setActiveFilter] = useState(null);
     const [Listings, setListings] = useState([]);
@@ -18,13 +21,18 @@ const RE_Search = () => {
 
     const handleSubmit = async () => {
         // Close any open dropdowns
+        // console.log('searchLocation', searchLocation);
         setActiveFilter(null);
-        
+        if (searchLocation.lat === 0 && searchLocation.lng === 0) {
+            alert("Please allow your location or choose manually through 'On Map' in the location filter.");
+            return; // Optionally return here to prevent further execution
+        }
+
         // console.log('Applying filters:', { priceRange, propertyType });
-        
+
         // Check if any filters are actually applied
         const hasFilters = priceRange[0] > 0 || priceRange[1] < 1000000 || propertyType !== 'All';
-        
+
         if (hasFilters) {
             setIsFiltered(true);
             await handleFilteredProperties();
@@ -38,7 +46,7 @@ const RE_Search = () => {
         try {
             setIsLoading(true);
             setError(null);
-            let fetchedProperties = await getFilteredProperties(priceRange[0], priceRange[1], propertyType);
+            let fetchedProperties = await getFilteredProperties(priceRange[0], priceRange[1], propertyType, searchRadius, locationSource);
             setListings(fetchedProperties);
             // console.log('Filtered properties:', fetchedProperties);
         } catch (error) {
@@ -56,7 +64,7 @@ const RE_Search = () => {
             setIsLoading(false);
         }
     }
-
+    
     async function handleGetProperties() {
         try {
             setIsLoading(true);
@@ -88,24 +96,34 @@ const RE_Search = () => {
 
         <div className='full-search-page'>
             <AppBar isHome={false} />
-            <FilterBar 
-                priceRange={priceRange} 
-                setPriceRange={setPriceRange} 
-                propertyType={propertyType} 
-                setPropertyType={setPropertyType} 
-                handleSubmit={handleSubmit} 
-                activeFilter={activeFilter} 
-                setActiveFilter={setActiveFilter} 
+            <FilterBar
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+                propertyType={propertyType}
+                setPropertyType={setPropertyType}
+                handleSubmit={handleSubmit}
+                activeFilter={activeFilter}
+                setActiveFilter={setActiveFilter}
+                searchRadius={searchRadius}
+                setSearchRadius={setSearchRadius}
+                locationSource={locationSource}
+                setLocationSource={setLocationSource}
             />
             <div className="search-page-wrapper">
                 <PropertyProvider>
-                    <RE_Map Listings={Listings} isAdd={false} />
+                    <RE_Map
+                        Listings={Listings} isAdd={false} locationSource={locationSource}
+
+                    setSearchLocation={setSearchLocation}
+                    // searchLocation={searchLocation}
+                    />
                 </PropertyProvider>
-                <RE_Grid 
-                    Listings={Listings} 
+                <RE_Grid
+                    Listings={Listings}
                     isLoading={isLoading}
                     error={error}
                     isFiltered={isFiltered}
+                    setSearchLocation={setSearchLocation}
                 />
             </div>
         </div>

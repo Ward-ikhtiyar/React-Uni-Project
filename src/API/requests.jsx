@@ -173,7 +173,7 @@ export async function getAcceptedProperties(mine) {
   }
 }
 ///////////////get Filtered Porperties //////////////
-export async function getFilteredProperties(minPrice, maxPrice, propertyType) {
+export async function getFilteredProperties(minPrice, maxPrice, propertyType, searchRadius, locationSource) {
   let endpoint = EndPoints.Properties.getAll;
   console.log(endpoint)
   try {
@@ -181,7 +181,9 @@ export async function getFilteredProperties(minPrice, maxPrice, propertyType) {
       params: {
         minPrice: minPrice,
         maxPrice: maxPrice,
-        word: propertyType
+        word: propertyType,
+        searchRadius: searchRadius,
+        locationSource: locationSource
       }
     });
     let data = response.data;
