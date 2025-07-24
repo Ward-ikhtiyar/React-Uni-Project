@@ -18,6 +18,8 @@ import RE_Search from './Presentation/Pages/Display/Pages/RE-Search';
 import AgentDialog from './Presentation/Pages/Agent/Agent';
 import AgentProfile from './Presentation/Pages/AgentProfile/AgentProfile';
 import AgentAboutMe from './Presentation/Pages/AgentAboutMe/AgentAboutMe';
+import ErrorPage from './Presentation/Pages/Error/Error';
+import NoExist from './Presentation/Pages/Error/NoExist';
 function App() {
 
   return (
@@ -37,6 +39,8 @@ function App() {
           <Route path='/AgentDetails' element={<AgentProfile />}></Route>
           <Route path='/AgentAboutMe' element={<AgentAboutMe />}></Route>
           <Route path='/Profile' element={<ProfilePage />}></Route>
+          <Route path='/Error' element={<ErrorPage/>}></Route>
+          <Route path='/NotFound' element={<NoExist/>}></Route>
           <Route path='/Admin' element={<AdminLogin />}></Route>
           <Route path='/ContactUs' element={<ContactUs />}></Route>
           <Route path='/Dashboard' element={<AdminDashBoard />}></Route>
