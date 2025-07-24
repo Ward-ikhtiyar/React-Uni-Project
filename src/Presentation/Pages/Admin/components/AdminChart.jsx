@@ -20,7 +20,7 @@ function AdminChart({ data, title, multiLine }) {
     };
 
     return (
-        <div className="admin-chart-container" style={{ width: '100%', height: '400px' }}>
+        <div className="admin-chart-container" style={{ width: '100%', height: '400px', }}>
             <h3 style={{ textAlign: 'center', marginBottom: '20px' }}>{title}</h3>
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart

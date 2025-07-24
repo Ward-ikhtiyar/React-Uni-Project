@@ -17,16 +17,10 @@ import AdminDashBoard from './Presentation/Pages/Admin/dashboard';
 
 import AdminPropertyDetails from './Presentation/Pages/Admin/Properties/admin_property_details';
 import RE_Search from './Presentation/Pages/Display/Pages/RE-Search';
+import PropertyPage from './Presentation/Pages/ShowPages/Page/show_house_alt';
 function App() {
   
   return (
-    <>
-    {/* <ContactUs/> */}
-      {/* <RE_Agent/> */}
-      {/* <PaymentPlans/> */}
-    {/* <RE_Search /> */}
-      {/* <HomePage/> */}
-      {/* <ShowHouse/> */}
     <Router>
       <Routes>
         <Route path='/' element={<HomePage/>}> </Route>
@@ -39,8 +33,6 @@ function App() {
         <Route path='/Admin/property' element={<AdminPropertyDetails/>}/>    
       </Routes>
     </Router>
-    </>
-    
   )
 }
 export default App;

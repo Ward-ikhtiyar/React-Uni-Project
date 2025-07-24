@@ -1,0 +1,31 @@
+.property-map-main {
+    width: 100vw;
+    height: 50vh;
+}
+
+.leaflet-container {
+    width: 100vw;
+}
+
+.leaflet-control-container {
+    z-index: 2;
+}
+
+/* Ensure controls are clickable */
+.leaflet-top,
+.leaflet-bottom {
+    z-index: 2;
+    pointer-events: auto;
+}
+
+/* Style the popup */
+.leaflet-popup-content-wrapper {
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.leaflet-popup-content {
+    margin: 8px;
+    font-size: 14px;
+    color: #333;
+}

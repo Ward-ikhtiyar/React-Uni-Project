@@ -11,7 +11,7 @@
   src: url("./assets/Tajawal-Regular.ttf");
 }
 body {
-  font-family: Lexend;
+  font-family: sans-serif;
   min-width: 320px;
   min-height: 100vh;
 }
