@@ -1,121 +1,83 @@
-import React from 'react';
-import { TextField, FormGroup, FormControlLabel, Checkbox, Chip, Box } from '@mui/material';
+import { useState } from 'react';
+import { TextField, FormGroup, FormControlLabel, Checkbox, Chip, Box, Grid } from '@mui/material';
+import EditAgentInfoButton from './EditAgentInfoButton';
+import { agentInfoFormConfig } from './formConfigs';
 
 function AgentInfoTab({ formData, handleInputChange, handleSpecialtyToggle, handleLanguageToggle, availableSpecialties, availableLanguages }) {
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const agentInfo = {
+        'Professional title': {
+            value: formData.title || 'Your professional title',
+            row: 0
+        },
+        'In business since': {
+            value: 'Year started',
+            row: 0,
+            input: true,
+            inputProps: {
+                name: "experience",
+                type: "number",
+                placeholder: "2012"
+            }
+        },
+        'Language fluency': {
+            value: 'Select languages',
+            input: true,
+            row: 1,
+            // chips: true,
+            // chipColor: "primary",
+            // checkboxes: true,
+            // checkboxOptions: availableLanguages,
+            // checkboxHandler: handleLanguageToggle,
+        },
+        'Specialties': {
+            value: 'Select specialties',
+            row: 1,
+            // chips: true,
+            // chipColor: "secondary",
+            // checkboxes: true,
+            // checkboxOptions: availableSpecialties,
+            // checkboxHandler: handleSpecialtyToggle,
+        }
+    };
+
+    // Group items by row
+    const rowItems = {};
+    Object.entries(agentInfo).forEach(([key, info]) => {
+        if (!rowItems[info.row]) {
+            rowItems[info.row] = [];
+        }
+        rowItems[info.row].push({ key, ...info });
+    });
+    const handleSave = (updatedData) => {
+        console.log('Agent info updated:', updatedData);
+    };
     return (
         <div className="content-section">
-            <div className="section-header">
-                <h2>Agent information</h2>
-                <button className="edit-link">Edit agent information</button>
-            </div>
-
+            <EditAgentInfoButton
+                title='Agent Information'
+                linkPlaceHolder='Edit agent information'
+                formConfig={agentInfoFormConfig}
+                initialValues={formData}
+                onSave={handleSave}
+            />
             <Box className="info-grid">
-                <div className="info-row">
-                    <div className="info-item">
-                        <label>Professional title</label>
-                        <div className="info-value">
-                            <span className="title-icon">👤</span>
-                            <TextField
-                                name="professionalTitle"
-                                value={formData.professionalTitle}
-                                onChange={handleInputChange}
-                                variant="outlined"
-                                size="small"
-                                fullWidth
-                            />
-                        </div>
+                {/* Iterate through all rows */}
+                {Object.entries(rowItems).map(([rowIndex, items]) => (
+                    <div className="info-row" key={rowIndex}>
+                        {items.map((item) => (
+                            <div className="info-item" key={item.key}>
+                                <label>{item.key}</label>
+                                <div className="info-value">
+                                    <p>
+                                        {item.value}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                    <div className="info-item">
-                        <label>In business since</label>
-                        <TextField
-                            name="experience"
-                            type="number"
-                            value={formData.experience}
-                            onChange={handleInputChange}
-                            placeholder="2012"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                        />
-                    </div>
-                </div>
-
-                <div className="info-row">
-                    <div className="info-item">
-                        <label>Language fluency</label>
-                        <div className="info-value">
-                            <Box className="language-tags" sx={{ mb: 2 }}>
-                                {formData.languages.length > 0 ? (
-                                    formData.languages.map(lang => (
-                                        <Chip 
-                                            key={lang} 
-                                            label={lang} 
-                                            size="small" 
-                                            color="primary" 
-                                            variant="outlined"
-                                            sx={{ mr: 1, mb: 1 }}
-                                        />
-                                    ))
-                                ) : (
-                                    <span className="placeholder-text">-</span>
-                                )}
-                            </Box>
-                            <FormGroup className="language-checkboxes">
-                                {availableLanguages.map(language => (
-                                    <FormControlLabel
-                                        key={language}
-                                        control={
-                                            <Checkbox
-                                                checked={formData.languages.includes(language)}
-                                                onChange={() => handleLanguageToggle(language)}
-                                                size="small"
-                                            />
-                                        }
-                                        label={language}
-                                        className="checkbox-item"
-                                    />
-                                ))}
-                            </FormGroup>
-                        </div>
-                    </div>
-                    <div className="info-item">
-                        <label>Specialties</label>
-                        <div className="info-value">
-                            <Box className="specialty-list" sx={{ mb: 2 }}>
-                                {formData.specialties.length > 0 ? (
-                                    formData.specialties.map(specialty => (
-                                        <Chip 
-                                            key={specialty} 
-                                            label={specialty} 
-                                            size="small" 
-                                            color="secondary" 
-                                            variant="outlined"
-                                            sx={{ mr: 1, mb: 1 }}
-                                        />
-                                    ))
-                                ) : (
-                                    <span className="placeholder-text">Select specialties</span>
-                                )}
-                            </Box>
-                            <FormGroup className="specialty-checkboxes">
-                                {availableSpecialties.map(specialty => (
-                                    <FormControlLabel
-                                        key={specialty}
-                                        control={
-                                            <Checkbox
-                                                checked={formData.specialties.includes(specialty)}
-                                                onChange={() => handleSpecialtyToggle(specialty)}
-                                                size="small"
-                                            />
-                                        }
-                                        label={specialty}
-                                        className="checkbox-item"
-                                    />
-                                ))}
-                            </FormGroup>
-                        </div>
-                    </div>
-                </div>
+                ))}
             </Box>
         </div>
     );

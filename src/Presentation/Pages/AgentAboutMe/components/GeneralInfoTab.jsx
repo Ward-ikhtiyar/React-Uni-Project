@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
+import EditAgentInfoButton from './EditAgentInfoButton';
+import { generalInfoFormConfig } from './formConfigs';
 
 function GeneralInfoTab({ formData, handleInputChange }) {
+    const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+    
     const generalInfo = {
         FirstName: { value: formData.name || 'your name', row: 0 },
         LastName: { value: formData.lastName || 'your last name', row: 0 },
@@ -21,12 +25,23 @@ function GeneralInfoTab({ formData, handleInputChange }) {
         }
     });
 
+    const handleSave = (updatedData) => {
+        // Update the form data
+        handleInputChange(updatedData);
+        console.log('General info updated:', updatedData);
+    };
+
     return (
         <div className="content-section">
-            <div className="section-header">
-                <h2>General information</h2>
-                <button className="edit-link">Edit general information</button>
-            </div>
+            <EditAgentInfoButton 
+                title='General information' 
+                linkPlaceHolder='Edit general information'
+                formConfig={generalInfoFormConfig}
+                initialValues={formData}
+                onSave={handleSave}
+                open={isEditDialogOpen}
+                onClose={() => setIsEditDialogOpen(false)}
+            />
 
             <Box className="info-grid">
                 {/* First and Second rows: iterate through grouped items */}

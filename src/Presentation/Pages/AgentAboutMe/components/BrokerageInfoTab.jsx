@@ -1,5 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
+import EditAgentInfoButton from './EditAgentInfoButton';
+import { brokerageInfoFormConfig } from './formConfigs';
 
 function BrokerageInfoTab({ formData }) {
     const brokerageInfo = {
@@ -34,14 +36,19 @@ function BrokerageInfoTab({ formData }) {
         }
         rowItems[info.row].push({ key, ...info });
     });
-
+    const handleSave = (updatedData) => {
+        // Update the form data
+        console.log('Brokerage info updated:', updatedData);
+    };
     return (
         <div className="content-section">
-            <div className="section-header">
-                <h2>Brokerage information</h2>
-                <button className="edit-link">Edit brokerage information</button>
-            </div>
-
+            <EditAgentInfoButton
+                title='Brokerage information'
+                linkPlaceHolder='Edit brokerage information'
+                formConfig={brokerageInfoFormConfig}
+                initialValues={formData}
+                onSave={handleSave}
+            />
             <Box className="info-grid">
                 {/* Iterate through all rows */}
                 {Object.entries(rowItems).map(([rowIndex, items]) => (

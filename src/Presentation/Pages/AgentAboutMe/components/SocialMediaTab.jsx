@@ -1,138 +1,92 @@
 import React from 'react';
-import { TextField, Box, InputAdornment } from '@mui/material';
+import { Box } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn, Language } from '@mui/icons-material';
+import EditAgentInfoButton from './EditAgentInfoButton';
+import { socialMediaFormConfig } from './formConfigs';
 
 function SocialMediaTab({ formData, handleInputChange }) {
+
+    const socialMediaInfo = {
+
+        'LinkedIn': {
+            value: formData.linkedin,
+            placeholder: 'https://linkedin.com/in/yourprofile',
+            icon: <LinkedIn />,
+            row: 0
+        },
+        'Facebook': {
+            value: 'https://facebook.com/yourprofile',
+            placeholder: 'https://facebook.com/yourprofile',
+            icon: <Facebook />,
+            row: 0
+        },
+        'Twitter': {
+            value: formData.twitter,
+            placeholder: 'https://twitter.com/yourhandle',
+            icon: <Twitter />,
+            row: 1
+        },
+        'Instagram': {
+            value: formData.instagram,
+            icon: <Instagram />,
+            row: 1
+        },
+
+    };
+
+    // Group items by row
+    const rowItems = {};
+    Object.entries(socialMediaInfo).forEach(([key, info]) => {
+        if (!rowItems[info.row]) {
+            rowItems[info.row] = [];
+        }
+        rowItems[info.row].push({ key, ...info });
+    });
+    const handleSave = (updatedData) => {
+        console.log('Social media info updated:', updatedData);
+    };
+
     return (
         <div className="content-section">
-            <div className="section-header">
-                <h2>Social media & links</h2>
-                <button className="edit-link">Edit social media & links</button>
-            </div>
+            <EditAgentInfoButton
+                title='Social Media & Contact'
+                linkPlaceHolder='Edit social media information'
+                formConfig={socialMediaFormConfig}
+                initialValues={formData}
+                onSave={handleSave}
+            />
 
             <Box className="info-grid">
-                <div className="info-row">
-                    <div className="info-item">
-                        <label>Website</label>
-                        <TextField
-                            name="website"
-                            value={formData.website || ''}
-                            onChange={handleInputChange}
-                            placeholder="https://yourwebsite.com"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <Language />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </div>
-                    <div className="info-item">
-                        <label>LinkedIn</label>
-                        <TextField
-                            name="linkedin"
-                            value={formData.linkedin || ''}
-                            onChange={handleInputChange}
-                            placeholder="https://linkedin.com/in/yourprofile"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <LinkedIn />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </div>
-                </div>
+                {/* Iterate through all rows */}
+                {Object.entries(rowItems).map(([rowIndex, items]) => (
+                    <div className="info-row" key={rowIndex}>
+                        {items.map((item) => (
+                            <div className="info-item" key={item.key}>
+                                <label>{item.key}
 
-                <div className="info-row">
-                    <div className="info-item">
-                        <label>Facebook</label>
-                        <TextField
-                            name="facebook"
-                            value={formData.facebook || ''}
-                            onChange={handleInputChange}
-                            placeholder="https://facebook.com/yourprofile"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <Facebook />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
+                                </label>
+                                {item.icon}
+                                <div className="info-value">
+                                    {item.value ? (
+                                        <a
+                                            href={item.value}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        // className="social-link"
+                                        >
+                                            <p>your profile</p>
+                                        </a>
+                                    ) : (
+                                        <div className="info-value">
+                                            {/* <span className="placeholder-text">{item.placeholder}</span> */}
+                                            <p >########################</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                    <div className="info-item">
-                        <label>Twitter</label>
-                        <TextField
-                            name="twitter"
-                            value={formData.twitter || ''}
-                            onChange={handleInputChange}
-                            placeholder="https://twitter.com/yourhandle"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <Twitter />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </div>
-                </div>
-
-                <div className="info-row">
-                    <div className="info-item">
-                        <label>Instagram</label>
-                        <TextField
-                            name="instagram"
-                            value={formData.instagram || ''}
-                            onChange={handleInputChange}
-                            placeholder="https://instagram.com/yourhandle"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <Instagram />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </div>
-                    <div className="info-item">
-                        <label>Other Link</label>
-                        <TextField
-                            name="otherLink"
-                            value={formData.otherLink || ''}
-                            onChange={handleInputChange}
-                            placeholder="https://yourother.link"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <Language />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </div>
-                </div>
+                ))}
             </Box>
         </div>
     );

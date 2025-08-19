@@ -1,2 +1,51 @@
-/* AgentBasicInfo specific styles can be added here if needed */
-/* Most styles should already be defined in the main Agent.css */
+/* AgentBasicInfo specific styles */
+.verification-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #22c55e;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.agent-location {
+    color: #666;
+    margin: 8px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.commission-rate {
+    color: #333;
+    margin: 8px 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.commission-rate span {
+    color: #777;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.profile-stats, .client-votes {
+    color: #555;
+    margin: 4px 0;
+    font-size: 13px;
+}
+
+.profile-stats span, .client-votes span {
+    color: #777;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.agent-header {
+    position: relative;
+}

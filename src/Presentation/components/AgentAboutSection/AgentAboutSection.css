@@ -1,2 +1,73 @@
-/* AgentAboutSection specific styles can be added here if needed */
-/* Most styles should already be defined in the main Agent.css */
+/* AgentAboutSection specific styles */
+.agent-profile-body-about-agent {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.agent-profile-section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #006aff;
+    padding-bottom: 0.5rem;
+}
+
+.agent-profile-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #006aff, #0d4599);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.agent-profile-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.agent-profile-showmore {
+    color: #006aff;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-left: 0.5rem;
+}
+
+.agent-profile-showmore:hover {
+    color: #0d4599;
+}
+
+.agent-profile-languages {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #006aff;
+}
+
+.agent-profile-languages-label {
+    font-weight: 600;
+    color: #333;
+    margin-right: 0.5rem;
+}
+
+.agent-profile-experience {
+    background: linear-gradient(135deg, #006aff, #0d4599);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 106, 255, 0.3);
+}

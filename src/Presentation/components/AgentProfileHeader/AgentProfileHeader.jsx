@@ -10,10 +10,10 @@ function AgentProfileHeader({
     scrollTargetId = "properties-list" 
 }) {
     const statsData = [
-        { value: agentData.salesLast12Months, label: "Sales last 12 months" },
-        { value: agentData.totalSales, label: "Total sales" },
-        { value: agentData.priceRange, label: "Price range" },
-        { value: agentData.averagePrice, label: "Average price" }
+        { value: agentData.views || 0, label: "Profile views" },
+        { value: agentData.votes || 0, label: "Client votes" },
+        { value: `${agentData.commissionRate || 1.0}%`, label: "Commission rate" },
+        { value: agentData.isVerified ? "Verified" : "Unverified", label: "Account status" }
     ];
 
     return (
@@ -22,9 +22,11 @@ function AgentProfileHeader({
                 photo={agentData.photo}
                 name={agentData.name}
                 company={agentData.company}
-                priceRange={agentData.priceRange}
-                salesLast12Months={agentData.salesLast12Months}
-                totalSalesInCity={agentData.totalSalesInCity}
+                location={agentData.location}
+                commissionRate={agentData.commissionRate}
+                views={agentData.views}
+                votes={agentData.votes}
+                isVerified={agentData.isVerified}
             />
             <div className="agent-profile-header-right F-col-c-c">
                 <AgentPropertiesCarousel

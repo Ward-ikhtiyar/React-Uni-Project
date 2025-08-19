@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Info from "./A-Card-Info.json"
 import "./A-Card.css"
 import { LocationOnOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -8,34 +7,41 @@ import AgentDialog from '../../../Agent/Agent';
 const A_Card = ({ agent }) => {
     const [openDialog, setOpenDialog] = useState(false);
     const navigate = useNavigate();
+    
+    // Use agent data if available, otherwise use fallback values
+    const agentData = agent || {};
+    
     return (
         <div className="agent-card"
             onClick={() => {
-                // console.log(`dialog ${openDialog}`);
                 setOpenDialog("hello world");
-                // navigate(`/AgentDetails?id=${agent.id}`);
-                navigate('/AgentDetails');
+                navigate(`/AgentDetails?id=${agentData.id || 'default'}`);
             }}
         >
-            {/* <AgentDialog open={openDialog} onClose={() =>  setOpenDialog(false) } id={agent}/> */}
             <div className="agent-header">
                 <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNEHbnGMLTCHTU3N45L2O_XBu61biBkJoRAw&s"
+                    src={agentData.profileImage || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNEHbnGMLTCHTU3N45L2O_XBu61biBkJoRAw&s"}
                     alt="Agent"
                     className="agent-photo"
                 />
-                {/* <div className="badge">Top Agent<br />on Zillow</div> */}
             </div>
             <div className="agent-info">
-                <h2 className="agent-name">Matt Laricy</h2>
-                <p className="agent-company">Americorp Real Estate</p>
-                <p className="price-range">$13K - $3.8M <span>team price range</span></p>
-                <p className="sales">497 <span>team sales last 12 months</span></p>
-                <p className="sales">5164 <span>team sales in Chicago</span></p>
-            </div>
-            <div className="rating">
-                <span className="stars">5.0 ★</span>
-                <span className="review-count">(1812)</span>
+                <h2 className="agent-name">{agentData.username || "Agent Name"}</h2>
+                <p className="agent-company">{agentData.agencyInfo?.agencyName || "Agency Name"}</p>
+                <p className="agent-location">
+                    <LocationOnOutlined style={{ fontSize: '16px', marginRight: '4px' }} />
+                    {agentData.location?.address || "Location not specified"}
+                </p>
+                <p className="agent-commission">
+                    Commission Rate: {agentData.agencyInfo?.agencyCommissionRate || 1.0}%
+                </p>
+                <p className="agent-stats">
+                    Views: {agentData.agencyInfo?.agencyViews || 0} | 
+                    Votes: {agentData.agencyInfo?.agencyVotes || 0}
+                </p>
+                <p className={`agent-verified ${agentData.isAccountVerified ? 'verified' : 'unverified'}`}>
+                    {agentData.isAccountVerified ? "✓ Verified Account" : "Unverified Account"}
+                </p>
             </div>
         </div>
     );

@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import './AgentPromoteSection.css';
 import ProgressBar from '../ProgressBar/ProgressBar';
+import { Link } from 'react-router-dom';
 
 function AgentPromoteSection({ profileCompletion = 25, onPromotionItemClick }) {
+    const [completed, setCompleted] = useState([false,false,true]);
     const promotionItems = [
-        { id: 1, text: 'Add "About me"',page: `{<imageUploadDialog/>}`, completed: false },
-        { id: 2, text: 'Add service areas', completed: false },
+        // { id: 1, text: 'Add "About me"', destination: 'page', page: '/AgentAboutMe', completed: completed[id] },
+        { id: 1, text: 'Add service areas', destination: 'page', page: '/AgentAboutMe', completed: false },
+        { id: 2, text: 'check payment plan', destination: 'page', page: '/AgentAboutMe', completed: true },
+        { id: 3, text: 'Add a photo', destination: 'dialog', dialogType: 'imageUploadd', completed: true }
         // { id: 3, text: 'Add your past sales to your profile', completed: false },
         // { id: 4, text: 'Connect your listings', completed: false },
         // { id: 5, text: 'Get 5 or more past clients to review you', completed: false },
-        { id: 6, text: 'Add a photo', completed: true }
     ];
+    // const completedPromotionItems = useCallback;
 
     const handleItemClick = (item) => {
-        if (onPromotionItemClick) {
+        if (onPromotionItemClick && item.destination === 'dialog') {
             onPromotionItemClick(item);
         }
     };
@@ -23,33 +27,37 @@ function AgentPromoteSection({ profileCompletion = 25, onPromotionItemClick }) {
             <h2 className="promote-title">Promote yourself on Zillow</h2>
 
             {/* Progress Bar */}
-            <ProgressBar percentage={profileCompletion} />
+            {/* <ProgressBar percentage={profileCompletion} /> */}
 
             {/* Promotion Items */}
             <div className="promotion-items">
                 {promotionItems.map((item) => (
-                    <a
-                        key={item.id}
-                        href="#"
-                        className={`promotion-item ${item.completed ? 'completed' : ''}`}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            handleItemClick(item);
-                        }}
-                    >
-                        <div className="promotion-number">
-                            {item.completed ? '✓' : item.id}
+                    item.destination === 'page' ? (
+                        <Link
+                            to={item.page}
+                            key={item.id}
+                            className={`promotion-item ${item.completed ? 'completed' : ''}`}
+                        >
+                            <div className="promotion-number">
+                                {item.completed ? '✓' : item.id}
+                            </div>
+                            <span className="promotion-text">{item.text}</span>
+                        </Link>
+                    ) : (
+                        <div
+                            key={item.id}
+                            className={`promotion-item ${item.completed ? 'completed' : ''}`}
+                            onClick={() => handleItemClick(item)}
+                            style={{ cursor: 'pointer' }}
+                        >
+                            <div className="promotion-number">
+                                {item.completed ? '✓' : item.id}
+                            </div>
+                            <span className="promotion-text">{item.text}</span>
                         </div>
-                        <span className="promotion-text">{item.text}</span>
-                    </a>
+                    )
                 ))}
             </div>
-
-            {/* <div className="zillow-offers">
-                <a href="#" className="zillow-offers-link">
-                    See what Zillow offers agents
-                </a>
-            </div> */}
         </section>
     );
 }

@@ -5,9 +5,11 @@ function AgentBasicInfo({
     photo, 
     name, 
     company, 
-    priceRange, 
-    salesLast12Months, 
-    totalSalesInCity 
+    location,
+    commissionRate,
+    views,
+    votes,
+    isVerified
 }) {
     return (
         <div className="agent-profile-header-left">
@@ -21,14 +23,17 @@ function AgentBasicInfo({
             <div className="agent-info F-col-c-c">
                 <h2 className="agent-name">{name}</h2>
                 <p className="agent-company">{company}</p>
-                <p className="price-range">
-                    {priceRange} <span>team price range</span>
+                <p className="agent-location">
+                    📍 {location}
                 </p>
-                <p className="sales">
-                    {salesLast12Months} <span>team sales last 12 months</span>
+                <p className="commission-rate">
+                    {commissionRate}% <span>commission rate</span>
                 </p>
-                <p className="sales">
-                    {totalSalesInCity} <span>team sales in Chicago</span>
+                <p className="profile-stats">
+                    {views} <span>profile views</span>
+                </p>
+                <p className="client-votes">
+                    {votes} <span>client votes</span>
                 </p>
             </div>
         </div>

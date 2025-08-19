@@ -36,9 +36,41 @@
     display: flex;
 }
 
+/* Add pagination styles */
 .search-agent-pagination {
-    /* justify-self: center;
-    display: flex; */
+    margin: 2rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-agent-pagination .MuiPagination-root {
+    display: flex;
+    justify-content: center;
+}
+
+.search-agent-pagination .MuiPaginationItem-root {
+    margin: 0 4px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.search-agent-pagination .MuiPaginationItem-page.Mui-selected {
+    background-color: #006aff;
+    color: white;
+}
+
+.search-agent-pagination .MuiPaginationItem-page:hover {
+    background-color: #e3f2fd;
+}
+
+.pagination-info {
+    text-align: center;
+    margin-top: 1rem;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 #find-agent-button {

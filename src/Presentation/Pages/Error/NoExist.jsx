@@ -13,12 +13,12 @@ const NoExist = () => {
           <p>The page you are looking for doesn't exist or has been moved.</p>
           
           <div className="not-found-actions">
-            <Link to="/" className="home-button">
+            <Link to="/" className="not-found-home-button">
               Back to Home
             </Link>
             <button 
               onClick={() => window.history.back()} 
-              className="back-button"
+              className="not-found-back-button"
             >
               Go Back
             </button>
@@ -26,13 +26,13 @@ const NoExist = () => {
           
           <div className="not-found-search">
             <p>Looking for something specific?</p>
-            <div className="search-container">
+            <div className="not-found-search-container">
               <input 
                 type="text" 
                 placeholder="Search our site" 
-                className="search-input" 
+                className="not-found-search-input" 
               />
-              <button className="search-button">Search</button>
+              <button className="not-found-search-button">Search</button>
             </div>
           </div>
         </div>

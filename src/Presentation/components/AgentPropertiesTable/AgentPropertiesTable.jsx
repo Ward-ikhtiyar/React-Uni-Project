@@ -1,64 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Pagination } from '@mui/material';
 import './AgentPropertiesTable.css';
+import { Link } from 'react-router-dom';
 
-function AgentPropertiesTable({ properties, totalCount = 63 }) {
+function AgentPropertiesTable({ properties, totalCount = 0 }) {
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 7; // Based on the pagination in the image
+    const propertiesPerPage = 20;
+    // Calculate pagination
+    const totalPages = Math.ceil(properties.length / propertiesPerPage);
+    const startIndex = (currentPage - 1) * propertiesPerPage;
+    const endIndex = startIndex + propertiesPerPage;
+    const currentProperties = properties.slice(startIndex, endIndex);
 
-    const handlePageChange = (page) => {
+    const handlePageChange = (event, page) => {
         setCurrentPage(page);
     };
 
-    const renderPagination = () => {
-        const pages = [];
-        
-        // Previous button
-        pages.push(
-            <button 
-                key="prev" 
-                className="pagination-btn pagination-arrow"
-                onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
-                disabled={currentPage === 1}
-            >
-                ‹
-            </button>
-        );
-
-        // Page numbers
-        for (let i = 1; i <= totalPages; i++) {
-            pages.push(
-                <button
-                    key={i}
-                    className={`pagination-btn ${currentPage === i ? 'active' : ''}`}
-                    onClick={() => handlePageChange(i)}
-                >
-                    {i}
-                </button>
-            );
-        }
-
-        // Next button
-        pages.push(
-            <button 
-                key="next" 
-                className="pagination-btn pagination-arrow"
-                onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages}
-            >
-                ›
-            </button>
-        );
-
-        return pages;
-    };
+    // Reset to first page when properties change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [properties]);
 
     return (
+        
         <div className="agent-properties-table-container" id='properties-list'>
             <div className="properties-intro-text">
                 This map can show the most recent 100 listings and 100 sales. Review all listings and sales below.
             </div>
             
-            <h2 className="properties-list-title">For Sale ({totalCount})</h2>
+            <h2 className="properties-list-title">For Sale ({properties.length})</h2>
             
             <table className="properties-list-table">
                 <thead>
@@ -69,31 +39,51 @@ function AgentPropertiesTable({ properties, totalCount = 63 }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {properties.map((property) => (
+                    {currentProperties.map((property) => (
                         <tr key={property.id} className="properties-list-row">
                             <td className="properties-list-td properties-list-td-address">
-                                <img 
-                                    className="properties-list-img" 
-                                    src={property.image} 
-                                    alt="Property" 
-                                />
-                                <div className="properties-list-address-text">
-                                    <div className="properties-list-address-main">{property.address}</div>
-                                    <div className="properties-list-address-sub">{property.city}</div>
-                                </div>
+                                <Link to={`/show_house/${property.id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'contents' }}>
+                                    <img 
+                                        className="properties-list-img" 
+                                        src={property.image} 
+                                        alt="Property" 
+                                    />
+                                    <div className="properties-list-address-text">
+                                        <div className="properties-list-address-main">{property.address}</div>
+                                        <div className="properties-list-address-sub">{property.city}</div>
+                                    </div>
+                                </Link>
                             </td>
                             <td className="properties-list-td">
-                                {property.beds} Bed, {property.baths} Bath
+                                <Link to={`/show_house/${property.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    {property.beds} Bed, {property.baths} Bath
+                                </Link>
                             </td>
-                            <td className="properties-list-td">{property.price}</td>
+                            <td className="properties-list-td">
+                                <Link to={`/show_house/${property.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    {property.price}
+                                </Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
 
-            {/* <div className="pagination-container">
-                {renderPagination()}
-            </div> */}
+            {properties.length > 0 && (
+                <div className="properties-pagination">
+                    <Pagination 
+                        count={totalPages} 
+                        page={currentPage}
+                        onChange={handlePageChange}
+                        color="primary"
+                        size="large"
+                        style={{ display: "flex", justifyContent: "center", marginTop: "2rem" }} 
+                    />
+                    <div className="pagination-info">
+                        Showing {startIndex + 1}-{Math.min(endIndex, properties.length)} of {properties.length} properties
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

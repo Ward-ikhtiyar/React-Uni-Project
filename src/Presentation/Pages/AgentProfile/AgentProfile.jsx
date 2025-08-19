@@ -8,7 +8,7 @@ import AgentPropertiesTable from '../../components/AgentPropertiesTable/AgentPro
 import AgentPromoteSection from '../../components/AgentPromoteSection/AgentPromoteSection';
 import ImageUploadDialog from '../../components/imageUploadDialog/imageUploadDialog';
 import { uploadAgentImage } from '../../../API/other_requests';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import profilePlaceholder from '../../../../public/assets/images/Profile_avatar_placeholder.png';
 
 function AgentProfile() {
@@ -43,8 +43,8 @@ function AgentProfile() {
 
     // Empty properties data - will show placeholder
     const propertiesData = [];
-
-    // Carousel items - placeholder for now
+    // Carousel items - will show placeholder
+    const carouselItems = [];
     const items = [
         <div key="placeholder" className="carousel-placeholder">
             <div className="placeholder-icons">
@@ -58,18 +58,32 @@ function AgentProfile() {
         </div>
     ];
 
+    // const promotionNavigation : 
     const handlePromotionItemClick = (item) => {
         console.log(`Navigate to: ${item.text}`);
 
-        // Navigate to AgentAboutMe page when "Add 'About me'" is clicked
-        if (item.text === 'Add "About me"') {
-            navigate('/AgentAboutMe');
-        }
-        // Show image upload dialog when "Add a photo" is clicked
-        else if (item.text === 'Add a photo') {
+        // if (item.destination !== 'dialog') {
+        //     // navigate(item.page);
+        //     // Link()
+        // }
+        // Handle dialog opening if needed
+         if (item.dialogType === 'imageUpload') {
             setShowImageUploadDialog(true);
         }
-        // Other promotion items will be implemented later
+        //! if i added more dialogs
+        // else {
+        //     switch (item.dialogType) {
+        //         case 'imageUpload':
+        //             setShowImageUploadDialog(true);
+        //             break;
+        //         // Add more dialog types as needed
+        //         // case 'otherDialogType':
+        //         //     setShowOtherDialog(true);
+        //         //     break;
+        //         default:
+        //             console.warn(`Unknown dialog type: ${item.dialogType}`);
+        //     }
+        // }
     };
 
     // Handle image selection from the upload dialog
@@ -112,6 +126,7 @@ function AgentProfile() {
     return (
         <div className="agent-profile-page">
             <AppBar />
+            
             <div className="agent-profile-wrapper">
                 <AgentProfileHeader
                     agentData={agentData}

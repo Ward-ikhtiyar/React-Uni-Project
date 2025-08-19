@@ -7,6 +7,7 @@ import GeneralInfoTab from './components/GeneralInfoTab';
 import AgentInfoTab from './components/AgentInfoTab';
 import BrokerageInfoTab from './components/BrokerageInfoTab';
 import SocialMediaTab from './components/SocialMediaTab';
+import ListingTab from './components/ListingTab';
 
 function AgentAboutMe() {
     const navigate = useNavigate();
@@ -135,11 +136,19 @@ function AgentAboutMe() {
                         handleInputChange={handleInputChange}
                     />
                 );
+            case 4:
+                return (
+                    <ListingTab
+                        formData={formData}
+                        handleInputChange={handleInputChange}
+                    />
+                );
             default:
                 return null;
         }
     };
 
+    
     return (
         <div className="agent-about-me-page">
             <div className="edit-profile-container">
@@ -171,6 +180,7 @@ function AgentAboutMe() {
                                 <Tab label="Agent info" />
                                 <Tab label="Brokerage info" />
                                 <Tab label="Social media & links" />
+                                <Tab label="My Listings" />
                             </Tabs>
                         </Box>
                     </div>

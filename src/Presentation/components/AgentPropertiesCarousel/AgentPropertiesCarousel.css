@@ -55,6 +55,15 @@
   flex: 0 0 auto;
 }
 
+/* Ensure plain image items render at a consistent, responsive size */
+.agent-properties-carousel-container .carsouel-item {
+  display: block;
+  width: 260px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
 .see-more-item {
   display: flex;
   align-items: center;
@@ -145,6 +154,10 @@
   .agent-properties-carousel-container {
     width: 100%;
     padding: 10px 0;
+  }
+  .agent-properties-carousel-container .carsouel-item {
+    width: 200px;
+    height: 120px;
   }
   
   .agent-properties-carousel-card {

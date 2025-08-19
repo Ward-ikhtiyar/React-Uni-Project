@@ -213,11 +213,15 @@ export async function getTopScoreProperties() {
   }
 }
 ///////////////get All Agencies //////////////
-export async function getAllAgencies() {
+export async function getAllAgencies(username) {
   let endpoint = EndPoints.Agent.getAgent;
   // console.log(endpoint)
   try {
-    let response = await TokenAxios.get(endpoint);
+    let response = await TokenAxios.get(endpoint, {
+      params: {
+        word: username,
+      }
+    });
     let data = response.data;
     console.log(data);
     if (data) {
@@ -231,6 +235,26 @@ export async function getAllAgencies() {
 ///////////////get Agent By ID //////////////
 export async function getAgentById(id) {
   let endpoint = EndPoints.Agent.getAgent;
+  // console.log(endpoint)
+  try {
+    let response = await TokenAxios.get(endpoint, {
+      params: {
+        id: id,
+      }
+    });
+    let data = response.data;
+    console.log(data);
+    if (data) {
+      return data;
+    }
+  }
+  catch (e) {
+    console.log(e.response.data);
+  }
+}
+///////////////get Agent properties //////////////
+export async function getAgentProperties(id) {
+  let endpoint = EndPoints.Agent.getMyAgentProperties;
   // console.log(endpoint)
   try {
     let response = await TokenAxios.get(endpoint, {

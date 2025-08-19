@@ -32,7 +32,7 @@ function App() {
       {/* <ShowHouse/> */}
       <Router>
         <Routes>
-          <Route path='/' element={<HomePage />}> </Route>
+          <Route path='/' element={<AgentDialog />}> </Route>
           <Route path='/Properties' element={<RE_Search />}></Route>
           <Route path='/Agents' element={<SearchAgent />}></Route>
           <Route path='/Details' element={<ShowHouse />}></Route>
