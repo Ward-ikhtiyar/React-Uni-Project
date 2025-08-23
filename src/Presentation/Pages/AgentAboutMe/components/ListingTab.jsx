@@ -5,6 +5,8 @@ import AgentProperty from '../../Profile/components/myProperty_card/Agent_proper
 import CreatePropertyDialog from '../../../components/Dialogs/CreateProperty_Dialog';
 import ManagePropertyDialog from '../../../components/Dialogs/manage_property_dialog';
 import { getAcceptedProperties } from '../../../../API/requests';
+import { Link } from 'react-router-dom';
+import AddPropertyPage from '../../Profile/addProperty/addProperty';
 
 function ListingTab({ formData, handleInputChange }) {
     const [chipVal, setChipVal] = useState(0);
@@ -36,9 +38,9 @@ function ListingTab({ formData, handleInputChange }) {
             <div>
                 <div className="section-header">
                     <h2>My Property Listings</h2>
-                    <button className='colored-button' onClick={() => setOpen(true)}>
+                    <Link to={AddPropertyPage}  >
                         Add a property
-                    </button>
+                    </Link>
                 </div>
                 <div className="no-results-container">
 
@@ -55,14 +57,14 @@ function ListingTab({ formData, handleInputChange }) {
         );
     }
 
-    if (!open) {
+    // if (!open) {
         return (
             <div className="content-section">
                 <div className="section-header">
                     <h2>My Property Listings</h2>
-                    <button className='colored-button' onClick={() => setOpen(true)}>
+                    <Link to={AddPropertyPage} className='colored-button' >
                         Add a property
-                    </button>
+                    </Link>
                 </div>
 
                 <div className='chips-row'>
@@ -89,21 +91,21 @@ function ListingTab({ formData, handleInputChange }) {
                         setOpen={setOpen}
                         id={id}
                         open={dialog}
-                        onClosee={() => setDialog(false)}
+                        onClose={() => setDialog(false)}
                     />
                 )}
             </div>
         );
-    }
+    // }
 
-    if (open) {
-        return (
-            <CreatePropertyDialog
-                open={open}
-                onClose={() => setOpen(false)}
-            />
-        );
-    }
+    // if (open) {
+    //     return (
+    //         <CreatePropertyDialog
+    //             open={open}
+    //             onClose={() => setOpen(false)}
+    //         />
+    //     );
+    // }
 }
 
 export default ListingTab;

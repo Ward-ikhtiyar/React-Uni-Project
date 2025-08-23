@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import './AgentAboutMe.css';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Tabs, Tab, Box } from '@mui/material';
 
-import GeneralInfoTab from './components/GeneralInfoTab';
+// import GeneralInfoTab from './components/GeneralInfoTab';
 import AgentInfoTab from './components/AgentInfoTab';
-import BrokerageInfoTab from './components/BrokerageInfoTab';
-import SocialMediaTab from './components/SocialMediaTab';
+// import BrokerageInfoTab from './components/BrokerageInfoTab';
+// import SocialMediaTab from './components/SocialMediaTab';
 import ListingTab from './components/ListingTab';
+import AddPropertyTab from '../Profile/addProperty/addProperty';
+import { div, style } from 'framer-motion/client';
+import { WidthFull } from '@mui/icons-material';
+
 
 function AgentAboutMe() {
-    const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState(0);
 
-    const [formData, setFormData] = useState({
+    const [activeTab, setActiveTab] = useState(0);
+    const [open, setopen] = useState(false);
+    const [agentData, setagentData] = useState({
         // General Info
         firstName: '',
         lastName: '',
@@ -43,60 +47,13 @@ function AgentAboutMe() {
         otherLink: ''
     });
 
-    const [availableSpecialties] = useState([
-        "Buyer's Agent",
-        "Listing Agent",
-        "Investment Properties",
-        "Military/Veterans"
-    ]);
-
-    const [availableLanguages] = useState([
-        "English",
-        "Spanish",
-        "French",
-        "German",
-        "Italian",
-        "Portuguese",
-        "Chinese",
-        "Japanese"
-    ]);
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleSpecialtyToggle = (specialty) => {
-        setFormData(prev => ({
-            ...prev,
-            specialties: prev.specialties.includes(specialty)
-                ? prev.specialties.filter(s => s !== specialty)
-                : [...prev.specialties, specialty]
-        }));
-    };
-
-    const handleLanguageToggle = (language) => {
-        setFormData(prev => ({
-            ...prev,
-            languages: prev.languages.includes(language)
-                ? prev.languages.filter(l => l !== language)
-                : [...prev.languages, language]
-        }));
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
+        console.log('Form submitted:', agentData);
         // TODO: Submit to API
         alert('Profile updated successfully!');
     };
 
-    const handleReturnToProfile = () => {
-        navigate('/AgentDetails');
-    };
 
     const handleTabChange = (event, newValue) => {
         setActiveTab(newValue);
@@ -106,56 +63,41 @@ function AgentAboutMe() {
         switch (activeTab) {
             case 0:
                 return (
-                    <GeneralInfoTab
-                        formData={formData}
-                        handleInputChange={handleInputChange}
+                    <AgentInfoTab
+                        agentData={agentData}
                     />
                 );
+
+
             case 1:
                 return (
-                    <AgentInfoTab
-                        formData={formData}
-                        handleInputChange={handleInputChange}
-                        handleSpecialtyToggle={handleSpecialtyToggle}
-                        handleLanguageToggle={handleLanguageToggle}
-                        availableSpecialties={availableSpecialties}
-                        availableLanguages={availableLanguages}
+                    <ListingTab
+                        agentData={agentData}
                     />
                 );
             case 2:
                 return (
-                    <BrokerageInfoTab
-                        formData={formData}
-                        handleInputChange={handleInputChange}
-                    />
-                );
-            case 3:
-                return (
-                    <SocialMediaTab
-                        formData={formData}
-                        handleInputChange={handleInputChange}
-                    />
-                );
-            case 4:
-                return (
-                    <ListingTab
-                        formData={formData}
-                        handleInputChange={handleInputChange}
-                    />
+                    <div className="add-Property-agent">
+
+                    <AddPropertyTab
+                        open={open}
+                        setOpen={setopen}
+                        />
+                        </div>
                 );
             default:
                 return null;
         }
     };
 
-    
+
     return (
         <div className="agent-about-me-page">
-            <div className="edit-profile-container">
+            <Box className="edit-profile-container" sx={{maxWidth: activeTab===2 ? null: 1200}} >
                 <div className="edit-header">
-                    <button className="return-button" onClick={handleReturnToProfile}>
+                    <Link to="/AgentDetails" className="return-button">
                         ← Return to profile
-                    </button>
+                    </Link>
                     <h1>Edit profile</h1>
                 </div>
 
@@ -176,11 +118,9 @@ function AgentAboutMe() {
                                     }
                                 }}
                             >
-                                <Tab label="General info" />
                                 <Tab label="Agent info" />
-                                <Tab label="Brokerage info" />
-                                <Tab label="Social media & links" />
                                 <Tab label="My Listings" />
+                                <Tab label="Add Property" />
                             </Tabs>
                         </Box>
                     </div>
@@ -189,7 +129,7 @@ function AgentAboutMe() {
                         {renderTabContent()}
                     </div>
                 </div>
-            </div>
+            </Box>
         </div>
     );
 }

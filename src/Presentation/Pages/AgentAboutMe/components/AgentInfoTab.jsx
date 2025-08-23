@@ -1,50 +1,50 @@
 import { useState } from 'react';
 import { TextField, FormGroup, FormControlLabel, Checkbox, Chip, Box, Grid } from '@mui/material';
 import EditAgentInfoButton from './EditAgentInfoButton';
-import { agentInfoFormConfig } from './formConfigs';
+import { agencyBasicInfoFormConfig } from './formConfigs';
 
-function AgentInfoTab({ formData, handleInputChange, handleSpecialtyToggle, handleLanguageToggle, availableSpecialties, availableLanguages }) {
+function AgentInfoTab({ formData}) {
     const [openDialog, setOpenDialog] = useState(false);
 
-    const agentInfo = {
-        'Professional title': {
-            value: formData.title || 'Your professional title',
-            row: 0
-        },
-        'In business since': {
-            value: 'Year started',
-            row: 0,
-            input: true,
-            inputProps: {
-                name: "experience",
-                type: "number",
-                placeholder: "2012"
-            }
-        },
-        'Language fluency': {
-            value: 'Select languages',
-            input: true,
-            row: 1,
-            // chips: true,
-            // chipColor: "primary",
-            // checkboxes: true,
-            // checkboxOptions: availableLanguages,
-            // checkboxHandler: handleLanguageToggle,
-        },
-        'Specialties': {
-            value: 'Select specialties',
-            row: 1,
-            // chips: true,
-            // chipColor: "secondary",
-            // checkboxes: true,
-            // checkboxOptions: availableSpecialties,
-            // checkboxHandler: handleSpecialtyToggle,
-        }
-    };
+    // const agentInfo = {
+    //     'Professional title': {
+    //         value: formData.title || 'Your professional title',
+    //         row: 0
+    //     },
+    //     'In business since': {
+    //         value: 'Year started',
+    //         row: 0,
+    //         input: true,
+    //         inputProps: {
+    //             name: "experience",
+    //             type: "number",
+    //             placeholder: "2012"
+    //         }
+    //     },
+    //     'Language fluency': {
+    //         value: 'Select languages',
+    //         input: true,
+    //         row: 1,
+    //         // chips: true,
+    //         // chipColor: "primary",
+    //         // checkboxes: true,
+    //         // checkboxOptions: availableLanguages,
+    //         // checkboxHandler: handleLanguageToggle,
+    //     },
+    //     'Specialties': {
+    //         value: 'Select specialties',
+    //         row: 1,
+    //         // chips: true,
+    //         // chipColor: "secondary",
+    //         // checkboxes: true,
+    //         // checkboxOptions: availableSpecialties,
+    //         // checkboxHandler: handleSpecialtyToggle,
+    //     }
+    // };
 
     // Group items by row
     const rowItems = {};
-    Object.entries(agentInfo).forEach(([key, info]) => {
+    Object.entries(agencyBasicInfoFormConfig).forEach(([key, info]) => {
         if (!rowItems[info.row]) {
             rowItems[info.row] = [];
         }
@@ -58,7 +58,7 @@ function AgentInfoTab({ formData, handleInputChange, handleSpecialtyToggle, hand
             <EditAgentInfoButton
                 title='Agent Information'
                 linkPlaceHolder='Edit agent information'
-                formConfig={agentInfoFormConfig}
+                formConfig={agencyBasicInfoFormConfig}
                 initialValues={formData}
                 onSave={handleSave}
             />
@@ -68,10 +68,10 @@ function AgentInfoTab({ formData, handleInputChange, handleSpecialtyToggle, hand
                     <div className="info-row" key={rowIndex}>
                         {items.map((item) => (
                             <div className="info-item" key={item.key}>
-                                <label>{item.key}</label>
+                                <label>{item.name}</label>
                                 <div className="info-value">
                                     <p>
-                                        {item.value}
+                                        {item.label}
                                     </p>
                                 </div>
                             </div>

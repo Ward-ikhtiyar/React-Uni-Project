@@ -1,28 +1,27 @@
 import { useState } from 'react';
-import { 
-    Dialog, 
-    DialogTitle, 
-    DialogContent, 
-    DialogActions, 
-    Button, 
-    TextField, 
+import {
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Button,
+    TextField,
     Box,
     Grid
 } from '@mui/material';
 
-const EditAgentInfoButton = ({ 
-    linkPlaceHolder, 
-    title, 
-    formConfig, 
-    initialValues, 
+const EditAgentInfoButton = ({
+    linkPlaceHolder,
+    title,
+    formConfig,
+    initialValues,
     onSave,
-    // open,
-    // onClose 
+
 }) => {
     const [formData, setFormData] = useState(initialValues || {});
     const [errors, setErrors] = useState({});
-    const [open, setOpen] = useState(false);
-    const [onClose, setOnClose] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
+    // const [onClose, setOnClose] = useState(false);
 
     const handleInputChange = (field, value) => {
         setFormData(prev => ({
@@ -53,7 +52,7 @@ const EditAgentInfoButton = ({
         }
 
         onSave(formData);
-        onClose();
+        setOpenDialog(false);
     };
 
     const renderField = (field) => {
@@ -77,12 +76,12 @@ const EditAgentInfoButton = ({
         <>
             <div className="section-header">
                 <h2>{title}</h2>
-                <button className="edit-link" onClick={() => setOpen(true)}>
+                <button className="edit-link" onClick={() => setOpenDialog(true)}>
                     {linkPlaceHolder || 'Edit agent information'}
                 </button>
             </div>
-            
-            <Dialog open={open} onClose={() => setOpen(false)} maxWidth="md" fullWidth>
+
+            <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth="md" fullWidth>
                 <DialogTitle>{title}</DialogTitle>
                 <DialogContent>
                     <Box sx={{ pt: 2 }}>
@@ -96,7 +95,7 @@ const EditAgentInfoButton = ({
                     </Box>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => setOpen(false)}>Cancel</Button>
+                    <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
                     <Button onClick={handleSave} variant="contained" color="primary">
                         Save Changes
                     </Button>

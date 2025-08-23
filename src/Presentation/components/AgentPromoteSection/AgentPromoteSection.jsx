@@ -7,7 +7,7 @@ function AgentPromoteSection({ profileCompletion = 25, onPromotionItemClick }) {
     const [completed, setCompleted] = useState([false,false,true]);
     const promotionItems = [
         // { id: 1, text: 'Add "About me"', destination: 'page', page: '/AgentAboutMe', completed: completed[id] },
-        { id: 1, text: 'Add service areas', destination: 'page', page: '/AgentAboutMe', completed: false },
+        { id: 1, text: 'Edit Your Profile', destination: 'page', page: '/AgentAboutMe', completed: false },
         { id: 2, text: 'check payment plan', destination: 'page', page: '/AgentAboutMe', completed: true },
         { id: 3, text: 'Add a photo', destination: 'dialog', dialogType: 'imageUploadd', completed: true }
         // { id: 3, text: 'Add your past sales to your profile', completed: false },
@@ -24,7 +24,7 @@ function AgentPromoteSection({ profileCompletion = 25, onPromotionItemClick }) {
 
     return (
         <section className="agent-promote-section">
-            <h2 className="promote-title">Promote yourself on Zillow</h2>
+            <h2 className="promote-title">Manage your profile</h2>
 
             {/* Progress Bar */}
             {/* <ProgressBar percentage={profileCompletion} /> */}
