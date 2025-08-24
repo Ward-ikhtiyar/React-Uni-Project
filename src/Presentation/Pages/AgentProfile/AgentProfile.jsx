@@ -1,64 +1,199 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AgentProfile.css';
 import AppBar from '../Home/components/appBar';
 import Footer from '../../components/footer/footer';
-import AgentProfileHeader from '../../components/AgentProfileHeader/AgentProfileHeader';
-import AgentAboutSection from '../../components/AgentAboutSection/AgentAboutSection';
-import AgentPropertiesTable from '../../components/AgentPropertiesTable/AgentPropertiesTable';
-import AgentPromoteSection from '../../components/AgentPromoteSection/AgentPromoteSection';
+import AgentProfileHeader from '../../components/Agent/AgentProfileHeader/AgentProfileHeader';
+import AgentAboutSection from '../../components/Agent/AgentAboutSection/AgentAboutSection';
+import AgentPropertiesTable from '../../components/Agent/AgentPropertiesTable/AgentPropertiesTable';
+import AgentPromoteSection from '../../components/Agent/AgentPromoteSection/AgentPromoteSection';
 import ImageUploadDialog from '../../components/imageUploadDialog/imageUploadDialog';
 import { uploadAgentImage } from '../../../API/other_requests';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { getAgentProperties } from '../../../API/requests';
+import { getOwnerInfo } from '../../../API/other_requests';
+import { Typography } from '@mui/material';
 import profilePlaceholder from '../../../../public/assets/images/Profile_avatar_placeholder.png';
 
 function AgentProfile() {
     const navigate = useNavigate();
 
-    // State for image upload dialog
+
     const [showImageUploadDialog, setShowImageUploadDialog] = useState(false);
     const [uploadedImage, setUploadedImage] = useState(null);
     const [imageUploadProgress, setImageUploadProgress] = useState(0);
 
-    // Mock agent data - this would come from API in real implementation
-    const agentData = {
-        photo: profilePlaceholder,
-        name: "Elizabeth Cruz",
-        company: "Keller Williams Southland Partners",
-        priceRange: "$13K - $3.8M",
-        salesLast12Months: "497",
-        totalSalesInCity: "5164",
-        totalSales: "6,318",
-        averagePrice: "$530K"
+    const [agent, setAgent] = useState(null);
+    const [agentProperties, setAgentProperties] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+
+    async function fetchAgentData() {
+        try {
+            setIsLoading(true);
+            setError(null);
+
+
+            const agentData = await getProfile();
+            console.log("Owner data received:", agentData);
+
+            if (!agentData || (typeof agentData === 'object' && Object.keys(agentData).length === 0)) {
+                setAgent(null);
+            } else {
+                setAgent(agentData);
+            }
+
+            // Fetch agent properties
+            const propertiesData = await getAgentProperties(agentId);
+            console.log("Properties data received:", propertiesData);
+
+            if (propertiesData) {
+                setAgentProperties(propertiesData);
+            }
+
+        } catch (error) {
+            console.error("Failed to fetch agent data:", error);
+            setError("Failed to load agent information. Please try again later.");
+            setAgent(null);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        fetchAgentData();
+    }, []);
+
+    const renderContent = () => {
+        console.log("Render state - isLoading:", isLoading, "error:", error, "agent:", agent);
+
+        if (isLoading) {
+            return (
+                <div className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <Typography variant="h6" className="loading-text">
+                        Loading agent information...
+                    </Typography>
+                </div>
+            );
+        }
+
+        if (error) {
+            return (
+                <div className="agent-profile-body">
+
+                    <div className="error-container">
+                        <div className="error-icon">⚠️</div>
+                        <Typography variant="h6" className="error-text">
+                            {error}
+                        </Typography>
+                        <Typography variant="body2" className="error-suggestion">
+                            Please try again later or contact support if the problem persists.
+                        </Typography>
+                    </div>
+                </div>
+            );
+        }
+
+        if (!agent || agent === null) {
+            return (
+                <div className="agent-profile-body">
+
+                    <div className="no-data-container">
+                        <div className="no-data-icon">👤</div>
+                        <Typography variant="h6" className="no-data-text">
+                            Agent Not Found
+                        </Typography>
+                        <Typography variant="body2" className="no-data-subtext">
+                            The requested agent could not be found.
+                        </Typography>
+                    </div>
+                </div>
+            );
+        }
+
+        // Transform agent data for AgentProfileHeader component
+        const agentData = agent ? {
+            photo: agent.profileImage || profilePlaceholder,
+            name: agent.username || "Agent",
+            company: agent.agency?.username || "Real Estate Agency",
+            priceRange: agentProperties.length > 0 ?
+                `$${Math.min(...agentProperties.map(p => p.price))}K - $${Math.max(...agentProperties.map(p => p.price))}K` :
+                "No properties listed",
+            salesLast12Months: agentProperties.filter(p =>
+                new Date(p.createdAt) > new Date(Date.now() - 365 * 24 * 60 * 60 * 1000)
+            ).length.toString(),
+            totalSalesInCity: agentProperties.length.toString(),
+            totalSales: agentProperties.length.toString(),
+            averagePrice: agentProperties.length > 0 ?
+                `$${Math.round(agentProperties.reduce((sum, p) => sum + p.price, 0) / agentProperties.length)}K` :
+                "$0"
+        } : null;
+
+        // Transform agent data for AgentAboutSection component
+        const agentAboutData = agent ? {
+            sectionTitle: `Get to know ${agent.username || "Agent"}`,
+            title: "Licensed Real Estate Agent",
+            description: agent.bio || "", // Empty for now - will show placeholder
+            specialties: agent.specialties || [],
+            languages: agent.languages || [],
+            experience: agent.yearsOfExperience ? `${agent.yearsOfExperience} Years of experience` : "Experience not specified"
+        } : null;
+        // Create carousel items from first 5 properties with images
+        const items = agentProperties
+            .filter(property => property.firstImage) // Only properties with images
+            .slice(0, 5) // Take first 5
+            .map(property => (
+                <div key={property.id} className="carousel-item">
+                    <img
+                        src={property.firstImage}
+                        alt={property.title || property.multi_title?.english || 'Property'}
+                        className="carousel-image"
+                    />
+                    <div className="carousel-info">
+                        <h4>{property.title || property.multi_title?.english}</h4>
+                        <p>${property.price.toLocaleString()}</p>
+                        <p>{property.rooms} rooms • {property.bathrooms} baths</p>
+                    </div>
+                </div>
+            ));
+
+        // Render main agent profile content
+        return (
+            <>
+                <AgentProfileHeader
+                    agentData={agentData}
+                    carouselItems={items}
+                    scrollTargetId="properties-list"
+                />
+
+                <div className="agent-profile-body">
+                    <div className="agent-profile-body-left">
+                        <AgentAboutSection
+                            sectionTitle={agentAboutData.sectionTitle}
+                            title={agentAboutData.title}
+                            description={agentAboutData.description}
+                            specialties={agentAboutData.specialties}
+                            languages={agentAboutData.languages}
+                            experience={agentAboutData.experience}
+                            showMoreEnabled={false}
+                        />
+                        <AgentPropertiesTable
+                            properties={agentProperties}
+                            totalCount={agentProperties.length}
+                        />
+                    </div>
+                    <div className="agent-profile-body-right">
+                        <AgentPromoteSection
+                            profileCompletion={25}
+                            onPromotionItemClick={handlePromotionItemClick}
+                        />
+                    </div>
+                </div>
+            </>
+        );
     };
 
-    // Mock agent about data - this would come from API in real implementation
-    const agentAboutData = {
-        sectionTitle: "Get to know Elizabeth Cruz",
-        title: "Licensed Salesperson",
-        description: "", // Empty for now - will show placeholder
-        specialties: ["Buyer's Agent", "Listing Agent", "Investment Properties", "Military/Veterans"],
-        languages: [], // Empty for now
-        experience: "13 Years of experience"
-    };
-
-    // Empty properties data - will show placeholder
-    const propertiesData = [];
-    // Carousel items - will show placeholder
-    const carouselItems = [];
-    const items = [
-        <div key="placeholder" className="carousel-placeholder">
-            <div className="placeholder-icons">
-                <div className="placeholder-icon">🏠</div>
-                <div className="placeholder-icon">🏢</div>
-                <div className="placeholder-icon">🏘️</div>
-                <div className="placeholder-icon">🏠</div>
-                <div className="placeholder-icon">🌳</div>
-            </div>
-            <span>No sales reported yet</span>
-        </div>
-    ];
-
-    // const promotionNavigation : 
     const handlePromotionItemClick = (item) => {
         console.log(`Navigate to: ${item.text}`);
 
@@ -66,8 +201,8 @@ function AgentProfile() {
         //     // navigate(item.page);
         //     // Link()
         // }
-        // Handle dialog opening if needed
-         if (item.dialogType === 'imageUpload') {
+        // 
+        if (item.dialogType === 'imageUpload') {
             setShowImageUploadDialog(true);
         }
         //! if i added more dialogs
@@ -116,7 +251,7 @@ function AgentProfile() {
         }
     };
 
-    // Close the image upload dialog
+
     const handleCloseDialog = () => {
         setShowImageUploadDialog(false);
         setUploadedImage(null);
@@ -126,40 +261,11 @@ function AgentProfile() {
     return (
         <div className="agent-profile-page">
             <AppBar />
-            
             <div className="agent-profile-wrapper">
-                <AgentProfileHeader
-                    agentData={agentData}
-                    carouselItems={items}
-                    scrollTargetId="properties-list"
-                />
-                <div className="agent-profile-body">
-                    <div className="agent-profile-body-left">
-                        <AgentAboutSection
-                            sectionTitle={agentAboutData.sectionTitle}
-                            title={agentAboutData.title}
-                            description={agentAboutData.description}
-                            specialties={agentAboutData.specialties}
-                            languages={agentAboutData.languages}
-                            experience={agentAboutData.experience}
-                            showMoreEnabled={false}
-                        />
-                        <AgentPropertiesTable
-                            properties={propertiesData}
-                            totalCount={0}
-                        />
-                    </div>
-                    <div className="agent-profile-body-right">
-                        <AgentPromoteSection
-                            profileCompletion={25}
-                            onPromotionItemClick={handlePromotionItemClick}
-                        />
-                    </div>
-                </div>
+                {renderContent()}
             </div>
             <Footer />
 
-            {/* Image Upload Dialog */}
             <ImageUploadDialog
                 isOpen={showImageUploadDialog}
                 uploadedImage={uploadedImage}

@@ -56,7 +56,7 @@ function AgentInfoTab({ formData}) {
     return (
         <div className="content-section">
             <EditAgentInfoButton
-                title='Agent Information'
+                title='Agent Information'   
                 linkPlaceHolder='Edit agent information'
                 formConfig={agencyBasicInfoFormConfig}
                 initialValues={formData}

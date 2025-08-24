@@ -9,6 +9,7 @@
 }
 
 .error-container {
+  margin: auto;
   max-width: 600px;
   padding: 40px;
   background-color: white;

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import './AgentPromoteSection.css';
-import ProgressBar from '../ProgressBar/ProgressBar';
+import ProgressBar from '../../ProgressBar/ProgressBar';
 import { Link } from 'react-router-dom';
 
 function AgentPromoteSection({ profileCompletion = 25, onPromotionItemClick }) {
