@@ -68,8 +68,8 @@ function AgentDialog() {
     useEffect(() => {
         fetchAgentData();
     }, [agentId]);
-
-    const agentData = {
+    console.log(`agent is${agent}`);
+    const agentData =agent===null?{}: {
         photo: agent.profileImage || profilePlaceholder,
         name: agent.username || "Agent Name",
         company: agent.agencyInfo?.agencyName || "Agency Name",

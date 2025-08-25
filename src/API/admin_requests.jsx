@@ -165,13 +165,14 @@ export async function adminRejectProperty(id,message){
     return e.response.status;
   }
 }
-export async function adminAddPlan(type,duration,price,description){
+export async function adminAddPlan(type,duration,price,description,limit){
   try{
     let response=await TokenAxios.post(`${EndPoints.Admin.addNewPlan}`,{
   planDuration: duration,      
   description: description,
   planType: type,          
-  planPrice: Number(price)              
+  planPrice: Number(price),
+  limit:Number(limit)              
 });
     return 200;
   }catch(e){

@@ -24,9 +24,10 @@ const A_Card = ({ agent }) => {
                     alt="Agent"
                     className="agent-photo"
                 />
+                <h2 className="agent-name">{agentData.username || "Agent Name"}</h2>
+
             </div>
             <div className="agent-info">
-                <h2 className="agent-name">{agentData.username || "Agent Name"}</h2>
                 <p className="agent-company">{agentData.agencyInfo?.agencyName || "Agency Name"}</p>
                 <p className="agent-location">
                     <LocationOnOutlined style={{ fontSize: '16px', marginRight: '4px' }} />

@@ -22,7 +22,8 @@ function AddPlanDialog({ open, onClose }) {
     async function addPlan() {
         setLoading(true);
         let duration=`${Duration}_${DurationUnit}`;
-        let response=await adminAddPlan(Type,duration,price,Description);
+        console.log(duration)
+        let response=await adminAddPlan(Type,duration,price,Description,limit);
         if(response===200){
             setOpenSnackbar(true);
             
@@ -103,10 +104,10 @@ function AddPlanDialog({ open, onClose }) {
                         value={DurationUnit}
                         onChange={(e) => setDurationUnit(e.target.value)}
                     >
-                        <option value="days">Days</option>
-                        <option value="weeks">Weeks</option>
-                        <option value="months">Months</option>
-                        <option value="years">Years</option>
+                        <option value="day">Days</option>
+                        <option value="week">Weeks</option>
+                        <option value="month">Months</option>
+                        <option value="year">Years</option>
                     </select>
                 </div>
 

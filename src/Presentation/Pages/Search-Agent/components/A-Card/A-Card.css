@@ -55,12 +55,14 @@
 .agent-card {
     display: flex;
     justify-content: space-between;
-    width: 600px;
+    flex-direction: column;
+    width: 1200px;
+    height: 250px;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background: #f0f8ff;
+    background: var(--app-background);
     padding: 16px;
-    font-family: Arial, sans-serif;
+    font-family: Tajawal;
     position: relative;
     border: 1px solid #222;
 }
@@ -73,11 +75,12 @@
 .agent-header {
     display: flex;
     align-items: center;
+    justify-content: space-around;
     position: relative;
 }
 
 .agent-photo {
-    width: 160px;
+    width: 120px;
     height: auto;
     border-radius: 50%;
     object-fit: cover;
@@ -101,6 +104,8 @@
     text-align: left;
     flex: 1;
     margin-left: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .team-label {
@@ -113,20 +118,20 @@
 }
 
 .agent-name {
-    font-size: 20px;
+    font-size: 30px;
     margin: 8px 0 4px;
     font-weight: bold;
-    color: #333;
+    color: var(--app-font);
 }
 
 .agent-company {
-    color: #555;
+    color: var(--app-font);
     margin-bottom: 12px;
     font-size: 14px;
 }
 
 .agent-location {
-    color: #666;
+    color: var(--app-font);
     margin: 8px 0;
     font-size: 13px;
     display: flex;
@@ -134,14 +139,14 @@
 }
 
 .agent-commission {
-    color: #333;
+    color: var(--app-font);
     margin: 8px 0;
     font-size: 13px;
     font-weight: 500;
 }
 
 .agent-stats {
-    color: #555;
+    color: var(--app-font);
     margin: 8px 0;
     font-size: 12px;
 }
