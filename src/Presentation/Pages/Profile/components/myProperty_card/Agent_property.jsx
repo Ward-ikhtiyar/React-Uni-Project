@@ -18,7 +18,7 @@ function AgentProperty ({setProperty,property,setOpen,setId}) {
   }}  className='Agent-property-pic' src={`http://localhost:3000/property/images/${property.firstImage}`} crossOrigin="anonymous" />
 
             <div className='location-status'>{`${property.location.quarter} ,${property.location.street}`}
-                <div style={{backgroundColor:property.status==="pending"?"var(--app-grey)":"var(--app-blue)"}} className='property-status'>{property.status}</div>
+                <div style={{backgroundColor:property.status==="pending"?"var(--app-grey)":property.status==="accepted"?"var(--app-blue)":"var(--app-red)"}} className='property-status'>{property.status}</div>
             </div>
             <div className='info'>
                 Tenat:Ward Ekhtiar

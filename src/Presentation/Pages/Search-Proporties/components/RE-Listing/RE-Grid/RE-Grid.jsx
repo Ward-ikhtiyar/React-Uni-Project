@@ -65,7 +65,6 @@ const RE_Grid = ({ Listings, isLoading, error, isFiltered }) => {
             </Grid>
         );
     };
-
     return (
         <div className="grid-section">
             <div className="grid-header">

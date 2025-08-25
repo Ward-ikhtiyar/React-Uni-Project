@@ -31,8 +31,8 @@ const RE_Search = () => {
         // console.log('Applying filters:', { priceRange, propertyType });
 
         // Check if any filters are actually applied
-        const hasFilters = priceRange[0] > 0 || priceRange[1] < 1000000 || propertyType !== 'All';
-
+        const hasFilters = priceRange[0] > 0  || priceRange[1] < 1000000  || propertyType !== 'All';
+        
         if (hasFilters) {
             setIsFiltered(true);
             await handleFilteredProperties();
@@ -71,15 +71,17 @@ const RE_Search = () => {
             setError(null);
             let fetchedProperties = await getAcceptedProperties(false);
             setListings(fetchedProperties);
-            // console.log('All properties:', fetchedProperties);
+            console.log('All properties:', fetchedProperties);
         } catch (error) {
             console.error('Error fetching properties:', error);
             if (error.statusCode === 404 && error.message === "No estates found") {
                 // Handle 404 - no properties available
+                setIsLoading(false)
                 setListings([]);
                 setError("No properties are currently available.");
             } else {
                 // Other errors
+                setIsLoading(false)
                 setError("Error loading properties. Please try again later.");
                 setListings([]);
             }
@@ -92,9 +94,7 @@ const RE_Search = () => {
         handleGetProperties();
     }, []);
 
-    return (
-
-        <div className='full-search-page'>
+    return (<div className='full-search-page'>
             <AppBar isHome={false} />
             <FilterBar
                 priceRange={priceRange}

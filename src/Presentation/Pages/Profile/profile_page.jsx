@@ -20,6 +20,7 @@ function ProfilePage(){
     const[tabIndex,setTabIndex]=useState(0);
     const PagesList=[ProfileInfoPage,RequestsPage,PropertiesPage,SavedPropertiesPage,PlansPage];
     const SelectedPage=PagesList[tabIndex];
+    let hasPlan=localStorage.getItem("plan")==="none";
     return(
         <div id='Profile-homePage'  className="HomePage" style={{}}>
             <div className='main-profile'>
@@ -32,7 +33,7 @@ function ProfilePage(){
                     }}/>
                     <ProfileTab title={"Profile"} Icon={Person2} UnselectedIcon={Person2Outlined} val={tabIndex} index={0} setIndex={setTabIndex}/>
                     {/* <ProfileTab title={"Contracts"} Icon={PendingActions} UnselectedIcon={PendingActionsOutlined} val={tabIndex} index={1} setIndex={setTabIndex}/> */}
-                    <ProfileTab title={"Properties"} Icon={House} UnselectedIcon={HouseOutlined} val={tabIndex} index={2} setIndex={setTabIndex}/>
+                  { localStorage.getItem("plan")!="none"? <ProfileTab title={"Properties"} Icon={House} UnselectedIcon={HouseOutlined} val={tabIndex} index={2} setIndex={setTabIndex}/>:<div></div>}
                     <ProfileTab title={"Saved properties"} Icon={Archive} UnselectedIcon={ArchiveOutlined} val={tabIndex} index={3} setIndex={setTabIndex}/>
                     <ProfileTab title={"Subscription"} Icon={WorkspacePremium} UnselectedIcon={WorkspacePremiumOutlined} val={tabIndex} index={4} setIndex={setTabIndex}/>
                     {/* <ProfileTab title={"Submit a complaint"} Icon={Feedback} UnselectedIcon={FeedbackOutlined} val={tabIndex} index={5} setIndex={setTabIndex}/> */}

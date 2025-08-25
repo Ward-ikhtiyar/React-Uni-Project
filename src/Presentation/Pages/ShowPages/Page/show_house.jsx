@@ -10,7 +10,9 @@ import {
   AreaChartOutlined,
   GarageOutlined,
   YardOutlined,
-  Visibility
+  Visibility,
+  AttachMoneyOutlined,
+  CurrencyExchange
 } from '@mui/icons-material';
 import PhotoSection from '../components/photo_section/photo_section';
 import InfoComp from '../components/Primary_info/infoComp';
@@ -78,6 +80,11 @@ function ShowHouse() {
           <InfoComp title="Bathrooms" Icon={ShowerOutlined} info={`${property.bathrooms}`} />
           <InfoComp title="Area" Icon={AreaChartOutlined} info={`${property.area} m^2`} />
           <InfoComp title="Views" Icon={Visibility} info={`${property.viewCount}`} />
+          <InfoComp
+                  title="Price"
+                  Icon={AttachMoneyOutlined}
+                  info={`${property.price}${property.isForRent === "rent" ? " /mo" : ""}`}/>
+
         </div>
         <p className='header'>Description</p>
         <div className='description'>{property.description}</div>

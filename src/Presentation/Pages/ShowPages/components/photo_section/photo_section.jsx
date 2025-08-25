@@ -29,7 +29,7 @@ function PhotoSection({name,location,photos,isFavorite,Housetype,commerce,setFav
     return(
         <div   className='photos-section'>
            {
-            photos!=null?<img src={`http://localhost:3000/property/images/${photos[pickedImage]}`} className='photos-section' crossOrigin='anonymous'/>:<img src='public/assets/images/propertyPlaceholder.png' className='photos-section' />
+            photos!=null?<img onError={(e)=>{e.target.src='public/assets/images/propertyPlaceholder.png'}} src={`http://localhost:3000/property/images/${photos[pickedImage]}`} className='photos-section' crossOrigin='anonymous'/>:<img src='public/assets/images/propertyPlaceholder.png' className='photos-section' />
            } 
         {photos!=null?<div className='additional-photos'>
             

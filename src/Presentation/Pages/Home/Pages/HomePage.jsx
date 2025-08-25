@@ -39,7 +39,7 @@ function HomePage() {
             <TrendingSection/>
             {/* <TrendingCard property={property}/> */}
             </motion.div>
-            {/* <TrendingSection/> */}
+            <TrendingSection/>
             <Footer/>
         
         </div>

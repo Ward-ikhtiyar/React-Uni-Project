@@ -30,10 +30,16 @@ function ProfileInfoPage() {
 
     }
     async function getProfile() {
-        let response = await TokenAxios.get(EndPoints.User.Me);
-        let data = response.data;
-        if (data) {
-
+        let response=await TokenAxios.get(EndPoints.User.Me);
+        let data=response.data;
+        if(data){
+            console.log(data);
+            if(data.planId===null){
+                console.log(data.planId);
+                localStorage.setItem("plan",'none');
+            }
+            console.log();
+            console.log(data.phone);
             setViewsCount(data.totalViewCount);
             setVotesCount(data.totalVoteScore);
             setPhone(`${data.phone}`);
