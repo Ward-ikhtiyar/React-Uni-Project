@@ -1,6 +1,6 @@
 import "./alt_serviceSection.css"
-import Card from "../Card";
-import Chip from "../../../../components/ward/chips";
+// import Card from "../Card";
+// import Chip from "../../../../components/ward/chips";
 import Custom_Chip from "../../../Profile/components/Chips/chip";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -26,11 +26,11 @@ function AltServiceSection(){
                 <div className="small-text">{chipVal==0?t("manageProps"):t("hassleFreeRental")}</div>
             </div>
             </div>
-            
+
         </div>
     );
 }
-            // <Card image="assets/images/man.svg" name="For LandLords :" desc= button="Check out"/>
-            // <Card image="assets/images/agent.svg" name="For Renters :" desc="Find the right agent to guide you through every step with expertise and care." button="Find one"/>
-            
+// <Card image="assets/images/man.svg" name="For LandLords :" desc= button="Check out"/>
+// <Card image="assets/images/agent.svg" name="For Renters :" desc="Find the right agent to guide you through every step with expertise and care." button="Find one"/>
+
 export default AltServiceSection

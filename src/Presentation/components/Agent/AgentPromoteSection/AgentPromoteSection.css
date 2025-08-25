@@ -1,0 +1,111 @@
+.agent-promote-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 2rem;
+}
+
+.promote-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 1.5rem 0;
+}
+
+/* Progress Bar */
+.progress-container {
+    margin-bottom: 2rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #0066cc;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Promotion Items */
+.promotion-items {
+    margin-bottom: 2rem;
+}
+
+.promotion-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+}
+
+.promotion-item:hover {
+    background-color: #f9f9f9;
+    .promotion-text {
+        color: #333;
+        text-decoration: underline;
+    }
+
+}
+
+.promotion-item.completed {
+    opacity: 0.7;
+}
+
+.promotion-number {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #61687a;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.promotion-item.completed .promotion-number {
+    background-color: #0066cc;
+}
+
+.promotion-text {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+
+.zillow-offers {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.zillow-offers-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.zillow-offers-link:hover {
+    text-decoration: underline;
+}

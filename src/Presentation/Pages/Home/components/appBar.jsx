@@ -11,7 +11,6 @@ import ThemeSwitcher from "../../../components/utils/theme_switcher";
 function AppBar({ isHome }) {
     const {t}=useTranslation();
     let token = localStorage.getItem('token');
-    console.log(token);
     let navigate=useNavigate();
       const[openDialog,setOpenDialog]=useState(false);
        return(

@@ -18,7 +18,7 @@ function TrendingSection(){
             handleGetProperties();
         },[]);
     return(
-        <div className='trending-main'>
+        <div className='trending-main sec-con-center'>
             <div className='trending-title'>
                 {t('topVotedProps')}
                 <div id='check-more' style={{display:'flex', flexDirection:'row', justifyContent:'space-around',marginRight:'50px',marginLeft:'50px'}} className="colored-button"  onClick={()=>{

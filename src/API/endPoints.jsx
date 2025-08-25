@@ -14,6 +14,14 @@ const EndPoints={
         UploadImg:'user/upload-image',
         getImg:'user/images/',
         getOwnerInfo:'user/pro',
+    },
+    Agent:{
+        getAgent:'user/agency',
+        getMyAgentProperties:'propertyG/my',
+        acceptAgentProperty:'propertyG/acc',
+        rejectAgentProperty:'propertyG/rej',
+        getAgentPendingProperties:'propertyG/pending',
+        getOwnerInfo:'user/pro',
         report:'/reports'
     },
     Properties:{
@@ -22,6 +30,7 @@ const EndPoints={
      uploadPhotos:'property/upload-multiple-img',
      getAll:'property/all',
      getMine:'property/my', 
+     getTop:'property/top',
   
     },
     Favoirtes:{
