@@ -13,11 +13,12 @@ const EndPoints={
         ChangeInfo:'user/',
         UploadImg:'user/upload-image',
         getImg:'user/images/',
-        getOwnerInfo:'user/pro'
+        getOwnerInfo:'user/pro',
+        report:'/reports'
     },
     Properties:{
-     create:'property',
-     getDetails:'property/',
+     create:'propertyN',
+     getDetails:'view/',
      uploadPhotos:'property/upload-multiple-img',
      getAll:'property/all',
      getMine:'property/my', 
@@ -34,16 +35,22 @@ const EndPoints={
         createPlan:'webhook'
     },
     Admin:{
-        getAllPropertiesSuperAdmin:'propertyA',
+       getAllPropertiesSuperAdmin:'propertyA',
        getAllProperties:'propertyA/pending' ,
-       getAdmins:'userA/getAdmins',
+       getAdmins:'users/getAdmins',
+       getUsers:'/users/getUsers',
+       addNewPlan:'/plans',
        getLogs:'/audit',
        getStatistics:'/analytics',
        addAdmin:'auth/addAdmin',
-       getAdminDetails:'userA',
-       deleteAdmin:'userA',
+       getAdminDetails:'users/getAdminById',
+       getuserDetails:'users',
+       deleteAdmin:'auth/deleteAdmin',
        acceptProperty:'/propertyA/acc',
        rejectProperty:'/propertyA/rej',
+       getReports:'/reports',
+       ban:'/banned',
+       adminLogs:'/audit'
     }
     
     

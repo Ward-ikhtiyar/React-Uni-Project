@@ -37,7 +37,9 @@ function AcceptPropertyDialog({open,onClose,id}){
         });
       }
     return(
-        <Dialog open={open} onClose={onClose}>
+        <Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }} open={open} onClose={onClose}>
             <DialogTitle>
                 <div className="Main-title">Rate the Property</div>
                 </DialogTitle>

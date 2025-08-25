@@ -9,7 +9,9 @@ function CreatePropertyDialog({open,onClose}){
         }
     };
     return(
-        <Dialog open={open} onClose={handleClose} maxWidth={"xl"}>
+        <Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }} open={open} onClose={handleClose} maxWidth={"xl"}>
             <DialogTitle >
                 <div className="Main-title" style={{borderBottom:'1px solid black'}}>Create new Property</div>
                 </DialogTitle>

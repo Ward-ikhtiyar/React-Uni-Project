@@ -14,13 +14,16 @@ import SearchPage from './Presentation/Pages/Search-Agent/Search-Page';
 import SearchAgent from './Presentation/Pages/Search-Agent/Search-Agent';
 import AdminLogin from './Presentation/Pages/Admin/login_page';
 import AdminDashBoard from './Presentation/Pages/Admin/dashboard';
-
+import ComplaintsPage from './Presentation/Pages/Complaints/complaints';
 import AdminPropertyDetails from './Presentation/Pages/Admin/Properties/admin_property_details';
 import RE_Search from './Presentation/Pages/Display/Pages/RE-Search';
 import PropertyPage from './Presentation/Pages/ShowPages/Page/show_house_alt';
+import './utils/i18n';
+import { useTranslation } from 'react-i18next';
 function App() {
-  
+  const {t,i18n}=useTranslation();
   return (
+   
     <Router>
       <Routes>
         <Route path='/' element={<HomePage/>}> </Route>
@@ -28,11 +31,13 @@ function App() {
         <Route path='/Agents' element={<SearchAgent/>}></Route>
         <Route path='/Details' element={<ShowHouse/>}></Route>
         <Route path='/Profile' element={<ProfilePage/>}></Route> 
+        <Route path='/Complaints' element={<ComplaintsPage/>}></Route> 
         <Route path='/Admin' element={<AdminLogin/>}></Route> 
         <Route path='/Dashboard' element={<AdminDashBoard/>}></Route>   
         <Route path='/Admin/property' element={<AdminPropertyDetails/>}/>    
       </Routes>
     </Router>
+   
   )
 }
 export default App;

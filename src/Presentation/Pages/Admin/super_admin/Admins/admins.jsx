@@ -25,6 +25,7 @@ function AdminsPage(){
             setAdmins(response);
         }catch(e){
             setError(e);
+            
         }
         setLoading(false);
     }

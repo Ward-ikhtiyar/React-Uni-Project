@@ -8,7 +8,10 @@ import { replace, useNavigate } from "react-router-dom";
 import ErrorSnackbar from "../snackBar/erorr_snack";
 import { login } from "../../../API/requests";
 import EnterPhoneDialog from "./resetPassword/enter_phone_dialog";
+import { useTranslation } from "react-i18next";
+
 function LoginDialog({open,onClose}){
+    const{t,i18n}=useTranslation();
     let navigate=useNavigate();
     const handleClose=(event,reason)=>{
         console.log();
@@ -39,21 +42,23 @@ function LoginDialog({open,onClose}){
     }
     return(
         <>
-<Dialog id="dialog" open={open}onClose={handleClose}>
+<Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }} id="dialog" open={open}onClose={handleClose}>
                 <DialogTitle>
     
                     <div className="Main-title">
-                        Welcome Back!
+                        {t('welcomeBack')}
                         </div>
                 </DialogTitle>
                 <DialogContent>
                     <div className="dialog-body">
-                        <p>Phone Number</p>
+                        <p>{t('phoneNumber')}</p>
                         <input className="inputBox" type="text" placeholder=" " value={`${number}`} onInput={(e)=>{
                             setNumber(e.target.value);
                             console.log(number)
                         }} />
-                        <p>Password</p>
+                        <p>{t('password')}</p>
                         <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
                             <input
                                 className="inputBox"
@@ -87,13 +92,13 @@ function LoginDialog({open,onClose}){
                             onClose();
                             setForgotPassword(true);
                         }}>
-                        <p className="forgot-text">Forgot Password?</p>
+                        <p className="forgot-text">{t('forgotPass')}</p>
                         </div>
-                        <button className="login-button" onClick={handleLogin}>Log in</button>
+                        <button className="login-button" onClick={handleLogin}>{t('logIn')}</button>
                         <p className="create-text" onClick={()=>{
                             onClose();
                             setSignUp(true);
-                        }}>Create account</p>
+                        }}>{t('createAccount')}</p>
                     </div>
                 </DialogContent>
             </Dialog>

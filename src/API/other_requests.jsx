@@ -81,3 +81,41 @@ export async function downVote(id){
         console.log(e.response.data);
     }
 }
+
+export async function postComplaint(complaint) {
+    console.log(`myEmail is :${complaint.myEmail}`);
+    console.log(`desc is :${complaint.description}`);
+    console.log(`title is :${complaint.title}`);
+
+    try{
+
+        let response=await TokenAxios.post(EndPoints.User.report,
+        {
+            title:complaint.title,
+            reason:'Other',
+            otherReason:complaint.description,
+            description:complaint.description,
+            myEmail:complaint.myEmail,
+
+        });
+        if(response){
+            return response;
+        }
+    }catch(e){
+        console.log(e.response.data);
+        throw e
+    }
+    
+}
+
+export async function getComplaints() {
+    try{
+        let response=await TokenAxios.get(EndPoints.User.report,);
+        if(response){
+            return 200;
+        }
+    }catch(e){
+        console.log(e.response.data);
+    }
+    
+}

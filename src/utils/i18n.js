@@ -1,0 +1,108 @@
+import { Description } from "@mui/icons-material";
+import i18n from "i18next";
+import {initReactI18next} from 'react-i18next'
+i18n.use(initReactI18next).init({
+    debug:true,
+    fallbackLng:'en',
+    resources:{
+     en:{
+        translation:{
+        complains:'Complains',
+        signIn:'Sign In',
+        phoneNumber:'Phone Number',
+        userName:'Username',
+        forgotPass:'Forgot Password ?',
+        password:'Password',
+        welcomeBack:'Welcome back !',
+        logIn:'Log in',
+        welcome:'Welcome !',
+        createAccount:'Create account',
+        pickLocation:'Pick you location',
+        close:'Close',
+        choose:'Choose',
+        listings:'Listings',
+        findAgent:'Find Agent',
+         mixLettersNumbers: "Mix of letters and Numbers",
+         mustBe6Chars: "Must be 6 charcaters",
+         rentalHomeExperience:'Experience hassle-free rental home searching with our platform. We simplify the process by linking you directly to legit property managers by cutting out the middleman.',
+         errorMsg:'An error happened, Please try again.',
+         topVotedProps:'Top Voted Properties ',
+         services:'Services',
+         downloadApp: "Download App",
+         manageProps: "List and manage your properties effortlessly with our platform. We connect you directly with verified tenants while eliminating unnecessary costs and paperwork.",
+         streamlineProperty: "Streamline Your Property Management",
+         agencies: "Agencies",
+         whatWeDo: "What We Do?",
+         buyers: "Buyers",
+         simplifyPropertySearch: "We Simplify Your Rental Home Search",
+         hassleFreeRental: "Experience hassle-free rental home searching with our platform. We simplify the process by linking you directly to legit property managers by cutting out the middleman.",
+         more:'More',
+         shareFeedBack:"We’re here to help! Share your complaint or feedback with us, and we’ll make sure it gets the attention it deserves.",
+         submitComplaint:"Submit your Complaint",
+         weListen:'We’re Listening!',
+         emailAddress:'Email Address',
+         reason:'Reason',
+         submit:'Submit',
+         description:'Description',
+         describeIssue:"Describe your issue here...",
+         feedBackSentSuccess:'Thank you! Your feedback has been submitted successfully.',
+         complaint:'Complaint',
+
+      }
+     },
+     ar:{
+        translation: {
+         complains:'شكاوي', 
+         signIn:'تسجيل دخول',
+         phoneNumber:'رقم الهاتف',
+         userName:'اسم المستخدم',
+         forgotPass:'نسيت كلمة المرور ؟',
+         password:'كلمة المرور',
+         welcomeBack:'! اهلا بك مجددا',  
+         welcome:'! اهلا', 
+         logIn:'تسجيل دخول',
+         createAccount:'إنشاء حساب',
+         pickLocation:'حدد موقعك',
+         close:'إغلاق',
+         choose:'اختر',
+         listings:'إعلانات',
+         findAgent:'بحث عن عميل',
+         mixLettersNumbers: "مزيج من أحرف وأرقام",
+         mustBe6Chars: "يجب أن يكون 6 أحرف",
+         rentalHomeExperience: "تمتع بالبحث عن منزل للإيجار بدون عناء من خلال منصتنا. نحن نبسط العملية بربطك مباشرة بمديري العقارات الموثوقين دون وسطاء.",
+         errorMsg:'لقد حدث خطأ ما, يرجى اعادة المحاولة',
+         topVotedProps:'العقارات الأعلى تقييماً',
+         services:'الخدمات',
+         downloadApp: "تحميل التطبيق",
+         manageProps: "اعرض وأدر عقاراتك بسهولة من خلال منصتنا. نحن نوصلك مباشرة بالمستأجرين الموثوقين مع التخلص من التكاليف غير الضرورية والأوراق.",
+         streamlineProperty: "بَسّط إدارة عقاراتك",
+         agencies: "الوكالات",
+         whatWeDo: "ماذا نقدم؟",
+         buyers: "المشترون",
+         simplifyPropertySearch: "نحن نبسط عملية البحث عن منزلك للإيجار",
+         hassleFreeRental: "تمتع بالبحث عن منزل للإيجار بدون عناء من خلال منصتنا. نحن نبسط العملية بربطك مباشرة بمديري العقارات الموثوقين دون وسطاء.",
+         more:'المزيد',
+         shareFeedBack: "نحن هنا لمساعدتك! شاركنا شكواك أو ملاحظاتك وسنحرص على أن تحظى بالاهتمام الذي تستحقه.",
+         submitComplaint: "قدّم شكواك",
+         weListen:'نحن نسمعك !',
+         emailAddress:'البريد الإلكتروني',
+         reason:'السبب',
+         submit:'قدم',
+         description:'وصف',
+         describeIssue:'اوصف مشكلتك هنا...',
+         feedBackSentSuccess:'شكراً لك! تم إرسال شكواك بنجاح.',
+         complaint:'شكوى',
+
+
+
+
+        }
+     }   
+    },
+    detection: {
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage'],
+    },
+    interpolation: { escapeValue: false },
+})
+export default i18n;

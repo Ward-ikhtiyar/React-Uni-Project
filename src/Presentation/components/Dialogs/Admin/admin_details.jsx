@@ -47,14 +47,16 @@ function AdminDetails({id,open,onClose,getAdmins}){
     }
     return(
         <>
-        <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
+        <Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }}  open={open} onClose={onClose} maxWidth="xs" fullWidth>
             <DialogTitle>
                 <div className="Main-title" style={{padding: '8px 0'}}>
                     {loading ? 'Loading...' : admin ? `Admin #${admin.id}` : 'Admin Details'}
                 </div>
             </DialogTitle>
             <DialogContent style={{paddingTop: '8px', paddingBottom: '16px'}}>
-                <div style={{animation:'ProfileAnimation 0.5s'}} className="dialog-body">
+                <div style={{animation:'ProfileAnimation 0.5s'}} className="admin-dialog-body">
                 {loading ? (
                     <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
                         <CircularProgress />
@@ -69,28 +71,28 @@ function AdminDetails({id,open,onClose,getAdmins}){
                     }}/>
                     
                     <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
-                        <div className="editProfileTab" style={{padding: '8px 0'}}>
+                        <div className="editProfileTab" style={{padding: '8px '}}>
                             <div className="editProfileTab-content" style={{fontSize: '16px', gap: '10px'}}>
                                 Username:
                                 <div className="user-info" style={{fontSize: '16px'}}>{admin.username}</div>
                             </div>
                         </div>
-                        <div className="editProfileTab" style={{padding: '8px 0'}}>
+                        <div className="editProfileTab" style={{padding: '8px '}}>
                             <div className="editProfileTab-content" style={{fontSize: '16px', gap: '10px'}}>
                                 Phone:
                                 <div className="user-info" style={{fontSize: '16px'}}>{admin.phone}</div>
                             </div>
                         </div>
-                        <div className="editProfileTab" style={{padding: '8px 0'}}>
+                        <div className="editProfileTab" style={{padding: '8px '}}>
                             <div className="editProfileTab-content" style={{fontSize: '16px', gap: '10px'}}>
                                 Age:
                                 <div className="user-info" style={{fontSize: '16px'}}>{admin.age}</div>
                             </div>
                         </div>
-                        <div className="editProfileTab" style={{padding: '8px 0'}}>
+                        <div className="editProfileTab" >
                             <div className="editProfileTab-content" style={{fontSize: '16px', gap: '10px'}}>
                                 Created At:
-                                <div className="user-info" style={{fontSize: '16px'}}>{admin.createdAt}</div>
+                                <div className="user-info" style={{fontSize: '16px'}}>{String(admin.createdAt).substring(0,10)}</div>
                             </div>
                         </div>
                     </div>

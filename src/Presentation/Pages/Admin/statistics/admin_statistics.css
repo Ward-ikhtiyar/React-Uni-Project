@@ -4,7 +4,7 @@
     justify-content: start;
     align-items: start;
     width: 95%;
-    min-height: 100%;
+    min-height: 120%;
 
 }
 .admin-statistics-cards-row{    
@@ -20,11 +20,11 @@
 
 .admin-statistics-charts-row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     min-height: 500px;
     margin-top: 40px;
-    background-color: white;
+    background-color: var(--app-background);
     border-radius: 10px;
     padding: 20px;
     border: 1px solid #e0e0e0;
@@ -32,14 +32,13 @@
   box-shadow: 
     0 4px 6px rgba(0, 0, 0, 0.05),
     0 1px 3px rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.8); /* Inner glow */
+    inset 0 0 0 1px var(--app-background); 
   
   
-  background: linear-gradient(145deg, #ffffff, #f8f9fa);
 }
 
 .activity-chart-container {
-    width: 100%;
+    width: 50%;
     height: 100%;
 }
 

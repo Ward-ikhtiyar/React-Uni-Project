@@ -88,7 +88,9 @@ function EditDialog({type,open,onClose}){
     }
     return(
         <>
-        <Dialog open={open}onClose={handleClose}>
+        <Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }} open={open}onClose={handleClose}>
             <DialogTitle><div  className="Main-title">Edit {type} </div></DialogTitle>
             <DialogActions>
                 <div style={{alignItems:'center',justifyContent:'start',animation:'moveUp 0.5s', overflowY:'hidden', height:'40vh'}} className="dialog-body">

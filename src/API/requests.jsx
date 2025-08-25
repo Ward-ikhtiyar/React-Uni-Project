@@ -51,6 +51,7 @@ export async function login(number,password){
             localStorage.setItem("password",password);
             localStorage.setItem("role",data.UserType);
             console.log(data.UserType);
+            console.log(localStorage.getItem('token'));
             
             return 200;
         }else{

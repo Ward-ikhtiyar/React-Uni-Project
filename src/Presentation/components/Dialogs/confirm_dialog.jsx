@@ -3,7 +3,9 @@ import { useState } from "react";
 
 function ConfirmDialog({ setPassword,setOpen,open, onConfirm, title = "Are you sure?", content = "This action cannot be undone." }) {
     return (
-    <Dialog open={open}  maxWidth="xs" fullWidth>
+    <Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }} open={open}  maxWidth="xs" fullWidth>
       <DialogTitle sx={{fontFamily:'Lexend',color:'var(--app-blue)'}}>{title}</DialogTitle>
       <DialogContent >
         <Typography sx={{fontFamily:'Lexend'}}>{content}</Typography>

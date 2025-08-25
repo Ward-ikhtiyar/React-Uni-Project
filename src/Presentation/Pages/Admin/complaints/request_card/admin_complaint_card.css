@@ -2,15 +2,15 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    color: grey;
     font-weight: 300;
+    color: var(--app-font);
     font-size: 20px;
 }
 .request-card-third{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    color: black;
+    color: grey;
     font-weight: 300;
     font-size: 20px;
 }
@@ -26,7 +26,7 @@
 padding-top: 10px;
 padding-left: 10px;
 padding-right: 10px;
-background-color: white;
+background-color: var(--app-card);
 border-radius: 7px;
 box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
 font-size: 25px;

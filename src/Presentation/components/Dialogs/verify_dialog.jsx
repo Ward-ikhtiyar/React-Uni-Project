@@ -76,7 +76,9 @@ const [resendText,setResendText]=useState("Resend Code");
                 setCode(value);
                 
             }
-    return(<Dialog id="dialog" open={open} onClose={handleClose}>
+    return(<Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }} id="dialog" open={open} onClose={handleClose}>
             <DialogTitle>
             <div className="Main-title" style={{justifySelf:"center"}}>
                         Enter Verification Code
@@ -85,7 +87,8 @@ const [resendText,setResendText]=useState("Resend Code");
             <DialogActions>
                 <div style={{animation:'none',width:'36vw'}} className="dialog-body">
                     <div className="subtitle-verify">We`ve Sent You a 5-Digit Code via SMS !</div>
-                    <VerificationInput onComplete={handleComplete} 
+                   
+                   <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}> <VerificationInput onComplete={handleComplete} 
                     classNames={{
                         character:'character',
                         container:'container',
@@ -94,6 +97,7 @@ const [resendText,setResendText]=useState("Resend Code");
                         characterSelected:'character-selected'
                         
                 }} validChars="0-9" length={5}></VerificationInput>
+                </div>
                 <button className="login-button" onClick={async()=>{
                     await Verify(Id,code);
                 }} style={{marginTop:"3vh",marginBottom:'3vh'}}>Verify</button>

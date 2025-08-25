@@ -4,6 +4,7 @@ html,body{
   padding: 0;
   overflow-y: auto;
   overflow-x: hidden;
+  transition: background-color 0.5s ease, color 1s ease-in;
 }
 #root {
   min-height: 100vh;
@@ -11,6 +12,7 @@ html,body{
   margin: 0 auto;
   /* padding: 2rem; */
   text-align: center;
+  transition: background-color 0.5s ease, color 1s ease-in;
   
 }
 

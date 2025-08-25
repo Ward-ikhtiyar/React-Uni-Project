@@ -11,6 +11,7 @@ import TrendingCard from '../components/trendingCard.jsx';
 import AltServiceSection from '../components/AltService/alt_serviceSection.jsx';
 import TrendingSection from '../components/trending_section/trendingSection.jsx';
 import { login } from '../../../../API/requests';
+import DownloadAppSection from '../components/download_our_app/download_section.jsx';
 function HomePage() {
     
     // useEffect(()=>{
@@ -39,6 +40,7 @@ function HomePage() {
             {/* <TrendingCard property={property}/> */}
             </motion.div>
             <TrendingSection/>
+            <DownloadAppSection/>
             <Footer/>
         
         </div>

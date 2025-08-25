@@ -1,0 +1,90 @@
+.complaints-icons{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+.complaints-fields{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#complaints-fields-title{
+  font-family: Tajawal;  
+  font-size: 50px;
+  font-weight: 700;
+  color: var(--app-blue);
+  margin-bottom: 40px;
+}
+#complaints-title{
+  font-family: Tajawal;  
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--app-blue);
+}
+#complaints-body{
+  font-family: Tajawal;  
+  font-size: 30px;
+  font-weight: 700;
+  text-align: start;
+  color: var(--app-font);
+}
+.complaints-inputBox {
+    min-height: 6vh;
+    width: 60%;
+    font-size: 20px;
+    font-weight: 400;
+    border: 2px solid var(--app-blue);
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: Tajawal;
+    margin-bottom: 20px;
+    background-color: var(--app-blue-opaque);
+    color: var(--app-font);
+}
+
+.complaints-inputBox::placeholder{
+    color: var(--app-font);
+}
+.complaints-inputBox:focus {
+    outline: none;
+}
+.dropdown-complaints{
+    border: solid 2px black;
+    width: 60%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-family: Lexend;
+    background-color: var(--app-blue-opaque);
+    color: var(--app-font);
+    font-size: 15px;
+}
+.dropdown-complaints:focus{
+  outline: none;
+
+}
+option {
+  background-color: var(--app-background); 
+  color: var(--app-font);
+  font-family: Tajawal;            
+}
+.complaints-fields-header{
+    width: 60%;
+    text-align: start;
+    margin-bottom: 5px;
+    font-size: 25px;
+    font-family: Tajawal;
+    color: var(--app-font);
+    font-weight: 600;
+}
+.arrow-back-complaints:hover{
+cursor: pointer;
+color: var(--app-blue-opaque);
+transition: 0.5s;
+}

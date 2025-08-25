@@ -37,7 +37,9 @@ function OwnerInfoDialog({id, open, setOpen}){
 
     return (
         <>
-            <Dialog open={open} onClose={() => setOpen(false)}>
+            <Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }} open={open} onClose={() => setOpen(false)}>
                 <DialogTitle >
                     <div className="Main-title">Owner Info</div>
                 </DialogTitle>

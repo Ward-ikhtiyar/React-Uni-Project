@@ -1,0 +1,39 @@
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--app-blue);
+  background-color: transparent;
+  border-radius: 14px;
+  width: 25vw;
+  height: 35px;
+  padding: 0 10px;
+}
+
+.search-prefix {
+  color: grey;
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.search-text-field {
+  flex: 1;
+  border: none;
+  background-color: transparent;
+  height: 100%;
+  outline: none;
+  color: #000;
+  font-size: 15px;
+  font-family: Tajawal;
+}
+
+.search-text-field:focus,
+.search-text-field:active {
+  outline: none;
+  border: none;
+}
+
+.search-text-field::placeholder {
+  color: grey;
+  font-size: 15px;
+  font-family: Tajawal;
+}

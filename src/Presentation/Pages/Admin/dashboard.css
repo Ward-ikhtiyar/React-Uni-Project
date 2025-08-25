@@ -7,14 +7,21 @@
   background-color: var(--app-background);
   flex-direction: row;
 }
-
+.tabs-title{
+ text-align: left; 
+ font-family: Lexend;
+ width:17vw;
+ margin-top: 10px;
+ margin-bottom: 0px;
+ color: var(--app-blue);
+ font-size: 20px;
+ font-weight:600 ;
+}
 .admin-tab{
     width: 20%;
     height: 100vh;
-    background-color: white;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 30px;
-    box-shadow: 70px 80px 90px  rgb(226, 226, 226);
+    background-color: var(--app-background);
+    box-shadow: 70px 80px 90px  var(--app-background);
     margin-right: 3px;
     display: flex;
     align-items: center;

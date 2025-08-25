@@ -1,6 +1,7 @@
 .main-profile{
     width: 100%;
     min-height: 100vh;
+    color: var(--app-font);
     background-color: var(--app-background);
     display: flex;
     flex-direction: row;
@@ -11,7 +12,8 @@
 .profile-tab{
     width: 15%;
     height: 100vh;
-    background-color: white;
+    color: var(--app-font);
+    background-color: var(--app-background);
     box-shadow: 70px 80px 90px  rgb(226, 226, 226);
     margin-right: 3px;
     display: flex;
@@ -28,7 +30,8 @@
     width: 75%;
     height: 35%;
     border-radius: 10px;
-    background-color: white;
+    background-color: var(--app-background);
+    color: var(--app-font);
     margin-top: 5%;
     margin-bottom: 10px;
 }

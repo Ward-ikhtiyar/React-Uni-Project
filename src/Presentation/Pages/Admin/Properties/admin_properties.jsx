@@ -4,6 +4,7 @@ import './admin_main.css'
 import Custom_Chip from '../../Profile/components/Chips/chip';
 import DisplayCard from '../../Search-Proporties/components/RE-Listing/RE-Card/RE-Card';
 import { useNavigate } from 'react-router-dom';
+import PropertyTable from '../components/info-table/property-table';
 function AdminProperties(){
     console.log(localStorage.getItem('token'));
     const[properties,setProperties]=useState([]);
@@ -43,13 +44,10 @@ function AdminProperties(){
                         <Custom_Chip title={"Rejected"} index={2} val={chipVal} Click={()=>setChipVal(2)}/>
 
                     </div>}
-            {properties?<div className='admin-body'>
+            {properties.length>0?<div className='admin-body-alt'>
                     
-                    {properties.map((property)=>(
-                        <div onClick={()=>navigate(`/Admin/property?id=${property.id}`)}>
-                            <DisplayCard property={property}/>
-                        </div>
-                        ))}
+                    <PropertyTable properties={properties}/>
+                   
             </div>:
             <div style={{display:'flex',alignItems:'center',justifyContent:'center',width:'100%'}} className='admin-body'>
                 <div style={{fontSize:'50PX'}} >No properties found .</div>

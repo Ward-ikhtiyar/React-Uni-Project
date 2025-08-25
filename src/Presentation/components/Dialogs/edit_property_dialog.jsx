@@ -97,7 +97,9 @@ function EditPropertyDialog({ open, onClose, id }) {
 
   return (
     <>
-    <Dialog   open={open} onClose={onClose} fullWidth maxWidth="xs">
+    <Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }}  open={open} onClose={onClose} fullWidth maxWidth="xs">
       <DialogTitle sx={{fontFamily:'Lexend'}} >Edit Property Attributes</DialogTitle>
       <DialogContent>
         <TextField

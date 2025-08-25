@@ -2,9 +2,11 @@ import { useState,useEffect } from 'react';
 import './trendingSection.css'
 import { getAcceptedProperties, getTopVotedProperties } from '../../../../../API/requests';
 import TrendingCard from '../trendingCard';
-import { ArrowForward } from '@mui/icons-material';
+import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 function TrendingSection(){
+        const{t}=useTranslation();
         const navigate=useNavigate();
         const[Listings,setListings]=useState([]);
         async function handleGetProperties(){
@@ -18,12 +20,12 @@ function TrendingSection(){
     return(
         <div className='trending-main'>
             <div className='trending-title'>
-                Popular
-                <div id='check-more' className="colored-button"  onClick={()=>{
+                {t('topVotedProps')}
+                <div id='check-more' style={{display:'flex', flexDirection:'row', justifyContent:'space-around',marginRight:'50px',marginLeft:'50px'}} className="colored-button"  onClick={()=>{
                 console.log("ward");
                 navigate('/Properties');}}>
-                    Show more
-                    <ArrowForward/>
+                    {t('more')}
+                    {localStorage.getItem('lang')=='en'?<ArrowForward/>:<ArrowBack/>}
                     </div>
             </div>
             <div className='trending-props'>

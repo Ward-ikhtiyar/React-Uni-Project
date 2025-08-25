@@ -8,6 +8,8 @@
   margin-bottom: 50px;
   padding: 1rem;
   box-sizing: border-box;
+  color: var(--app-font);
+  font-family: Tajawal;
 }
 
 .title {
@@ -15,8 +17,11 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  color: var(--app-font);
   font-size: 2rem;
   flex-wrap: wrap;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .card-holder {
@@ -53,6 +58,8 @@
 }
 
 .chip-row {
+  font-family: thicc;
+  color: var(--app-font);
   margin-top: 1.5rem;
   display: flex;
   flex-wrap: wrap;
@@ -60,6 +67,8 @@
 }
 
 .big-text {
+  color: var(--app-font);
+  font-family: Tajawal;
   font-size: 2rem;
   margin: 1rem 0;
 }
@@ -70,6 +79,7 @@
   max-width: 600px;
   text-align: start;
   color: grey;
+  font-family: Tajawal;
   animation: textAnime 2.5s ease-in;
 }
 
