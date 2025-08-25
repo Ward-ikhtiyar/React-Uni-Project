@@ -3,46 +3,40 @@ import { TextField, FormGroup, FormControlLabel, Checkbox, Chip, Box, Grid } fro
 import EditAgentInfoButton from './EditAgentInfoButton';
 import { agencyBasicInfoFormConfig } from './formConfigs';
 
-function AgentInfoTab({ formData}) {
-    const [openDialog, setOpenDialog] = useState(false);
+function AgentInfoTab() {
+    // const [openDialog, setOpenDialog] = useState(false);
+    const [agentResponseData, setAgentResponseData] = useState(null)
 
-    // const agentInfo = {
-    //     'Professional title': {
-    //         value: formData.title || 'Your professional title',
-    //         row: 0
-    //     },
-    //     'In business since': {
-    //         value: 'Year started',
-    //         row: 0,
-    //         input: true,
-    //         inputProps: {
-    //             name: "experience",
-    //             type: "number",
-    //             placeholder: "2012"
-    //         }
-    //     },
-    //     'Language fluency': {
-    //         value: 'Select languages',
-    //         input: true,
-    //         row: 1,
-    //         // chips: true,
-    //         // chipColor: "primary",
-    //         // checkboxes: true,
-    //         // checkboxOptions: availableLanguages,
-    //         // checkboxHandler: handleLanguageToggle,
-    //     },
-    //     'Specialties': {
-    //         value: 'Select specialties',
-    //         row: 1,
-    //         // chips: true,
-    //         // chipColor: "secondary",
-    //         // checkboxes: true,
-    //         // checkboxOptions: availableSpecialties,
-    //         // checkboxHandler: handleSpecialtyToggle,
-    //     }
-    // };
+     async function fetchAgentData() {
+            try {
+                // setIsLoading(true);
+                // setError(null);
+    
+    
+                const agentData = await getProfile();
+                console.log("Owner data received:", agentData);
+    
+                if (!agentData || (typeof agentData === 'object' && Object.keys(agentData).length === 0)) {
+                    setAgentResponseData(null);
+                } else {
+                    setAgentResponseData(agentData);
+                }
+    
+                
+    
+            } catch (error) {
+                console.error("Failed to fetch agent data:", error);
+                setAgentResponseData(null);
+            } 
+        }
+    
+        useEffect(() => {
+            fetchAgentData();
+        }, []);
+    
+    
+    
 
-    // Group items by row
     const rowItems = {};
     Object.entries(agencyBasicInfoFormConfig).forEach(([key, info]) => {
         if (!rowItems[info.row]) {
@@ -51,15 +45,16 @@ function AgentInfoTab({ formData}) {
         rowItems[info.row].push({ key, ...info });
     });
     const handleSave = (updatedData) => {
+        // update agent information api call, non existing?
         console.log('Agent info updated:', updatedData);
     };
     return (
         <div className="content-section">
             <EditAgentInfoButton
-                title='Agent Information'   
+                title='Agent Information'
                 linkPlaceHolder='Edit agent information'
                 formConfig={agencyBasicInfoFormConfig}
-                initialValues={formData}
+                initialValues={agentResponseData}
                 onSave={handleSave}
             />
             <Box className="info-grid">

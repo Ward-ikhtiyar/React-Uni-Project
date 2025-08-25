@@ -4,11 +4,11 @@ import Custom_Chip from '../../Profile/components/Chips/chip';
 import AgentProperty from '../../Profile/components/myProperty_card/Agent_property';
 import CreatePropertyDialog from '../../../components/Dialogs/CreateProperty_Dialog';
 import ManagePropertyDialog from '../../../components/Dialogs/manage_property_dialog';
-import { getAcceptedProperties } from '../../../../API/requests';
+import { getAcceptedProperties, getAgentAcceptedProperties } from '../../../../API/requests';
 import { Link } from 'react-router-dom';
 import AddPropertyPage from '../../Profile/addProperty/addProperty';
 
-function ListingTab({ formData, handleInputChange }) {
+function ListingTab() {
     const [chipVal, setChipVal] = useState(0);
     const [open, setOpen] = useState(false);
     const [id, setId] = useState(0);
@@ -19,7 +19,7 @@ function ListingTab({ formData, handleInputChange }) {
 
     async function handleGetProperties() {
         setIsLoading(true);
-        let fetchedProperties = await getAcceptedProperties(true);
+        let fetchedProperties = await getAgentAcceptedProperties();
         if (chipVal === 1) {
             fetchedProperties = fetchedProperties.filter(el => el.status === "pending");
         } else if (chipVal === 2) {
@@ -48,7 +48,7 @@ function ListingTab({ formData, handleInputChange }) {
                     <Typography variant="h6" className="no-results-text">
                         "No properties available"
                     </Typography>
-                </div>[]
+                </div>
                 <CreatePropertyDialog
                 open={open}
                 onClose={() => setOpen(false)}
@@ -62,9 +62,9 @@ function ListingTab({ formData, handleInputChange }) {
             <div className="content-section">
                 <div className="section-header">
                     <h2>My Property Listings</h2>
-                    <Link to={AddPropertyPage} className='colored-button' >
+                    {/* <Link to={AddPropertyPage} className='colored-button' >
                         Add a property
-                    </Link>
+                    </Link> */}
                 </div>
 
                 <div className='chips-row'>

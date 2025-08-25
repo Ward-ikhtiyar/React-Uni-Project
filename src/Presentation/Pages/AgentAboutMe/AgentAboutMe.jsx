@@ -1,58 +1,60 @@
-import React, { use, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import './AgentAboutMe.css';
 import { Link } from 'react-router-dom';
 import { Tabs, Tab, Box } from '@mui/material';
-
-// import GeneralInfoTab from './components/GeneralInfoTab';
 import AgentInfoTab from './components/AgentInfoTab';
-// import BrokerageInfoTab from './components/BrokerageInfoTab';
-// import SocialMediaTab from './components/SocialMediaTab';
 import ListingTab from './components/ListingTab';
 import AddPropertyTab from '../Profile/addProperty/addProperty';
-import { div, style } from 'framer-motion/client';
-import { WidthFull } from '@mui/icons-material';
+import React from 'react';
+import { getAgentProperties } from '../../../API/requests';
 
 
-function AgentAboutMe() {
+function AgentAboutMe([]) {
 
     const [activeTab, setActiveTab] = useState(0);
     const [open, setopen] = useState(false);
-    const [agentData, setagentData] = useState({
-        // General Info
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        aboutMe: '',
+    const [agent, setAgent] = useState();
+    const [agentProperties, setAgentProperties] = useState([]);
 
-        // Agent Info
-        specialties: [],
-        languages: [],
-        experience: '',
-        professionalTitle: 'Licensed Salesperson',
+    async function fetchAgentData() {
+        try {
+            const agentData = await getProfile();
+            console.log("Owner data received:", agentData);
 
-        // Brokerage Info
-        company: '',
-        officePhone: '',
-        officeAddress: '',
-        officeCity: '',
-        officeState: '',
+            if (!agentData || (typeof agentData === 'object' && Object.keys(agentData).length === 0)) {
+                setAgent(null);
+            } else {
+                setAgent(agentData);
+            }
 
-        // Social Media
-        website: '',
-        linkedin: '',
-        facebook: '',
-        twitter: '',
-        instagram: '',
-        otherLink: ''
-    });
+            // Fetch agent properties
+            const propertiesData = await getAgentProperties(agentId);
+            console.log("Properties data received:", propertiesData);
+
+            if (propertiesData) {
+                setAgentProperties(propertiesData);
+            }
+
+        } catch (error) {
+            console.error("Failed to fetch agent data:", error);
+            setError("Failed to load agent information. Please try again later.");
+            setAgent(null);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        fetchAgentData();
+    }, []);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted:', agentData);
-        // TODO: Submit to API
         alert('Profile updated successfully!');
     };
+
 
 
     const handleTabChange = (event, newValue) => {
@@ -72,18 +74,17 @@ function AgentAboutMe() {
             case 1:
                 return (
                     <ListingTab
-                        agentData={agentData}
                     />
                 );
             case 2:
                 return (
                     <div className="add-Property-agent">
 
-                    <AddPropertyTab
-                        open={open}
-                        setOpen={setopen}
+                        <AddPropertyTab
+                            open={open}
+                            setOpen={setopen}
                         />
-                        </div>
+                    </div>
                 );
             default:
                 return null;
@@ -93,7 +94,7 @@ function AgentAboutMe() {
 
     return (
         <div className="agent-about-me-page">
-            <Box className="edit-profile-container" sx={{maxWidth: activeTab===2 ? null: 1200}} >
+            <Box className="edit-profile-container" sx={{ maxWidth: activeTab === 2 ? null : 1200 }} >
                 <div className="edit-header">
                     <Link to="/AgentDetails" className="return-button">
                         ← Return to profile

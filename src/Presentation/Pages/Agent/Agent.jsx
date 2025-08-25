@@ -9,6 +9,7 @@ import AgentAboutSection from '../../components/Agent/AgentAboutSection/AgentAbo
 import { getAgentById, getAgentProperties } from '../../../API/requests';
 import { useSearchParams } from 'react-router-dom';
 import { Typography } from '@mui/material';
+import profilePlaceholder from '../../../../public/assets/images/Profile_avatar_placeholder.png';
 
 function AgentDialog() {
     const [params] = useSearchParams();
@@ -69,7 +70,7 @@ function AgentDialog() {
     }, [agentId]);
 
     const agentData = {
-        photo: agent.profileImage || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNEHbnGMLTCHTU3N45L2O_XBu61biBkJoRAw&s",
+        photo: agent.profileImage || profilePlaceholder,
         name: agent.username || "Agent Name",
         company: agent.agencyInfo?.agencyName || "Agency Name",
         location: agent.location?.address || "Location not specified",

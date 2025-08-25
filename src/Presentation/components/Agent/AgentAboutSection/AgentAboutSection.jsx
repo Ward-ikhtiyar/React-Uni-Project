@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import './AgentAboutSection.css';
 
 function AgentAboutSection({ 
-    sectionTitle, 
-    title, 
-    description, 
-    languages = [], 
-    experience,
+    
     showMoreEnabled = false 
 }) {
     const [showMore, setShowMore] = useState(false);
@@ -31,17 +27,17 @@ function AgentAboutSection({
                 )}
             </p>
             
-            {languages.length > 0 && (
+            {/* {languages.length > 0 && (
                 <div className="agent-profile-languages">
                     <span className="agent-profile-languages-label">Speaks</span> {languages.join(', ')}
                 </div>
-            )}
+            )} */}
             
-            {experience && (
+            {/* {experience && (
                 <div className="agent-profile-experience">
                     {experience}
                 </div>
-            )}
+            )} */}
         </div>
     );
 }
