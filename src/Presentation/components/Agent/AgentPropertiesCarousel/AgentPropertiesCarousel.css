@@ -1,0 +1,171 @@
+/* AgentPropertiesCarousel Component Styles */
+
+.agent-properties-carousel-container {
+  width: 800px;
+  padding: 20px 0;
+  background: transparent;
+}
+
+.agent-properties-carousel-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.agent-properties-carousel-label {
+  background: #ffe082;
+  color: #7a6000;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 5px;
+  padding: 2px 10px;
+  letter-spacing: 0.5px;
+}
+
+.agent-properties-carousel-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.agent-properties-carousel-subtitle {
+  font-size: 0.98rem;
+  color: #666;
+  margin-bottom: 10px;
+  margin-left: 2px;
+}
+
+.agent-properties-list {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  overflow-x: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none; /* Firefox */
+}
+
+.agent-properties-list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.agent-properties-list-item {
+  flex: 0 0 auto;
+}
+
+/* Ensure plain image items render at a consistent, responsive size */
+.agent-properties-carousel-container .carsouel-item {
+  display: block;
+  width: 260px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.see-more-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+}
+
+.see-more-btn {
+  background: #fff;
+  color: #006aff;
+  border: 1px solid #006aff;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.see-more-btn:hover {
+  background: #006aff;
+  color: #fff;
+}
+
+.see-more-btn:focus {
+  outline: 2px solid #006aff;
+  outline-offset: 2px;
+}
+
+/* Card styles for carousel items */
+.agent-properties-carousel-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.agent-properties-carousel-card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.agent-properties-carousel-card-info {
+  padding: 16px;
+}
+
+.agent-properties-carousel-card-info h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.agent-properties-carousel-card-info p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+.agent-properties-carousel-card-info .agent-properties-carousel-sold-date {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.agent-properties-carousel-label-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #007bff;
+  color: white;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.agent-properties-carousel-label-overlay.agent-properties-carousel-buyer {
+  background: #28a745;
+}
+
+.agent-properties-carousel-label-overlay.agent-properties-carousel-seller {
+  background: #dc3545;
+}
+
+/* Responsive behavior */
+@media (max-width: 600px) {
+  .agent-properties-carousel-container {
+    width: 100%;
+    padding: 10px 0;
+  }
+  .agent-properties-carousel-container .carsouel-item {
+    width: 200px;
+    height: 120px;
+  }
+  
+  .agent-properties-carousel-card {
+    width: 250px;
+  }
+  
+  .see-more-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}

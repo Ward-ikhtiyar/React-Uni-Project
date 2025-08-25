@@ -14,3 +14,17 @@ html,body{
   
 }
 
+.F-col-c-c{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sec-con-center{
+  width: calc(100% - 208px);
+  min-width: 1024px;
+  max-width: 1232px;
+  margin-left: auto;
+  margin-right: auto;
+}

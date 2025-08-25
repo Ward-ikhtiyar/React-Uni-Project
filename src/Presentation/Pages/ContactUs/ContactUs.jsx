@@ -29,7 +29,7 @@ const ContactUs = () => {
                         </TextField>
                         <TextField fullWidth multiline="true" maxRows={4} size='small' placeholder="Type your message..." sx={{ backgroundColor: "#ecf7f9"}} slotProps={{ input: { style: { fontSize: "1em", height: "116px", alignItems:"start" } } }}>
                         </TextField>
-                        <Button sx={{height:"3rem", backgroundColor:"#0073e1"}}>hello world</Button>
+                        <Button sx={{height:"3rem", backgroundColor:"#0073e1", color:"white", fontSize:"1.2rem", fontWeight:"bold", borderRadius:"10px"}}>Submit</Button>
                     </div>
                 </div>
             </Container>

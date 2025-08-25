@@ -16,11 +16,10 @@ function TrendingSection(){
             handleGetProperties();
         },[]);
     return(
-        <div className='trending-main'>
+        <div className='trending-main sec-con-center'>
             <div className='trending-title'>
                 Popular
                 <div id='check-more' className="colored-button"  onClick={()=>{
-                console.log("ward");
                 navigate('/Properties');}}>
                     Show more
                     <ArrowForward/>

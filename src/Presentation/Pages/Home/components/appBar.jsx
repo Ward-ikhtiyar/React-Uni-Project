@@ -7,7 +7,6 @@ import EasyRent from "../../../components/Lottie/EasyRent";
 
 function AppBar({ isHome }) {
     let token = localStorage.getItem('token');
-    console.log(token);
     let navigate=useNavigate();
       const[openDialog,setOpenDialog]=useState(false);
        return(

@@ -99,6 +99,8 @@
 .agent-info {
     margin-top: 20px;
     text-align: left;
+    flex: 1;
+    margin-left: 20px;
 }
 
 .team-label {
@@ -113,11 +115,49 @@
 .agent-name {
     font-size: 20px;
     margin: 8px 0 4px;
+    font-weight: bold;
+    color: #333;
 }
 
 .agent-company {
     color: #555;
     margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.agent-location {
+    color: #666;
+    margin: 8px 0;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}
+
+.agent-commission {
+    color: #333;
+    margin: 8px 0;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.agent-stats {
+    color: #555;
+    margin: 8px 0;
+    font-size: 12px;
+}
+
+.agent-verified {
+    margin: 8px 0;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.agent-verified.verified {
+    color: #22c55e;
+}
+
+.agent-verified.unverified {
+    color: #ef4444;
 }
 
 .price-range, .sales {
