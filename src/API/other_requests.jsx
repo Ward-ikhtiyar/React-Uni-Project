@@ -1,5 +1,5 @@
 import { data } from "react-router-dom";
-import EndPoints from "./endpoints";
+import EndPoints from "./endPoints";
 import TokenAxios from "./tokenAxios";
 
 export async function getProfile() {
