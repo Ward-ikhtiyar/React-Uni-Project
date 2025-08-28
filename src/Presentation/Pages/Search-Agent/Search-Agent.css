@@ -1,5 +1,6 @@
 #search-agent-page {
     height: 100%;
+    background-color: var(--app-background);
 }
 
 #search-agent-body-warpper {
@@ -40,7 +41,7 @@
 .search-agent-pagination {
     margin: 2rem 0;
     padding: 1rem;
-    background: #f8f9fa;
+    background: var(--seperator);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

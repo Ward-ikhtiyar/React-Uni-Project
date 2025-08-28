@@ -12,7 +12,7 @@ const ErrorSnackbar = ({open,handleClose,title}) => {
         onClose={handleClose}
         
       >
-        <SnackbarContent style={{backgroundColor:'red', width:'30vw', borderRadius:'10px'}} message={title}/>
+        <SnackbarContent style={{backgroundColor:'red', width:'30vw', borderRadius:'10px',fontFamily:'Tajawal',fontWeight:'700'}} message={title}/>
       </Snackbar>
     
   );

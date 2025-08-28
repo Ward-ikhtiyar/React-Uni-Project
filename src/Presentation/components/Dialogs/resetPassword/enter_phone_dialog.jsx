@@ -59,7 +59,9 @@ function EnterPhoneDialog({ open, onClose, onSuccess }) {
 
   return (
     <>
-      <Dialog id="dialog" open={open} onClose={handleClose}>
+      <Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }} id="dialog" open={open} onClose={handleClose}>
         <DialogTitle>
           <div className="Main-title">Reset Password</div>
         </DialogTitle>

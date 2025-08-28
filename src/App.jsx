@@ -12,17 +12,24 @@ import TrendingCard from './Presentation/Pages/Home/components/trendingCard';
 import SearchAgent from './Presentation/Pages/Search-Agent/Search-Agent';
 import AdminLogin from './Presentation/Pages/Admin/login_page';
 import AdminDashBoard from './Presentation/Pages/Admin/dashboard';
-
+import ComplaintsPage from './Presentation/Pages/Complaints/complaints';
 import AdminPropertyDetails from './Presentation/Pages/Admin/Properties/admin_property_details';
 import RE_Search from './Presentation/Pages/Display/Pages/RE-Search';
+import PropertyPage from './Presentation/Pages/ShowPages/Page/show_house_alt';
+import './utils/i18n';
+import { useTranslation } from 'react-i18next';
 import AgentDialog from './Presentation/Pages/Agent/Agent';
 import AgentProfile from './Presentation/Pages/AgentProfile/AgentProfile';
 import AgentAboutMe from './Presentation/Pages/AgentAboutMe/AgentAboutMe';
 import ErrorPage from './Presentation/Pages/Error/Error';
 import NoExist from './Presentation/Pages/Error/NoExist';
 function App() {
+  const {t,i18n}=useTranslation();
 
   return (
+   
+    
+   
     <>
       {/* <ContactUs/> */}
       {/* <RE_Agent/> */}
@@ -32,13 +39,14 @@ function App() {
       {/* <ShowHouse/> */}
       <Router>
         <Routes>
-          <Route path='/' element={<AgentDialog />}> </Route>
+          <Route path='/' element={<HomePage/>}> </Route>
           <Route path='/Properties' element={<RE_Search />}></Route>
           <Route path='/Agents' element={<SearchAgent />}></Route>
           <Route path='/Details' element={<ShowHouse />}></Route>
           <Route path='/AgentDetails' element={<AgentProfile />}></Route>
           <Route path='/AgentAboutMe' element={<AgentAboutMe />}></Route>
           <Route path='/Profile' element={<ProfilePage />}></Route>
+        <Route path='/Complaints' element={<ComplaintsPage/>}></Route> 
           <Route path='/Error' element={<ErrorPage/>}></Route>
           <Route path='/NotFound' element={<NoExist/>}></Route>
           <Route path='/Admin' element={<AdminLogin />}></Route>

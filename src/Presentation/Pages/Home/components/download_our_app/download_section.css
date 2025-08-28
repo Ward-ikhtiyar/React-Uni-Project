@@ -1,0 +1,86 @@
+.app-download {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  padding: 50px;
+  font-family: Tajawal;
+}
+
+.text-content {
+color:var(--app-font);
+  max-width: 50%;
+}
+
+.text-content h2 {
+color: var(--app-blue);
+  font-size: 40px;
+}
+
+.text-content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.buttons{
+ display: flex;
+ justify-content: center;
+ align-items: center;   
+}
+
+.under-ios{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.buttons .btn {
+  background: var(--app-blue);
+  color: white;
+  padding: 12px 20px;
+  margin-right: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+  border: none;
+}
+
+.buttons .btn:hover {
+  background: var(--app-background);
+  color: var(--app-blue);
+  cursor: pointer;
+}
+#ios{
+  background-color: grey; 
+  cursor:default; 
+  color: white;
+}
+
+.graphic {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  scale: 140%;
+  background: var(--app-blue-opaque);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.download-icon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  color: var(--app-blue);
+  border-radius: 50%;
+  padding: 8px;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}

@@ -16,15 +16,17 @@ const EndPoints={
         getOwnerInfo:'user/pro',
     },
     Agent:{
-        getAgent:'user/agency',
+        getAgent:'users/agency',
         getMyAgentProperties:'propertyG/my',
         acceptAgentProperty:'propertyG/acc',
         rejectAgentProperty:'propertyG/rej',
         getAgentPendingProperties:'propertyG/pending',
+        getOwnerInfo:'user/pro',
+        report:'/reports'
     },
     Properties:{
-     create:'property',
-     getDetails:'property/',
+     create:'propertyN',
+     getDetails:'view/',
      uploadPhotos:'property/upload-multiple-img',
      getAll:'property/all',
      getMine:'property/my', 
@@ -42,16 +44,22 @@ const EndPoints={
         createPlan:'webhook'
     },
     Admin:{
-        getAllPropertiesSuperAdmin:'propertyA',
+       getAllPropertiesSuperAdmin:'propertyA',
        getAllProperties:'propertyA/pending' ,
-       getAdmins:'userA/getAdmins',
+       getAdmins:'users/getAdmins',
+       getUsers:'/users/getUsers',
+       addNewPlan:'/plans',
        getLogs:'/audit',
        getStatistics:'/analytics',
        addAdmin:'auth/addAdmin',
-       getAdminDetails:'userA',
-       deleteAdmin:'userA',
+       getAdminDetails:'users/getAdminById',
+       getuserDetails:'users',
+       deleteAdmin:'auth/deleteAdmin',
        acceptProperty:'/propertyA/acc',
        rejectProperty:'/propertyA/rej',
+       getReports:'/reports',
+       ban:'/banned',
+       adminLogs:'/audit'
     }
     
     

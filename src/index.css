@@ -11,9 +11,12 @@
   src: url("./assets/Tajawal-Regular.ttf");
 }
 body {
-  font-family: Lexend;
+  font-family: 'Lexend';
   min-width: 320px;
   min-height: 100vh;
+  
+  transition: background-color 0.5s ease, color 1s ease-in;
+
 }
 :root{
   --app-blue:rgb(33, 81, 219);
@@ -22,9 +25,38 @@ body {
   --app-grey:rgb(103, 104, 105);
   --app-light-grey:rgba(128, 128, 128,0.2);
   --app-font:rgb(0,0,0);
+  --app-card: white;        
+  --seperator:rgb(33, 81, 219),
   --app-green:#24A56C;
-  --app-red:#FF0000;
+  --app-red-opaque:rgba(255,0,0,0.5);
+--app-red:#FF0000;
   overflow-y: auto;
+  transition: background-color 0.5s ease, color 1s ease-in;
+  font-family: Lexend;
+}
+#app{
+  transition: background-color 0.5s ease, color 1s ease-in;
+}
+
+dialog{
+      color: var(--app-font);
+    background-color: var(--app-background);
+}
+
+[data-theme='dark']{
+ --app-blue: rgb(33, 81, 219);
+--app-blue-opaque: rgba(88, 140, 255, 0.3);
+--app-background: rgb(18, 18, 18);
+--app-card: rgb(25, 25, 25);        
+--app-grey: rgb(40, 40, 40);              
+--app-light-grey: rgba(200, 200, 200, 0.15); 
+--app-font: rgb(235, 235, 235);     
+--seperator: rgba(255, 255, 255, 0.1);     
+--app-green-opaque:rgb(36, 165, 108,0.5);
+--app-green:rgb(36, 165, 108);
+--app-red-opaque:rgba(255,0,0,0.5);
+--app-red:#FF0000;
+
 }
 
 
@@ -36,10 +68,14 @@ body {
   color: white;
   font-size: 20px;
   background-color: var(--app-blue);
-  font-family: Lexend;
   border: none;
   border-radius: 5px;
-  box-shadow: 1px 1px 5px grey;
+}
+
+
+.close-icon:hover{
+  color:var(--app-blue);
+  cursor: pointer;
 }
 .border-button{
   
@@ -62,3 +98,4 @@ body {
   background-color: var(--app-blue-opaque);
   cursor: pointer;
 }
+

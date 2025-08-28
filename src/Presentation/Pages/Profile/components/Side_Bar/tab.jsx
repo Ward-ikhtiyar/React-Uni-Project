@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './tab.css'
 function ProfileTab({title,Icon,UnselectedIcon,setIndex,index,val}){
-    const[colorr,setcolor]=useState("black");
+    const[colorr,setcolor]=useState("var(--app-font)");
 const TabStyle = {
     Unselected:{
         cursor:'pointer',
@@ -35,7 +35,7 @@ return(
         setcolor('var(--app-blue)');
     }}
     onMouseLeave={()=>{
-        setcolor('black');
+        setcolor('var(--app-font)');
     }}
     style={index==val?TabStyle.Selected:TabStyle.Unselected
 

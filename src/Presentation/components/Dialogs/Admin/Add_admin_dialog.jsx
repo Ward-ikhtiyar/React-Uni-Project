@@ -44,7 +44,9 @@ function AddAdminDialog({open,onClose,getAdmins}){
         setLoading(false);
     }
     return(
-        <Dialog open={open} onClose={onClose}>
+        <Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }} open={open} onClose={onClose}>
             <DialogTitle  >
                 <div className="Main-title">
                     {'Add Admin'}

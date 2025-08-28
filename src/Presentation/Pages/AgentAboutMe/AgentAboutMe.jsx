@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import  { use, useEffect, useState } from 'react';
 import './AgentAboutMe.css';
 import { Link } from 'react-router-dom';
 import { Tabs, Tab, Box } from '@mui/material';

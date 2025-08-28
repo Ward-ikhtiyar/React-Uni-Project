@@ -5,16 +5,18 @@
    font-size: 20px;
    font-weight: 400;
    border: 2px solid var(--app-blue);
-   background-color: white;
+   background-color: var(--app-grey);
    border-radius: 10px;
+   color: var(--app-font);
    padding-left: 20px;
    font-family: thicc;
 }
 .admin-inputBox:focus{
     outline: none;
 }
+
 .admin-page {
-    
+  font-family: "Lexend";  
   display: flex;
   justify-content: center;
   align-items: center;

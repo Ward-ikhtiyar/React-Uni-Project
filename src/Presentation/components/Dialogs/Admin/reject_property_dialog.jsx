@@ -35,7 +35,9 @@ function RejectPropertyDialog({open,onClose,id}){
         });
     }
     return(
-        <Dialog open={open} onClose={onClose}>
+        <Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }} open={open} onClose={onClose}>
             <DialogTitle><div className="Main-title">Write a message to the user</div></DialogTitle>
             <DialogContent >
                 <div className="admin-body">

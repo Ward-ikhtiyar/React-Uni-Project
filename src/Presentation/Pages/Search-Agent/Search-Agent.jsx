@@ -187,7 +187,7 @@ function SearchAgent() {
         setIsLoading(false);
         
         // Uncomment the line below to use real API data
-        // handleGetAgents();
+        handleGetAgents();
     }, []);
 
     // const agentTypes = [

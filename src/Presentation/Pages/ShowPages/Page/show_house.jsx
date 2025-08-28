@@ -21,6 +21,8 @@ import { useEffect, useState } from 'react';
 import { getDetails, isFavorite } from '../../../../API/requests';
 import { useSearchParams } from 'react-router-dom';
 import OwnerInfoDialog from '../../../../Presentation/components/Dialogs/users_dialogs/owner_info_dialog';
+import PropertyMap from '../components/property_location.jsx/property_map';
+// import {REMap} from '../../Search-Proporties/components/RE-Map/RE-Map';
 
 function ShowHouse() {
   const [params] = useSearchParams();
@@ -95,19 +97,18 @@ function ShowHouse() {
               <InfoTab index={index} title={tabTitle[index]} subtitle={info}/>
             ))
           }
-          {/* <InfoTab title="Ward" subtitle="yezzir" />
-          <InfoTab title="Ward" subtitle="yezzir" />
-          <InfoTab title="Ward" subtitle="yezzir" /> */}
         </div>
         <p className='header'>owner</p>
         <div className='owner-info'>
           <div className='owner-info-image'></div>
             <div onClick={()=>{setOpen(true)}}>{property.user.username}</div>
-          
         </div>
       </div>
       <div style={{height:'10vh'}}></div>
       <OwnerInfoDialog id={property.user.id} open={open} setOpen={setOpen}/>
+      <p className='header'>loaction</p>
+      <PropertyMap location={property.location}/>
+      <div style={{height:'0.5vh'}}></div>
     </div>
   );
 }

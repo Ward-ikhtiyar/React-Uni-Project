@@ -2,20 +2,55 @@
   box-sizing: border-box;
 }
 
+
+
 .dialog-body {
+    color: var(--app-font);
+    background-color: var(--app-background);
     overflow-x: hidden;
-    width: 90vw;
+    width: 80vw;
     max-width: 400px;
     min-height: 24vh;
     margin: 0 auto;
-    
+    font-family: Tajawal;
+    font-weight: 700;
+    flex-direction: column;
+    justify-content: center;
+    animation: AgentAnimation 0.3s;
+    padding: 1rem;
+}
+.admin-dialog-body { 
+     color: var(--app-font);
+    background-color: var(--app-background);
+    overflow-x: hidden;
+    width: 90%;
+    max-width: 400px;
+    min-height: 24vh;
+    margin: 0 auto;
+    font-family: Tajawal;
+    font-weight: 700;
     flex-direction: column;
     justify-content: center;
     animation: AgentAnimation 0.3s;
     padding: 1rem;
 }
 
+.admin-addPhoto{
+background-color: var(--app-blue-opaque);
+border-radius: 5px;
+display: flex;
+width: 100%;
+height: 15vh;
+padding-top: 5px;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+color: var(--app-blue);
+font-family: thicc;    
+}
 .inputBox {
+    color: var(--app-font);
+    min-height: 5vh;
     height: 6vh;
     width: 100%;
     font-size: 20px;
@@ -43,7 +78,7 @@ input::placeholder {
     color: white;
     font-family: Lexend;
     font-size: 20px;
-    width: 25vw;
+    width:100%;
     height: 6vh;
     border: none;
 }
@@ -55,6 +90,8 @@ input::placeholder {
 }
 
 .Main-title {
+      color: var(--app-font);
+    background-color: var(--app-background);
     display: flex;
     font-family: Lexend;
     font-size: larger;
@@ -96,6 +133,7 @@ input[type="checkbox"] {
 }
 
 .back-button {
+    
     align-self: start;
     justify-self: start;
     margin-right: 30%;
@@ -169,7 +207,10 @@ input[type="checkbox"] {
 }
 
 .dropdown-signup {
-    border: solid 2px black;
+      color: var(--app-font);
+    background-color: var(--app-background);
+
+    border: solid 2px var(--app-blue);
     width: 60%;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -191,15 +232,15 @@ input[type="checkbox"] {
 .editProfileTab-content {
     display: flex;
     gap: 20px;
-    font-size: 30px;
+    font-size: 45px;
     justify-content: space-between;
     align-items: center;
 }
 
 .user-info {
-    font-weight: 300;
+    font-weight: 700;
     color: grey;
-    font-size: 25px;
+    font-size: 45px;
 }
 
 .edit-button-dialog {
@@ -255,6 +296,7 @@ input[type=file] {
 
 @media (max-width: 900px) {
     .dialog-body {
+        overflow-x: hidden;
         width: 95vw;
         max-width: none;
         padding: 0.5rem;

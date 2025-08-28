@@ -42,6 +42,7 @@ export async function adminGetStatistics(){
   }catch(e){
     console.log(e);
     console.log(e.response.data);
+    throw e;
   }
 }
 export async function adminDeleteAdmin(id){
@@ -70,7 +71,7 @@ export async function adminAddAdmin(name,number,password,age){
       return 201;
     }
   }catch(e){
-    return e.response.status;
+    console.log(e.response.data);
   }
 }
 
@@ -96,6 +97,30 @@ export async function adminGetAdminDetails(id){
   }catch(e){
     console.log(e);
     console.log(e.response.data);
+  }
+}
+export async function adminGetUserDetails(id){
+  try{
+    let response=await TokenAxios.get(`${EndPoints.Admin.getuserDetails}/${id}`);
+    let data= response.data 
+    if(data){
+      return data;
+      console.log(data)
+    }
+  }catch(e){
+    console.log(e);
+    console.log(e.response.data);
+  }
+}
+
+export async function adminBlockUser(){
+  try{
+    let response=await TokenAxios.post(EndPoints.Admin.ban);
+    if(response){
+      return response;
+    }
+  }catch(e){
+    throw e;
   }
 }
 export async function adminGetLogs(){
@@ -138,5 +163,97 @@ export async function adminRejectProperty(id,message){
     console.log(e);
     console.log(e.response.data);
     return e.response.status;
+  }
+}
+export async function adminAddPlan(type,duration,price,description,limit){
+  try{
+    let response=await TokenAxios.post(`${EndPoints.Admin.addNewPlan}`,{
+  planDuration: duration,      
+  description: description,
+  planType: type,          
+  planPrice: Number(price),
+  limit:Number(limit)              
+});
+    return 200;
+  }catch(e){
+    console.log(e);
+    console.log(e.response.data);
+    return e.response.status;
+  }
+}
+
+export async function adminGetUsers(role, query) {
+  console.log('params')
+  console.log(`${role}, ${query}`);
+  let url = `${EndPoints.Admin.getUsers}`;
+  const params = new URLSearchParams();
+  
+  if (role && role.trim() !== '') {
+    params.append('role', role);
+  }
+  
+  if (query && query.trim() !== '') {
+    params.append('word', query);
+  }
+  
+  if (params.toString()) {
+    url += `?${params.toString()}`;
+  }
+  console.log('ward is cryhing');
+  console.log(url);
+  
+  try {
+    const response = await TokenAxios.get(url);
+    console.log(response.data);
+    return response.data;
+  } catch (e) {
+    console.log('Error:', e.response?.data || e.message);
+    throw e; 
+  }
+}
+
+export async function adminGetReports(isPending) {
+  let endPoint=isPending?`${EndPoints.Admin.getReports}/pending`:`${EndPoints.Admin.getReports}`
+    try {
+    const response = await TokenAxios.get(endPoint);
+    console.log(response.data);
+    return response.data;
+  } catch (e) {
+    console.log('Error:', e.response?.data || e.message);
+    throw e; 
+  }
+}
+export async function markAsSeen(id,isFixed) {
+    try {
+    const response = await TokenAxios.patch(`${EndPoints.Admin.getReports}/${id}?action=${isFixed}`);
+    console.log(response.data);
+    return response.data;
+  } catch (e) {
+    console.log('Error:', e.response?.data || e.message);
+    throw e; 
+  }
+}
+////////////////////////Banned///////////////////////////
+
+export async function getBannedUsers() {
+  try {
+    const response = await TokenAxios.get(`${EndPoints.Admin.ban}`);
+    console.log(response.data);
+    return response.data;
+  } catch (e) {
+    console.log('Error:', e.response?.data || e.message);
+    return 400; 
+  }
+}
+///////////////////////////Logs/////////////////////////
+
+export async function getAdminLogs(id) {
+  try {
+    const response = await TokenAxios.get(`${EndPoints.Admin.adminLogs}/${id}`);
+    console.log(response.data);
+    return response.data;
+  } catch (e) {
+    console.log('Error:', e.response?.data || e.message);
+    return 400; 
   }
 }

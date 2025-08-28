@@ -2,13 +2,13 @@
     color: var(--app-blue);
     opacity: 0.9;
     transition: 0.2s;
-    cursor: loading;
-    
+    cursor: pointer;
 }
 .tab{
-    font-size: 0px;
+    font-family: Lexend;
+    font-size: 40px;
     justify-content: center;
-    color: black;
+    color: var(--app-font);
     width: 90%;
     padding: 10px;
     display: flex;

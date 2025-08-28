@@ -102,7 +102,6 @@ function AgentDialog() {
 
 
 
-
     const renderContent = () => {
         // console.log("Render state - isLoading:", isLoading, "error:", error, "agent:", agent);
 

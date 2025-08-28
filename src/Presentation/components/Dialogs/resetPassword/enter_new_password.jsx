@@ -47,7 +47,9 @@ function EnterNewPassword({open, onClose, Id}) {
 
     return (
         <>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }} open={open} onClose={handleClose}>
                 <DialogTitle>
                     <div className="Main-title">Enter New Password</div>
                 </DialogTitle>

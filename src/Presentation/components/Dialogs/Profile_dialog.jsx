@@ -41,7 +41,9 @@ function EditProfileDialog({open,onClose,phone,name,image}){
     
     return(
         <>
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog   PaperProps={{
+    sx: { backgroundColor: 'var(--app-background)' },
+  }} open={open} onClose={handleClose}>
             <DialogTitle>
                 <div  className="Main-title">My Profile </div>
             </DialogTitle>
