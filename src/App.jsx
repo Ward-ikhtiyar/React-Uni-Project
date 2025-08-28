@@ -43,10 +43,10 @@ function App() {
           <Route path='/Properties' element={<RE_Search />}></Route>
           <Route path='/Agents' element={<SearchAgent />}></Route>
           <Route path='/Details' element={<ShowHouse />}></Route>
-          <Route path='/AgentDetails' element={<AgentProfile />}></Route>
+          <Route path='/AgentDetails' element={<AgentDialog />}></Route>
           <Route path='/AgentAboutMe' element={<AgentAboutMe />}></Route>
           <Route path='/Profile' element={<ProfilePage />}></Route>
-        <Route path='/Complaints' element={<ComplaintsPage/>}></Route> 
+          <Route path='/Complaints' element={<ComplaintsPage/>}></Route> 
           <Route path='/Error' element={<ErrorPage/>}></Route>
           <Route path='/NotFound' element={<NoExist/>}></Route>
           <Route path='/Admin' element={<AdminLogin />}></Route>

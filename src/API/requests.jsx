@@ -283,13 +283,14 @@ export async function getAgentById(id) {
 }
 ///////////////get Agent properties //////////////
 export async function getAgentProperties(id) {
-  let endpoint = EndPoints.Agent.getMyAgentProperties;
+  
+  let endpoint = `${EndPoints.Agent.getMyAgentProperties}/${id}`;
   // console.log(endpoint)
   try {
     let response = await TokenAxios.get(endpoint, {
-      params: {
-        id: id,
-      }
+      // params: {
+      //   id: id,
+      // }
     });
     let data = response.data;
     console.log(data);

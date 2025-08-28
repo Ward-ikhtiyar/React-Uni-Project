@@ -45,6 +45,7 @@ function AgentDialog() {
             if (!agentData || (typeof agentData === 'object' && Object.keys(agentData).length === 0)) {
                 setAgent(null);
             } else {
+                // setError(null);
                 setAgent(agentData);
             }
 
@@ -83,23 +84,23 @@ function AgentDialog() {
         createdAt: agent.createdAt || new Date()
     };
 
-    const items = agentProperties
-        .filter(property => property.firstImage) 
-        .slice(0, 5)
-        .map(property => (
-            <div key={property.id} className="carousel-item">
-                <img
-                    src={property.firstImage}
-                    alt={property.title || property.multi_title?.english || 'Property'}
-                    className="carousel-image"
-                />
-                {/* <div className="carousel-info">
-                    <h4>{property.title || property.multi_title?.english}</h4>
-                    <p>${property.price.toLocaleString()}</p>
-                    <p>{property.rooms} rooms • {property.bathrooms} baths</p>
-                </div> */}
-            </div>
-        ));
+    // const items = agentProperties
+    //     .filter(property => property.firstImage) 
+    //     .slice(0, 5)
+    //     .map(property => (
+    //         <div key={property.id} className="carousel-item">
+    //             <img
+    //                 src={property.firstImage}
+    //                 alt={property.title || property.multi_title?.english || 'Property'}
+    //                 className="carousel-image"
+    //             />
+    //             {/* <div className="carousel-info">
+    //                 <h4>{property.title || property.multi_title?.english}</h4>
+    //                 <p>${property.price.toLocaleString()}</p>
+    //                 <p>{property.rooms} rooms • {property.bathrooms} baths</p>
+    //             </div> */}
+    //         </div>
+    //     ));
 
     const renderContent = () => {
         // console.log("Render state - isLoading:", isLoading, "error:", error, "agent:", agent);
@@ -115,19 +116,19 @@ function AgentDialog() {
             );
         }
 
-        if (error) {
-            return (
-                <div className="error-container">
-                    <div className="error-icon">⚠️</div>
-                    <Typography variant="h6" className="error-text">
-                        {error}
-                    </Typography>
-                    <Typography variant="body2" className="error-suggestion">
-                        Please try again later or contact support if the problem persists.
-                    </Typography>
-                </div>
-            );
-        }
+        // if (error) {
+        //     return (
+        //         <div className="error-container">
+        //             <div className="error-icon">⚠️</div>
+        //             <Typography variant="h6" className="error-text">
+        //                 {error}
+        //             </Typography>
+        //             <Typography variant="body2" className="error-suggestion">
+        //                 Please try again later or contact support if the problem persists.
+        //             </Typography>
+        //         </div>
+        //     );
+        // }
 
         if (!agent || agent === null) {
             return (

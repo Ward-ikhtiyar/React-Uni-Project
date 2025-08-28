@@ -26,29 +26,73 @@ import PropertyMap from '../components/property_location.jsx/property_map';
 
 function ShowHouse() {
   const [params] = useSearchParams();
-  const [property, setProperty] = useState(null);
+  const [propertyy, setProperty] = useState(null);
   const [isAFavorite,setIsFavorite]=useState(false);
   const propertyId = params.get("id");
   const [open,setOpen]=useState(false);
+const property = {
+  title: "بيت الأحلام",
+  description: "منزل جميل مع كل وسائل الراحة الحديثة، قريب من كل الخدمات.",
+  isForRent: true,
+  price: 1500,
+  pointsDto: {
+    lat: 30.0444,
+    lon: 31.2357,
+  },
+  rooms: 3,
+  bathrooms: 2,
+  area: 120,
+  floorNumber: 1,
+  hasGarage: true,
+  hasGarden: true,
+  heatingType: "Gas",
+  flooringType: "Wood",
+  propertyType: "House",
+  isFloor: false,
+  agencyId: 2,
+  propertyImages: [
+    "https://picsum.photos/id/1018/600/400",
+    "https://picsum.photos/id/1015/600/400",
+    "https://picsum.photos/id/1016/600/400",
+  ],
+  location: {
+    country: "Egypt",
+    governorate: "Cairo",
+    city: "Cairo",
+    quarter: "Zamalek",
+    street: "El-Gezira St.",
+    lat: 30.0444,
+    lon: 31.2357,
+  },
+  voteScore: 4.5,
+  viewCount: 123,
+  user: {
+    id: 1,
+    username: "AhmedAli",
+    profileImage: "https://picsum.photos/50/50?random=1",
+  },
+};
 
-  useEffect(() => {
-    async function fetchProperty() {
-      try {
-        const returnedData = await getDetails(propertyId);
-        setProperty(returnedData);
-        console.log(returnedData);
-        console.log(returnedData.propertyImages)
-        const fetchisFavorite=await isFavorite(propertyId);
-        setIsFavorite(fetchisFavorite);
-      } catch (error) {
-        console.error("Failed to fetch property:", error);
-      }
-    }
 
-    if (propertyId) {
-      fetchProperty();
-    }
-  }, propertyId);
+
+  // useEffect(() => {
+  //   async function fetchProperty() {
+  //     try {
+  //       const returnedData = await getDetails(propertyId);
+  //       setProperty(returnedData);
+  //       console.log(returnedData);
+  //       console.log(returnedData.propertyImages)
+  //       const fetchisFavorite=await isFavorite(propertyId);
+  //       setIsFavorite(fetchisFavorite);
+  //     } catch (error) {
+  //       console.error("Failed to fetch property:", error);
+  //     }
+  //   }
+
+  //   if (propertyId) {
+  //     fetchProperty();
+  //   }
+  // }, propertyId);
 
   if (!property || !property.location) {
     return <div>Loading...</div>;
@@ -91,6 +135,7 @@ function ShowHouse() {
         <p className='header'>Description</p>
         <div className='description'>{property.description}</div>
         <p className='header'>Additional Details</p>
+        <div style={{width:'100vw',display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
         <div className='info-tab'>
           {
             tabInfo.map((info,index)=>(
@@ -98,11 +143,13 @@ function ShowHouse() {
             ))
           }
         </div>
-        <p className='header'>owner</p>
         <div className='owner-info'>
           <div className='owner-info-image'></div>
             <div onClick={()=>{setOpen(true)}}>{property.user.username}</div>
         </div>
+        </div>
+        <p className='header'>owner</p>
+        
       </div>
       <div style={{height:'10vh'}}></div>
       <OwnerInfoDialog id={property.user.id} open={open} setOpen={setOpen}/>

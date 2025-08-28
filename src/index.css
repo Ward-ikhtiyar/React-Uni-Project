@@ -26,7 +26,8 @@ body {
   --app-light-grey:rgba(128, 128, 128,0.2);
   --app-font:rgb(0,0,0);
   --app-card: white;        
-  --seperator:rgb(33, 81, 219),
+  --seperator:rgb(33, 81, 219);
+  --app-shadow:rgba(0, 0, 0, 0.1);
   --app-green:#24A56C;
   --app-red-opaque:rgba(255,0,0,0.5);
 --app-red:#FF0000;
@@ -51,7 +52,8 @@ dialog{
 --app-grey: rgb(40, 40, 40);              
 --app-light-grey: rgba(200, 200, 200, 0.15); 
 --app-font: rgb(235, 235, 235);     
---seperator: rgba(255, 255, 255, 0.1);     
+--seperator: rgba(255, 255, 255, 0.1); 
+--app-shadow:black;
 --app-green-opaque:rgb(36, 165, 108,0.5);
 --app-green:rgb(36, 165, 108);
 --app-red-opaque:rgba(255,0,0,0.5);
@@ -70,6 +72,7 @@ dialog{
   background-color: var(--app-blue);
   border: none;
   border-radius: 5px;
+  font-family: thicc;
 }
 
 

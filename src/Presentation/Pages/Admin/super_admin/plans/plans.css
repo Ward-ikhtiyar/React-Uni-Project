@@ -1,8 +1,13 @@
 #plans-body{
     align-items: center;
+    justify-content: start;
     padding-left: 10vw;
+    display: flex;
+    gap: 20px;
+}
+.admin-body::-webkit-scrollbar {
+  display: none; 
 }
 #plans-info{
     overflow-x: hidden;
-    
 }

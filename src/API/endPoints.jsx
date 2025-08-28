@@ -17,7 +17,7 @@ const EndPoints={
     },
     Agent:{
         getAgent:'users/agency',
-        getMyAgentProperties:'propertyG/my',
+        getMyAgentProperties:'users/agency',
         acceptAgentProperty:'propertyG/acc',
         rejectAgentProperty:'propertyG/rej',
         getAgentPendingProperties:'propertyG/pending',

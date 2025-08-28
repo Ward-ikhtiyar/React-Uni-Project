@@ -1,24 +1,20 @@
+import { AccessTime, Edit, HouseOutlined, Timeline } from "@mui/icons-material";
 import "./card.css"
-function Card({desc,name,image,button}){
-    const photoStyle={
-    width: "120px",
-    height: "120px",
-    backgroundImage: `url(${image})`,
-    backgroundPosition: "center",
-    backgroundSize: "contain",
-    backgroundRepeat:"no-repeat"
-    }
+function Card({plan,onClick,isAdmin}){
+   
     return (
         <div id="card" className="card">
-
-            <div style={photoStyle}  className="Card-pic"></div>
             <div className="text-info">
-                <div className="name">{name} </div>
-            <div className="details">{desc}</div>
+                <div className="name">{plan.planType}</div>
+                <div className="name" style={{color:'var(--app-font)',scale:'90%'}}>{plan.planPrice}</div>
+            <div className="details">
+              <div className="detail-line"><AccessTime sx={{color:'var(--app-blue)'}}/>{String(plan.planDuration).replace('_'," ")}</div> 
+              <div className="detail-line"><HouseOutlined sx={{color:'var(--app-blue)'}}/>{String(plan.limit)} Properties</div>  
+
+            <div style={{marginTop:'20px',minHeight:'50px'}}>{String(plan.description)}</div>    
+            <button onClick={()=>onClick()} className="colored-button" style={{width:'200px',height:'40px',marginTop:'30px'}}>{isAdmin?<div><Edit/></div>:Upgrade}</button>
             </div>
-            
-            
-            
+            </div>      
         </div>
     );
 }
