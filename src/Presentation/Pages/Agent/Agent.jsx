@@ -25,6 +25,24 @@ function AgentDialog() {
     //     // TODO: Implement API call to submit contact form
     // };
 
+    // const items = agentProperties
+    //     .filter(property => property.firstImage)
+    //     .slice(0, 5)
+    //     .map(property => (
+    //         <div key={property.id} className="carousel-item">
+    //             <img
+    //                 src={property.firstImage}
+    //                 alt={property.title || property.multi_title?.english || 'Property'}
+    //                 className="carousel-image"
+    //             />
+    //             {/* <div className="carousel-info">
+    //                 <h4>{property.title || property.multi_title?.english}</h4>
+    //                 <p>${property.price.toLocaleString()}</p>
+    //                 <p>{property.rooms} rooms • {property.bathrooms} baths</p>
+    //             </div> */}
+    //         </div>
+    //     ));
+
     async function fetchAgentData() {
         try {
             setIsLoading(true);
@@ -42,10 +60,23 @@ function AgentDialog() {
             const agentData = await getAgentById(agentId);
             console.log("Agent data received:", agentData);
 
-            if (!agentData || (typeof agentData === 'object' && Object.keys(agentData).length === 0)) {
+            if (!agentData || agentData === null) {
                 setAgent(null);
             } else {
-                setAgent(agentData);
+                const agentDataRefactored = {
+                    photo: agent.profileImage || profilePlaceholder,
+                    name: agent.username || "Agent Name",
+                    company: agent.agencyInfo?.agencyName || "Agency Name",
+                    location: agent.location?.address || "Location not specified",
+                    commissionRate: agent.agencyInfo?.agencyCommissionRate || 1.0,
+                    views: agent.agencyInfo?.agencyViews || 0,
+                    votes: agent.agencyInfo?.agencyVotes || 0,
+                    isVerified: agent.isAccountVerified || false,
+                    age: agent.age || 18,
+                    language: agent.language || "english",
+                    createdAt: agent.createdAt || new Date()
+                };
+                setAgent(agentDataRefactored);
             }
 
             // Fetch agent properties
@@ -69,37 +100,8 @@ function AgentDialog() {
         fetchAgentData();
     }, [agentId]);
 
-    const agentData = {
-        photo: agent.profileImage || profilePlaceholder,
-        name: agent.username || "Agent Name",
-        company: agent.agencyInfo?.agencyName || "Agency Name",
-        location: agent.location?.address || "Location not specified",
-        commissionRate: agent.agencyInfo?.agencyCommissionRate || 1.0,
-        views: agent.agencyInfo?.agencyViews || 0,
-        votes: agent.agencyInfo?.agencyVotes || 0,
-        isVerified: agent.isAccountVerified || false,
-        age: agent.age || 18,
-        language: agent.language || "english",
-        createdAt: agent.createdAt || new Date()
-    };
 
-    const items = agentProperties
-        .filter(property => property.firstImage) 
-        .slice(0, 5)
-        .map(property => (
-            <div key={property.id} className="carousel-item">
-                <img
-                    src={property.firstImage}
-                    alt={property.title || property.multi_title?.english || 'Property'}
-                    className="carousel-image"
-                />
-                {/* <div className="carousel-info">
-                    <h4>{property.title || property.multi_title?.english}</h4>
-                    <p>${property.price.toLocaleString()}</p>
-                    <p>{property.rooms} rooms • {property.bathrooms} baths</p>
-                </div> */}
-            </div>
-        ));
+
 
     const renderContent = () => {
         // console.log("Render state - isLoading:", isLoading, "error:", error, "agent:", agent);

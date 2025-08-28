@@ -75,7 +75,21 @@ function AgentProfile() {
             if (!agentData || (typeof agentData === 'object' && Object.keys(agentData).length === 0)) {
                 setAgent(null);
             } else {
-                setAgent(agentData);
+                // this might be optimal be it should work
+                const agentDataRefactored = {
+                    photo: agent.profileImage || profilePlaceholder,
+                    name: agent.username || "Agent Name",
+                    company: agent.agencyInfo?.agencyName || "Agency Name",
+                    location: agent.location?.address || "Location not specified",
+                    commissionRate: agent.agencyInfo?.agencyCommissionRate || 1.0,
+                    views: agent.agencyInfo?.agencyViews || 0,
+                    votes: agent.agencyInfo?.agencyVotes || 0,
+                    isVerified: agent.isAccountVerified || false,
+                    age: agent.age || 18,
+                    language: agent.language || "english",
+                    createdAt: agent.createdAt || new Date()
+                };
+                setAgent(agentDataRefactored);
             }
 
             // Fetch agent properties
@@ -98,48 +112,6 @@ function AgentProfile() {
     useEffect(() => {
         fetchAgentData();
     }, []);
-
-    // this might be optimal be it should work
-    const agentData = {
-        photo: agent.profileImage || profilePlaceholder,
-        name: agent.username || "Agent Name",
-        company: agent.agencyInfo?.agencyName || "Agency Name",
-        location: agent.location?.address || "Location not specified",
-        commissionRate: agent.agencyInfo?.agencyCommissionRate || 1.0,
-        views: agent.agencyInfo?.agencyViews || 0,
-        votes: agent.agencyInfo?.agencyVotes || 0,
-        isVerified: agent.isAccountVerified || false,
-        age: agent.age || 18,
-        language: agent.language || "english",
-        createdAt: agent.createdAt || new Date()
-    };
-
-    // const agentAboutData = agent ? {
-    //     sectionTitle: `Get to know ${agent.username || "Agent"}`,
-    //     title: "Licensed Real Estate Agent",
-    //     description: agent.bio || "",
-    //     specialties: agent.specialties || [],
-    //     languages: agent.languages || [],
-    //     experience: agent.yearsOfExperience ? `${agent.yearsOfExperience} Years of experience` : "Experience not specified"
-    // } : null;
-    // const items = agentProperties
-    //     .filter(property => property.firstImage)
-    //     .slice(0, 5) // Take first 5
-    //     .map(property => (
-    //         <div key={property.id} className="carousel-item">
-    //             <img
-    //                 src={property.firstImage}
-    //                 alt={property.title || property.multi_title?.english || 'Property'}
-    //                 className="carousel-image"
-    //             />
-    //             {/* <div className="carousel-info">
-    //                     <h4>{property.title || property.multi_title?.english}</h4>
-    //                     <p>${property.price.toLocaleString()}</p>
-    //                     <p>{property.rooms} rooms • {property.bathrooms} baths</p>
-    //                 </div> */}
-    //         </div>
-    //     ));
-
 
     const renderContent = () => {
 
