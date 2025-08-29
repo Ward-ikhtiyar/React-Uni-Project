@@ -1,4 +1,4 @@
-function Chip({text,color,backgroundColor}){
+function Chip({text,color,backgroundColor,}){
     const style={
         backgroundColor:`${backgroundColor}`,
         color:`${color}`,
@@ -7,7 +7,8 @@ function Chip({text,color,backgroundColor}){
         paddingRight:'10px',
         display:"flex",
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        
     };
     return(<div style={style}>{text}</div>);
 }

@@ -3,6 +3,7 @@ import EndPoints from "./endPoints";
 import TokenAxios from "./tokenAxios";
 
 export async function getProfile() {
+    console.log("im going through get profile");
     let response = await TokenAxios.get(EndPoints.User.Me);
     let data = response.data;
     if (data) {

@@ -14,7 +14,7 @@
     height: 100vh;
     color: var(--app-font);
     background-color: var(--app-background);
-    box-shadow: 70px 80px 90px  rgb(226, 226, 226);
+    box-shadow: 70px 80px 90px  var(--app-shadow);
     margin-right: 3px;
     display: flex;
     align-items: center;

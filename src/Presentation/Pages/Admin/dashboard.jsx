@@ -41,17 +41,10 @@ function AdminDashBoard(){
             <ProfileTab title="Admins" Icon={AdminPanelSettings} UnselectedIcon={AdminPanelSettingsOutlined} val={tabIndex} index={3} setIndex={setTabIndex} />
             <ProfileTab title="Plans" Icon={CreditCard} UnselectedIcon={CreditCardOutlined} val={tabIndex} index={4} setIndex={setTabIndex} />
             <ProfileTab title="Complaints" Icon={Feed} UnselectedIcon={FeedOutlined} val={tabIndex} index={5} setIndex={setTabIndex} />
-            </>
-                      )}
- 
-            
-           
+            </>  )}
             <div onClick={()=>{localStorage.clear('token');navigate('/Admin',{replace:true})}} style={{display:'flex',alignItems:'center',justifyContent:'center',width:'100%'}}>
             <ProfileTab title={"Log out"} Icon={Logout} UnselectedIcon={Logout} val={tabIndex} index={-1} setIndex={setTabIndex}/>
-
             </div>
-            
-            
             </div>    
             <SelectedPage/>
         </div>

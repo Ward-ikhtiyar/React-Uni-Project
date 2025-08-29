@@ -181,6 +181,16 @@ export async function adminAddPlan(type,duration,price,description,limit){
     return e.response.status;
   }
 }
+export async function adminUpdatePlan(data,planId){
+  try{
+    let response=await TokenAxios.patch(`${EndPoints.Admin.addNewPlan}/${planId}`,data);
+    return response.data;
+  }catch(e){
+    console.log(e);
+    console.log(e.response.data);
+    throw e
+  }
+}
 
 export async function adminGetUsers(role, query) {
   console.log('params')

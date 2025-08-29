@@ -201,22 +201,19 @@ function SearchAgent() {
             <AppBar />
             <div id='search-agent-body-warpper'>
                 <div id='search-agent-header'>
-                    <h2>
+                    <h2 style={{color:'var(--app-font)'}}>
                         Find a real estate agent
                     </h2>
-                    <div id="search-agent-location-bar">
+                    <div className="search-agent-location-bar">
                         <SearchBar placeholder={"Agent name"} onChange={handleSearch} />
                         {/* <div id='find-agent-button'> */}
-                        <Button type='sumbit' variant='contained' id="find-agent-button" onClick={handleGetAgents}
-                        // sx={{ padding: '1rem', backgroundColor: "#006aff", color: "white", ':hover': { backgroundColor: '#0d4599' }, minWidth: "44px", flexGrow: '1' }}
-                        >
-                            <Search id='search-icon' />Find agent</Button>
+                        <Button type='sumbit' variant='contained'  onClick={handleGetAgents}> <Search id='search-icon' /></Button>
                         {/* </div> */}
                     </div >
 
                 </div>
 
-                <div className="agent-grid-wrapper">
+                <div className="agent-grid-wrapper">    
                     <A_Grid agents={currentAgents} isLoading={isLoading} error={error} />
                 </div>
 

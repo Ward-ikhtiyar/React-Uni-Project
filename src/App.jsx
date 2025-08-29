@@ -46,7 +46,7 @@ function App() {
           <Route path='/AgentDetails' element={<AgentDialog />}></Route>
           <Route path='/AgentAboutMe' element={<AgentAboutMe />}></Route>
           <Route path='/Profile' element={<ProfilePage />}></Route>
-        <Route path='/Complaints' element={<ComplaintsPage/>}></Route> 
+          <Route path='/Complaints' element={<ComplaintsPage/>}></Route> 
           <Route path='/Error' element={<ErrorPage/>}></Route>
           <Route path='/NotFound' element={<NoExist/>}></Route>
           <Route path='/Admin' element={<AdminLogin />}></Route>

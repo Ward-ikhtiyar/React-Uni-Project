@@ -117,7 +117,7 @@ function AddPlanDialog({ open, onClose }) {
                     step="5"
                     className="inputBox"
                     type="number"
-                    placeholder=" "
+                    placeholder="Enter plan price "
                     value={`${limit}`}
                     onInput={(e) => {
                         setLimit(e.target.value);

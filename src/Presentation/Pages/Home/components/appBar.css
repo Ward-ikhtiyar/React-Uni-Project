@@ -8,7 +8,7 @@
     background-color: var(--app-background);
     border-radius: 20px;
     margin-top: 20px;
-    box-shadow: 1px 1px 5px grey;
+    box-shadow: 1px 1px 5px var(--app-shadow);
     /* animation: appBar 0.5s ease-in; */
 }
 .alt-appBar{

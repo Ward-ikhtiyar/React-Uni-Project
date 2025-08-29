@@ -3,7 +3,7 @@ import { getDetails } from "./requests";
 const EndPoints={
     Auth:{
         Login:'auth/login',
-        Register:'user/register',
+        Register:'users/register',
         Verify:'user/verify',
         Resend:'user/resend',
         reset:'auth/reset'
@@ -17,7 +17,7 @@ const EndPoints={
     },
     Agent:{
         getAgent:'users/agency',
-        getMyAgentProperties:'propertyG/my',
+        getMyAgentProperties:'users/agency',
         acceptAgentProperty:'propertyG/acc',
         rejectAgentProperty:'propertyG/rej',
         getAgentPendingProperties:'propertyG/pending',
@@ -26,11 +26,11 @@ const EndPoints={
     },
     Properties:{
      create:'propertyN',
-     getDetails:'view/',
+     getDetails:'views/',
      uploadPhotos:'property/upload-multiple-img',
-     getAll:'property/all',
-     getMine:'property/my', 
-     getTop:'property/top',
+     getAll:'properties/all',
+     getMine:'properties/my', 
+     getTop:'properties/top',
   
     },
     Favoirtes:{

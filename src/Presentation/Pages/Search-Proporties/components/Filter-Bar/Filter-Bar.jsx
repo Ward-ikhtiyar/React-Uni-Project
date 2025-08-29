@@ -207,7 +207,6 @@ const FilterBar = ({ priceRange, setPriceRange, propertyType, setPropertyType, h
 
                 <div className="submit-button-item">
                     <button className="submit-button" onClick={handleSubmit}>
-                        <span className="submit-icon">🔍</span>
                         Search
                     </button>
                 </div>

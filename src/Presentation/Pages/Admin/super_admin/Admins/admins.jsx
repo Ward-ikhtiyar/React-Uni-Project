@@ -25,6 +25,7 @@ function AdminsPage(){
             setAdmins(response);
         }catch(e){
             setError(e);
+            setAdmins([]);
             
         }
         setLoading(false);
@@ -74,7 +75,7 @@ function AdminsPage(){
                     </div>
                     <button onClick={()=>setOpen(true)} className="colored-button" style={{width:"150px",height:"40px",display:"flex"}}><Add/>Add Admin</button>
                     </div>
-              {chipVal===0 ?  <div  className="admin-body">
+              {chipVal===0  ?  <div  className="admin-body">
                     {admins.map((admin,index)=>(
                         <div key={index} onClick={()=>{setDetailsOpen(true);setAdminId(admin.id)}}>
                         <AdminsWidget  admin={admin}/>

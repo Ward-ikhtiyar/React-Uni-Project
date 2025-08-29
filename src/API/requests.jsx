@@ -173,8 +173,10 @@ function extractArray(payload) {
 export async function getTopVotedProperties(mine) {
     let endpoint = mine === true ? EndPoints.Properties.getMine : EndPoints.Properties.getAll;
     try {
-        const response = await TokenAxios.get('property/top/6');
+        const response = await TokenAxios.get('properties/top/6');
         const arr = extractArray(response.data);
+        console.log('returned array');
+        console.log(arr);
         if (arr) {
             return arr;
         }
@@ -186,6 +188,7 @@ export async function getTopVotedProperties(mine) {
 }
 
 export async function getAcceptedProperties(mine) {
+  if(!mine) console.log("ward is fetching all propertues");
   let endpoint = mine === true ? EndPoints.Properties.getMine : EndPoints.Properties.getAll;
   console.log(endpoint)
   try {
@@ -198,6 +201,7 @@ export async function getAcceptedProperties(mine) {
   }
   catch (e) {
     console.log(e.response.data);
+    throw e 
   }
 }
 
@@ -283,13 +287,14 @@ export async function getAgentById(id) {
 }
 ///////////////get Agent properties //////////////
 export async function getAgentProperties(id) {
-  let endpoint = EndPoints.Agent.getMyAgentProperties;
+  
+  let endpoint = `${EndPoints.Agent.getMyAgentProperties}/${id}`;
   // console.log(endpoint)
   try {
     let response = await TokenAxios.get(endpoint, {
-      params: {
-        id: id,
-      }
+      // params: {
+      //   id: id,
+      // }
     });
     let data = response.data;
     console.log(data);

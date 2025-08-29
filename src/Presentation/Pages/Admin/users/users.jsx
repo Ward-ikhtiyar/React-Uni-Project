@@ -21,36 +21,47 @@ function AdminUsers(){
         2:'pending'
     };
 
-    async function getUsers(role,isBan) {
-        try {
-            setLoading(true);
-            let fetchedUsers =isBan?await getBannedUsers(): await adminGetUsers(role, query);
-            if(Array.isArray(fetchedUsers)){
-                let filteredUsers=fetchedUsers.filter((user)=>user.userType!=='admin'&&user.userType!=='super_admin')
-            setUsers(filteredUsers);
+    async function getUsers(role, query, isBan = false) {
+  try {
+    setLoading(true);
+    let fetchedUsers = isBan
+      ? await getBannedUsers()
+      : await adminGetUsers(role, query);
 
-            }
-        } catch (error) {
-            setError(error);
-            setUsers([]);
-        } finally {
-            setLoading(false);
-        }
+    if (Array.isArray(fetchedUsers)) {
+      let filteredUsers = fetchedUsers.filter(
+        (user) => user.userType !== "admin" && user.userType !== "super_admin"
+      );
+      setUsers(filteredUsers);
     }
+  } catch (error) {
+    setError(error);
+    setUsers([]);
+  } finally {
+    setLoading(false);
+  }
+}
      
-    useEffect(()=>{
-        console.log("changed chip");
-        let role= roleMap[chipVal] ?? null;
-        let query=''
-        getUsers(role,query);
-    },[chipVal]);
+    useEffect(() => {
+  console.log("changed chip");
+  let role = roleMap[chipVal] ?? null;
+  if (chipVal === 3) {
+    getUsers(null, query, true);
+  } else {
+    getUsers(role, query, false);
+  }
+}, [chipVal]);
 
-    useEffect(()=>{
-        console.log("changed query");
-        let role= roleMap[chipVal] ?? null;
-        let searchQuery=query
-        getUsers(role,searchQuery);
-    },[query]); 
+useEffect(() => {
+  console.log("changed query");
+  let role = roleMap[chipVal] ?? null;
+  if (chipVal === 3) {
+    getUsers(null, query, true);
+  } else {
+    getUsers(role, query, false);
+  }
+}, [query]);
+
     return (
         <>
         <div className="admin-info">

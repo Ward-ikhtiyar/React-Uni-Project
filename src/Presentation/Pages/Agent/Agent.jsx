@@ -116,19 +116,19 @@ function AgentDialog() {
             );
         }
 
-        if (error) {
-            return (
-                <div className="error-container">
-                    <div className="error-icon">⚠️</div>
-                    <Typography variant="h6" className="error-text">
-                        {error}
-                    </Typography>
-                    <Typography variant="body2" className="error-suggestion">
-                        Please try again later or contact support if the problem persists.
-                    </Typography>
-                </div>
-            );
-        }
+        // if (error) {
+        //     return (
+        //         <div className="error-container">
+        //             <div className="error-icon">⚠️</div>
+        //             <Typography variant="h6" className="error-text">
+        //                 {error}
+        //             </Typography>
+        //             <Typography variant="body2" className="error-suggestion">
+        //                 Please try again later or contact support if the problem persists.
+        //             </Typography>
+        //         </div>
+        //     );
+        // }
 
         if (!agent || agent === null) {
             return (
