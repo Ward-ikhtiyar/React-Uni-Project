@@ -2,7 +2,7 @@ import EndPoints from "./endpoints";
 import TokenAxios from "./tokenAxios";
 import Axios from "./axios";
 
-export async function resetPassword(id,password) {
+export async function resetPassword(id, password) {
   console.log('in reset password');
   console.log(id);
   console.log(password);
@@ -27,43 +27,44 @@ export async function reset(phone) {
   } catch (e) {
     console.log(e.response.data);
     return e.response;
-    }
-} 
+  }
+}
 
-export async function login(number,password){
+export async function login(number, password) {
   console.log('in sign in ');
   console.log(number);
   console.log(password);
-        try{
-        let response=await Axios.post(EndPoints.Auth.Login,
-        {
-           phone: number,
-           password:password
-        });
-        let data=response.data;
-        
-        console.log(`printing ${data}`);
-        
-        if(data.accessToken){
-            console.log(`loginSuccess:${data.accessToken}`);
-            localStorage.setItem("token",data.accessToken);
-            localStorage.setItem("number",number);
-            localStorage.setItem("password",password);
-            localStorage.setItem("role",data.UserType);
-            console.log(data.UserType);
-            console.log(localStorage.getItem('token'));
-            
-            return 200;
-        }else{
-            
-            console.log("error in token");
-        }}
-        catch(e){
-          console.log(e.response);
-          return e.response.status;
-           
-        }
+  try {
+    let response = await Axios.post(EndPoints.Auth.Login,
+      {
+        phone: number,
+        password: password
+      });
+    let data = response.data;
+
+    console.log(`printing ${data}`);
+
+    if (data.accessToken) {
+      console.log(`loginSuccess:${data.accessToken}`);
+      localStorage.setItem("token", data.accessToken);
+      localStorage.setItem("number", number);
+      localStorage.setItem("password", password);
+      localStorage.setItem("role", data.UserType);
+      console.log(data.UserType);
+      console.log(localStorage.getItem('token'));
+
+      return 200;
+    } else {
+
+      console.log("error in token");
     }
+  }
+  catch (e) {
+    console.log(e.response);
+    return e.response.status;
+
+  }
+}
 
 ////////////////// create property /////////////////
 export async function createProperty(property) {
@@ -152,7 +153,7 @@ export async function getAgentAcceptedProperties() {
   try {
     let response = await TokenAxios.get(endpoint);
     let data = response.data;
-    // console.log(data);
+    console.log(data);
     if (data) {
       return data;
     }
@@ -171,18 +172,18 @@ function extractArray(payload) {
   return null;
 }
 export async function getTopVotedProperties(mine) {
-    let endpoint = mine === true ? EndPoints.Properties.getMine : EndPoints.Properties.getAll;
-    try {
-        const response = await TokenAxios.get('property/top/6');
-        const arr = extractArray(response.data);
-        if (arr) {
-            return arr;
-        }
-        return [];
-    } catch (e) {
-        console.log(e.response?.data || e.message);
-        return [];
+  let endpoint = mine === true ? EndPoints.Properties.getMine : EndPoints.Properties.getAll;
+  try {
+    const response = await TokenAxios.get('property/top/6');
+    const arr = extractArray(response.data);
+    if (arr) {
+      return arr;
     }
+    return [];
+  } catch (e) {
+    console.log(e.response?.data || e.message);
+    return [];
+  }
 }
 
 export async function getAcceptedProperties(mine) {
@@ -252,7 +253,7 @@ export async function getAllAgencies(username) {
       }
     });
     let data = response.data;
-    console.log(data);
+    // console.log(data);
     if (data) {
       return data;
     }
@@ -264,13 +265,9 @@ export async function getAllAgencies(username) {
 ///////////////get Agent By ID //////////////
 export async function getAgentById(id) {
   let endpoint = EndPoints.Agent.getAgent;
-  console.log(endpoint);
   try {
-    let response = await TokenAxios.get(endpoint, {
-      params: {
-        id: id,
-      }
-    });
+    console.log(`${endpoint}/${id}`);
+    let response = await TokenAxios.get(`${endpoint}/${id}`);
     let data = response.data;
     console.log(data);
     if (data) {
@@ -278,7 +275,8 @@ export async function getAgentById(id) {
     }
   }
   catch (e) {
-    console.log(e.response.data);
+    console.log("couldn't fetch the agent by id");
+    console.log(e.response);
   }
 }
 ///////////////get Agent properties //////////////
