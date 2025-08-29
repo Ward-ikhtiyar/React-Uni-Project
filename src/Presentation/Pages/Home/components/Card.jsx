@@ -12,7 +12,7 @@ function Card({plan,onClick,isAdmin}){
               <div className="detail-line"><HouseOutlined sx={{color:'var(--app-blue)'}}/>{String(plan.limit)} Properties</div>  
 
             <div style={{marginTop:'20px',minHeight:'50px'}}>{String(plan.description)}</div>    
-            <button onClick={()=>onClick()} className="colored-button" style={{width:'200px',height:'40px',marginTop:'30px'}}>{isAdmin?<div><Edit/></div>:Upgrade}</button>
+            <button onClick={()=>onClick()} className="colored-button" style={{width:'200px',height:'40px',marginTop:'30px'}}>{isAdmin?<div><Edit/></div>:'Upgrade'}</button>
             </div>
             </div>      
         </div>

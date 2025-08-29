@@ -11,6 +11,8 @@ function PlansPage(){
 const[Plans,setPlans]=useState([]);
     async function handleGetPlans(){
         let fetchedPlans=await getPlans(false);
+        console.log("fetched planssssssss");
+        console.log(fetchedPlans)
         setPlans(fetchedPlans);
     }
     useEffect(()=>{
@@ -27,19 +29,17 @@ const[Plans,setPlans]=useState([]);
     }
     return(
         <>
-        <div id="plans-info"  className="profile-info">
+        <div  id="plans-info"  className="profile-info">
               <div  className="requests-title">
                         Plans
                     </div>
-                        <div id="plans-body" className='profile-body'>
+                        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr'}} id="plans-body" className='profile-body'>
 {Plans.map((plan, index) => (
     <div onClick={()=>{handleClick(index)}}>
         <Card
     key={index}
-    name={` SYP ${plan.planPrice}/month`}
-    desc={plan.description}
-    image={plansPics[index]}
-  />
+    plan={plan}
+/>
     </div>
   
 ))}
@@ -55,7 +55,6 @@ const[Plans,setPlans]=useState([]);
                 <div style={{display:'flex', alignItems:'start',justifyContent:'center', height:"100px", width:'300px'}}>
                     <CircularProgress sx={{color:'var(--app-blue)', marginTop:'20px', scale:'150%'}}/>
                 </div>
-                
             </DialogActions>
         </Dialog>
         </>

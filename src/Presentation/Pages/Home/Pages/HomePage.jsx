@@ -37,7 +37,6 @@ function HomePage() {
             <AdSection  />
             <motion.div ref={ref} style={{width:"100%"}} initial={{opacity:0,paddingTop:'150px',scale:'80%'}} whileInView={{opacity:1, paddingTop:'0px', scale:'100%' }} viewport={{once:true}} transition={{scale:{duration:1},marginTop:{duration:1},opacity:{duration:2}}}>
             <AltServiceSection />
-            <TrendingSection/>
             {/* <TrendingCard property={property}/> */}
             </motion.div>
             <TrendingSection/>

@@ -21,6 +21,7 @@ function PropertiesPage() {
     const [loading, setIsLoadoing] = useState(false);
     const [properties, setProperties] = useState([]);
     async function handleGetProperties() {
+        try{
         setIsLoadoing(true);
         let fetchedProperties = await getAcceptedProperties(true);
         if (chipVal === 1) {
@@ -29,26 +30,14 @@ function PropertiesPage() {
             fetchedProperties = fetchedProperties.filter(el => el.status === "accepted");
         }
         setProperties(fetchedProperties);
-        // console.log(chipVal);
-
-        // console.log(fetchedProperties);
-        setIsLoadoing(false);
+        setIsLoadoing(false);}
+        catch(e){
+            setProperties([]);
+        }
     }
     useEffect(() => { handleGetProperties(); }, [chipVal]);
 
-    if (!properties || properties.length === 0) {
-        return (
-            
-                <div className="no-results-container ">
-
-                    <div className="no-results-icon">🏠</div>
-                    <Typography variant="h6" className="no-results-text">
-                        "No properties available"
-                    </Typography>
-                </div>
-            
-        );
-    }
+    
 
     if (!open) {
         return (

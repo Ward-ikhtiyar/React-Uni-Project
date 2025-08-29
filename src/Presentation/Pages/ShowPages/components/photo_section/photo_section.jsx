@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { div } from 'framer-motion/client';
 import { setFavorite, } from '../../../../../API/requests';
 import { upVote,downVote } from '../../../../../API/other_requests';
-function PhotoSection({name,location,photos,isFavorite,Housetype,commerce,setFavorite,voteScore,id}){
+function PhotoSection({name,location,photos,isFavorite,price,Housetype,commerce,setFavorite,voteScore,id}){
     console.log(photos);
     let morePhotos=[];
     const[pickedImage,setPickedImage]=useState(0);
@@ -55,8 +55,27 @@ function PhotoSection({name,location,photos,isFavorite,Housetype,commerce,setFav
                 <Chip text={commerce} color={"black"} backgroundColor={"white"}/>
             </div>
             <div className='overlaying-second' >
-                <div>
-                    {name}   
+                <div className='overlaying-second-title'>
+                    <div style={{fontSize:'35px'}}>
+                    {name}
+                    </div>
+                    <div style={{
+                    backgroundColor:`var(--app-blue)`,
+                    color:`white`,
+                    borderRadius:'15px',
+                    paddingLeft:'10px',
+                    paddingRight:'10px',
+                    display:"flex",
+                    justifyContent:'center',
+                    alignItems:'center',
+                    height:'35px',
+                    minWidth:'8vw',
+                    marginTop:'5px',
+                    fontSize:'25px'
+                    }}>
+                    {price}&nbsp;{'SYP'} 
+                    </div>
+
                 </div>
                 <div style={{display:"flex",gap:'10px',position:'absolute',zIndex:'3', right:'0',marginRight:'7vw' }}>
                     <button className='overlay-button' onClick={()=>{
@@ -70,7 +89,7 @@ function PhotoSection({name,location,photos,isFavorite,Housetype,commerce,setFav
                             })}}>
                             <ArrowUpward className='favorite-button' sx={{scale:'180%', color:'white'}}/>
                             </button>
-                            {vote}
+                           <div style={{fontSize:'35px',color:'white'}}>{vote}</div>, 
                             <button className='overlay-button' onClick={()=>{
                                 downVote(id).then((data)=>{
                                     setVote(data);

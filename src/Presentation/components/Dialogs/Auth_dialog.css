@@ -232,7 +232,7 @@ input[type="checkbox"] {
 .editProfileTab-content {
     display: flex;
     gap: 20px;
-    font-size: 45px;
+    font-size: 20px;
     justify-content: space-between;
     align-items: center;
 }
@@ -240,7 +240,7 @@ input[type="checkbox"] {
 .user-info {
     font-weight: 700;
     color: grey;
-    font-size: 45px;
+    font-size: 20px;
 }
 
 .edit-button-dialog {
@@ -253,7 +253,7 @@ input[type="checkbox"] {
     box-shadow: 1px 1px 5px grey;
     border-radius: 5px;
     padding: 5px;
-    width: 10%;
+    width: 20px;
     height: 30%;
 }
 

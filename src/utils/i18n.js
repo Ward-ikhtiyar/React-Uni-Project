@@ -47,6 +47,12 @@ i18n.use(initReactI18next).init({
          describeIssue:"Describe your issue here...",
          feedBackSentSuccess:'Thank you! Your feedback has been submitted successfully.',
          complaint:'Complaint',
+         Heating: "Heating",
+         Flooring: "Flooring",
+         Floors: "Floors",
+         Location: "Location",
+         Garage: "Garage",
+         Garden: "Garden",
 
       }
      },
@@ -92,6 +98,12 @@ i18n.use(initReactI18next).init({
          describeIssue:'اوصف مشكلتك هنا...',
          feedBackSentSuccess:'شكراً لك! تم إرسال شكواك بنجاح.',
          complaint:'شكوى',
+         Heating: "التدفئة",
+         Flooring: "الأرضيات",
+         Floors: "الطوابق",
+         Location: "الموقع",
+         Garage: "كراج",
+         Garden: "حديقة",
 
 
 
