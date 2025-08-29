@@ -28,7 +28,7 @@ const AgentPropertiesCarousel = ({
           <li key={index} className="agent-properties-list-item">
             <div key={item.id} className="carousel-item">
               <img
-                src={item.photo}
+                src={item.firstImage}
                 // alt={ite.title || property.multi_title?.english || 'Property'}
                 className="carousel-image"
               />
