@@ -2,32 +2,74 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './AgentPropertiesCarousel.css';
 
-const AgentPropertiesCarousel = ({ 
-  items = [], 
-  label = "TEAM", 
-  title = "Recent Sales", 
-  subtitle = "Sales numbers represent all team members", 
+const AgentPropertiesCarousel = ({
+  items = [],
+  label = "TEAM",
+  title = "Recent Sales",
+  subtitle = "Sales numbers represent all team members",
   scrollTargetId = "properties-list",
   maxVisibleItems = 4,
   className = ""
 }) => {
+
+  const makeCarasouleItems = (propertiesData) => {
+
+    if (propertiesData.length === 0) {
+      return (
+        <li className="agent-properties-list-item">
+          <p>hello world</p>
+        </li>
+      );
+    }
+    else if (propertiesData.length <= maxVisibleItems && propertiesData.length !== 0) {
+      return (
+
+        propertiesData.slice(0, maxVisibleItems).map((item, index) => (
+          <li key={index} className="agent-properties-list-item">
+            <div key={item.id} className="carousel-item">
+              <img
+                src={item.photo}
+                // alt={ite.title || property.multi_title?.english || 'Property'}
+                className="carousel-image"
+              />
+            </div>
+          </li>
+        ))
+      );
+    }
+
+    else {
+      return (
+
+        propertiesData.slice(0, maxVisibleItems).map((item, index) => (
+          <li key={index} className="agent-properties-list-item">
+            <div key={item.id} className="carousel-item">
+              <img
+                src={item.photo}
+                // alt={ite.title || property.multi_title?.english || 'Property'}
+                className="carousel-image"
+              />
+            </div>
+          </li>
+        ))
+      );
+    }
+  }
+
   const handleSeeMoreClick = () => {
     // Error handling for missing target elements
     if (!scrollTargetId) {
       console.warn('AgentPropertiesCarousel: No scrollTargetId provided');
       return;
     }
-
     const targetElement = document.getElementById(scrollTargetId);
     if (!targetElement) {
       console.warn(`AgentPropertiesCarousel: Element with id "${scrollTargetId}" not found`);
       return;
     }
 
-    // Use smooth scrolling behavior with fallback for browser compatibility
     try {
-      // Modern browsers with smooth scrolling support
-      targetElement.scrollIntoView({ 
+      targetElement.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
         inline: 'nearest'
@@ -51,11 +93,7 @@ const AgentPropertiesCarousel = ({
         </div>
       )}
       <ul className="agent-properties-list">
-        {items.slice(0, maxVisibleItems).map((item, index) => (
-          <li key={index} className="agent-properties-list-item">
-            {item}
-          </li>
-        ))}
+        {makeCarasouleItems(items)}
         {items.length > maxVisibleItems && (
           <li className="agent-properties-list-item see-more-item">
             <button className="see-more-btn" onClick={handleSeeMoreClick}>
@@ -80,7 +118,7 @@ AgentPropertiesCarousel.propTypes = {
 
 AgentPropertiesCarousel.defaultProps = {
   label: "TEAM",
-  title: "Recent Sales", 
+  title: "Recent Sales",
   subtitle: "Sales numbers represent all team members",
   scrollTargetId: "properties-list",
   maxVisibleItems: 4,
