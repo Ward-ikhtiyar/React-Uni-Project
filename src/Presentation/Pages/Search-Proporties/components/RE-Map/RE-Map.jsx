@@ -83,7 +83,7 @@ const REMap = ({ Listings, isAdd, locationSource, setSearchLocation }) => {
   const [loading, isLoading] = useState(false);
   const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
   const [userSelectedLocation, setUserSelectedLocation] = useState({ lat: 0, lng: 0 });
-    const [mapCenter, setMapCenter] = useState({ lat: 33.5138, lng: 36.2765 }); // Default center
+  const [mapCenter, setMapCenter] = useState({ lat: 33.5138, lng: 36.2765 }); // Default center
 
   function CenterTracker() {
     const map = useMap();
@@ -104,12 +104,29 @@ const REMap = ({ Listings, isAdd, locationSource, setSearchLocation }) => {
   }
 
   useEffect(() => {
-    if (locationSource === 'Near Me') {
-      setSearchLocation(userLocation);
-    } else if (locationSource === 'On Map') {
+    if (locationSource === 'On Map') {
       setSearchLocation(mapCenter);
     }
   }, [locationSource, mapCenter]);
+
+  useEffect(() => {
+    if (locationSource === 'Near Me') {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const newLoc = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          console.log("new location"+newLoc);
+          setUserLocation(newLoc);
+          map.flyTo([newLoc.lat, newLoc.lng], 13);
+        },
+        (error) => {
+          console.error('Geolocation error:', error);
+        }
+      );
+    }
+  }, [locationSource]);
 
   return (
     <div className='re-map' id='map' style={{ height: isAdd ? '100vh' : '90vh' }}>

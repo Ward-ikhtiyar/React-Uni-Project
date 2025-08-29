@@ -28,7 +28,7 @@ const RE_Search = () => {
         //     alert("Please allow your location or choose manually through 'On Map' in the location filter.");
         //     return; // Optionally return here to prevent further execution
         // }
-        // console.log('latitude:' + searchLocation.lat + 'longtitude: ' + searchLocation.lng)
+        console.log('latitude:' + searchLocation.lat + 'longtitude: ' + searchLocation.lng)
         if (locationSource === 'On Map') {
             await handlePropertiesGeoLocation();
         }
