@@ -83,6 +83,33 @@ const REMap = ({ Listings, isAdd, locationSource, setSearchLocation }) => {
   const [loading, isLoading] = useState(false);
   const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
   const [userSelectedLocation, setUserSelectedLocation] = useState({ lat: 0, lng: 0 });
+    const [mapCenter, setMapCenter] = useState({ lat: 33.5138, lng: 36.2765 }); // Default center
+
+  function CenterTracker() {
+    const map = useMap();
+
+    useEffect(() => {
+      const handleMove = () => {
+        const center = map.getCenter();
+        setMapCenter({ lat: center.lat, lng: center.lng });
+      };
+      map.on('moveend', handleMove);
+      return () => {
+        map.off('moveend', handleMove);
+      };
+    }, [map]);
+
+
+    return null;
+  }
+
+  useEffect(() => {
+    if (locationSource === 'Near Me') {
+      setSearchLocation(userLocation);
+    } else if (locationSource === 'On Map') {
+      setSearchLocation(mapCenter);
+    }
+  }, [locationSource, mapCenter]);
 
   return (
     <div className='re-map' id='map' style={{ height: isAdd ? '100vh' : '90vh' }}>
@@ -91,6 +118,7 @@ const REMap = ({ Listings, isAdd, locationSource, setSearchLocation }) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <CenterTracker />
         {isAdd ? (
           <>
             {<LocationMarker setIsLoading={isLoading} setStringLocation={setStringLocation} onClickMap={setLocation} />}

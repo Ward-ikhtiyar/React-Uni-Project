@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import FilterButton from './components/Filter-Buttons/Filter-Button';
 import './Filter-Bar.css'
 import SearchBar from '../../../../components/SearchBar/SearchBar';
-import { Slider } from '@mui/material';
+import { Container, Slider } from '@mui/material';
 
-const FilterBar = ({ priceRange, setPriceRange, propertyType, setPropertyType, handleSubmit, activeFilter, setActiveFilter, searchRadius, setSearchRadius, locationSource, setLocationSource }) => {
+const FilterBar = ({ priceRange, setPriceRange, propertyType, setPropertyType, handleSubmit, activeFilter, setActiveFilter, searchRadius, setSearchRadius, locationSource, setLocationSource, geoLevel, setGeoLevel }) => {
     // const [activeFilter, setActiveFilter] = useState(null);
     // const [priceRange, setPriceRange] = useState([0, 1000000]);
     // const [propertyType, setPropertyType] = useState('All');
@@ -15,7 +15,8 @@ const FilterBar = ({ priceRange, setPriceRange, propertyType, setPropertyType, h
 
 
     const propertyTypes = ['All', 'House', 'Apartment', 'Villa'];
-    const locationOptions = ['Near Me', 'On Map'];
+    const locationOptions = ['Any', 'Near Me', 'On Map'];
+    const settlementHeirarchy = ['street', 'quarter', 'city', 'governorate', 'country'];
     // const [location, setLocation] = useState('Near Me');
 
     const handleMinPriceChange = (value) => {
@@ -36,9 +37,9 @@ const FilterBar = ({ priceRange, setPriceRange, propertyType, setPropertyType, h
     return (
         <div className='filterbar'>
             <div className="filter-container">
-                <div className="search-bar-item">
+                {/* <div className="search-bar-item">
                     <SearchBar />
-                </div>
+                </div> */}
 
                 <div className="filter-item">
                     <button
@@ -65,7 +66,32 @@ const FilterBar = ({ priceRange, setPriceRange, propertyType, setPropertyType, h
                     )}
                 </div>
 
-                <div className="filter-item">
+                <div className={`filter-item ${locationSource !== 'On Map' ? 'filter-item-hidden' : ''}`}>
+                    <button
+                        className={`filter-button ${activeFilter === 'level' ? 'active' : ''}`}
+                        onClick={() => handleFilterClick('level')}
+                    >
+                        <span className="filter-label">Geo Level</span>
+                        <span className="filter-icon">▼</span>
+                    </button>
+                    {activeFilter === 'level' && (
+                        <div className="filter-dropdown">
+                            <div className="property-type-filter">
+                                {settlementHeirarchy.map((type) => (
+                                    <button
+                                        key={type}
+                                        className={`type-option ${geoLevel === type ? 'selected' : ''}`}
+                                        onClick={() => setGeoLevel(type)}
+                                    >
+                                        {type}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                <div className={`filter-item ${locationSource !== 'Near Me' ? 'filter-item-hidden' : ''}`}>
                     <button
                         className={`filter-button ${activeFilter === 'radius' ? 'active' : ''}`}
                         onClick={() => handleFilterClick('radius')}
@@ -108,7 +134,7 @@ const FilterBar = ({ priceRange, setPriceRange, propertyType, setPropertyType, h
                     )}
                 </div>
 
-                <div className="filter-item">
+                <div className={`filter-item ${locationSource !== 'Any' ? 'filter-item-hidden' : ''}`}>
                     <button
                         className={`filter-button ${activeFilter === 'price' ? 'active' : ''}`}
                         onClick={() => handleFilterClick('price')}
@@ -179,7 +205,7 @@ const FilterBar = ({ priceRange, setPriceRange, propertyType, setPropertyType, h
                     )}
                 </div>
 
-                <div className="filter-item">
+                <div className={`filter-item ${locationSource !== 'Any' ? 'filter-item-hidden' : ''}`}>
                     <button
                         className={`filter-button ${activeFilter === 'type' ? 'active' : ''}`}
                         onClick={() => handleFilterClick('type')}
@@ -203,6 +229,8 @@ const FilterBar = ({ priceRange, setPriceRange, propertyType, setPropertyType, h
                         </div>
                     )}
                 </div>
+
+
 
 
                 <div className="submit-button-item">
