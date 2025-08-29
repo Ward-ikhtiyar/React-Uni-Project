@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./RE-Map.css";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -9,38 +9,38 @@ import { useProperty } from '../../../../../consts/context';
 import LocationSnackBar from '../../../../components/snackBar/location_snackBar';
 import RoutingMachine from './Routing_machine';
 
- function LocationMarker({ onClickMap,setStringLocation,setIsLoading }) {
-   useMapEvents({
+function LocationMarker({ onClickMap, setStringLocation, setIsLoading }) {
+  useMapEvents({
     click(e) {
       const { lat, lng } = e.latlng;
       console.log({ lat, lng });
-      onClickMap({ lat, lng }); 
-      LocationString(lat,lng,setStringLocation,setIsLoading);
+      onClickMap({ lat, lng });
+      LocationString(lat, lng, setStringLocation, setIsLoading);
     }
   });
 
-  return null; 
+  return null;
 }
-async function LocationString(lat,lng,setStringLocation,setIsLoading){
+async function LocationString(lat, lng, setStringLocation, setIsLoading) {
   const requestOptions = {
-  method: "GET",
-  redirect: "follow"
-};  try{
+    method: "GET",
+    redirect: "follow"
+  }; try {
     setIsLoading(true);
-     let data= await fetch(`http://localhost:3000/geolocation/reverse?lat=${lat}&lon=${lng}`,)
-     let response=await data.json();
-     console.log(`${response.city},${response.quarter},${response.street}`);
-     setStringLocation(`${response.city},${response.quarter},${response.street}`);
+    let data = await fetch(`http://localhost:3000/geolocation/reverse?lat=${lat}&lon=${lng}`,)
+    let response = await data.json();
+    console.log(`${response.city},${response.quarter},${response.street}`);
+    setStringLocation(`${response.city},${response.quarter},${response.street}`);
     setIsLoading(false);
-    }
-     
-     catch(e){
-      setStringLocation('unable to recognize Location');
-     } 
+  }
+
+  catch (e) {
+    setStringLocation('unable to recognize Location');
+  }
 
 }
 function UserLocationMarker({ setUserLocation, location, }) {
-  
+
   const map = useMap();
 
   useEffect(() => {
@@ -73,77 +73,122 @@ function UserLocationMarker({ setUserLocation, location, }) {
     <Marker position={[location.lat, location.lng]} icon={personIcon}>
       <Popup>Your Location</Popup>
     </Marker>
-  );  
+  );
 }
 
-const REMap = ({ Listings, isAdd }) => {
-    
-    const { location, setLocation } = useProperty();
-    const[stringLocation,setStringLocation]=useState('');
-    const[loading,isLoading]=useState(false);
-    const [userLocation,setUserLocation]=useState({lat:0,lng:0});
-    const[userSelectedLocation,setUserSelectedLocation]=useState({lat:0,lng:0});
-   
-    return (
-        <div className='re-map'  id='map' style={{height:isAdd?'100vh':'90vh'}}>
-            <MapContainer center={[33.5138, 36.2765]} zoom={13}>
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {isAdd ? (
-                    <>
-                       { <LocationMarker setIsLoading={isLoading} setStringLocation={setStringLocation} onClickMap={setLocation}/>}
-                        {location && <Marker position={[location.lat, location.lng]} />}
-                    </>
-                ) : (
-                    Listings && Listings.map((property, index) => (
-                        
-                        <Marker 
-                            key={index} 
-                            position={[property.location.lat, property.location.lon]}
-                            eventHandlers={{
-                                click: () => {
-                                    setUserSelectedLocation({
-                                        lat: property.location.lat,
-                                        lng: property.location.lon
-                                    });
-                                }
-                            }}
-                        >
-                            <Popup className='popup'>
-                                <div style={{ scale: '75%', justifySelf: 'center' }}>
-                                    <DisplayCard property={property}/>
-                                </div>
-                            </Popup>
-                        </Marker>
-                    ))
-                )}
-               {!isAdd&&<UserLocationMarker location={userLocation} setUserLocation={setUserLocation} />}
-               {userLocation && userSelectedLocation &&
- userLocation.lat !== 0 && userSelectedLocation.lat !== 0 && (
-  <RoutingMachine
-    from={[userLocation.lat, userLocation.lng]}
-    to={[userSelectedLocation.lat, userSelectedLocation.lng]}
-  />
-)}
+const REMap = ({ Listings, isAdd, locationSource, setSearchLocation }) => {
 
-            </MapContainer>
-            {isAdd?
-                 <div style={{
-      position: 'absolute',
-      top: '0px',
-      left: '20%',
-      transform: 'translateX(-50%)',
-      zIndex: 10
-    }}>
-                <LocationSnackBar open={true} title={stringLocation} isLoading={loading}/>
+  const { location, setLocation } = useProperty();
+  const [stringLocation, setStringLocation] = useState('');
+  const [loading, isLoading] = useState(false);
+  const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
+  const [userSelectedLocation, setUserSelectedLocation] = useState({ lat: 0, lng: 0 });
+  const [mapCenter, setMapCenter] = useState({ lat: 33.5138, lng: 36.2765 }); // Default center
 
+  function CenterTracker() {
+    const map = useMap();
+
+    useEffect(() => {
+      const handleMove = () => {
+        const center = map.getCenter();
+        setMapCenter({ lat: center.lat, lng: center.lng });
+      };
+      map.on('moveend', handleMove);
+      return () => {
+        map.off('moveend', handleMove);
+      };
+    }, [map]);
+
+
+    return null;
+  }
+
+  useEffect(() => {
+    if (locationSource === 'On Map') {
+      setSearchLocation(mapCenter);
+    }
+  }, [locationSource, mapCenter]);
+
+  useEffect(() => {
+    if (locationSource === 'Near Me') {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const newLoc = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          console.log("new location"+newLoc);
+          setUserLocation(newLoc);
+          map.flyTo([newLoc.lat, newLoc.lng], 13);
+        },
+        (error) => {
+          console.error('Geolocation error:', error);
+        }
+      );
+    }
+  }, [locationSource]);
+
+  return (
+    <div className='re-map' id='map' style={{ height: isAdd ? '100vh' : '90vh' }}>
+      <MapContainer center={[33.5138, 36.2765]} zoom={13}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <CenterTracker />
+        {isAdd ? (
+          <>
+            {<LocationMarker setIsLoading={isLoading} setStringLocation={setStringLocation} onClickMap={setLocation} />}
+            {location && <Marker position={[location.lat, location.lng]} />}
+          </>
+        ) : (
+          Listings && Listings.map((property, index) => (
+
+            <Marker
+              key={index}
+              position={[property.location.lat, property.location.lon]}
+              eventHandlers={{
+                click: () => {
+                  setUserSelectedLocation({
+                    lat: property.location.lat,
+                    lng: property.location.lon
+                  });
+                }
+              }}
+            >
+              <Popup className='popup'>
+                <div style={{ scale: '75%', justifySelf: 'center' }}>
+                  <DisplayCard property={property} />
                 </div>
-            
-            :<div></div>}
+              </Popup>
+            </Marker>
+          ))
+        )}
+        {!isAdd && <UserLocationMarker location={userLocation} setUserLocation={setUserLocation} />}
+        {userLocation && userSelectedLocation &&
+          userLocation.lat !== 0 && userSelectedLocation.lat !== 0 && (
+            <RoutingMachine
+              from={[userLocation.lat, userLocation.lng]}
+              to={[userSelectedLocation.lat, userSelectedLocation.lng]}
+            />
+          )}
+
+      </MapContainer>
+      {isAdd ?
+        <div style={{
+          position: 'absolute',
+          top: '0px',
+          left: '20%',
+          transform: 'translateX(-50%)',
+          zIndex: 10
+        }}>
+          <LocationSnackBar open={true} title={stringLocation} isLoading={loading} />
+
         </div>
-    );
+
+        : <div></div>}
+    </div>
+  );
 }
 
 export default REMap;

@@ -2,7 +2,7 @@
 import AppBar from '../../Home/components/appBar.jsx';
 import { PropertyProvider } from '../../../../consts/context.jsx';
 import { useEffect, useState } from 'react';
-import { getAcceptedProperties, getFilteredProperties } from '../../../../API/requests.jsx';
+import { getAcceptedProperties, getFilteredProperties, getPropertiesLocationLevel, getPropertiesNearMe } from '../../../../API/requests.jsx';
 import RE_Map from '../../Search-Proporties/components/RE-Map/RE-Map.jsx';
 import './RE-Search.css'
 import RE_Grid from '../../Search-Proporties/components/RE-Listing/RE-Grid/RE-Grid.jsx';
@@ -13,6 +13,7 @@ const RE_Search = () => {
     const [searchLocation, setSearchLocation] = useState({ lat: 0, lng: 0 });
     const [searchRadius, setSearchRadius] = useState(10);
     const [propertyType, setPropertyType] = useState('All');
+    const [geoLevel, setGeoLevel] = useState('city');
     const [activeFilter, setActiveFilter] = useState(null);
     const [Listings, setListings] = useState([]);
     const [isFiltered, setIsFiltered] = useState(false);
@@ -64,35 +65,43 @@ const RE_Search = () => {
 
 
     const handleSubmit = async () => {
-        // Close any open dropdowns
-        // console.log('searchLocation', searchLocation);
+        // console.log("min price range: " + priceRange[0] + "max price Range: " + priceRange[1]);
         setActiveFilter(null);
-        if (searchLocation.lat === 0 && searchLocation.lng === 0) {
-            alert("Please allow your location or choose manually through 'On Map' in the location filter.");
-            return; // Optionally return here to prevent further execution
+        const hasFilters = priceRange[0] > 0 || priceRange[1] < 1000000 || propertyType !== 'All';
+        // if (searchLocation.lat === 0 && searchLocation.lng === 0) {
+        //     alert("Please allow your location or choose manually through 'On Map' in the location filter.");
+        //     return; // Optionally return here to prevent further execution
+        // }
+        console.log('latitude:' + searchLocation.lat + 'longtitude: ' + searchLocation.lng)
+        if (locationSource === 'On Map') {
+            await handlePropertiesGeoLocation();
         }
+        else if (locationSource === 'Near Me') {
+            await handlePropertiesNearMe();
+        }
+        else {
 
-        // console.log('Applying filters:', { priceRange, propertyType });
-
-        // Check if any filters are actually applied
-        const hasFilters = priceRange[0] > 0  || priceRange[1] < 1000000  || propertyType !== 'All';
-        
-        if (hasFilters) {
-            setIsFiltered(true);
-            await handleFilteredProperties();
-        } else {
-            setIsFiltered(false);
-            await handleGetProperties();
+            if (hasFilters) {
+                setIsFiltered(true);
+                await handleFilteredProperties();
+            } else {
+                setIsFiltered(false);
+                await handleGetProperties();
+            }
         }
     };
 
-    async function handleFilteredProperties() {
+
+    async function handlePropertiesGeoLocation() {
         try {
             setIsLoading(true);
             setError(null);
-            let fetchedProperties = await getFilteredProperties(priceRange[0], priceRange[1], propertyType, searchRadius, locationSource);
+
+            let fetchedProperties = await getPropertiesLocationLevel(geoLevel, searchLocation.lat, searchLocation.lng);
             setListings(fetchedProperties);
-            // console.log('Filtered properties:', fetchedProperties);
+            console.log('Get Geo Level properties Request Successful:', fetchedProperties);
+
+
         } catch (error) {
             console.error('Error fetching filtered properties:', error);
             if (error.statusCode === 404 && error.message === "No estates found") {
@@ -108,14 +117,66 @@ const RE_Search = () => {
             setIsLoading(false);
         }
     }
-    
+    async function handlePropertiesNearMe() {
+        try {
+            setIsLoading(true);
+            setError(null);
+
+            let fetchedProperties = await getPropertiesNearMe(searchRadius, searchLocation.lat, searchLocation.lng);
+            setListings(fetchedProperties);
+            console.log('Get Near Me properties Request Successful:', fetchedProperties);
+
+
+        } catch (error) {
+            console.error('Error fetching filtered properties:', error);
+            if (error.statusCode === 404 && error.message === "No estates found") {
+                // Handle 404 - no properties found with current filters
+                setListings([]);
+                setError("No properties found matching your criteria. Try adjusting your filters.");
+            } else {
+                // Other errors - fallback to all properties
+                setError("Error applying filters. Showing all properties.");
+                await handleGetProperties();
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    async function handleFilteredProperties() {
+        try {
+            setIsLoading(true);
+            setError(null);
+
+            let fetchedProperties = await getFilteredProperties(1, 0, priceRange[0], priceRange[1], propertyType === 'All' ? null : propertyType);
+            setListings(fetchedProperties);
+            console.log('Get Filtered properties Request Successful:', fetchedProperties);
+
+        } catch (error) {
+            console.error('Error fetching filtered properties:', error);
+            if (error.statusCode === 404 && error.message === "No estates found") {
+                // Handle 404 - no properties found with current filters
+                setListings([]);
+                setError("No properties found matching your criteria. Try adjusting your filters.");
+            } else {
+                // Other errors - fallback to all properties
+                setError("Error applying filters. Showing all properties.");
+                await handleGetProperties();
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     async function handleGetProperties() {
         try {
             setIsLoading(true);
             setError(null);
             let fetchedProperties = await getAcceptedProperties(false);
             setListings(fetchedProperties);
-            console.log('All properties:', fetchedProperties);
+
+            console.log('Get All properties Request Successful:', fetchedProperties);
+
         } catch (error) {
             console.error('Error fetching properties:', error);
             if (error.statusCode === 404 && error.message === "No estates found") {
@@ -141,38 +202,40 @@ const RE_Search = () => {
     
 
     return (<div className='full-search-page'>
-            <AppBar isHome={false} />
-            <FilterBar
-                priceRange={priceRange}
-                setPriceRange={setPriceRange}
-                propertyType={propertyType}
-                setPropertyType={setPropertyType}
-                handleSubmit={handleSubmit}
-                activeFilter={activeFilter}
-                setActiveFilter={setActiveFilter}
-                searchRadius={searchRadius}
-                setSearchRadius={setSearchRadius}
-                locationSource={locationSource}
-                setLocationSource={setLocationSource}
-            />
-            <div className="search-page-wrapper">
-                <PropertyProvider>
-                    <RE_Map
-                        Listings={Listings} isAdd={false} locationSource={locationSource}
+        <AppBar isHome={false} />
+        <FilterBar
+            priceRange={priceRange}
+            setPriceRange={setPriceRange}
+            propertyType={propertyType}
+            setPropertyType={setPropertyType}
+            handleSubmit={handleSubmit}
+            activeFilter={activeFilter}
+            setActiveFilter={setActiveFilter}
+            searchRadius={searchRadius}
+            setSearchRadius={setSearchRadius}
+            locationSource={locationSource}
+            setLocationSource={setLocationSource}
+            geoLevel={geoLevel}
+            setGeoLevel={setGeoLevel}
+        />
+        <div className="search-page-wrapper">
+            <PropertyProvider>
+                <RE_Map
+                    Listings={Listings} isAdd={false} locationSource={locationSource}
 
                     setSearchLocation={setSearchLocation}
-                    // searchLocation={searchLocation}
-                    />
-                </PropertyProvider>
-                <RE_Grid
-                    Listings={Listings}
-                    isLoading={isLoading}
-                    error={error}
-                    isFiltered={isFiltered}
-                    setSearchLocation={setSearchLocation}
+                // searchLocation={searchLocation}
                 />
-            </div>
+            </PropertyProvider>
+            <RE_Grid
+                Listings={Listings}
+                isLoading={isLoading}
+                error={error}
+                isFiltered={isFiltered}
+                setSearchLocation={setSearchLocation}
+            />
         </div>
+    </div>
     );
 }
 
