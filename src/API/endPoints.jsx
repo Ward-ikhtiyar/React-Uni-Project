@@ -28,7 +28,7 @@ const EndPoints={
      create:'propertyN',
      getDetails:'properties/',
      uploadPhotos:'property/upload-multiple-img',
-     getAll:'property/all',
+     getAll:'properties/all',
      getMine:'property/my', 
      getTop:'property/top',
   

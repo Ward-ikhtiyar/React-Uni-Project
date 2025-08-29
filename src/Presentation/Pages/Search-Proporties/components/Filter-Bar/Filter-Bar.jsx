@@ -55,7 +55,7 @@ const FilterBar = ({ priceRange, setPriceRange, propertyType, setPropertyType, h
                                     <button
                                         key={type}
                                         className={`type-option ${locationSource === type ? 'selected' : ''}`}
-                                    onClick={() => setLocationSource(type)}   
+                                        onClick={() => setLocationSource(type)}
                                     >
                                         {type}
                                     </button>

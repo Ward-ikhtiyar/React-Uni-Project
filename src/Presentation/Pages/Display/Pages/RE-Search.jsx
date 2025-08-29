@@ -21,18 +21,18 @@ const RE_Search = () => {
 
     const handleSubmit = async () => {
         // Close any open dropdowns
-        // console.log('searchLocation', searchLocation);
+        console.log('searchLocation', searchLocation);
         setActiveFilter(null);
-        if (searchLocation.lat === 0 && searchLocation.lng === 0) {
-            alert("Please allow your location or choose manually through 'On Map' in the location filter.");
-            return; // Optionally return here to prevent further execution
-        }
+        // if (searchLocation.lat === 0 && searchLocation.lng === 0) {
+        //     alert("Please allow your location or choose manually through 'On Map' in the location filter.");
+        //     return; // Optionally return here to prevent further execution
+        // }
 
         // console.log('Applying filters:', { priceRange, propertyType });
 
         // Check if any filters are actually applied
-        const hasFilters = priceRange[0] > 0  || priceRange[1] < 1000000  || propertyType !== 'All';
-        
+        const hasFilters = priceRange[0] > 0 || priceRange[1] < 1000000 || propertyType !== 'All';
+
         if (hasFilters) {
             setIsFiltered(true);
             await handleFilteredProperties();
@@ -64,7 +64,7 @@ const RE_Search = () => {
             setIsLoading(false);
         }
     }
-    
+
     async function handleGetProperties() {
         try {
             setIsLoading(true);
@@ -95,38 +95,38 @@ const RE_Search = () => {
     }, []);
 
     return (<div className='full-search-page'>
-            <AppBar isHome={false} />
-            <FilterBar
-                priceRange={priceRange}
-                setPriceRange={setPriceRange}
-                propertyType={propertyType}
-                setPropertyType={setPropertyType}
-                handleSubmit={handleSubmit}
-                activeFilter={activeFilter}
-                setActiveFilter={setActiveFilter}
-                searchRadius={searchRadius}
-                setSearchRadius={setSearchRadius}
-                locationSource={locationSource}
-                setLocationSource={setLocationSource}
-            />
-            <div className="search-page-wrapper">
-                <PropertyProvider>
-                    <RE_Map
-                        Listings={Listings} isAdd={false} locationSource={locationSource}
+        <AppBar isHome={false} />
+        <FilterBar
+            priceRange={priceRange}
+            setPriceRange={setPriceRange}
+            propertyType={propertyType}
+            setPropertyType={setPropertyType}
+            handleSubmit={handleSubmit}
+            activeFilter={activeFilter}
+            setActiveFilter={setActiveFilter}
+            searchRadius={searchRadius}
+            setSearchRadius={setSearchRadius}
+            locationSource={locationSource}
+            setLocationSource={setLocationSource}
+        />
+        <div className="search-page-wrapper">
+            <PropertyProvider>
+                <RE_Map
+                    Listings={Listings} isAdd={false} locationSource={locationSource}
 
                     setSearchLocation={setSearchLocation}
-                    // searchLocation={searchLocation}
-                    />
-                </PropertyProvider>
-                <RE_Grid
-                    Listings={Listings}
-                    isLoading={isLoading}
-                    error={error}
-                    isFiltered={isFiltered}
-                    setSearchLocation={setSearchLocation}
+                // searchLocation={searchLocation}
                 />
-            </div>
+            </PropertyProvider>
+            <RE_Grid
+                Listings={Listings}
+                isLoading={isLoading}
+                error={error}
+                isFiltered={isFiltered}
+                setSearchLocation={setSearchLocation}
+            />
         </div>
+    </div>
     );
 }
 

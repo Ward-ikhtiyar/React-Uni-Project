@@ -203,12 +203,14 @@ export async function getAcceptedProperties(mine) {
 }
 
 ///////////////get Filtered Porperties //////////////
-export async function getFilteredProperties(minPrice, maxPrice, propertyType, searchRadius, locationSource) {
+export async function getFilteredProperties(pageNum, numPerPage, minPrice, maxPrice, propertyType, searchRadius, locationSource) {
   let endpoint = EndPoints.Properties.getAll;
   console.log(endpoint)
   try {
     let response = await TokenAxios.get(endpoint, {
       params: {
+        pageNum: pageNum,
+        numPerPage: numPerPage,
         minPrice: minPrice,
         maxPrice: maxPrice,
         word: propertyType,
