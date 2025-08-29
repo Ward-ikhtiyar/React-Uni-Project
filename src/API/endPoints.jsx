@@ -25,12 +25,13 @@ const EndPoints={
         report:'/reports'
     },
     Properties:{
-     create:'propertyN',
+     create:'properties-on',
      getDetails:'properties/',
      uploadPhotos:'property/upload-multiple-img',
      getAll:'properties/all',
-     getMine:'properties/my', 
+     getMine:'properties-on/my', 
      getTop:'properties/top',
+     agentUpdateProperty:'properties-ag',
   
     },
     Favoirtes:{
@@ -44,8 +45,8 @@ const EndPoints={
         createPlan:'webhook'
     },
     Admin:{
-       getAllPropertiesSuperAdmin:'propertyA',
-       getAllProperties:'propertyA/pending' ,
+       getAllPropertiesSuperAdmin:'properties-ad',
+       getAllProperties:'properties-ad' ,
        getAdmins:'users/getAdmins',
        getUsers:'/users/getUsers',
        addNewPlan:'/plans',

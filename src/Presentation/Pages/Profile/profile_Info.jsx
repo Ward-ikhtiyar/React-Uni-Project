@@ -73,7 +73,6 @@ function ProfileInfoPage() {
                         <div className='username'>
                             <Person />
                             {userName}</div>
-
                         <div className='number'>
                             <Phone />
                             {phone}</div>

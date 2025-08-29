@@ -84,7 +84,8 @@ export async function adminGetAdmins(){
     }
   }catch(e){
     console.log(e);
-    console.log(e.response.data);
+    console.log(e);
+    throw e;
   }
 }
 export async function adminGetAdminDetails(id){

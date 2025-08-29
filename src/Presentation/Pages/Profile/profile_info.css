@@ -35,6 +35,7 @@ background-position:center;
 }
 .edit-section{
     display: flex;
+    background-color: var(--app-card);
     justify-content: center;
     align-items: center;
 }

@@ -110,7 +110,7 @@ export async function createProperty(property) {
 export async function updateProperty(id, data) {
   console.log(`selected property is ${id}`)
   try {
-    let response = await TokenAxios.patch(`${EndPoints.Properties.getMine}/${id}`, data);
+    let response = await TokenAxios.patch(`${EndPoints.Properties.agentUpdateProperty}/${id}`, data);
     console.log(response.data);
     return response.status
   }
@@ -199,7 +199,7 @@ export async function getAcceptedProperties(mine) {
     }
   }
   catch (e) {
-    console.log(e.response.data);
+    console.log("an error pccured in fetch all  request")
     throw e 
   }
 }
@@ -322,7 +322,7 @@ export async function getDetails(id) {
 //////////////////////////////delete property///////////////////////////
 export async function deleteProperty(id, password) {
   try {
-    let response = await TokenAxios.delete(`/property/${id}`, {
+    let response = await TokenAxios.delete(`/properties-on/${id}`, {
       data: { password: password }
     });
     console.log(response.data);

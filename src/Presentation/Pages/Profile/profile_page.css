@@ -30,7 +30,7 @@
     width: 75%;
     height: 35%;
     border-radius: 10px;
-    background-color: var(--app-background);
+    background-color: var(--app-card);
     color: var(--app-font);
     margin-top: 5%;
     margin-bottom: 10px;

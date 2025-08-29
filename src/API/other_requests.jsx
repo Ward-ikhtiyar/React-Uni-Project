@@ -35,8 +35,10 @@ export async function getPlans() {
     }
 }
 export async function createPlan(id) {
+    console.log("whatatatatatatat");
+    console.log(id)
     let mydata = {
-        planId: `${id}`,
+        planId: String(id),
         payment_Method_Type: "card",
         dataAfterPayment: {
             success_url: "http://localhost:5173",
@@ -44,7 +46,7 @@ export async function createPlan(id) {
         }
     }
     try {
-        let response = await TokenAxios.post(EndPoints.Plans.createPlan, mydata);
+        let response = await TokenAxios.post('webhook', mydata);
         let data = response.data;
         if (data) {
             return data.url

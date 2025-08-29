@@ -1,12 +1,12 @@
 .Agent-property-card {
     display: flex;
     flex-direction: column;
-    box-shadow: 1px 1px 5px grey;
+    box-shadow: 1px 1px 5px var(--app-shadow);
     border-radius: 6px;
     width: 320px;
     height: 360px;
     transition: box-shadow 0.1s;
-    background-color: white;
+    background-color: var(--app-background);
     margin-bottom: 30px;
 }
 /* body{
@@ -22,9 +22,7 @@
 }
 .property-status{
     background-color: var(--app-blue);
-    padding-left: 10px;
-    padding-right:10px;
-    padding-bottom: 5px;
+    ;
     color: white;
     display: flex;
     height: 30px;
@@ -40,7 +38,7 @@
 }
 .location-status {
     font-family: Tajawal;
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -81,7 +79,6 @@
     background-color: var(--app-blue);
     border: none;
     border-radius: 5px;
-    box-shadow: 1px 1px 5px grey;
     padding-bottom: 3%;
     padding-top: 3%;
     margin-top: 5%;
