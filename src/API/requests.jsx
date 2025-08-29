@@ -148,11 +148,11 @@ export async function uploadPropertyImage(photos, id) {
 ///////////////get All & my Agent Properties //////////////
 export async function getAgentAcceptedProperties() {
   let endpoint = EndPoints.Agent.getMyAgentProperties;
-  console.log(endpoint)
+  // console.log(endpoint)
   try {
     let response = await TokenAxios.get(endpoint);
     let data = response.data;
-    console.log(data);
+    // console.log(data);
     if (data) {
       return data;
     }

@@ -55,37 +55,41 @@ function AgentDialog() {
                 return;
             }
 
-            console.log("Fetching agent data for ID:", agentId);
+            // console.log("Fetching agent data for ID:", agentId);
 
             const agentData = await getAgentById(agentId);
-            console.log("Agent data received:", agentData);
+            // console.log("Agent data received:", agentData);
 
             if (!agentData || agentData === null) {
                 setAgent(null);
             } else {
                 const agentDataRefactored = {
-                    photo: agent.profileImage || profilePlaceholder,
-                    name: agent.username || "Agent Name",
-                    company: agent.agencyInfo?.agencyName || "Agency Name",
-                    location: agent.location?.address || "Location not specified",
-                    commissionRate: agent.agencyInfo?.agencyCommissionRate || 1.0,
-                    views: agent.agencyInfo?.agencyViews || 0,
-                    votes: agent.agencyInfo?.agencyVotes || 0,
-                    isVerified: agent.isAccountVerified || false,
-                    age: agent.age || 18,
-                    language: agent.language || "english",
-                    createdAt: agent.createdAt || new Date()
+                    photo: agentData.profileImage || profilePlaceholder,
+                    name: agentData.username || "Agent temp Name",
+                    company: agentData.agencyInfo?.agencyName || "Agency temp Name",
+                    location: agentData.location?.address || "Location not specified",
+                    commissionRate: agentData.agencyInfo?.agencyCommissionRate || 1.0,
+                    views: agentData.agencyInfo?.agencyViews || 0,
+                    votes: agentData.agencyInfo?.agencyVotes || 0,
+                    isVerified: agentData.isAccountVerified || false,
+                    age: agentData.age || 18,
+                    language: agentData.language || "english",
+                    createdAt: agentData.createdAt || new Date(),
+                    // Keep original data as well
+                    ...agentData
                 };
+
                 setAgent(agentDataRefactored);
+                console.log("Agent state updated with refactored data:", agentDataRefactored);
             }
 
             // Fetch agent properties
-            // const propertiesData = await getAgentProperties(agentId);
+            const propertiesData = await getAgentProperties(agentId);
             // console.log("Properties data received:", propertiesData);
 
-            // if (propertiesData) {
-            //     setAgentProperties(propertiesData);
-            // }
+            if (propertiesData) {
+                setAgentProperties(propertiesData);
+            }
 
         } catch (error) {
             console.error("Failed to fetch agent data:", error);

@@ -9,7 +9,7 @@ import AgentPromoteSection from '../../components/Agent/AgentPromoteSection/Agen
 import ImageUploadDialog from '../../components/imageUploadDialog/imageUploadDialog';
 import { getProfile, uploadAgentImage } from '../../../API/other_requests';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { getAgentProperties } from '../../../API/requests';
+import { getAgentAcceptedProperties, getAgentProperties } from '../../../API/requests';
 import { getOwnerInfo } from '../../../API/other_requests';
 import { Typography } from '@mui/material';
 import profilePlaceholder from '../../../../public/assets/images/Profile_avatar_placeholder.png';
@@ -23,7 +23,9 @@ function AgentProfile() {
     const [uploadedImage, setUploadedImage] = useState(null);
     const [imageUploadProgress, setImageUploadProgress] = useState(0);
 
-    const [agent, setAgent] = useState(null);
+     const [agent , setAgent] = useState(null );
+        
+    // const [agent, setAgent] = useState(null);
     const [agentProperties, setAgentProperties] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -31,6 +33,7 @@ function AgentProfile() {
 
     const handleImageSelect = async (file) => {
         setUploadedImage(file);
+
 
         try {
             setImageUploadProgress(0);
@@ -62,40 +65,40 @@ function AgentProfile() {
         setImageUploadProgress(0);
     };
 
-
     async function fetchAgentData() {
         try {
             setIsLoading(true);
             setError(null);
-
-
-            const agentData = await getProfile();
-            console.log("Owner data received:", agentData);
-
-            if (!agentData || (typeof agentData === 'object' && Object.keys(agentData).length === 0)) {
+            
+            let agentData = await getProfile();
+            
+            if (!agentData ) {
                 setAgent(null);
             } else {
-                // this might be optimal be it should work
+                // Use the refactored data structure
                 const agentDataRefactored = {
-                    photo: agent.profileImage || profilePlaceholder,
-                    name: agent.username || "Agent Name",
-                    company: agent.agencyInfo?.agencyName || "Agency Name",
-                    location: agent.location?.address || "Location not specified",
-                    commissionRate: agent.agencyInfo?.agencyCommissionRate || 1.0,
-                    views: agent.agencyInfo?.agencyViews || 0,
-                    votes: agent.agencyInfo?.agencyVotes || 0,
-                    isVerified: agent.isAccountVerified || false,
-                    age: agent.age || 18,
-                    language: agent.language || "english",
-                    createdAt: agent.createdAt || new Date()
+                    photo: agentData.profileImage || profilePlaceholder,
+                    name: agentData.username || "Agent temp Name",
+                    company: agentData.agencyInfo?.agencyName || "Agency temp Name",
+                    location: agentData.location?.address || "Location not specified",
+                    commissionRate: agentData.agencyInfo?.agencyCommissionRate || 1.0,
+                    views: agentData.agencyInfo?.agencyViews || 11110,
+                    votes: agentData.agencyInfo?.agencyVotes || 11110,
+                    isVerified: agentData.isAccountVerified || false,
+                    age: agentData.age || 1800,
+                    language: agentData.language || "english",
+                    createdAt: agentData.createdAt || new Date(),
+                    // Keep original data as well
+                    ...agentData
                 };
+                
                 setAgent(agentDataRefactored);
+                console.log("Agent state updated with refactored data:", agentDataRefactored);
             }
 
-            // Fetch agent properties
-            const propertiesData = await getAgentProperties(agentId);
-            console.log("Properties data received:", propertiesData);
-
+            // Fetch agent properties (uncomment when ready to use)
+            const propertiesData = await getAgentAcceptedProperties();
+            // console.log("Properties data received:", propertiesData);
             if (propertiesData) {
                 setAgentProperties(propertiesData);
             }
@@ -103,7 +106,7 @@ function AgentProfile() {
         } catch (error) {
             console.error("Failed to fetch agent data:", error);
             setError("Failed to load agent information. Please try again later.");
-            setAgent(null);
+            // setAgent(null);
         } finally {
             setIsLoading(false);
         }
@@ -111,7 +114,9 @@ function AgentProfile() {
 
     useEffect(() => {
         fetchAgentData();
+        // setAgent('hello world');
     }, []);
+
 
     const renderContent = () => {
 
@@ -143,7 +148,7 @@ function AgentProfile() {
             );
         }
 
-        if (!agent || agent === null) {
+        if (!agent ) {
             return (
                 <div className="agent-profile-body">
 
@@ -164,16 +169,16 @@ function AgentProfile() {
         return (
             <>
                 <AgentProfileHeader
-                    agentData={agentData}
-                    carouselItems={items}
+                    agentData={agent}
+                    carouselItems={agentProperties}
                     scrollTargetId="properties-list"
                 />
 
                 <div className="agent-profile-body">
                     <div className="agent-profile-body-left">
-                        <AgentAboutSection
+                        {/* <AgentAboutSection
                             showMoreEnabled={false}
-                        />
+                        /> */}
                         <AgentPropertiesTable
                             properties={agentProperties}
                             totalCount={agentProperties.length}
@@ -181,7 +186,7 @@ function AgentProfile() {
                     </div>
                     <div className="agent-profile-body-right">
                         <AgentPromoteSection
-                            onPromotionItemClick={handlePromotionItemClick}
+                            onPromotionItemClick={() => {}}
                         />
                     </div>
                 </div>
