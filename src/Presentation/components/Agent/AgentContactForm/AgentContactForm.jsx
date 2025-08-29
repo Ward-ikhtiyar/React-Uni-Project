@@ -2,7 +2,10 @@ import { Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import './AgentContactForm.css';
 
-function AgentContactForm({ onSubmit, buttonText = "Contact the team" }) {
+function AgentContactForm({
+    onSubmition, buttonText = "Contact the team"
+}) {
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',

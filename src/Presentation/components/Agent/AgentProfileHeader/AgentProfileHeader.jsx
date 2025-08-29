@@ -19,14 +19,7 @@ function AgentProfileHeader({
     return (
         <div className="agent-profile-header">
             <AgentBasicInfo
-                photo={agentData.photo}
-                name={agentData.name}
-                company={agentData.company}
-                location={agentData.location}
-                commissionRate={agentData.commissionRate}
-                views={agentData.views}
-                votes={agentData.votes}
-                isVerified={agentData.isVerified}
+                agent={agentData}
             />
             <div className="agent-profile-header-right F-col-c-c">
                 <AgentPropertiesCarousel

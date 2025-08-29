@@ -64,28 +64,35 @@ function AgentDialog() {
                 setAgent(null);
             } else {
                 const agentDataRefactored = {
-                    photo: agent.profileImage || profilePlaceholder,
-                    name: agent.username || "Agent Name",
-                    company: agent.agencyInfo?.agencyName || "Agency Name",
-                    location: agent.location?.address || "Location not specified",
-                    commissionRate: agent.agencyInfo?.agencyCommissionRate || 1.0,
-                    views: agent.agencyInfo?.agencyViews || 0,
-                    votes: agent.agencyInfo?.agencyVotes || 0,
-                    isVerified: agent.isAccountVerified || false,
-                    age: agent.age || 18,
-                    language: agent.language || "english",
-                    createdAt: agent.createdAt || new Date()
+                    photo: agentData.profileImage || profilePlaceholder,
+                    name: agentData.username || "Agent temp Name",
+                    company: agentData.agencyInfo?.agencyName || "Agency temp Name",
+                    location: agentData.location?.address || "Location not specified",
+                    commissionRate: agentData.agencyInfo?.agencyCommissionRate || 1.0,
+                    views: agentData.agencyInfo?.agencyViews || 0,
+                    votes: agentData.agencyInfo?.agencyVotes || 0,
+                    isVerified: agentData.isAccountVerified || false,
+                    age: agentData.age || 18,
+                    language: agentData.language || "english",
+                    createdAt: agentData.createdAt || new Date(),
+                    // Keep original data as well
+                    ...agentData
                 };
+
+                const properties = agentData.properties;
+                setAgentProperties(properties);
                 setAgent(agentDataRefactored);
-            }
 
+                console.log("Agent state updated with refactored data:", agentDataRefactored);
+            }
+            
             // Fetch agent properties
-            const propertiesData = await getAgentProperties(agentId);
-            console.log("Properties data received:", propertiesData);
+            // const propertiesData = await getAgentProperties(agentId);
+            // // console.log("Properties data received:", propertiesData);
 
-            if (propertiesData) {
-                setAgentProperties(propertiesData);
-            }
+            // if (propertiesData) {
+            //     setAgentProperties(propertiesData);
+            // }
 
         } catch (error) {
             console.error("Failed to fetch agent data:", error);
@@ -149,20 +156,15 @@ function AgentDialog() {
         return (
             <>
                 <AgentProfileHeader
-                    agentData={agentData}
-                    carouselItems={items}
+                    agentData={agent}
+                    carouselItems={agentProperties}
                     scrollTargetId="properties-list"
                 />
                 <div className="agent-profile-body">
                     <div className="agent-profile-body-left">
-                        <AgentAboutSection
-                            sectionTitle={`Get to know ${agentData.name}`}
-                            title={`Real Estate Agent - ${agentData.company}`}
-                            description={agent.bio || `${agentData.name} is a professional real estate agent based in ${agentData.location}. With ${agentData.views} profile views, this agent has established a presence in the local real estate market. The agency operates with a commission rate of ${agentData.commissionRate}% and has received ${agentData.votes} votes from clients.`}
-                            languages={agent.languages || [agentData.language === "arabic" ? "Arabic" : "English"]}
-                            experience={`${new Date().getFullYear() - new Date(agentData.createdAt).getFullYear()} Years of experience`}
-                            showMoreEnabled={true}
-                        />
+                        {/* <AgentAboutSection
+                            showMoreEnabled={false}
+                        /> */}
                         <AgentPropertiesTable
                             properties={agentProperties}
                             totalCount={agentProperties.length}
@@ -171,7 +173,7 @@ function AgentDialog() {
                     <div className="agent-profile-body-right">
                         {/* delete it, if you got the backend ready */}
                         <AgentContactForm
-                            onSubmit={handleContactSubmit}
+                            // onSubmit={handleContactSubmit}
                             buttonText="Contact the agent"
                         />
                     </div>
