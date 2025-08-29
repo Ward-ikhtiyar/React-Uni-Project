@@ -1,0 +1,11 @@
+.property-table th, 
+.property-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--app-blue); /* gives a line under header */
+  color: var(--app-font);
+  font-weight: 600;
+}
+.property-table th {
+  background-color: var(--app-card); /* makes header stand out */
+}

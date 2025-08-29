@@ -1,10 +1,24 @@
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
+import { useEffect } from 'react';
 import RE_Card from '../RE-Card/RE-Card'
 import './Re-Grid.css';
 import Footer from '../../../../../components/footer/footer';
 
 const RE_Grid = ({ Listings, isLoading, error, isFiltered }) => {
+    useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - 200
+      ) {
+        console.log('you have reached the botttom');
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
     const renderContent = () => {
         if (isLoading) {
             return (
@@ -17,7 +31,7 @@ const RE_Grid = ({ Listings, isLoading, error, isFiltered }) => {
             );
         }
 
-        if (error) {
+        if (error && !Listings) {
             return (
                 <div className="error-container">
                     <div className="error-icon">⚠️</div>

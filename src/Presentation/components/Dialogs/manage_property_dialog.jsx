@@ -52,10 +52,10 @@ function ManagePropertyDialog({ open, id, onClosee,setOpen,property }) {
         <Dialog   PaperProps={{
     sx: { backgroundColor: 'var(--app-background)' },
   }} open={open} onClose={onClosee} fullWidth maxWidth={"xs"}>
-            <DialogTitle sx={{ display: "flex", justifyContent: "space-between", alignItems: "center",fontFamily:'Lexend', }}>
+            <DialogTitle sx={{ display: "flex", justifyContent: "space-between", alignItems: "center",fontFamily:'Lexend',color:'var(--app-font)' }}>
                <div> {`Property `} <span style={{color:'var(--app-blue)'}}>{`#${property.id}`}</span></div>
                 <IconButton onClick={onClosee}>
-                    <CloseIcon />
+                    <CloseIcon sx={{color:'var(--app-font)'}} />
                 </IconButton>
             </DialogTitle>
             <DialogContent dividers>

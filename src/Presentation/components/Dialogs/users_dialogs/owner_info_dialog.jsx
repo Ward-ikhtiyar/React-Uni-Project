@@ -78,7 +78,7 @@ function OwnerInfoDialog({id, open, setOpen}){
                                 No owner information available
                             </div>
                         )}
-                        {!loading?<>
+                        {/* {!loading?<>
                         <p className="Main-title">owner properties</p>
                         <div className="owner-properties-row">
                             {owner.properties.map((property,index)=>
@@ -91,7 +91,7 @@ function OwnerInfoDialog({id, open, setOpen}){
                         </>:
                         <div className="error-message">
                             No properties available
-                        </div>}
+                        </div>} */}
                     </div>
                 </DialogContent>
             </Dialog>

@@ -1,22 +1,21 @@
 .property-card {
     display: flex;
     flex-direction: column;
-    box-shadow: 1px 1px 5px rgb(202, 202, 202);
+    box-shadow: 1px 1px 5px var(--app-shadow);
     border-radius: 10px;
     width: 22vw;
     height: 330px;
     transition: box-shadow 0.1s;
-    background-color: white;
+    background-color: var(--app-background);
     margin: 10px;
 }
 
 .property-pic {
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
-    width: 100%;
+    width: 22vw;
     height: 210px;
-    object-fit: cover;
-    object-position: center;
+    
 }
 
 .property-pic-wrapper {
@@ -65,7 +64,7 @@
     transition: 0.2s;
 }
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
     .property-card {
         width: 45vw;
         height: auto;
@@ -89,4 +88,4 @@
     .info {
         font-size: 95%;
     }
-}
+} */

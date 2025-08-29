@@ -17,7 +17,51 @@ const RE_Search = () => {
     const [Listings, setListings] = useState([]);
     const [isFiltered, setIsFiltered] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const[page,setPage]=useState(0);
     const [error, setError] = useState(null);
+                    const property = {
+  title: "بيت الأحلام",
+  description: "منزل جميل مع كل وسائل الراحة الحديثة، قريب من كل الخدمات.",
+  isForRent: true,
+  price: 1500,
+  pointsDto: {
+    lat: 30.0444,
+    lon: 31.2357,
+  },
+  rooms: 3,
+  bathrooms: 2,
+  area: 120,
+  floorNumber: 1,
+  hasGarage: true,
+  hasGarden: true,
+  heatingType: "Gas",
+  flooringType: "Wood",
+  propertyType: "House",
+  isFloor: false,
+  agencyId: 2,
+  propertyImages: [
+    "https://picsum.photos/id/1018/600/400",
+    "https://picsum.photos/id/1015/600/400",
+    "https://picsum.photos/id/1016/600/400",
+  ],
+  location: {
+    country: "Egypt",
+    governorate: "Cairo",
+    city: "Cairo",
+    quarter: "Zamalek",
+    street: "El-Gezira St.",
+    lat: 30.0444,
+    lon: 31.2357,
+  },
+  voteScore: 4.5,
+  viewCount: 123,
+  user: {
+    id: 1,
+    username: "AhmedAli",
+    profileImage: "https://picsum.photos/50/50?random=1",
+  },
+};
+
 
     const handleSubmit = async () => {
         // Close any open dropdowns
@@ -83,7 +127,7 @@ const RE_Search = () => {
                 // Other errors
                 setIsLoading(false)
                 setError("Error loading properties. Please try again later.");
-                setListings([]);
+                setListings([property,property,property,property,property,property,property,property,property]);
             }
         } finally {
             setIsLoading(false);
@@ -93,6 +137,8 @@ const RE_Search = () => {
         // Load all properties by default on component mount
         handleGetProperties();
     }, []);
+
+    
 
     return (<div className='full-search-page'>
             <AppBar isHome={false} />

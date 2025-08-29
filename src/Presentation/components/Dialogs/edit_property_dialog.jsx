@@ -13,6 +13,37 @@ import '../../../index.css'
 import { updateProperty,getDetails } from "../../../API/requests";
 import ErrorSnackbar from "../snackBar/erorr_snack";
 import MySnackbar from "../snackBar/success_snack";
+const textFieldSX = {
+  fontFamily: "Tajawal",
+  backgroundColor: "var(--app-background)",
+  "& .MuiInputBase-input": {
+    fontFamily: "Tajawal",
+    color: "var(--app-font)",
+  },
+  "& .MuiInputLabel-root": {
+    fontFamily: "Tajawal",
+    color: "var(--app-font)",
+  },
+  "& .MuiSelect-select": {
+    fontFamily: "Tajawal",
+    color: "var(--app-font)",
+  },
+  "& .MuiOutlinedInput-root": {
+    backgroundColor: "var(--app-background)",
+    "& fieldset": {
+      borderColor: "var(--app-blue)", 
+    },
+    "&:hover fieldset": {
+      borderColor: "var(--app-blue)", 
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "var(--app-blue)",
+    },
+  },
+  "& .MuiMenuItem-root": {
+    fontFamily: "Tajawal",
+  },
+};
 const editableFields = [
   { label: "Title", key: "title", type: "text" },
   { label: "Description", key: "description", type: "text" },
@@ -100,18 +131,10 @@ function EditPropertyDialog({ open, onClose, id }) {
     <Dialog   PaperProps={{
     sx: { backgroundColor: 'var(--app-background)' },
   }}  open={open} onClose={onClose} fullWidth maxWidth="xs">
-      <DialogTitle sx={{fontFamily:'Lexend'}} >Edit Property Attributes</DialogTitle>
+      <DialogTitle sx={{fontFamily:'Lexend',color:'var(--app-font)'}} >Edit Property Attributes</DialogTitle>
       <DialogContent>
         <TextField
-             sx={{
-    fontFamily: "Lexend",
-    "& .MuiInputBase-input": {
-      fontFamily: "Lexend",
-    },
-    "& .MuiInputLabel-root": {
-      fontFamily: "Lexend",
-    },
-  }}
+             sx={textFieldSX}
           fullWidth
           select
           label="Select Field"
@@ -128,15 +151,8 @@ function EditPropertyDialog({ open, onClose, id }) {
 
         {selectedFieldMeta && selectedFieldMeta.type === "select" ? (
           <TextField 
-        sx={{
-    fontFamily: "Lexend",
-    "& .MuiInputBase-input": {
-      fontFamily: "Lexend",
-    },
-    "& .MuiInputLabel-root": {
-      fontFamily: "Lexend",
-    },
-  }}
+            sx={textFieldSX}
+
             fullWidth
             select
             label={`New ${selectedFieldMeta.label}`}
@@ -151,15 +167,8 @@ function EditPropertyDialog({ open, onClose, id }) {
             ))}
           </TextField>
         ) : selectedField ? (
-          <TextField     sx={{
-    fontFamily: "Lexend",
-    "& .MuiInputBase-input": {
-      fontFamily: "Lexend",
-    },
-    "& .MuiInputLabel-root": {
-      fontFamily: "Lexend",
-    },
-  }}
+          <TextField sx={textFieldSX}
+
             fullWidth
             type={selectedFieldMeta?.type || "text"}
             label={`New ${selectedFieldMeta?.label}`}

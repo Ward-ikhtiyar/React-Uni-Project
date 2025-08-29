@@ -55,13 +55,12 @@ function TrendingSection(){
         async function handleGetProperties(){
             console.log('top get properties exectured')
             let fetchedProperties=await getTopVotedProperties();
+            setListings(fetchedProperties)
         }
         useEffect(()=>{
             handleGetProperties();
         },[]);
-
-
-
+        
     return(
         <div className='trending-main sec-con-center'>
             <div className='trending-title'>

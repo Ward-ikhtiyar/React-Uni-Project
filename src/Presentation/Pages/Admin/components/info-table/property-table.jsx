@@ -10,7 +10,7 @@ const PropertyTable = ({ properties}) => {
           justifyContent:'space-evenly',
           borderTopLeftRadius:'10px',
           borderTopRightRadius:'10px',
-          backgroundColor:'white',
+          backgroundColor:'var(--app-card)',
           display: 'flex',
           padding: '12px 16px',
           borderBottom: '2px solid var(--app-blue)',
@@ -30,7 +30,6 @@ const PropertyTable = ({ properties}) => {
           <div >Commerce</div>
           <div >Location</div>
           <div >Agency</div>
-          <div >Owner</div>
 
       </div>
 
@@ -38,28 +37,6 @@ const PropertyTable = ({ properties}) => {
       {properties.map((property) => (
         <PropertyRow key={property.id} property={property}  />
       ))}
-      {properties.map((property) => (
-        <PropertyRow key={property.id} property={property}  />
-      ))}
-      {properties.map((property) => (
-        <PropertyRow key={property.id} property={property}  />
-      ))}
-      {properties.map((property) => (
-        <PropertyRow key={property.id} property={property}  />
-      ))}
-      {properties.map((property) => (
-        <PropertyRow key={property.id} property={property}  />
-      ))}
-      {properties.map((property) => (
-        <PropertyRow key={property.id} property={property}  />
-      ))}
-      {properties.map((property) => (
-        <PropertyRow key={property.id} property={property}  />
-      ))}
-      {properties.map((property) => (
-        <PropertyRow key={property.id} property={property}  />
-      ))}
-      
     </div>
   );
 };

@@ -21,7 +21,7 @@ const RE_Card = ({ property, isEditable }) => {
     return (
 
         <div className='property-card' onClick={() => handleClick()}>
-            <div className='property-pic-wrapper'>
+            <div    >
                 <img onError={(e) => {
                     e.target.onerror = null
                     e.target.src = "public/assets/images/propertyPlaceholder.png"

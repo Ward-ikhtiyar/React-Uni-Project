@@ -206,7 +206,7 @@ const FilterBar = ({ priceRange, setPriceRange, propertyType, setPropertyType, h
 
 
                 <div className="submit-button-item">
-                    <button className="submit-button" onClick={handleSubmit}>
+                    <button style={{width:'10vw',height:'40px'}} className="colored-button" onClick={handleSubmit}>
                         Search
                     </button>
                 </div>

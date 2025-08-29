@@ -29,6 +29,49 @@ import { getAcceptedProperties, getFilteredProperties } from '../../../../API/re
 import './RE-Search.css';
 
 const RE_Search = () => {
+
+                const property = {
+  title: "بيت الأحلام",
+  description: "منزل جميل مع كل وسائل الراحة الحديثة، قريب من كل الخدمات.",
+  isForRent: true,
+  price: 1500,
+  pointsDto: {
+    lat: 30.0444,
+    lon: 31.2357,
+  },
+  rooms: 3,
+  bathrooms: 2,
+  area: 120,
+  floorNumber: 1,
+  hasGarage: true,
+  hasGarden: true,
+  heatingType: "Gas",
+  flooringType: "Wood",
+  propertyType: "House",
+  isFloor: false,
+  agencyId: 2,
+  propertyImages: [
+    "https://picsum.photos/id/1018/600/400",
+    "https://picsum.photos/id/1015/600/400",
+    "https://picsum.photos/id/1016/600/400",
+  ],
+  location: {
+    country: "Egypt",
+    governorate: "Cairo",
+    city: "Cairo",
+    quarter: "Zamalek",
+    street: "El-Gezira St.",
+    lat: 30.0444,
+    lon: 31.2357,
+  },
+  voteScore: 4.5,
+  viewCount: 123,
+  user: {
+    id: 1,
+    username: "AhmedAli",
+    profileImage: "https://picsum.photos/50/50?random=1",
+  },
+};
     const [properties, setProperties] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -36,12 +79,13 @@ const RE_Search = () => {
     const [priceRange, setPriceRange] = useState([0, 1000000]);
     const [propertyType, setPropertyType] = useState('All');
     const [activeFilter, setActiveFilter] = useState(null);
+    const[page,setPage]=useState(0);
 
-    useEffect(() => {
-        fetchProperties();
-    }, []);
+
+console.log("im in the fuckling seacth [page");
 
     const fetchProperties = async () => {
+        console.log("im fethcing properties");
         try {
             setIsLoading(true);
             setError(null);
@@ -55,12 +99,18 @@ const RE_Search = () => {
         } catch (err) {
             setError("An error occurred while fetching properties");
             console.error(err);
-        } finally {
-            setIsLoading(false);
+            setProperties([property,property,property,property,property,property,property,property,property]);
+
         }
     };
+    useEffect(() => {
+        fetchProperties();
+    }, [properties]);
+
+
 
     const handleFilterSubmit = async () => {
+        console.log("im fetching filtered properties");
         try {
             setIsLoading(true);
             setError(null);
@@ -80,6 +130,7 @@ const RE_Search = () => {
         } catch (err) {
             setError("An error occurred while filtering properties");
             console.error(err);
+
         } finally {
             setIsLoading(false);
         }
@@ -87,8 +138,8 @@ const RE_Search = () => {
 
     return (
         <div id='full-search-page'>
-            <AppBar />
-            <FilterBar 
+            {/* <AppBar /> */}
+            {/* <FilterBar 
                 priceRange={priceRange}
                 setPriceRange={setPriceRange}
                 propertyType={propertyType}
@@ -96,7 +147,7 @@ const RE_Search = () => {
                 handleSubmit={handleFilterSubmit}
                 activeFilter={activeFilter}
                 setActiveFilter={setActiveFilter}
-            />
+            /> */}
             <div id="search-page-wrapper">
                 <RE_Map Listings={properties} />
                 <RE_Listing 
@@ -110,4 +161,4 @@ const RE_Search = () => {
     );
 }
 
-// export default RE_Search;
+export default RE_Search;

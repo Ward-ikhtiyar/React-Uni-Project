@@ -55,6 +55,7 @@ function AdminsPage(){
     const handleDetailsClose = () => {
         setDetailsOpen(false);
     }
+    
 
     if (loading) {
         return (
@@ -75,7 +76,7 @@ function AdminsPage(){
                     </div>
                     <button onClick={()=>setOpen(true)} className="colored-button" style={{width:"150px",height:"40px",display:"flex"}}><Add/>Add Admin</button>
                     </div>
-              {chipVal===0  ?  <div  className="admin-body">
+              {chipVal===0 ?  <div  className="admin-body">
                     {admins.map((admin,index)=>(
                         <div key={index} onClick={()=>{setDetailsOpen(true);setAdminId(admin.id)}}>
                         <AdminsWidget  admin={admin}/>
