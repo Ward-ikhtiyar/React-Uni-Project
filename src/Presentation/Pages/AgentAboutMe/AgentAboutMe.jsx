@@ -9,7 +9,7 @@ import React from 'react';
 import { getAgentProperties } from '../../../API/requests';
 
 
-function AgentAboutMe([]) {
+function AgentAboutMe() {
 
     const [activeTab, setActiveTab] = useState(0);
     const [open, setopen] = useState(false);
@@ -17,32 +17,51 @@ function AgentAboutMe([]) {
     const [agentProperties, setAgentProperties] = useState([]);
 
     async function fetchAgentData() {
-        try {
-            const agentData = await getProfile();
-            console.log("Owner data received:", agentData);
-
-            if (!agentData || (typeof agentData === 'object' && Object.keys(agentData).length === 0)) {
-                setAgent(null);
-            } else {
-                setAgent(agentData);
+            try {
+                setIsLoading(true);
+                setError(null);
+    
+                let agentData = await getProfile();
+    
+                if (!agentData) {
+                    setAgent(null);
+                } else {
+                    // Use the refactored data structure
+                    const agentDataRefactored = {
+                        photo: agentData.profileImage || profilePlaceholder,
+                        name: agentData.username || "Agent temp Name",
+                        company: agentData.agencyInfo?.agencyName || "Agency temp Name",
+                        location: agentData.location?.address || "Location not specified",
+                        commissionRate: agentData.agencyInfo?.agencyCommissionRate || 1.0,
+                        views: agentData.agencyInfo?.agencyViews || 11110,
+                        votes: agentData.agencyInfo?.agencyVotes || 11110,
+                        isVerified: agentData.isAccountVerified || false,
+                        age: agentData.age || 1800,
+                        language: agentData.language || "english",
+                        createdAt: agentData.createdAt || new Date(),
+                        // Keep original data as well
+                        ...agentData
+                    };
+    
+                    setAgent(agentDataRefactored);
+                    console.log("Agent state updated with refactored data:", agentDataRefactored);
+                }
+    
+                // Fetch agent properties (uncomment when ready to use)
+                const propertiesData = await getAgentAcceptedProperties();
+                // console.log("Properties data received:", propertiesData);
+                if (propertiesData) {
+                    setAgentProperties(propertiesData);
+                }
+    
+            } catch (error) {
+                console.error("Failed to fetch agent data:", error);
+                setError("Failed to load agent information. Please try again later.");
+                // setAgent(null);
+            } finally {
+                setIsLoading(false);
             }
-
-            // Fetch agent properties
-            const propertiesData = await getAgentProperties(agentId);
-            console.log("Properties data received:", propertiesData);
-
-            if (propertiesData) {
-                setAgentProperties(propertiesData);
-            }
-
-        } catch (error) {
-            console.error("Failed to fetch agent data:", error);
-            setError("Failed to load agent information. Please try again later.");
-            setAgent(null);
-        } finally {
-            setIsLoading(false);
         }
-    }
 
     useEffect(() => {
         fetchAgentData();
@@ -66,7 +85,7 @@ function AgentAboutMe([]) {
             case 0:
                 return (
                     <AgentInfoTab
-                        agentData={agentData}
+                        agentData={agent}
                     />
                 );
 

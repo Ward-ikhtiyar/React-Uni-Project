@@ -11,7 +11,7 @@ const EndPoints={
     User:{
         Me:'auth/me',
         ChangeInfo:'user/',
-        UploadImg:'user/upload-image',
+        UploadImg:'users-media/profile-image',
         getImg:'user/images/',
         getOwnerInfo:'user/pro',
     },
@@ -26,7 +26,7 @@ const EndPoints={
     },
     Properties:{
      create:'propertyN',
-     getDetails:'view/',
+     getDetails:'properties/',
      uploadPhotos:'property/upload-multiple-img',
      getAll:'property/all',
      getMine:'property/my', 

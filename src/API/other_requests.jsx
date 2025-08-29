@@ -121,16 +121,18 @@ export async function getComplaints() {
     
 }
 
-export async function uploadAgentImage(image, id, onUploadProgress) {
+export async function uploadAgentImage(image, onUploadProgress) {
     try {
         const formData = new FormData();
-        formData.append('image', image);
-        const response = await TokenAxios.post(`${EndPoints.User.uploadAgentImage}/${id}`, formData, {
+        formData.append('user-image', image);
+        const endPoints = EndPoints.User.UploadImg;
+        const response = await TokenAxios.post(endPoints, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             },
             onUploadProgress: onUploadProgress // Fixed: removed the extra object wrapping
         });
+        console.log(response.data); 
         return response.data;
     } catch (error) {
         console.error('Error uploading agent image:', error);
