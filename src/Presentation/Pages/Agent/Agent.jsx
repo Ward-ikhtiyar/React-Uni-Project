@@ -80,12 +80,12 @@ function AgentDialog() {
             }
 
             // Fetch agent properties
-            const propertiesData = await getAgentProperties(agentId);
-            console.log("Properties data received:", propertiesData);
+            // const propertiesData = await getAgentProperties(agentId);
+            // console.log("Properties data received:", propertiesData);
 
-            if (propertiesData) {
-                setAgentProperties(propertiesData);
-            }
+            // if (propertiesData) {
+            //     setAgentProperties(propertiesData);
+            // }
 
         } catch (error) {
             console.error("Failed to fetch agent data:", error);

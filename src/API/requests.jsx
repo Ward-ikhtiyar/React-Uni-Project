@@ -264,7 +264,7 @@ export async function getAllAgencies(username) {
 ///////////////get Agent By ID //////////////
 export async function getAgentById(id) {
   let endpoint = EndPoints.Agent.getAgent;
-  // console.log(endpoint)
+  console.log(endpoint);
   try {
     let response = await TokenAxios.get(endpoint, {
       params: {
