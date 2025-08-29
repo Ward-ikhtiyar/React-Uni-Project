@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import './imageUploadDialog.css';
@@ -21,19 +21,18 @@ const ImageUploadDialog = ({ isOpen, uploadedImage, imageUploadProgress, onImage
     const [previewUrl, setPreviewUrl] = useState(null);
 
     // Handle dialog open/close
-    React.useEffect(() => {
-        const dialog = dialogRef.current;
-        if (!dialog) return;
+    useEffect(() => {
+        if (!dialogRef.current) return;
 
         if (isOpen) {
-            dialog.showModal();
+            dialogRef.current.showModal();
         } else {
-            dialog.close();
+            dialogRef.current.close();
         }
     }, [isOpen]);
 
     // Update preview when uploadedImage changes
-    React.useEffect(() => {
+    useEffect(() => {
         if (uploadedImage) {
             const objectUrl = URL.createObjectURL(uploadedImage);
             setPreviewUrl(objectUrl);
@@ -43,26 +42,30 @@ const ImageUploadDialog = ({ isOpen, uploadedImage, imageUploadProgress, onImage
         }
     }, [uploadedImage]);
 
-    // Handle drag events
-    const handleDragEnter = useCallback((e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setIsDragging(true);
-    }, []);
-
-    const handleDragLeave = useCallback((e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setIsDragging(false);
-    }, []);
-
-    const handleDragOver = useCallback((e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (!isDragging) {
-            setIsDragging(true);
+    // Consolidated file validation and selection
+    const validateAndSelectFile = useCallback((file) => {
+        if (!file) return false;
+        
+        if (!file.type.startsWith('image/')) {
+            alert('Please upload an image file');
+            return false;
         }
-    }, [isDragging]);
+        
+        onImageSelect(file);
+        return true;
+    }, [onImageSelect]);
+
+    // Consolidated drag event handler
+    const handleDragEvents = useCallback((e, isDragEnter = false, isDragLeave = false) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (isDragEnter || e.type === 'dragover') {
+            setIsDragging(true);
+        } else if (isDragLeave) {
+            setIsDragging(false);
+        }
+    }, []);
 
     // Handle drop event
     const handleDrop = useCallback((e) => {
@@ -71,50 +74,25 @@ const ImageUploadDialog = ({ isOpen, uploadedImage, imageUploadProgress, onImage
         setIsDragging(false);
 
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-            const file = e.dataTransfer.files[0];
-            if (file.type.startsWith('image/')) {
-                onImageSelect(file);
-            } else {
-                alert('Please upload an image file');
-            }
+            validateAndSelectFile(e.dataTransfer.files[0]);
         }
-    }, [onImageSelect]);
+    }, [validateAndSelectFile]);
 
     // Handle file input change
     const handleFileInputChange = useCallback((e) => {
         if (e.target.files && e.target.files.length > 0) {
-            const file = e.target.files[0];
-            if (file.type.startsWith('image/')) {
-                onImageSelect(file);
-            } else {
-                alert('Please upload an image file');
-            }
+            validateAndSelectFile(e.target.files[0]);
         }
-    }, [onImageSelect]);
+    }, [validateAndSelectFile]);
 
     // Handle click on drop area
     const handleClick = () => {
         fileInputRef.current.click();
     };
 
-    // Handle dialog close events
-    const handleDialogClose = useCallback(() => {
-        // Clear preview when dialog closes
-        setPreviewUrl(null);
-        onClose();
-    }, [onClose]);
-
-    // Handle ESC key and backdrop click
-    const handleDialogCancel = useCallback((e) => {
-        e.preventDefault();
-        // Clear preview when dialog is cancelled
-        setPreviewUrl(null);
-        onClose();
-    }, [onClose]);
-
-    // Handle close button click
-    const handleCloseButtonClick = useCallback(() => {
-        // Clear preview when close button is clicked
+    // Consolidated close handler
+    const handleClose = useCallback((e) => {
+        if (e) e.preventDefault();
         setPreviewUrl(null);
         onClose();
     }, [onClose]);
@@ -123,15 +101,15 @@ const ImageUploadDialog = ({ isOpen, uploadedImage, imageUploadProgress, onImage
         <dialog
             ref={dialogRef}
             className="image-upload-dialog"
-            onClose={handleDialogClose}
-            onCancel={handleDialogCancel}
+            onClose={handleClose}
+            onCancel={handleClose}
         >
             <div className="dialog-header">
                 <h2>Upload Image</h2>
                 <button
                     type="button"
                     className="close-button"
-                    onClick={handleCloseButtonClick}
+                    onClick={handleClose}
                     aria-label="Close dialog"
                 >
                     ×
@@ -141,9 +119,9 @@ const ImageUploadDialog = ({ isOpen, uploadedImage, imageUploadProgress, onImage
             <div className="dialog-content">
                 <div
                     className={`drop-area ${isDragging ? 'dragging' : ''} ${uploadedImage ? 'has-image' : ''}`}
-                    onDragEnter={handleDragEnter}
-                    onDragOver={handleDragOver}
-                    onDragLeave={handleDragLeave}
+                    onDragEnter={(e) => handleDragEvents(e, true)}
+                    onDragOver={handleDragEvents}
+                    onDragLeave={(e) => handleDragEvents(e, false, true)}
                     onDrop={handleDrop}
                     onClick={handleClick}
                 >
@@ -165,7 +143,7 @@ const ImageUploadDialog = ({ isOpen, uploadedImage, imageUploadProgress, onImage
                 </div>
 
                 {imageUploadProgress > 0 &&
-                    (
+                    ( 
                         <ProgressBar
                             percentage={imageUploadProgress}
                             showText={true}

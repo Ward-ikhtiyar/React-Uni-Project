@@ -23,8 +23,8 @@ function AgentProfile() {
     const [uploadedImage, setUploadedImage] = useState(null);
     const [imageUploadProgress, setImageUploadProgress] = useState(0);
 
-     const [agent , setAgent] = useState(null );
-        
+    const [agent, setAgent] = useState(null);
+
     // const [agent, setAgent] = useState(null);
     const [agentProperties, setAgentProperties] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -40,8 +40,8 @@ function AgentProfile() {
 
             // Assuming we have the agent ID, for now using a placeholder
             // this is cracked
-            const agentId = '123';
-            const result = await uploadAgentImage(file, agentId, setImageUploadProgress);
+
+            const result = await uploadAgentImage(file, setImageUploadProgress);
 
             if (result) {
                 // Upload successful - close dialog after showing completion
@@ -69,10 +69,10 @@ function AgentProfile() {
         try {
             setIsLoading(true);
             setError(null);
-            
+
             let agentData = await getProfile();
-            
-            if (!agentData ) {
+
+            if (!agentData) {
                 setAgent(null);
             } else {
                 // Use the refactored data structure
@@ -91,7 +91,7 @@ function AgentProfile() {
                     // Keep original data as well
                     ...agentData
                 };
-                
+
                 setAgent(agentDataRefactored);
                 console.log("Agent state updated with refactored data:", agentDataRefactored);
             }
@@ -148,7 +148,7 @@ function AgentProfile() {
             );
         }
 
-        if (!agent ) {
+        if (!agent) {
             return (
                 <div className="agent-profile-body">
 
@@ -186,7 +186,7 @@ function AgentProfile() {
                     </div>
                     <div className="agent-profile-body-right">
                         <AgentPromoteSection
-                            onPromotionItemClick={() => {}}
+                            onPromotionItemClick={() => { setShowImageUploadDialog(true); }}
                         />
                     </div>
                 </div>

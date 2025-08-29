@@ -15,7 +15,8 @@ function ProgressBar({
             <div className={`progress-bar ${barClassName}`}>
                 <div
                     className={`progress-fill ${fillClassName}`}
-                    style={{ width: `${percentage}%` }}
+                    // style={{ width: `${percentage}%` }}
+                    style={{ width: `100%` }}
                 ></div>
             </div>
             {showText && (
