@@ -117,7 +117,7 @@ const REMap = ({ Listings, isAdd, locationSource, setSearchLocation }) => {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-          console.log("new location"+newLoc);
+          console.log("new location" + newLoc);
           setUserLocation(newLoc);
           map.flyTo([newLoc.lat, newLoc.lng], 13);
         },

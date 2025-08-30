@@ -254,8 +254,6 @@ export default function CreatePropertyDialog({ isOpen, onClose, onSubmit,agentId
     ))}
   </div>
 )}
-
-
           {/* Actions */}
           <div className="dialog-actions">
             <button type="button" className="dialog-button cancel" onClick={onClose}>Cancel</button>

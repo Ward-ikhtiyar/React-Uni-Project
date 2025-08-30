@@ -7,11 +7,11 @@ export async function getProfile() {
     let response = await TokenAxios.get(EndPoints.User.Me);
     let data = response.data;
     if (data) {
-      localStorage.setItem("token", data.accessToken);
-      localStorage.setItem("number", number);
-      localStorage.setItem("password", password);
-      localStorage.setItem("role", data.userType);
-      console.log(data.UserType);
+    //   localStorage.setItem("token", data.accessToken);
+    //   localStorage.setItem("number", number);
+    //   localStorage.setItem("password", password);
+    //   localStorage.setItem("role", data.userType);
+      console.log(data.userType);
       console.log(localStorage.getItem('token'));
         return data;
     }

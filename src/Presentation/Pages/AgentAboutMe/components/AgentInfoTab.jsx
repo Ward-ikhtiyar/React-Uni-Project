@@ -66,7 +66,7 @@ function AgentInfoTab({agentData}) {
                                 <label>{item.name}</label>
                                 <div className="info-value">
                                     <p>
-                                        {item.label}
+                                        {agentData.item.name}
                                     </p>
                                 </div>
                             </div>

@@ -129,10 +129,28 @@ export async function adminGetUserDetails(id){
   }
 }
 
-export async function adminBlockUser(){
+export async function adminBlockUser(id,banReas){
+  console.log(`blocking user${id} `);
   try{
-    let response=await TokenAxios.post(EndPoints.Admin.ban);
+    let response=await TokenAxios.post(`${EndPoints.Admin.ban}/${id}`,
+      {
+        banDuration:banReas.duration,
+        reason:banReas.reason,
+    });
     if(response){
+      console.log('ward');
+      return response;
+    }
+  }catch(e){
+    throw e;
+  }
+}
+export async function adminUnBlockUser(id){
+  console.log(`blocking user${id} `);
+  try{
+    let response=await TokenAxios.delete(`${EndPoints.Admin.ban}/${id}`);
+    if(response){
+      console.log('ward');
       return response;
     }
   }catch(e){
@@ -276,6 +294,17 @@ export async function getBannedUsers() {
 export async function getAdminLogs(id) {
   try {
     const response = await TokenAxios.get(`${EndPoints.Admin.adminLogs}/${id}`);
+    console.log(response.data);
+    return response.data;
+  } catch (e) {
+    console.log('Error:', e.response?.data || e.message);
+    return 400; 
+  }
+}
+
+export async function adminUpgradeAccount(id) {
+  try {
+    const response = await TokenAxios.patch(`${EndPoints.Admin.adminUpgradeOwner}/${id}`);
     console.log(response.data);
     return response.data;
   } catch (e) {

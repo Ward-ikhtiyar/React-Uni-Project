@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
-import { adminBlockUser, adminGetUserDetails} from "../../../../API/admin_requests";
+import { adminBlockUser, adminGetUserDetails, adminUpgradeAccount} from "../../../../API/admin_requests";
 import { Dialog, DialogTitle, DialogContent, CircularProgress } from "@mui/material";
 import { History, Delete, Close, Warning, Pending, PendingActions } from "@mui/icons-material";
 import MySnackbar from "../../../components/snackBar/success_snack";
+import BlockUserDialog from "./ban_reason";
 
 function UserDetails({id,open,onClose}){
+    console.log(`user details id ${id}`)
     const [user,setUser]=useState(null);
     const [loading, setLoading] = useState(false);
     const[openSnackbar,setOpenSnackbar]=useState(false);
     const[isBanLoading,setIsBanLoading]=useState(false);
+    const[blockOpen,isBlockOpen]=useState();        
+
     const onCloseSnackbar=()=>{
         setOpenSnackbar(false);
     }
@@ -101,7 +105,11 @@ function UserDetails({id,open,onClose}){
                     </div>
 
                     <div style={{display: 'flex', gap: '10px', marginTop: '16px'}}>
-                        <button className="colored-button" style={{
+                        <button onClick={()=>{
+                            if(user.userType==="pending"){
+                                adminUpgradeAccount(user.id);
+                            }
+                        }} className="colored-button" style={{
                             flex: 1, 
                             height: '40px', 
                             backgroundColor:user.userType==="pending"?'var(--app-blue)':'var(--app-grey)',
@@ -111,7 +119,7 @@ function UserDetails({id,open,onClose}){
                         }}>
                             <PendingActions sx={{scale: '120%'}}/> {user.userType==="pending"?"Check upgrade request":"No Requests"}
                         </button>
-                        <button onClick={handleBlock} className="colored-button" style={{
+                        <button onClick={()=>isBlockOpen(true)} className="colored-button" style={{
                             width: '100px', 
                             height: '40px', 
                             display: 'flex', 
@@ -132,6 +140,7 @@ function UserDetails({id,open,onClose}){
             </DialogContent>
         </Dialog>
         <MySnackbar open={openSnackbar} handleClose={onCloseSnackbar} title={snackBarTitle} />
+         <BlockUserDialog userId={id} open={blockOpen} handleClose={()=>isBlockOpen(false)}  />       
         </>
     );
 }

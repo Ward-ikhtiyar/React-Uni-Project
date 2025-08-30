@@ -61,6 +61,7 @@ const EndPoints={
        addAdmin:'auth/addAdmin',
        getAdminDetails:'users/getAdminById',
        getuserDetails:'users',
+       adminUpgradeOwner:'users/upgrade',
        deleteAdmin:'auth/deleteAdmin',
        acceptProperty:'/propertyA/acc',
        rejectProperty:'/properties-ad',

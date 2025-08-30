@@ -150,7 +150,7 @@ function AdminPropertyDetails() {
         </div>
 
         <div style={{ marginTop: '20px', display: 'flex', gap: '15px',justifyContent:'end' }}>
-          <button onClick={()=>{setOpenRejectDialog(true)}} className="admin-reject-button">Delete</button>
+          {/* <button onClick={()=>{setOpenRejectDialog(true)}} className="admin-reject-button">Delete</button> */}
           <button style={{backgroundColor:'grey'}} onClick={()=>{hideProperty()}} className="admin-reject-button">{hideLoading?<CircularProgress/>:`hide`}</button>
 
         </div>

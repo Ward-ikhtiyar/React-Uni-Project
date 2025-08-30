@@ -6,7 +6,7 @@ export const agencyBasicInfoFormConfig = [
     { name: 'age', label: 'Age', type: 'number', required: true, fullWidth: false , row: 1},
     { name: 'commission Rate', label: 'Commission Rate (%)', type: 'number', required: true, fullWidth: false , row: 2}
 ];
-
+    
 
 
 
