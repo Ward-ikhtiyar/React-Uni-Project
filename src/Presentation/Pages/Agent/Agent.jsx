@@ -7,9 +7,10 @@ import AgentContactForm from '../../components/Agent/AgentContactForm/AgentConta
 import AgentPropertiesTable from '../../components/Agent/AgentPropertiesTable/AgentPropertiesTable';
 import AgentAboutSection from '../../components/Agent/AgentAboutSection/AgentAboutSection';
 import { getAgentById, getAgentProperties } from '../../../API/requests';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import profilePlaceholder from '../../../../public/assets/images/Profile_avatar_placeholder.png';
+import CreatePropertyDialog from '../../components/Dialogs/CreateProperty_Dialog';
 
 function AgentDialog() {
     const [params] = useSearchParams();
@@ -17,7 +18,9 @@ function AgentDialog() {
     const [agentProperties, setAgentProperties] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const[open,setOpen]=useState(false);
     const agentId = params.get("id");
+    const navigate=useNavigate();
 
     //! unused though it would be used
     // const handleContactSubmit = (formData) => {
@@ -173,11 +176,14 @@ function AgentDialog() {
                     <div className="agent-profile-body-right">
                         {/* delete it, if you got the backend ready */}
                         <AgentContactForm
-                            // onSubmit={handleContactSubmit}
+                            onSubmition={()=>{
+                                console.log("we pressing on it fuck zains");
+                                setOpen(true)}}
                             buttonText="Contact the agent"
                         />
                     </div>
                 </div>
+                <CreatePropertyDialog agentId={agentId} isOpen={open} onClose={()=>setOpen(false)}/>
             </>
         );
     };

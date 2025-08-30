@@ -15,6 +15,7 @@ function PhotoSection({name,location,photos,isFavorite,price,Housetype,commerce,
     const[pickedImage,setPickedImage]=useState(0);
     const[open,setisOpen]=useState(true);
     const[vote,setVote]=useState(voteScore);
+    const[isUpVoted,setIsUpvoted]=useState(null);
     if(photos!=null){
         console.log("wardsdddddddddddddddd");
          morePhotos = [...photos] ;
@@ -80,21 +81,32 @@ function PhotoSection({name,location,photos,isFavorite,price,Housetype,commerce,
                 <div style={{display:"flex",gap:'10px',position:'absolute',zIndex:'3', right:'0',marginRight:'7vw' }}>
                     <button className='overlay-button' onClick={()=>{
                         setFavorite()}}>
-                        {isFavorite?<Favorite className='favorite-button' sx={{scale:'180%', color:'var(--app-blue)'}}/>:<FavoriteBorderOutlined className='favorite-button' sx={{scale:'180%', color:'white'}}/>}
+                        {isFavorite?<Favorite className='favorite-button' sx={{scale:'180%', color:'var(--app-blue)'}}/>:<FavoriteBorderOutlined className='favorite-button' sx={{scale:'180%', color:isUpVoted?'var(--app-blue)':'white'}}/>}
                         </button>
                         <div style={{width:'20px'}}></div>
-                        <button className='overlay-button' onClick={()=>{
-                            upVote(id).then((data)=>{
-                                setVote(data);
-                            })}}>
-                            <ArrowUpward className='favorite-button' sx={{scale:'180%', color:'white'}}/>
+                        <button 
+  className='overlay-button' 
+  onClick={() => {
+    upVote(id).then((data) => {
+      if (data) {
+        setVote(data.voteScore); // now we have the field
+        setIsUpvoted(prev => prev === true ? null : true);
+      }
+    });
+  }}
+>
+                            <ArrowUpward className='favorite-button' sx={{scale:'180%', color:isUpVoted!=null?isUpVoted==true?'var(--app-blue)':'white':'white'}}/>
                             </button>
                            <div style={{fontSize:'35px',color:'white'}}>{vote}</div>, 
-                            <button className='overlay-button' onClick={()=>{
-                                downVote(id).then((data)=>{
-                                    setVote(data);
-                                })}}>
-                                <ArrowDownward className='favorite-button-down' sx={{scale:'180%', color:'white'}}/>
+                            <button className='overlay-button'  onClick={() => {
+    downVote(id).then((data) => {
+      if (data) {
+        setVote(data.voteScore);
+        setIsUpvoted(prev => prev === false ? null : false);
+      }
+    });
+  }}>
+                                <ArrowDownward className='favorite-button-down' sx={{scale:'180%', color:isUpVoted!=null?isUpVoted==false?'var(--app-red)':'white':'white'}}/>
                             </button>
                 </div>
             </div>

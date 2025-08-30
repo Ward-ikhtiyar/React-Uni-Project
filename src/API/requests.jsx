@@ -19,7 +19,7 @@ export async function resetPassword(id, password) {
 
 export async function reset(phone) {
   try {
-    let response = await Axios.post(EndPoints.Auth.reset,
+    let response = await TokenAxios.post(EndPoints.Auth.reset,
       {
         phone: phone
       });
@@ -74,20 +74,23 @@ export async function createProperty(property) {
     isForRent: property.commerce === "Rent",
     price: Number(property.price),
     pointsDto: {
-      lat: property.location.lat,
-      lon: property.location.lng
-    },
+  lat: property.location?.lat ?? property.lat,
+  lon: property.location?.lng ?? property.lon
+},
     rooms: Number(property.bedrooms),
     bathrooms: Number(property.bathrooms),
     area: Number(property.area),
     floorNumber: Number(property.floors),
     hasGarage: property.garage === "Yes",
     hasGarden: property.garden === "Yes",
-    heatingType: "Central",
-    flooringType: "Concrete",
+    heatingType: "Gas",
+    flooringType:  "Wood",
     propertyType: "House",
-    isFloor: false
+    isFloor: false,
+    agencyId:2
   };
+  console.log("propert god");
+  console.log(propertData);
   try {
     console.log(propertData);
     const response = await TokenAxios.post(EndPoints.Properties.create, propertData);
@@ -102,7 +105,7 @@ export async function createProperty(property) {
     return response.status;
   } catch (error) {
     console.log(error.response.data);
-    return error.response.status;
+    throw error;
   }
 }
 
@@ -160,6 +163,55 @@ export async function getAgentAcceptedProperties() {
   }
   catch (e) {
     console.log(e.response.data);
+  }
+}
+export async function getAgentPendingProperties() {
+  console.log("im in ere");
+  
+  try {
+    let response = await TokenAxios.get(EndPoints.Agent.getAgentPendingProperties);
+    let data = response.data;
+    console.log("im printing dataaaaaaaaaaaaaaaaaaaa");
+    console.log(`${data} wyf is this `);
+    if (data) {
+      return data;
+    }
+  }
+  catch (e) {
+    console.log(e.response.data);
+  }
+}
+export async function agentRejectProperty(id) {
+  console.log("im in ere");
+  
+  try {
+    let response = await TokenAxios.get(`${EndPoints.Agent.rejectAgentProperty}/${id}`);
+    let data = response.data;
+    console.log("im printing dataaaaaaaaaaaaaaaaaaaa");
+    console.log(`${data} wyf is this `);
+    if (data) {
+      return data;
+    }
+  }
+  catch (e) {
+    throw e
+  }
+}
+
+export async function agentAcceptProperty(id) {
+  console.log("im in ere");
+  
+  try {
+    let response = await TokenAxios.get(`${EndPoints.Agent.acceptAgentProperty}/${id}`);
+    let data = response.data;
+    console.log("im printing dataaaaaaaaaaaaaaaaaaaa");
+    console.log(`${data} wyf is this `);
+    if (data) {
+      return data;
+    }
+  }
+  catch (e) {
+    throw e; 
   }
 }
 
@@ -386,6 +438,25 @@ export async function setFavorite(id) {
   }
   catch (e) {
     console.log(e.response.data);
+  }
+
+}
+
+export async function upgardeToAgency(images) {
+  console.log("is this a correcet way to type the ");
+  console.log(images)
+  try {
+    let response = await TokenAxios.post(`${EndPoints.User.upgradeToAgency}`,images,{headers: {
+          'Content-Type': 'multipart/form-data'  // This is optional; axios sets it automatically, but you can explicitly set here
+        }});
+    let data = response.data
+    if (data) {
+      console.log(response.status);
+      return data;
+    }
+  }
+  catch (e) {
+    throw e
   }
 
 }

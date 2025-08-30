@@ -1,6 +1,7 @@
 .user-info {
     padding: 20px;
     min-width: 300px;
+    color: var(--app-font);
 }
 
 .info-row {
@@ -8,6 +9,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
+    color: var(--app-font);
     border-bottom: 1px solid #eee;
 }
 
@@ -17,7 +19,7 @@
 }
 
 .info-value {
-    color: #333;
+    color: var(--app-font);
 }
 
 .error-message {
@@ -42,4 +44,7 @@
     overflow-x: auto;
     gap: 10px;
     height: 250px;
+}
+.owner-properties-row::-webkit-scrollbar{
+    display: none;
 }

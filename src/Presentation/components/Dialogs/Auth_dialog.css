@@ -209,7 +209,6 @@ input[type="checkbox"] {
 .dropdown-signup {
       color: var(--app-font);
     background-color: var(--app-background);
-
     border: solid 2px var(--app-blue);
     width: 60%;
     padding-top: 5px;
@@ -233,7 +232,7 @@ input[type="checkbox"] {
     display: flex;
     gap: 20px;
     font-size: 20px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -253,8 +252,8 @@ input[type="checkbox"] {
     box-shadow: 1px 1px 5px grey;
     border-radius: 5px;
     padding: 5px;
-    width: 20px;
-    height: 30%;
+    width: 35px;
+    height: 35px;
 }
 
 .edit-button-dialog:hover {
@@ -328,7 +327,7 @@ input[type=file] {
 
     .editProfileTab-content {
         font-size: 20px;
-        flex-direction: column;
+        flex-direction: row;
         gap: 10px;
     }
 
@@ -337,7 +336,7 @@ input[type=file] {
     }
 
     .edit-button-dialog {
-        width: 20%;
+        width: 50px;
         height: auto;
     }
 

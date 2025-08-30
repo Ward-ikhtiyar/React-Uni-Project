@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import './admin_property_details.css';
+import './agent_property_details.css';
 import { adminGetPropertyDetails,adminAcceptProperty } from '../../../../API/admin_requests';
 import { ArrowBackIos } from '@mui/icons-material';
 import ErrorSnackbar from '../../../components/snackBar/erorr_snack';
@@ -8,9 +8,10 @@ import AcceptPropertyDialog from '../../../components/Dialogs/Admin/accept_prope
 import RejectPropertyDialog from '../../../components/Dialogs/Admin/reject_property_dialog';
 import { adminHideProperty } from '../../../../API/admin_requests';
 import { CircularProgress } from '@mui/material';
-function AdminPropertyDetails() {
-  if(!localStorage.getItem('token') || !['admin', 'super_admin'].includes(localStorage.getItem('role'))) {
-    window.location.href = '/Admin';
+import { agentAcceptProperty, agentRejectProperty, getDetails } from '../../../../API/requests';
+function AgentPropertyDetails() {
+  if(!localStorage.getItem('token') || !['agency'].includes(localStorage.getItem('role'))) {
+    window.location.href = '/';
     return null;
   }
 
@@ -18,8 +19,8 @@ function AdminPropertyDetails() {
   const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const[hideLoading,setHideLoading]=useState(false);
-  const [isAcceptLoading,setIsAcceptLoading]=useState(false);
+  const[rejectLoading,setRejectLoading]=useState(false);
+  const [acceptLoading,setAcceptLoading]=useState(false);
   const [openSnackbar,setOpenSnackbar]=useState(false);
   const [snackBarTitle,setSnackBarTitle]=useState("");
   const handleCloseSnackbar=()=>{
@@ -35,7 +36,7 @@ function AdminPropertyDetails() {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const response = await adminGetPropertyDetails(propertyId);
+        const response = await getDetails(propertyId);
         setProperty(response);
       } catch (err) {
         setError(err.message);
@@ -51,15 +52,28 @@ function AdminPropertyDetails() {
   if (error) return <div className="admin-no-data">Error: {error}</div>;
   if (!property) return <div className="admin-no-data">No property data found.</div>;
 
-  async function hideProperty() {
+  async function rejectProperty() {
     try{
-      setHideLoading(true);
-    let response=await adminHideProperty(propertyId);
-      setHideLoading(false);
-      navigate('/Dashboard',{replace:true})         
+      setRejectLoading(true);
+    let response=await agentRejectProperty(propertyId);
+      setRejectLoading(false);
+      navigate('/profile',{replace:true})         
   }
     catch(e){
-      setHideLoading(false)
+      setRejectLoading(false)
+      setError("an error occured")
+    }
+  }
+
+  async function acceptProperty() {
+    try{
+      setAcceptLoading(true);
+    let response=await agentAcceptProperty(propertyId);
+      setAcceptLoading(false);
+      navigate('/profile',{replace:true})         
+  }
+    catch(e){
+      setAcceptLoading(false)
       setError("an error occured")
     }
   }
@@ -88,7 +102,7 @@ function AdminPropertyDetails() {
   return (
     <div className='HomePage'>
     <div className="admin-container" style={{ display: 'flex', gap: '20px' }}>
-      <div onClick={()=>{navigate('/Dashboard',{replace:true})}}>
+      <div onClick={()=>{navigate('/Profile',{replace:true})}}>
         <ArrowBackIos className='admin-arrow-back' />
       </div>
       
@@ -150,16 +164,14 @@ function AdminPropertyDetails() {
         </div>
 
         <div style={{ marginTop: '20px', display: 'flex', gap: '15px',justifyContent:'end' }}>
-          <button onClick={()=>{setOpenRejectDialog(true)}} className="admin-reject-button">Delete</button>
-          <button style={{backgroundColor:'grey'}} onClick={()=>{hideProperty()}} className="admin-reject-button">{hideLoading?<CircularProgress/>:`hide`}</button>
+          <button onClick={()=>{rejectProperty()}} className="admin-reject-button">{rejectLoading?<CircularProgress/>:`Reject`}</button>
+          <button  onClick={()=>{acceptProperty()}} className="admin-accept-button">{acceptLoading?<CircularProgress/>:`Accept`}</button>
 
         </div>
       </div>
-      <AcceptPropertyDialog open={openAcceptDialog} onClose={()=>{setOpenAcceptDialog(false)}} id={propertyId} />
-      <RejectPropertyDialog open={openRejectDialog} onClose={()=>{setOpenRejectDialog(false)}} id={propertyId} />
     </div>
 </div>
   );
 }
 
-export default AdminPropertyDetails;
+export default AgentPropertyDetails;

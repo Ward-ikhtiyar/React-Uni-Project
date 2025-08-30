@@ -5,10 +5,12 @@ import { Dialog, DialogTitle, DialogContent, CircularProgress } from "@mui/mater
 import ErrorSnackbar from "../../snackBar/erorr_snack";
 import { PersonOutline, PhoneOutlined, LocationOnOutlined } from "@mui/icons-material";
 import TrendingCard from "../../../Pages/Home/components/trendingCard";
+import { replace, useNavigate } from "react-router-dom";
 function OwnerInfoDialog({id, open, setOpen}){
     const [owner, setOwner] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate=useNavigate();
 
     useEffect(() => {
         if (open && id) {
@@ -64,13 +66,12 @@ function OwnerInfoDialog({id, open, setOpen}){
                                     </div>
                                     <div className="owner-information-item">
                                         <div className="info-label"><LocationOnOutlined/></div>
-                                        <div className="info-value">{owner.location.governorate}</div>
+                                        <div className="info-value">{owner.location.country}</div>
                                     </div>
                                     
                                 </div>
                                 
                                 </div>
-                                
                                 
                             </div>
                         ) : (
@@ -78,7 +79,7 @@ function OwnerInfoDialog({id, open, setOpen}){
                                 No owner information available
                             </div>
                         )}
-                        {/* {!loading?<>
+                        {!loading?<>
                         <p className="Main-title">owner properties</p>
                         <div className="owner-properties-row">
                             {owner.properties.map((property,index)=>
@@ -91,7 +92,12 @@ function OwnerInfoDialog({id, open, setOpen}){
                         </>:
                         <div className="error-message">
                             No properties available
-                        </div>} */}
+                        </div>}
+
+                        <div onClick={()=>{
+                            navigate(`/AgentDetails?id=${id}`, { replace: true });
+                        }} style={{marginTop:'10px',marginBottom:'10px',height:'40px'}} className="colored-button">Check Agency</div>
+
                     </div>
                 </DialogContent>
             </Dialog>

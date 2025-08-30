@@ -9,7 +9,7 @@ const PropertyRow = ({ property}) => {
 
   const handleClick = () => {
     
-      navigate(`/Details?id=${property.id}`);
+      navigate(`/Admin/property/?id=${property.id}`, { replace: true });
     
   };
 
@@ -48,8 +48,7 @@ const PropertyRow = ({ property}) => {
           <LocationOnOutlined sx={{ color: 'var(--app-blue)', verticalAlign: 'middle' }} />
           <span className='cell'>{`${property.location.city} | ${property.location.street}`}</span>
         </div>
-        <span className='cell' >{property.bathrooms} ba</span>
-          <span className='cell' >{property.agency.username} sqft</span>
+          <span className='cell' >{property.agency.username} </span>
       
     </div>
   );

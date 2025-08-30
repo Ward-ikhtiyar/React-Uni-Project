@@ -6,13 +6,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 import { setFavorite } from '../../../../../../API/requests';
 
-const RE_Card = ({ property, isEditable }) => {
+const RE_Card = ({ property, isEditable,destination }) => {
     const handleClick = () => {
         if (isEditable === true) {
             setFavorite(property.id);
         }
         if (isEditable === false) {
-            navigate(`/Details?id=${property.id}`);
+            navigate(destination??`/Details?id=${property.id}`);
 
         }
 

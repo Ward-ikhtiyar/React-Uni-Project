@@ -3,7 +3,6 @@ import TokenAxios from "./tokenAxios"
 export async function getPendingProperties(){
   let endPoint=localStorage.getItem("role")==="super_admin"?EndPoints.Admin.getAllPropertiesSuperAdmin:EndPoints.Admin.getAllProperties;
     try{
-        
     let response =await TokenAxios.get(endPoint);
     console.log(response);
     if(response.data){
@@ -58,6 +57,22 @@ export async function adminDeleteAdmin(id){
     return e.response.status;
   }
 }
+export async function adminHideProperty(id){
+  try{
+    let response=await TokenAxios.patch(`${EndPoints.Admin.hideProperty}/${id}`,{
+       status : "Hidden"
+    });
+    let data= response.data 
+    if(data){
+      return 200;  
+    }
+  }catch(e){
+    console.log(e);
+    console.log(e.response.data);
+    throw e;
+  }
+}
+
 export async function adminAddAdmin(name,number,password,age){
   try{
     let response=await TokenAxios.post(EndPoints.Admin.addAdmin,{
@@ -151,10 +166,10 @@ export async function adminAcceptProperty(id,rating){
     return e.response.status;
   }
 } 
-export async function adminRejectProperty(id,message){
+export async function adminRejectProperty(id,password){
   try{
-    let response=await TokenAxios.patch(`${EndPoints.Admin.rejectProperty}/${id}`,{
-      message:message
+    let response=await TokenAxios.delete(`${EndPoints.Admin.rejectProperty}/${id}`,{
+      password:password
     });
     if(response.status===200){
       console.log(response.data);
@@ -163,7 +178,7 @@ export async function adminRejectProperty(id,message){
   }catch(e){
     console.log(e);
     console.log(e.response.data);
-    return e.response.status;
+    throw e
   }
 }
 export async function adminAddPlan(type,duration,price,description,limit){

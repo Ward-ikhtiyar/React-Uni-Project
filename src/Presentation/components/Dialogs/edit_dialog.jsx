@@ -99,7 +99,7 @@ function EditDialog({type,open,onClose}){
                     <div style={{height:'5vh'}}></div>
                     <input style={{height:'7vh',fontSize:'25px'}} placeholder={type=="Password"?"Old Password":"Password" } className="inputBox" type="text" value={pass} onInput={(e)=>setPass(e.target.value)} />
 <div style={{height:'6vh'}}></div>
-                    <button style={{width:'12vw'}} className="login-button" onClick={()=>{
+                    <button style={{width:'100%'}} className="login-button" onClick={()=>{
                         console.log()
                         if(type=="Password"){
                         changePass(pass,name);}

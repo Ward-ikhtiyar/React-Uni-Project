@@ -23,8 +23,16 @@ import AgentProfile from './Presentation/Pages/AgentProfile/AgentProfile';
 import AgentAboutMe from './Presentation/Pages/AgentAboutMe/AgentAboutMe';
 import ErrorPage from './Presentation/Pages/Error/Error';
 import NoExist from './Presentation/Pages/Error/NoExist';
+import AddPropertyPage from './Presentation/Pages/Profile/AddProperty/addProperty';
+import AgentPropertyDetails from './Presentation/Pages/Profile/agent_property_detail/agent_property_details';
+import { useEffect } from 'react';
 function App() {
   const {t,i18n}=useTranslation();
+useEffect(() => {
+    const lang = localStorage.getItem('lang') || 'en';
+    i18n.changeLanguage(lang);
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  }, []);
 
   return (
    
@@ -45,6 +53,7 @@ function App() {
           <Route path='/Details' element={<ShowHouse />}></Route>
           <Route path='/AgentDetails' element={<AgentDialog />}></Route>
           <Route path='/AgentAboutMe' element={<AgentAboutMe />}></Route>
+          <Route path='/AgentDetails/SendProperty' element={<AddPropertyPage/>}></Route>
           <Route path='/Profile' element={<ProfilePage />}></Route>
           <Route path='/Complaints' element={<ComplaintsPage/>}></Route> 
           <Route path='/Error' element={<ErrorPage/>}></Route>
@@ -52,7 +61,9 @@ function App() {
           <Route path='/Admin' element={<AdminLogin />}></Route>
           <Route path='/ContactUs' element={<ContactUs />}></Route>
           <Route path='/Dashboard' element={<AdminDashBoard />}></Route>
-          <Route path='/Admin/property' element={<AdminPropertyDetails />} />
+          <Route path='/Admin/property' element={<AdminPropertyDetails/>} />
+          <Route path='/Agent/property' element={<AgentPropertyDetails/>} />
+
         </Routes>
       </Router>
     </>

@@ -22,10 +22,10 @@ function AgentProfileHeader({
                 agent={agentData}
             />
             <div className="agent-profile-header-right F-col-c-c">
-                <AgentPropertiesCarousel
+                {/* <AgentPropertiesCarousel
                     items={carouselItems}
                     scrollTargetId={scrollTargetId}
-                />
+                /> */}
                 <AgentStatsGrid stats={statsData} />
             </div>
         </div>

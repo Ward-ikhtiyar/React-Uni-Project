@@ -5,7 +5,7 @@
     display: flex;
     gap: 16px;
     height: 100%;
-    background-color: rgb(246, 246, 250);
+    background-color: var(--app-background);
 }
 
 .agent-profile-wrapper {
@@ -29,7 +29,7 @@
     justify-content: space-between;
     display: flex;
     gap: 16px;
-    background-color: #ffffff;
+    background-color: var(--app-card);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -46,19 +46,25 @@
     /* Add agent header specific styles if needed */
 }
 
-.agent-info {
+.agent-details-info {
     /* Add agent info specific styles if needed */
-}
+    color: var(--app-font);
+}       
 
-.agent-name {
+.agent-details-name {
     /* Add agent name specific styles if needed */
 }
 
-.agent-company {
+
+.agent-details-company {
+    color: var(--app-font);
+
     /* Add agent company specific styles if needed */
 }
 
 .price-range, .sales {
+    color: var(--app-font);
+
     /* Add price range and sales specific styles if needed */
 }
 
@@ -87,20 +93,23 @@
     flex-direction: column;
     align-items: center;
     min-width: 120px;
+
 }
 
 .agent-stat-value {
     font-size: 2rem;
     font-weight: 700;
-    color: #222;
+    color: var(--app-font);
+    font-family: Tajawal;
     margin-bottom: 2px;
 }
 
 .agent-stat-label {
     font-size: 1.08rem;
-    color: #666;
+    color: var(--app-blue);
     font-weight: 400;
     text-align: center;
+    font-family: thicc;
 }
 
 .agent-profile-body {
@@ -111,7 +120,7 @@
 }
 
 .agent-profile-body-left {
-    background-color: #ffffff;
+    background-color: var(--app-card);
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -235,6 +244,7 @@
     width: 100%;
     gap: 10px;
     padding: 20px;
+    background: var(--app-card);
 }
 
 /* === Loading, Error, and No Data Styles === */

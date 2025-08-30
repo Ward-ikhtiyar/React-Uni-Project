@@ -15,9 +15,9 @@ function AgentBasicInfo({
                 />
             </div>
             <div className="agent-info F-col-c-c">
-                <h2 className="agent-name">{agent.name}</h2>
-                <p className="agent-company">{agent.company}</p>
-                <p className="agent-location">
+                <h2 className="agent-details-info">{agent.name}</h2>
+                <p className="agent-details-company">{agent.company}</p>
+                <p className="agent-details-location">
                     📍 {agent.location.country}
                 </p>
                 <p className="commission-rate">

@@ -1,33 +1,38 @@
+import { Upgrade } from "@mui/icons-material";
 import { getDetails } from "./requests";
 
 const EndPoints={
     Auth:{
         Login:'auth/login',
         Register:'users/register',
-        Verify:'user/verify',
-        Resend:'user/resend',
-        reset:'auth/reset'
+        Verify:'users/verify',
+        Resend:'users/resend',
+        reset:'auth/reset',
+        resetPass:'auth/reset_pass'
     },
     User:{
         Me:'auth/me',
-        ChangeInfo:'user/',
-        UploadImg:'user/upload-image',
-        getImg:'user/images/',
-        getOwnerInfo:'user/pro',
+        ChangeInfo:'users/',
+        UploadImg:'users-media/profile-image',
+        getImg:'users-media/images/',
+        getOwnerInfo:'users/agency',
+        upgradeToAgency:'users-media/upgrade/2/22.3/23.5'
+
     },
     Agent:{
         getAgent:'users/agency',
         getMyAgentProperties:'properties-on/my',
-        acceptAgentProperty:'propertyG/acc',
-        rejectAgentProperty:'propertyG/rej',
-        getAgentPendingProperties:'propertyG/pending',
+        acceptAgentProperty:'properties-ag/acc',
+        rejectAgentProperty:'properties-ag/rej',
+        getAgentPendingProperties:'properties-ag/pending',
         getOwnerInfo:'user/pro',
-        report:'/reports'
+        report:'/reports',
+        
     },
     Properties:{
      create:'properties-on',
      getDetails:'properties/',
-     uploadPhotos:'property/upload-multiple-img',
+     uploadPhotos:'properties-media/upload-multiple-img/',
      getAll:'properties/all',
      getMine:'properties-on/my', 
      getTop:'properties/top',
@@ -48,6 +53,7 @@ const EndPoints={
        getAllPropertiesSuperAdmin:'properties-ad',
        getAllProperties:'properties-ad' ,
        getAdmins:'users/getAdmins',
+       hideProperty:'properties-ad',
        getUsers:'/users/getUsers',
        addNewPlan:'/plans',
        getLogs:'/audit',
@@ -57,7 +63,7 @@ const EndPoints={
        getuserDetails:'users',
        deleteAdmin:'auth/deleteAdmin',
        acceptProperty:'/propertyA/acc',
-       rejectProperty:'/propertyA/rej',
+       rejectProperty:'/properties-ad',
        getReports:'/reports',
        ban:'/banned',
        adminLogs:'/audit'

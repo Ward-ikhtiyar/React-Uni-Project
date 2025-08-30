@@ -7,6 +7,12 @@ export async function getProfile() {
     let response = await TokenAxios.get(EndPoints.User.Me);
     let data = response.data;
     if (data) {
+      localStorage.setItem("token", data.accessToken);
+      localStorage.setItem("number", number);
+      localStorage.setItem("password", password);
+      localStorage.setItem("role", data.userType);
+      console.log(data.UserType);
+      console.log(localStorage.getItem('token'));
         return data;
     }
 }
@@ -57,33 +63,21 @@ export async function createPlan(id) {
     }
 }
 export async function upVote(id) {
-    try {
-        let response = await TokenAxios.post(`${EndPoints.Favoirtes.vote}/${id}/${1}`,
-
-        );
-        let data = response.data;
-        if (data) {
-            return data.voteScore;
-        }
-    }
-    catch (e) {
-        console.log(e.response.data);
-    }
+  try {
+    let response = await TokenAxios.post(`${EndPoints.Favoirtes.vote}/${id}/1`);
+    return response.data; // return full object { voteScore: ... }
+  } catch (e) {
+    console.log(e.response.data);
+  }
 }
 
-export async function downVote(id){
-    try{
-        let response=await TokenAxios.post(`${EndPoints.Favoirtes.vote}/${id}/${-1}`,
-            
-        );
-        let data = response.data;
-        if (data) {
-            return data.voteScore;
-        }
-    }
-    catch (e) {
-        console.log(e.response.data);
-    }
+export async function downVote(id) {
+  try {
+    let response = await TokenAxios.post(`${EndPoints.Favoirtes.vote}/${id}/-1`);
+    return response.data; // return full object { voteScore: ... }
+  } catch (e) {
+    console.log(e.response.data);
+  }
 }
 
 export async function postComplaint(complaint) {

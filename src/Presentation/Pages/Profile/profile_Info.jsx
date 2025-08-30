@@ -30,6 +30,7 @@ function ProfileInfoPage() {
 
     }
     async function getProfile() {
+        console.log("we weird af bruddha")
         let response=await TokenAxios.get(EndPoints.User.Me);
         let data=response.data;
         if(data){
@@ -37,8 +38,10 @@ function ProfileInfoPage() {
             if(data.planId===null){
                 console.log(data.planId);
                 localStorage.setItem("plan",'none');
+                localStorage.setItem('role',data.userType);
             }
             console.log();
+
             console.log(data.phone);
             setViewsCount(data.totalViewCount);
             setVotesCount(data.totalVoteScore);
@@ -46,6 +49,9 @@ function ProfileInfoPage() {
             setUserName(`${data.username}`);
             setLocation(`${data.location.country},${data.location.city}`);
             setIsLoaded(true);
+    //    if(!localStorage.getItem('token')) localStorage.setItem("token", data.accessToken);
+    //     localStorage.setItem("number", data.phone);
+    //    if(!localStorage.getItem('role')) localStorage.setItem("role", data.userType);
             if (data.profileImage) {
                 getProfileImg(data.profileImage);
             }
@@ -66,7 +72,7 @@ function ProfileInfoPage() {
 
                 <div className='property-tile'>
                     <div style={{ width: '120px' }}></div>
-                    <div style={{ backgroundImage: `url(${image})` }} className='profile-pic'></div>
+                    <img crossOrigin='anonymous' style={{ backgroundImage: `url(${image})` }} className='profile-pic'/>
                     <div style={{ width: '15px' }}></div>
                     <div className='username-number'>
                         <div style={{ height: '80px' }}></div>
@@ -88,18 +94,26 @@ function ProfileInfoPage() {
                     </div>
 
                 </div>
-                {/* <AgentProperty/> */}
-                <div className='profilecard-row'>
-                    <ProfileCard Icon={HouseOutlined} title={"Properties"} value={'12'} />
-                    <ProfileCard Icon={AttachMoneyOutlined} title={"All-Time Earnings"} value={'25k'} />
-                    <ProfileCard Icon={Visibility} title={"Views"} value={viewsCount} />
+                    {/* <AgentProperty/> */}
+              {
+  localStorage.getItem('role') === "agency" ? (
+    <>
+      <div className='profilecard-row'>
+        <ProfileCard Icon={HouseOutlined} title={"Properties"} value={'12'} />
+        <ProfileCard Icon={AttachMoneyOutlined} title={"All-Time Earnings"} value={'25k'} />
+        <ProfileCard Icon={Visibility} title={"Views"} value={viewsCount} />
+      </div>
+      <div className='profilecard-row'>
+        <ProfileCard Icon={EditDocument} title={"Contracts"} value={"6"} />
+        <ProfileCard Icon={TrendingUpOutlined} title={"Monthly Revenue"} value={'25k'} />
+        <ProfileCard Icon={Favorite} title={"Votes"} value={votesCount} />
+      </div>
+    </>
+  ) : (
+    <div></div>
+  )
+    }
 
-                </div>
-                <div className='profilecard-row'>
-                    <ProfileCard Icon={EditDocument} title={"Contracts"} value={"6"} />
-                    <ProfileCard Icon={TrendingUpOutlined} title={"Monthly Revenue"} value={'25k'} />
-                    <ProfileCard Icon={Favorite} title={"Votes"} value={votesCount} />
-                </div>
 
 
                 <EditProfileDialog image={image} phone={phone} name={userName} open={isOpen} onClose={() => setIsOPen(false)} />
