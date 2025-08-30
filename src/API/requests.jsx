@@ -1,6 +1,7 @@
 import EndPoints from "./endpoints";
 import TokenAxios from "./tokenAxios";
 import Axios from "./axios";
+import { getLinearProgressUtilityClass } from "@mui/material";
 
 export async function resetPassword(id, password) {
   console.log('in reset password');
@@ -257,17 +258,60 @@ export async function getAcceptedProperties(mine) {
 }
 
 ///////////////get Filtered Porperties //////////////
-export async function getFilteredProperties(minPrice, maxPrice, propertyType, searchRadius, locationSource) {
+export async function getFilteredProperties(pageNum, numPerPage, minPrice, maxPrice, propertyType,) {
   let endpoint = EndPoints.Properties.getAll;
-  console.log(endpoint)
   try {
     let response = await TokenAxios.get(endpoint, {
       params: {
+        pageNum: pageNum,
+        numPerPage: numPerPage,
         minPrice: minPrice,
         maxPrice: maxPrice,
-        word: propertyType,
-        searchRadius: searchRadius,
-        locationSource: locationSource
+        propertyType: propertyType,
+        // searchRadius: searchRadius,
+        // lat:latitude,
+        // lon:longtitude
+      }
+    });
+    let data = response.data;
+    console.log(data);
+    if (data) {
+      return data;
+    }
+  }
+  catch (e) {
+    console.log(e.response.data);
+  }
+}
+///////////////get Properties Near Me //////////////
+export async function getPropertiesNearMe(searchRadius, latitude, longtitude) {
+  let endpoint = EndPoints.Properties.nearMe;
+  try {
+    let response = await TokenAxios.get(endpoint, {
+      params: {
+        distanceKm: searchRadius,
+        lat: latitude,
+        lon: longtitude
+      }
+    });
+    let data = response.data;
+    if (data) {
+      return data;
+    }
+  }
+  catch (e) {
+    console.log(e.response.data);
+  }
+}
+///////////////get Properties Location Level //////////////
+export async function getPropertiesLocationLevel(level, latitude, longtitude) {
+  let endpoint = EndPoints.Properties.geo;
+  try {
+    let response = await TokenAxios.get(endpoint, {
+      params: {
+        geoLevel: level,
+        lat: latitude,
+        lon: longtitude
       }
     });
     let data = response.data;

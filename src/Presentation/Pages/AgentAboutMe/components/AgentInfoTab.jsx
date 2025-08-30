@@ -3,36 +3,36 @@ import { TextField, FormGroup, FormControlLabel, Checkbox, Chip, Box, Grid } fro
 import EditAgentInfoButton from './EditAgentInfoButton';
 import { agencyBasicInfoFormConfig } from './formConfigs';
 
-function AgentInfoTab() {
+function AgentInfoTab({agentData}) {
     // const [openDialog, setOpenDialog] = useState(false);
-    const [agentResponseData, setAgentResponseData] = useState(null)
+    // const [agentData, setagentData] = useState(null)
 
-     async function fetchAgentData() {
-            try {
-                // setIsLoading(true);
-                // setError(null);
+    //  async function fetchAgentData() {
+    //         try {
+    //             // setIsLoading(true);
+    //             // setError(null);
     
     
-                const agentData = await getProfile();
-                console.log("Owner data received:", agentData);
+    //             const agentData = await getProfile();
+    //             console.log("Owner data received:", agentData);
     
-                if (!agentData || (typeof agentData === 'object' && Object.keys(agentData).length === 0)) {
-                    setAgentResponseData(null);
-                } else {
-                    setAgentResponseData(agentData);
-                }
+    //             if (!agentData || (typeof agentData === 'object' && Object.keys(agentData).length === 0)) {
+    //                 setagentData(null);
+    //             } else {
+    //                 setagentData(agentData);
+    //             }
     
                 
     
-            } catch (error) {
-                console.error("Failed to fetch agent data:", error);
-                setAgentResponseData(null);
-            } 
-        }
+    //         } catch (error) {
+    //             console.error("Failed to fetch agent data:", error);
+    //             setagentData(null);
+    //         } 
+    //     }
     
-        useEffect(() => {
-            fetchAgentData();
-        }, []);
+    //     useEffect(() => {
+    //         fetchAgentData();
+    //     }, []);
     
     
     
@@ -54,7 +54,7 @@ function AgentInfoTab() {
                 title='Agent Information'
                 linkPlaceHolder='Edit agent information'
                 formConfig={agencyBasicInfoFormConfig}
-                initialValues={agentResponseData}
+                initialValues={agentData}
                 onSave={handleSave}
             />
             <Box className="info-grid">

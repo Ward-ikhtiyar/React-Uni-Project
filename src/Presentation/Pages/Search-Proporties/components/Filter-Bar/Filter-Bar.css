@@ -64,6 +64,9 @@
     flex: 1;
     min-width: 150px;
 }
+.filter-item-hidden {
+    display: none;
+}
 
 .filter-button {
     display: flex;

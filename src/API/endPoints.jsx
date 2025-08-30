@@ -39,15 +39,15 @@ const EndPoints={
      agentUpdateProperty:'properties-ag',
   
     },
-    Favoirtes:{
-        getAll:'favorite',
-        isFavorite:'favorite/isFavorite',
-        setFavorite:'favorite',
-        vote:'votes'
+    Favoirtes: {
+        getAll: 'favorite',
+        isFavorite: 'favorite/isFavorite',
+        setFavorite: 'favorite',
+        vote: 'votes'
     },
-    Plans:{
-        getAll:'plans',
-        createPlan:'webhook'
+    Plans: {
+        getAll: 'plans',
+        createPlan: 'webhook'
     },
     Admin:{
        getAllPropertiesSuperAdmin:'properties-ad',
@@ -68,7 +68,7 @@ const EndPoints={
        ban:'/banned',
        adminLogs:'/audit'
     }
-    
-    
+
+
 }
 export default EndPoints;

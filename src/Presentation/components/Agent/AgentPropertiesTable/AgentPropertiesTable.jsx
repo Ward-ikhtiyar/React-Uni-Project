@@ -23,7 +23,7 @@ function AgentPropertiesTable({ properties, totalCount = 0 }) {
     }, [properties]);
 
     return (
-        
+
         <div className="agent-properties-table-container" id='properties-list'>
             {/* <div className="properties-intro-text">
                 This map can show the most recent 100 listings and 100 sales. Review all listings and sales below.
@@ -81,13 +81,13 @@ function AgentPropertiesTable({ properties, totalCount = 0 }) {
 
             {properties.length > 0 && (
                 <div className="properties-pagination">
-                    <Pagination 
-                        count={totalPages} 
+                    <Pagination
+                        count={totalPages}
                         page={currentPage}
                         onChange={handlePageChange}
                         color="primary"
                         size="large"
-                        style={{ display: "flex", justifyContent: "center", marginTop: "2rem" }} 
+                        style={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}
                     />
                     <div className="pagination-info">
                         Showing {startIndex + 1}-{Math.min(endIndex, properties.length)} of {properties.length} properties
